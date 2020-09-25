@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<div>
+		<h3>報廢登錄</h3>
+
+
+	<form method ="post" action ="">
+		{% csrf_token %}
+	
+	<div>
+		<td><label for="qty"> 報廢{{ product.name }}數量 </label></td>
+		<td><input type="number" name="qty"></td>
+	</div>
+	<div>
+		<td><input type="radio" name="reason" value="discard">
+			<label>報廢</label></td>
+		<td><input type="radio" name="reason" value="matchQty">
+			<label>數目不符</label></td>
+		<td><input type="radio" name="reason" value="experiment">
+			<label>實驗</label></td>
+	</div>
+
+	<div><input type="submit" value="報廢"/></div>
+	</form>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

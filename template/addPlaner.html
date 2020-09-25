@@ -1,0 +1,19 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+
+<p> 請輸入{{part.name}}的生產數量</p>
+
+<form method ="post" action ="">
+	{% csrf_token%}
+	<div>
+	<td><label>生產數量</label></td>
+	<td><input type="number" name="produceQty" ></td>
+	<td><input type="submit" value="Ok"/></td>
+	</div>
+</form>
+
+{% endblock %}
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

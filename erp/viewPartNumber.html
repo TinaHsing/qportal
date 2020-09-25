@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<p>Hello~~</p>
+	{% if partnumber_ist %}
+	<ul>
+		{% for pn in partnumber_list %}
+			<li> {{pn.name}}:{{pn.location}}</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p> List is empty </p>
+
+	{%% endif}
+
+{%endblock%}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

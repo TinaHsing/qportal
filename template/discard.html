@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<div>
+		<h3>料件報廢</h3>
+
+	<form method ="post" action ="">
+		{% csrf_token %}
+	
+	<div>
+		<td><label for="pnKW"> 新增料號包含關鍵字</label></td>
+		<td><input id ="pnKW" type="text" name="pnKW"></td>
+	</div>
+	<div>
+		<td><label for="category">料號分類</label></td>
+		<td><select name = "category">
+				<option> ALL </option>
+			{% for cg in category_list %}
+				<option > {{ cg.category }} </option>
+			{% endfor %}
+		</select> </td>	
+	</div>
+
+	<div><input type="submit" value="Filter"/></div>
+	</form>
+	{% if partnumber_list %}
+		{% for pn in partnumber_list %}
+		<div>
+			<td> {{pn.name}}:</td>
+			<td> {{pn.discription}} </td>
+			<td> <a href="{{ pn.Pid }}/" class="btn btn-info" >報廢</a></td>
+		</div>
+		{% endfor %}
+	{% else %}
+	<p> 無結果！ 請重設查詢條件 </p>
+	{% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<div>
+		<h3>材料清單</h3>
+	</div>
+	<div>
+		<td><a href={% url 'addPartNumber' %}>新建料號</a></td> 
+		<td><a href={% url 'addCategory' %}>新建料號分類</a></td>
+	</div>
+	<form method ="post" action ="">
+		{% csrf_token%}
+	<div>
+		<td><label>材料清單包含關鍵字</label></td>
+		<td><input type="text" name="productKW"></td>
+		<td><input type="submit" value="Filter"/></td>
+	</div>
+	<div>
+		<td><label > 選擇材料清單</label></td>
+	{% for pn in partnumber_list %}
+	</div>
+		<td>
+			
+			<td >{{ pn.name}}</td>
+			<td> <a href="{{pn.Pid}}/"  class ="btn btn-info"> Edit </a></td>
+	</div>
+	{% endfor %}
+	</form>
+{%endblock%}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

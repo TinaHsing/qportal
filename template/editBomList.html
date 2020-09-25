@@ -1,0 +1,64 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<div>
+		<h3>檢視材料清單</h3>
+	</div>
+	<div>
+		<td><a href={% url 'addPartNumber' %}>新建料號</a></td> 
+		<td><a href={% url 'addCategory' %}>新建料號分類</a></td>
+	
+	</div>
+	<div> 
+		<td> Edit BOM of {{ product.name }}</td> </div>
+	<div>
+		{% if element %}
+			{% for ele in element %}
+			<div>
+			<td> {{ ele.part.name }}  </td> 
+			<td> {{ ele.unitQty }}  </td> 
+			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit</a> </td>
+
+			</div>
+			{% endfor%}
+		{% else %}
+			<p>Bom list is empty</p>
+		{% endif %}
+
+	</div>
+	<hr>
+	<form method ="post" action ="">
+		{% csrf_token %}
+	
+	<div>
+		<td><label for="pnKW"> 新增料號包含關鍵字</label></td>
+		<td><input id ="pnKW" type="text" name="pnKW"></td>
+	</div>
+	<div>
+		<td><label for="category">料號分類</label></td>
+		<td><select name = "category">
+				<option> ALL </option>
+			{% for cg in category_list %}
+				<option > {{ cg.category }} </option>
+			{% endfor %}
+		</select> </td>	
+	</div>
+
+	<div><input type="submit" value="Filter"/></div>
+	</form>
+	{% if partnumber_list %}
+		{% for pn in partnumber_list %}
+		<div>
+			<td> {{pn.name}}:</td>
+			<td> {{pn.discription}} </td>
+			<td> <a href="{{ pn.Pid }}/" class="btn btn-info" >ADD</a></td>
+		</div>
+		{% endfor %}
+	{% else %}
+	<p> 無結果！ 請重設查詢條件 </p>
+	{% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

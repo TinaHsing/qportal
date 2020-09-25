@@ -1,0 +1,22 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+{% if table %}
+	<table width = "1000">
+		<thead colspan="4"> <tr>Planer Output</tr> </thead>
+	{% for row in table %}
+	<tbody><tr>
+		<td>{{ row.0 }}</td>
+		<td>{{ row.2}}</td>
+		<td>{{ row.3}}</td>
+		<td>{{ row.4}}</td>
+		<td>{{ row.5}}</td>
+	</tr></tbody>
+	{% endfor %}
+	</table>
+{% endif %}
+
+{% endblock %}
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

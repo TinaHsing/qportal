@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<p> 料號查詢 </p>
+	{% if partnumber_list %}
+	<ul>
+		{% for pn in partnumber_list %}
+			<li> {{pn.name}}:{{pn.location}}</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p> 無結果！ 請重設查詢條件 </p>
+	{% endif %}
+
+{%endblock%}
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

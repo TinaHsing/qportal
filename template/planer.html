@@ -1,0 +1,45 @@
+
+{% extends "base_generic.html" %}
+{% block content %}
+{% if planer_list %}
+<p>你目前預計生產以下產品請添加,修改或是計算</p>
+{% else %}
+<p>您目前沒有計畫生產任何產品請用filter 篩選產品並添加</p>
+{% endif %}
+
+
+<form method ="post" action ="">
+	{% csrf_token%}
+	<div>
+	<td><label>生產產品包含關鍵字</label></td>
+	<td><input type="text" name="pnKW"></td>
+	<td><input type="submit" value="Filter to Add"/></td>
+	</div>
+</form>
+
+	<table>
+	{% if planer_list %}
+	{% for pl in planer_list %}
+		<tr>
+			<td>{{ pl.product }}</td>
+			<td>{{ pl.produceQty }}</td>
+			<td> <a href="{{pl.product.Pid}}/"  class ="btn btn-info"> Edit </a>
+			</td></tr>
+	{% endfor %}
+	{% endif %}
+	{% if partnumber_list %}
+	{% for pn in partnumber_list %}
+		<tr>
+			<td>{{ pn.name }}</td>
+			<td>0</td>
+			<td> <a href="{{pn.Pid}}/"  class ="btn btn-info"> Add </a>
+			</td></tr>
+
+	{% endfor %}
+	{% endif%}
+	</table>
+	<a href="{% url 'calculate' %}"  class ="btn btn-info"> 備料計算 </a>
+{% endblock %}
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

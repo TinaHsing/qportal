@@ -1,0 +1,58 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<div>
+		<h3>新建料號</h3>
+	</div>
+	<div>
+		<td> <a href={% url 'addPartNumber' %}> 新建料號</a></td> 
+		<td><a href={% url 'addCategory' %}>新建料號分類</a></td>
+	</div>
+	<form method ="post" action ="">
+		{% csrf_token%}
+	<div>
+		<td><label> 料號</label></td>
+		<td><input name="partNumber" type = "text"></td>	
+	</div>
+	<div>
+		<td><label for="location">位置</label></td>
+		<td><input name="location" type = "text"></td>
+		<td><label>一定要寫不然以後會找不到</label></td>
+	</div>
+	<div>
+		<td><label for="category">料號分類</label></td>
+		<td><select name = "category">
+			{% for cg in category_list %}
+				<option > {{ cg.category }} </option>
+			{% endfor %}
+		</select> </td>
+	</div>
+	<div>
+		<td><label for="level">生產等級</label></td>
+		<td><select name="level">
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>9</option>
+		</select></td>
+		<td> 0: 原始料件 1: 一次加工 2: 二次加工 3: 三次加工 9: 成品 </td>
+	</div>
+	<div>
+		<td><label for="discription">產品描述</label></td>
+		<td><input type="text" name="discription"></td>
+	</div>
+	<div>
+		<td><label for="discription">購買連結</label></td>
+		<td><input type="text" name="link"></td>
+	</div>
+	<div><input type="submit" value="submit"/></div>
+	</form>
+	{% if done %}
+	<p>設定成功</p>
+	{% endif %}
+{%endblock%}
+
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

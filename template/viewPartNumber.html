@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<div>
+		<h3>料號查詢</h3>
+	</div>
+	<div>
+		<td><a href={% url 'addPartNumber' %}>新建料號</a></td> 
+		<td><a href={% url 'addCategory' %}>新建料號分類</a></td>
+	</div>
+	<form method ="get" action ="">
+		
+	<div>
+		<td><label for="pnKW"> 料號包含關鍵字</label></td>
+		<td><input id ="pnKW" type="text" name="pnKW"></td>
+		
+	</div>
+	<div>
+		<td><label for="category">料號分類</label></td>
+		<td><select name = "category">
+				<option> ALL </option>
+			{% for cg in category_list %}
+				<option > {{ cg.category }} </option>
+			{% endfor %}
+		</select> </td>
+		
+	</div>
+	<div><input type="submit" value="submit"/></div>
+	</form>
+
+	{% if partnumber_list %}
+	<ul>
+		{% for pn in partnumber_list %}
+			<li> {{pn.name}}:{{pn.location}}</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p> 無結果！ 請重設查詢條件 </p>
+	{% endif %}
+{%endblock%}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

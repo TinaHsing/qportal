@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div>
+	<p> 新增 {{ part.name }} 到 {{ product.name }} 的材料清單</p>
+</div>
+<form method ="post" action ="">
+	{% csrf_token %}
+	<div>
+		<td><label>使用數量(輸入0 可以刪除)</label> </td>
+		<td><input type="number" name="unitQty"{% if element %}value={{element.unitQty}}{% endif %}></td>
+	</div>
+	<div>
+		<label>在電路圖上面的元件名稱列表</label></td>
+
+	</div>
+	<div>
+		<textarea name="schPN" rows="10" cols ="60">{% if element %}{{ element.schPN }}{% endif %}</textarea>>
+	</div>
+	<div><input type="submit" value="完成"/></div>
+</form>
+<a href="" class=""> </a>
+
+{%endblock%}
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}
