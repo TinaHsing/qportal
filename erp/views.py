@@ -5,8 +5,10 @@ from django.contrib.auth.decorators import login_required
 from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePrice
 from .models import planerElement
 from django.db.models import Sum, F, Func
-from .forms import uploadBom
+from .forms import uploadBomForm
 from datetime import date
+import csv
+
 
 # Create your views here.
 def erpindex(request):
@@ -27,19 +29,22 @@ def viewPartNumber(request):
 			if cate != "ALL":
 				partnumber_list = partnumber_list.filter(category=cate)
 			
-			context.update({'partnumber_list':partnumber_list})
-			return render(request, 'viewPartNumber.html', context)
+			#context.update({'partnumber_list':partnumber_list})
+			
 	
 		elif cate !="ALL":
 			partnumber_list = partNumber.objects.filter(category=cate)
-			context.update({'partnumber_list':partnumber_list})
-			return render(request, 'viewPartNumber.html', context)
-		else:
+			#context.update({'partnumber_list':partnumber_list})
+		outlist =[]
+		for pt in partnumber_list:
+			temp=pt.pnqty_set.aggregate(Sum('Qty'))
+			curQty = temp.get('Qty__sum')
+			outlist.append([pt.name, curQty, pt.location, pt.discription, pt.buylink])
+		context.update({'table': outlist})
+		print(outlist)
+	
+	return render(request, 'viewPartNumber.html', context)
 
-			return render(request, 'viewPartNumber.html', context)
-
-	else:
-		return render(request, 'viewPartNumber.html', context)
 
 @login_required
 def addCategory(request):
@@ -50,7 +55,6 @@ def addCategory(request):
 			pnCategory.objects.create(category=category, user = user, date=date.today())
 			return render(request, 'addCategory.html', {'done':'ok'})	
 	return render(request, 'addCategory.html',{'failed':'failed'})
-
 
 @login_required
 def addPartNumber(request):
@@ -84,7 +88,6 @@ def addPartNumber(request):
 		context = {'category_list':category_list, 'done':'ok' }
 
 	return render(request, 'addPartNumber.html', context)
-
 
 def viewBomList(request):
 	partnumber_list = partNumber.objects.exclude(level =0)
@@ -138,7 +141,6 @@ def addElement(request, Pid, Bid):
 	print(element)
 	context={'product':product}
 	context.update({'part':part})
-	print("hello~~")
 	#element = product.bomelement_set.filter(Bid = Bid)
 	if element.count():
 		element = BomElement.objects.filter(product = product).get(part= part)
@@ -170,6 +172,36 @@ def addElement(request, Pid, Bid):
 			return redirect(path)
 	return render(request, 'addElement.html', context)
 
+def uploadBom(request, Pid):
+	if request.POST:
+		product = partNumber.objects.get(Pid=Pid)
+		form = uploadBomForm(request.POST, request.FILES)
+		if form.is_valid():
+			bom = request.FILES['file']
+			BomElement.objects.filter(product=product).delete()
+			#data = csv.reader(open(bom), delimiter=",")
+			data = bom.read()
+			rows = data.split(b'\n')
+			print(rows)
+			for row in rows:
+				row = row.decode()
+				out = row.split(',')
+
+				part = partNumber.objects.filter(name=out[0])
+				if part.count():
+					element = BomElement.objects.create(product = product, part=part[0])
+					element.unitQty = out[1]
+					element.schPN = out[2]
+					element.user = request.user
+					element.date = date.today()
+					element.save()
+				else:
+					return render(request, 'uploadFaild.html')
+		else:
+			form = uploadBomForm()
+	else:
+		form = uploadBomForm()
+	return render(request, 'uploadCSV.html', {'form':form})
 
 def purchasing(request):
 	category_list = partNumber.objects.values('category').distinct()
@@ -237,10 +269,12 @@ def addDiscard(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	
 	user = request.user
-	reason = reason = QtyReason.objects.get(reason="discard")
+	
 	context ={'product':product}
 	if request.POST:
 		disQty = int(request.POST['qty'])*(-1)
+		temp = request.POST['reason']
+		reason = QtyReason.objects.get(reason=temp)
 		pnQty.objects.create(partNumber = product, Qty = disQty,\
 				reason = reason, user = user, date = date.today())
 		
@@ -343,12 +377,42 @@ def PdRecord(request):
 	
 		elif cate !="ALL":
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
-			if cate != "ALL":filter(category=cate)
 			context.update({'pd_list':partnumber_list})
 
 	return render(request, 'pdRecord.html', context)
 
+def addPdRecord(request,Pid):
+	product = partNumber.objects.get(Pid=Pid)
+	user = request.user
+	reason = QtyReason.objects.get(reason="production")
+	context ={'product':product}
+	if request.POST:
+		pdQty = int(request.POST['qty'])
+		inout = request.POST['inout']
+		pnQty.objects.create(partNumber = product, Qty = pdQty,\
+				reason = reason, user = user, date = date.today())
+		if inout == "outside":
+			bomeleset = BomElement.objects.filter(product = product)
+			for ele in bomeleset:
+				consqty = ele.unitQty*pdQty*(-1)
+				pnQty.objects.create(partNumber = ele.part, Qty = consqty,\
+				reason = reason, user = user, date = date.today())
 
+	return render(request, 'addPdRecord.html', context)
 
-
-
+def uploadPO(request):
+	form = uploadBomForm()
+	if form.is_valid():
+		pocsv = request.FILES['file']
+		data = pocsv.read()
+		rows = data.split(b'\n')
+		reason = QtyReason.objects.get(reason='purchasing')
+		for row in rows:
+			row = row.decode()
+			out = row.split(',')
+			part = partNumber.objects.filter(name=out[0])
+			if part.count():
+				ele = pnQty.objects.create(partNumber=part[0], reason = reason, Qty=int(out[1]), user = request.usr, data = data.today())
+			else:
+				return render(request, 'uploadFaild.html')
+	return render(request, 'uploadCSV.html', {'form':form})

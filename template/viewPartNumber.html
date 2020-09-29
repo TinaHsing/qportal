@@ -27,12 +27,19 @@
 	<div><input type="submit" value="submit"/></div>
 	</form>
 
-	{% if partnumber_list %}
-	<ul>
-		{% for pn in partnumber_list %}
-			<li> {{pn.name}}:{{pn.location}}</li>
+	{% if table %}
+	<table width = "1000">
+		<thead colspan="5"> <tr>Part Number List</tr> </thead>
+		{% for row in table %}
+		<tbody><tr>
+		<td>{{ row.0 }}</td>
+		<td>{{ row.1}}</td>
+		<td>{{ row.2}}</td>
+		<td>{{ row.3}}</td>
+		<td><a href={{ row.4}}>{{row.4}}</a></td>
+	</tr></tbody>
 		{% endfor %}
-	</ul>
+	</table>
 	{% else %}
 	<p> 無結果！ 請重設查詢條件 </p>
 	{% endif %}

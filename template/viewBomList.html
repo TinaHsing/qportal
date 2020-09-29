@@ -14,17 +14,21 @@
 		<td><input type="text" name="productKW"></td>
 		<td><input type="submit" value="Filter"/></td>
 	</div>
+		</form>
 	<div>
 		<td><label > 選擇材料清單</label></td>
-	{% for pn in partnumber_list %}
+	
 	</div>
-		<td>
-			
+	<table width = "1000">
+		{% for pn in partnumber_list %}
+		<tr>
 			<td >{{ pn.name}}</td>
+			<td>{{ pn.discription }}</td>
 			<td> <a href="{{pn.Pid}}/"  class ="btn btn-info"> Edit </a></td>
-	</div>
-	{% endfor %}
-	</form>
+			<td><a href="Upload/{{ pn.Pid }}/" class = "btn btn-info" > Upload CSV</a></td>
+		</tr>
+		{% endfor %}
+	</table>	
 {%endblock%}
 
 {% block sidebar %}

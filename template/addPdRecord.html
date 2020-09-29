@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<div>
+		<h3>生產登錄</h3>
+
+
+	<form method ="post" action ="">
+		{% csrf_token %}
+	
+	<div>
+		<td><label for="qty"> 生產{{ product.name }}數量 </label></td>
+		<td><input type="number" name="qty"></td>
+	</div>
+	<div>
+		<td><input type="radio" name="inout" value="outside">
+			<label>外包生產(統一領料)</label></td>
+		<td><input type="radio" name="inout" value="inside">
+			<label>RD 自行領料 </label></td>
+	</div>
+
+	<div><input type="submit" value="生產"/></div>
+	</form>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

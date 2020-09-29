@@ -27,9 +27,6 @@ class partNumber(models.Model):
 		return self.name
 	
 
-	
-
-
 class BomElement(models.Model):
 	product = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True) #bom belongs to what product
 	part = models.ForeignKey(partNumber, related_name = "element", on_delete = models.CASCADE, blank = True, null =True)

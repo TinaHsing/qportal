@@ -17,11 +17,12 @@
 	</div>
 </form>
 
-	<table>
+	<table width = "1000">
 	{% if planer_list %}
 	{% for pl in planer_list %}
 		<tr>
 			<td>{{ pl.product }}</td>
+			<td>{{ pl.product.discription }}</td>
 			<td>{{ pl.produceQty }}</td>
 			<td> <a href="{{pl.product.Pid}}/"  class ="btn btn-info"> Edit </a>
 			</td></tr>
@@ -31,6 +32,7 @@
 	{% for pn in partnumber_list %}
 		<tr>
 			<td>{{ pn.name }}</td>
+			<td>{{ pn.discription }}</td>
 			<td>0</td>
 			<td> <a href="{{pn.Pid}}/"  class ="btn btn-info"> Add </a>
 			</td></tr>

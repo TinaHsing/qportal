@@ -10,27 +10,29 @@
 	</div>
 	<div> 
 		<td> Edit BOM of {{ product.name }}</td> </div>
-	<div>
+	<table width = "1000">
 		{% if element %}
 			{% for ele in element %}
-			<div>
+			<tr>
 			<td> {{ ele.part.name }}  </td> 
+			<td>{{ ele.part.discription }}</td>
 			<td> {{ ele.unitQty }}  </td> 
+			<td> {{ ele.schPN }}</td>
 			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit</a> </td>
 
-			</div>
+			</tr>
 			{% endfor%}
 		{% else %}
 			<p>Bom list is empty</p>
 		{% endif %}
 
-	</div>
+	</table>
 	<hr>
 	<form method ="post" action ="">
 		{% csrf_token %}
 	
 	<div>
-		<td><label for="pnKW"> 新增料號包含關鍵字</label></td>
+		<td><label for="pnKW"> 新增材料清單包含關鍵字</label></td>
 		<td><input id ="pnKW" type="text" name="pnKW"></td>
 	</div>
 	<div>
