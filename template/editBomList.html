@@ -1,16 +1,23 @@
 {% extends "base_generic.html" %}
+
 {% block content %}
 	<div>
 		<h3>檢視材料清單</h3>
 	</div>
 	<div>
-		<td><a href={% url 'addPartNumber' %}>新建料號</a></td> 
-		<td><a href={% url 'addCategory' %}>新建料號分類</a></td>
-	
+		<li><a href={% url 'addPartNumber' %}>新建料號</a>
+		<li><a href={% url 'addCategory' %}>新建料號分類</a>
 	</div>
 	<div> 
-		<td> Edit BOM of {{ product.name }}</td> </div>
-	<table width = "1000">
+		<td> Edit BOM of <font color="red">{{ product.name }}</font></td> </div>
+	<table width = "100%">
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>數量</td>
+			<td>PCB part (以","隔開)</td>
+			<td>編輯</td>
+		</tr>
 		{% if element %}
 			{% for ele in element %}
 			<tr>
@@ -18,7 +25,7 @@
 			<td>{{ ele.part.discription }}</td>
 			<td> {{ ele.unitQty }}  </td> 
 			<td> {{ ele.schPN }}</td>
-			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit</a> </td>
+			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit </a> </td>
 
 			</tr>
 			{% endfor%}
@@ -32,7 +39,7 @@
 		{% csrf_token %}
 	
 	<div>
-		<td><label for="pnKW"> 新增材料清單包含關鍵字</label></td>
+		<td><label for="pnKW">新增材料清單包含關鍵字</label></td>
 		<td><input id ="pnKW" type="text" name="pnKW"></td>
 	</div>
 	<div>
@@ -48,17 +55,23 @@
 	<div><input type="submit" value="Filter"/></div>
 	</form>
 	{% if partnumber_list %}
+	<table border="1">
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>新增材料清單</td>
+		</tr>
 		{% for pn in partnumber_list %}
-		<div>
+		<tr>
 			<td> {{pn.name}}:</td>
 			<td> {{pn.discription}} </td>
-			<td> <a href="{{ pn.Pid }}/" class="btn btn-info" >ADD</a></td>
-		</div>
+			<td> <a href="{{ pn.Pid }}/" class="btn btn-info"> Add </a></td>
+		</tr>
 		{% endfor %}
+	</table>
 	{% else %}
 	<p> 無結果！ 請重設查詢條件 </p>
 	{% endif %}
-
 {% endblock %}
 
 {% block sidebar %}

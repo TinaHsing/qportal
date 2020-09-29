@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+
 {% block content %}
 	<p> 料號查詢 </p>
 	{% if partnumber_list %}
@@ -8,10 +9,10 @@
 		{% endfor %}
 	</ul>
 	{% else %}
-	<p> 無結果！ 請重設查詢條件 </p>
+	<p> 無結果！請重設查詢條件 </p>
 	{% endif %}
-
 {%endblock%}
+
 {% block sidebar %}
 {% include 'erpside.html' %}
 {% endblock %}

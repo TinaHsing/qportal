@@ -1,13 +1,17 @@
 {% extends "base_generic.html" %}
+
 {% block content %}
 	<div>
 		<h3>進貨登錄</h3>
 
 	<form method ="post" action ="">
 		{% csrf_token %}
-	
+
 	<div>
-		<td><label for="qty"> 購買數量 </label></td>
+		<td><label for="qty">進貨 <font color="red">{{ product.name }}</font> </label></td>
+	</div>
+	<div>
+		<td><label for="qty">購買數量</label></td>
 		<td><input type="number" name="qty"></td>
 	</div>
 	<div>

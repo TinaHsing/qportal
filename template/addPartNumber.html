@@ -1,22 +1,23 @@
 {% extends "base_generic.html" %}
+
 {% block content %}
 	<div>
 		<h3>新建料號</h3>
 	</div>
 	<div>
-		<td> <a href={% url 'addPartNumber' %}> 新建料號</a></td> 
-		<td><a href={% url 'addCategory' %}>新建料號分類</a></td>
+		<li><a href={% url 'addPartNumber' %}>新建料號</a>
+		<li><a href={% url 'addCategory' %}>新建料號分類</a>
 	</div>
 	<form method ="post" action ="">
 		{% csrf_token%}
 	<div>
-		<td><label> 料號</label></td>
+		<td><label>料號</label></td>
 		<td><input name="partNumber" type = "text"></td>	
 	</div>
 	<div>
 		<td><label for="location">位置</label></td>
 		<td><input name="location" type = "text"></td>
-		<td><label>一定要寫不然以後會找不到</label></td>
+		<td><font color="red">必填，否則會找不到</font></td>
 	</div>
 	<div>
 		<td><label for="category">料號分類</label></td>
@@ -29,13 +30,15 @@
 	<div>
 		<td><label for="level">生產等級</label></td>
 		<td><select name="level">
-			<option>0</option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>9</option>
+			<option value="0">0: 原始料件</option>
+			<option value="1">1: 一次加工</option>
+			<option value="2">2: 一次加工測試過</option>
+			<option value="4">4: 二次加工</option>
+			<option value="5">5: 二次加工測試過</option>
+			<option value="7">7: 三次加工</option>
+			<option value="8">8: 三次加工測試過</option>
+			<option value="10">10: 成品</option>
 		</select></td>
-		<td> 0: 原始料件 1: 一次加工 2: 二次加工 3: 三次加工 9: 成品 </td>
 	</div>
 	<div>
 		<td><label for="discription">產品描述</label></td>
@@ -51,7 +54,6 @@
 	<p>設定成功</p>
 	{% endif %}
 {%endblock%}
-
 
 {% block sidebar %}
 {% include 'erpside.html' %}

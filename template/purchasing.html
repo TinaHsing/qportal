@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+
 {% block content %}
 	<div>
 		<h3>進貨登錄</h3>
@@ -7,7 +8,7 @@
 		{% csrf_token %}
 	
 	<div>
-		<td><label for="pnKW"> 新增料號包含關鍵字</label></td>
+		<td><label for="pnKW">新增料號包含關鍵字</label></td>
 		<td><input id ="pnKW" type="text" name="pnKW"></td>
 	</div>
 	<div>
@@ -23,18 +24,25 @@
 	<div><input type="submit" value="Filter"/></div>
 	</form>
 	{% if partnumber_list %}
+	<table border="1">
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>登錄進貨</td>
+		</tr>
 		{% for pn in partnumber_list %}
-		<div>
+		<tr>
 			<td> {{pn.name}}:</td>
 			<td> {{pn.discription}} </td>
-			<td> <a href="{{ pn.Pid }}/" class="btn btn-info" >登錄進貨</a></td>
-		</div>
+			<td> <a href="{{ pn.Pid }}/" class="btn btn-info" > Add </a></td>
+		</tr>
 		{% endfor %}
+	</table>
 	{% else %}
-	<p> 無結果！! 請重設查詢條件 </p>
+	<p> 無結果！請重設查詢條件 </p>
 	{% endif %}
-	<p><a href="Upload/" class="btn btn-info" >上傳csv 購買紀錄 </a></p>
 
+	<p><a href="Upload/" class="btn btn-info" >上傳 csv 購買紀錄</a></p>
 {% endblock %}
 
 {% block sidebar %}

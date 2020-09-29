@@ -1,12 +1,14 @@
-
 {% extends "base_generic.html" %}
-{% block content %}
-{% if planer_list %}
-<p>你目前預計生產以下產品請添加,修改或是計算</p>
-{% else %}
-<p>您目前沒有計畫生產任何產品請用filter 篩選產品並添加</p>
-{% endif %}
 
+{% block content %}
+	<div>
+		<h3>生產規劃</h3>
+
+{% if planer_list %}
+<p>目前預計生產以下產品，請新增、修改或是計算</p>
+{% else %}
+<p>目前沒有計畫生產任何產品，請用 filter 篩選產品並新增</p>
+{% endif %}
 
 <form method ="post" action ="">
 	{% csrf_token%}
@@ -17,8 +19,14 @@
 	</div>
 </form>
 
-	<table width = "1000">
+	<table width = "100%">
 	{% if planer_list %}
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>數量</td>
+			<td>編輯</td>
+		</tr>
 	{% for pl in planer_list %}
 		<tr>
 			<td>{{ pl.product }}</td>
@@ -28,7 +36,14 @@
 			</td></tr>
 	{% endfor %}
 	{% endif %}
+
 	{% if partnumber_list %}
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>數量</td>
+			<td>新增</td>
+		</tr>
 	{% for pn in partnumber_list %}
 		<tr>
 			<td>{{ pn.name }}</td>
@@ -42,6 +57,7 @@
 	</table>
 	<a href="{% url 'calculate' %}"  class ="btn btn-info"> 備料計算 </a>
 {% endblock %}
+
 {% block sidebar %}
 {% include 'erpside.html' %}
 {% endblock %}

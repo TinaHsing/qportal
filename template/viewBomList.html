@@ -1,11 +1,12 @@
 {% extends "base_generic.html" %}
+
 {% block content %}
 	<div>
 		<h3>材料清單</h3>
 	</div>
 	<div>
-		<td><a href={% url 'addPartNumber' %}>新建料號</a></td> 
-		<td><a href={% url 'addCategory' %}>新建料號分類</a></td>
+		<li><a href={% url 'addPartNumber' %}>新建料號</a>
+		<li><a href={% url 'addCategory' %}>新建料號分類</a>
 	</div>
 	<form method ="post" action ="">
 		{% csrf_token%}
@@ -16,10 +17,16 @@
 	</div>
 		</form>
 	<div>
-		<td><label > 選擇材料清單</label></td>
+		<td><label >選擇材料清單</label></td>
 	
 	</div>
-	<table width = "1000">
+	<table width = "100%">
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>編輯</td>
+			<td>上傳檔案</td>
+		</tr>
 		{% for pn in partnumber_list %}
 		<tr>
 			<td >{{ pn.name}}</td>
