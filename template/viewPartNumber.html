@@ -5,8 +5,9 @@
 		<h3>料號查詢</h3>
 	</div>
 	<div>
-		<li><a href={% url 'addPartNumber' %}>新建料號</a>
-		<li><a href={% url 'addCategory' %}>新建料號分類</a>
+		<li><a href={% url 'addPartNumber' %}>新建料號</a></li>
+		<li><a href={% url 'addCategory' %}>新建料號分類</a></li>
+		<li><a href="">批次建立新料號</a></li>
 	</div>
 	<form method ="get" action ="">
 		
@@ -34,9 +35,12 @@
 		<tr>
 			<td>料號</td>
 			<td>庫存數</td>
+			<td>未測試庫存</td>
+			<td>最新價格</td>
 			<td>位置</td>
 			<td>描述</td>
 			<td>購買連結</td>
+			<td>編輯</td>
 		</tr>
 		{% for row in table %}
 		<tr>
@@ -44,7 +48,11 @@
 			<td>{{ row.1 }}</td>
 			<td>{{ row.2 }}</td>
 			<td>{{ row.3 }}</td>
-			<td><a href={{ row.4}}>{{ row.4 }}</a></td>
+			<td>{{ row.4 }}</td>
+			<td>{{ row.5 }}</td>
+			<td><a href={{ row.6}}>{{ row.6 }}</a></td>
+			<td><a href='{{ row.7 }}/' class="btn btn-info">Edit</td>
+
 		</tr>
 		{% endfor %}
 	</table>

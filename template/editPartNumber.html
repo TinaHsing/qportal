@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>料號內容新增修改</h3>
+
+
+	<form method ="post" action ="">
+		{% csrf_token %}
+		<div>
+		<td><label for="part"> <font color="red"> {{ part.name }}</font> 修改</label></td>
+		</div>
+		<div>
+			<td><label>位置</label></td>
+			<td><input type="text" name="location" value="{{ part.location}}"></td>
+			
+		</div>
+		<div>
+			<td><label>分類</label></td>
+			<td><select name = 'category'>
+				{% for cg in cate %}
+				<option {% if cg.category == part.category %} selected="selected" {% endif %}> {{ cg.category }}</option>
+				{% endfor %}
+			</select></td>
+		</div>
+		<div>
+			<td><label>生產等級</label></td>
+			<td><input type="number" name="level" value="{{ part.level}}"></td>
+		</div>
+		<div>
+			<td><label>產品描述</label></td>
+			<td><input type="text" name="discription" value="{{ part.discription }}"></td>
+		</div>
+		<div>
+			<td>購買連結</td>
+			<td><input type="text" name="buylink" value="{{ part.buylink }}"></td>
+		</div>
+		<div>
+			<td><label>數值</label></td>
+			<td><input type="text" name="ptvalue" value ="{{ ptnote.value }}"></td>
+		</div>
+		<div>
+			<td><label>封裝</label></td>
+			<td><input type="text" name="package" value="{{ ptnote.package }}"></td>
+		</div>
+		<div>
+			<td><label>替代購買連結</label></td>
+			<td><input type="text" name="addBuylink" value = "{{ ptnote.addBuylink }}"></td>
+		</div>
+		<div>
+			<td><label>額外資訊1</label></td>
+			<td><input type="text" name="param1" value =" {{ ptnote.param1 }}"></td>
+		</div>
+		<div>
+			<td><label>額外資訊2</label></td>
+			<td><input type="text" name="param2" value =" {{ ptnote.param2 }}"></td>
+		</div>
+
+
+	<div><input type="submit" value="修改"/></div>
+	</form>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

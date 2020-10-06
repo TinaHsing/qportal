@@ -41,10 +41,11 @@ class partNote(models.Model):
 	part = models.ForeignKey(partNumber, on_delete= models.CASCADE, blank=True, null=True)
 	value = models.CharField(max_length = 15, blank = True, null = True)
 	package = models.CharField(max_length = 15, blank = True, null = True)
-	param1 = models.CharField(max_length = 15, blank = True, null = True)
 	param2 = models.CharField(max_length = 15, blank = True, null = True)
+	addBuylink = models.CharField(max_length = 100, blank = True, null = True)
+	param1 = models.CharField(max_length = 15, blank = True, null = True)
 	def __str__(self):
-		return self.partNumber.name
+		return self.part.name
 
 class elePrice(models.Model):
 	partNumber = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True)
@@ -59,13 +60,15 @@ class QtyReason(models.Model):
 	def __str__(self):
 		return self.reason
 
-
 class pnQty(models.Model):
 	partNumber = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True)
 	Qty = models.IntegerField(default=0)
 	reason = models.ForeignKey(QtyReason, on_delete = models.CASCADE, blank = True, null =True)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
 	date = models.DateField(null=True, blank = True )
+	untestQty = models.IntegerField(default=0)
+	def __str__(self):
+		return self.partNumber.name
 
 class planerElement(models.Model):
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)

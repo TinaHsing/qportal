@@ -6,6 +6,7 @@ from . import views
 urlpatterns =[
 	path('', views.erpindex, name='erpindex'),
 	path('partNumber/', views.viewPartNumber, name = 'viewPartNumber'),
+	path('partNumber/<int:Pid>/', views.editPartNumber, name = 'editPartNumber'),
 	path('addCategory/', views.addCategory, name = 'addCategory'),
 	path('addPartNumber/', views.addPartNumber, name = 'addPartNumber'),
 	path('BOM/', views.viewBomList, name = 'viewBomList'),
@@ -21,7 +22,9 @@ urlpatterns =[
 	path('planer/<int:Pid>/',views.addPlaner, name= 'addplaner'),
 	path('planer/calculate/', views.PdCalculate, name ='calculate'),
 	path('production/', views.PdRecord, name ='production'),
-	path('production/<int:Pid>/', views.addPdRecord, name = 'addPdRecord'),
+	path('production/<int:Pid>/', views.addPdRecord, name = 'addpPdRecord'),
+	path('testing/', views.testRecord, name ='testing'),
+	path('testing/<int:Pid>/', views.addTestRecord, name ='addTesting'),
 	
 	#path('partNumber/', views.viewPartNumber, name = 'viewPartNumber'),
 	#path(r'partNumber/?pnKW=(?P<pnKW>\W+)', views.selectPartNumber, name='selectPartNumber')

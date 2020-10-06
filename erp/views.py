@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 #from django.views.generic import ListView
 from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePrice
-from .models import planerElement
+from .models import planerElement, partNote
 from django.db.models import Sum, F, Func
 from .forms import uploadBomForm
 from datetime import date
@@ -37,15 +37,65 @@ def viewPartNumber(request):
 			#context.update({'partnumber_list':partnumber_list})
 		outlist =[]
 		for pt in partnumber_list:
-			temp=pt.pnqty_set.aggregate(Sum('Qty'))
+			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 			curQty = temp.get('Qty__sum')
-			outlist.append([pt.name, curQty, pt.location, pt.discription, pt.buylink])
+			utQty = temp.get('untestQty__sum')
+			temp2 = pt.eleprice_set.order_by('-date')
+			if temp2.count():
+				temp2 = temp2[0]
+				outlist.append([pt.name, curQty, utQty, temp2.price, pt.location, pt.discription, pt.buylink, pt.Pid])
+			else:
+				outlist.append([pt.name, curQty, utQty, "None", pt.location, pt.discription, pt.buylink, pt.Pid])
+		
 		context.update({'table': outlist})
 		print(outlist)
 	
 	return render(request, 'viewPartNumber.html', context)
 
 
+@login_required
+def editPartNumber(request, Pid):
+	pt = partNumber.objects.get(Pid=Pid)
+	#ptnote = partNote.objects.get_or_create(part = pt)
+	ptnote = partNote.objects.filter(part = pt)
+	if ptnote.count():
+		ptnote = ptnote[0]
+	else:
+		ptnote=partNote.objects.create(part = pt)
+	print(ptnote.value)
+	category_list = pnCategory.objects.all()
+	context ={'part':pt, 'ptnote':ptnote, 'cate':category_list }
+	if request.POST:
+		if request.user.is_authenticated:
+			pt.user = request.user
+			pt.date = date.today()
+			if request.POST['location']:
+				pt.location = request.POST['location']
+			if request.POST['category']:
+				pt.category = request.POST['category']
+			if request.POST['level']:
+				pt.level = request.POST['level']
+			if request.POST['discription']: 
+				pt.discription = request.POST['discription']
+			if request.POST['buylink']:
+				pt.buylink = request.POST['buylink']
+			if 'ptvalue'in request.POST:
+				ptnote.value = request.POST['ptvalue']
+				print(ptnote.value)
+			if request.POST['package']:
+				ptnote.package = request.POST['package']
+				print(ptnote.package)
+			if request.POST['param2']:
+				ptnote.param2 = request.POST['param2']
+				print("3")
+			if request.POST['addBuylink']:
+				ptnote.addBuylink = request.POST['addBuylink']
+			if request.POST['param1']:
+				ptnote.param1 = request.POST['param1']
+			pt.save()
+			ptnote.save()
+		return redirect('viewPartNumber')
+	return render(request, 'editPartNumber.html', context)
 @login_required
 def addCategory(request):
 	if 'category' in request.POST:
@@ -68,7 +118,7 @@ def addPartNumber(request):
 		if request.user.is_authenticated:
 			user = request.user
 			if request.POST['partNumber']:
-				name = request.POST.get('partNumber', False)
+				name = request.POST.get_or_create('partNumber')
 			
 			if request.POST['location']:
 				location = request.POST['location']
@@ -389,8 +439,8 @@ def addPdRecord(request,Pid):
 	if request.POST:
 		pdQty = int(request.POST['qty'])
 		inout = request.POST['inout']
-		pnQty.objects.create(partNumber = product, Qty = pdQty,\
-				reason = reason, user = user, date = date.today())
+		pnQty.objects.create(partNumber = product, untestQty = pdQty,\
+				Qty= 0, reason = reason, user = user, date = date.today())
 		if inout == "outside":
 			bomeleset = BomElement.objects.filter(product = product)
 			for ele in bomeleset:
@@ -416,3 +466,35 @@ def uploadPO(request):
 			else:
 				return render(request, 'uploadFaild.html')
 	return render(request, 'uploadCSV.html', {'form':form})
+
+def testRecord(request):
+	category_list = partNumber.objects.values('category').distinct()
+	context = {'category_list':category_list}
+	 
+	if 'pnKW' in request.POST:
+		out = request.POST
+		pnKW =out['pnKW']
+		cate = out['category']
+		if pnKW !="":
+			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
+			if cate != "ALL":
+				partnumber_list = partnumber_list.filter(category=cate)
+			
+			context.update({'pd_list':partnumber_list})
+	
+		elif cate !="ALL":
+			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
+			context.update({'pd_list':partnumber_list})
+
+	return render(request, 'testRecord.html', context)
+
+def addTestRecord(request, Pid):
+	product = partNumber.objects.get(Pid=Pid)
+	user = request.user
+	reason = QtyReason.objects.get(reason="testing")
+	context ={'product':product}
+	if request.POST:
+		Qty = int(request.POST['qty'])
+		pnQty.objects.create(partNumber = product, untestQty = ((-1)*Qty),\
+				Qty= Qty, reason = reason, user = user, date = date.today())
+	return render(request, 'addTestRecord.html', context)

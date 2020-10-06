@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>生產登錄</h3>
+
+
+	<form method ="post" action ="">
+		{% csrf_token %}
+	
+	<div>
+		<td><label for="qty">測試 <font color="red">{{ product.name }}</font> 數量</label></td>
+		<td><input type="number" name="qty"></td>
+	</div>
+
+
+	<div><input type="submit" value="測試紀錄"/></div>
+	</form>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}
