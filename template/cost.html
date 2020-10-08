@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	{% if cost %}
+		<table>
+			<tr>
+				<td>料號</td>
+				<td>單價</td>
+				<td>數量</td>
+				<td>小計</td>
+				<td>佔比</td>
+			</tr>
+			{% for ele in cost %}
+				<tr>
+					<td>{{ele.0}}</td>
+					<td>{{ele.1}}</td>
+					<td>{{ele.2}}</td>
+					<td>{{ele.3}}</td>
+					<td>{{ele.4}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+	<p>無材料清單資訊,請先建立材料清單</p>
+	{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

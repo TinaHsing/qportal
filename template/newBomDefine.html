@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>請輸入清單描述</p>
+<form method ="post" action ="">
+	{% csrf_token %}
+	<input type="text" name="discription">
+	<input type="submit" name="submit">
+</form>
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

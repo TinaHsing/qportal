@@ -25,10 +25,18 @@ class partNumber(models.Model):
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank=True )
 	def __str__(self):
 		return self.name
-	
+class bomDefine(models.Model):
+	product = models.ForeignKey(partNumber,on_delete = models.CASCADE, blank = True, null =True)	
+	bomserial= models.IntegerField(default = 0)
+	discription = models.CharField(max_length = 100, blank=True, null= True)
+	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
+	date = models.DateField(null=True, blank = True )
+
+	def __str__(self):
+		return self.product.name
 
 class BomElement(models.Model):
-	product = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True) #bom belongs to what product
+	bf= models.ForeignKey(bomDefine, on_delete = models.CASCADE, blank = True, null =True) #bom belongs to what product
 	part = models.ForeignKey(partNumber, related_name = "element", on_delete = models.CASCADE, blank = True, null =True)
 	unitQty = models.IntegerField(default =1)
 	schPN = models.CharField(max_length = 1000, blank=True, null= True)

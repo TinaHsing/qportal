@@ -9,12 +9,14 @@
 		{% csrf_token %}
 	
 	<div>
-		<td><label for="qty">生產 <font color="red">{{ product.name }}</font> 數量</label></td>
+		<td><label for="qty">生產 <font color="red">{{ bf.0.product.name }}</font> 數量</label></td>
 		<td><input type="number" name="qty"></td>
 	</div>
 	<div>
-		<td><input type="radio" name="inout" value="outside">
-			<label>外包生產(統一領料)</label></td>
+		{% for bf in bf %}
+		<td><input type="radio" name="bomtype" value={{ bf.bomserial }}>
+			<label>{{ bf.product}}__{{bf.discription}}</label></td>
+		{% endfor %}
 		<td><input type="radio" name="inout" value="inside">
 			<label>RD 自行領料</label></td>
 	</div>

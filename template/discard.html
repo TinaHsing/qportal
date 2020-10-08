@@ -23,18 +23,20 @@
 
 	<div><input type="submit" value="Filter"/></div>
 	</form>
-	{% if partnumber_list %}
+	{% if outlist %}
 	<table border="1">
 		<tr>
 			<td>料號</td>
 			<td>描述</td>
+			<td>數量</td>
 			<td>登錄報廢</td>
 		</tr>
-		{% for pn in partnumber_list %}
+		{% for pn in outlist %}
 		<tr>
-			<td> {{pn.name}}:</td>
-			<td> {{pn.discription}} </td>
-			<td> <a href="{{ pn.Pid }}/" class="btn btn-info"> Discard </a></td>
+			<td> {{ pn.0 }}:</td>
+			<td> {{ pn.1 }} </td>
+			<td> {{ pn.2 }}</td>
+			<td> <a href="{{ pn.3 }}/" class="btn btn-info"> Discard </a></td>
 		</tr>
 		{% endfor %}
 	</table>

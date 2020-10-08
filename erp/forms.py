@@ -2,7 +2,7 @@ from django import forms
 
 
 
-class uploadBomForm(forms.Form):
+class uploadFileForm(forms.Form):
 	file = forms.FileField()
 
 

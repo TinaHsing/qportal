@@ -27,13 +27,15 @@
 		<tr>
 			<td>料號</td>
 			<td>描述</td>
+			<td> 數量</td>
 			<td>生產記錄</td>
 		</tr>
 		{% for pn in pd_list %}
 		<tr>
-			<td> {{pn.name}}:</td>
-			<td> {{pn.discription}} </td>
-			<td> <a href="{{ pn.Pid }}/" class="btn btn-info"> Add </a></td>
+			<td> {{pn.0}}:</td>
+			<td> {{pn.1}} </td>
+			<td> {{pn.2}}</td>
+			<td> <a href="{{ pn.3 }}/" class="btn btn-info"> Add </a></td>
 		</tr>
 		{% endfor %}
 	</table>

@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>{{ product.name }} 清單編輯</p>
+	<table>
+		<tr>
+			<td>清單描述</td>
+			<td>編輯</td>
+		</tr>
+	{% if bomdefine %}
+
+		{% for bf in bomdefine %}
+		<tr>
+			<td>{{ bf.discription}}</td>
+			<td><a href='{{ bf.bomserial }}/' class="btn btn-info">Edit</td>
+		</tr>
+		{% endfor %}
+	{% endif %}
+		<tr>
+			<td>Eempty</td><td><a href='new/' class="btn btn-info">New</a></td>
+		</tr>
+	</table>
+	
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

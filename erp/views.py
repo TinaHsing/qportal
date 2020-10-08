@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 #from django.views.generic import ListView
 from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePrice
-from .models import planerElement, partNote
+from .models import planerElement, partNote, bomDefine
 from django.db.models import Sum, F, Func
-from .forms import uploadBomForm
+from .forms import uploadFileForm
 from datetime import date
 import csv
 
@@ -16,8 +16,6 @@ def erpindex(request):
 
 def viewPartNumber(request):
 	category_list = partNumber.objects.values('category').distinct()
-	#category_list = pnCategory.objects.all()
-	#print(cate_list)
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.GET:
@@ -48,7 +46,6 @@ def viewPartNumber(request):
 				outlist.append([pt.name, curQty, utQty, "None", pt.location, pt.discription, pt.buylink, pt.Pid])
 		
 		context.update({'table': outlist})
-		print(outlist)
 	
 	return render(request, 'viewPartNumber.html', context)
 
@@ -62,7 +59,6 @@ def editPartNumber(request, Pid):
 		ptnote = ptnote[0]
 	else:
 		ptnote=partNote.objects.create(part = pt)
-	print(ptnote.value)
 	category_list = pnCategory.objects.all()
 	context ={'part':pt, 'ptnote':ptnote, 'cate':category_list }
 	if request.POST:
@@ -81,13 +77,11 @@ def editPartNumber(request, Pid):
 				pt.buylink = request.POST['buylink']
 			if 'ptvalue'in request.POST:
 				ptnote.value = request.POST['ptvalue']
-				print(ptnote.value)
+
 			if request.POST['package']:
 				ptnote.package = request.POST['package']
-				print(ptnote.package)
 			if request.POST['param2']:
 				ptnote.param2 = request.POST['param2']
-				print("3")
 			if request.POST['addBuylink']:
 				ptnote.addBuylink = request.POST['addBuylink']
 			if request.POST['param1']:
@@ -145,32 +139,44 @@ def viewBomList(request):
 		productKW = request.POST['productKW']
 		if productKW != "":
 			partnumber_list = partnumber_list.filter(name__contains = productKW)
-			print(partnumber_list)
+
 	context ={'partnumber_list':partnumber_list}
 	return render(request, "viewBomList.html", context)	
+def viewBomDefine(request, Pid):
+	product = partNumber.objects.get(Pid = Pid)
+	bomdefine = product.bomdefine_set.all().order_by('bomserial')
+	index = bomdefine.count()
+	context = {'product':product, 'index':index}
+	if index:
+		context.update({'bomdefine':bomdefine})
 
+	return render(request, 'viewBomDefine.html', context)
 @login_required
-def editBomList(request, Pid):
+def newBomDefine(request, Pid):
+	product = partNumber.objects.get(Pid= Pid)
+	serial = product.bomdefine_set.all().count()
+	if request.POST:
+		discription = request.POST['discription']
+		bomDefine.objects.create(product=product, bomserial=serial, discription = discription,\
+			user = request.user, date = date.today())
+		path = "/erp/BOM/"+str(product.Pid)+"/"
+		return redirect(path)
+	return render(request, 'newBomDefine.html')
+@login_required
+def editBomList(request, Pid, Serial):
 	product = partNumber.objects.get(Pid=Pid)
-	context ={'product':product}
-	pnlevel = product.level
-
-	
+	bf = product.bomdefine_set.get(bomserial = Serial)
+	element = bf.bomelement_set.all()
+	context = {'bomdefine':bf}
 	category_list = partNumber.objects.values('category').distinct()
 	context.update({'category_list':category_list})
-
-	element = product.bomelement_set.all()
-	if element.count() != 0:
-		print(element)
-		context.update({'element':element})
-
 	if request.POST:
 		if 'pnKW' in request.POST:
 			out = request.POST
 			pnKW =out['pnKW']
 			cate = out['category']
 			if pnKW !="":
-				partnumber_list = partNumber.objects.filter(level__lt= pnlevel).filter(name__contains= pnKW)
+				partnumber_list = partNumber.objects.filter(name__contains= pnKW)
 				
 				if cate != "ALL":
 					partnumber_list = partnumber_list.filter(category=cate)
@@ -181,31 +187,34 @@ def editBomList(request, Pid):
 				partnumber_list = partNumber.objects.filter(level__lt= pnlevel).filter(category=cate)
 				context.update({'partnumber_list':partnumber_list})
 
+	if element.count():
+		context.update({'element':element})
 	return render(request, 'editBomList.html', context)
 
+
 @login_required
-def addElement(request, Pid, Bid):
+def addElement(request, Pid, Serial, Bid):
 	product = partNumber.objects.get(Pid=Pid)
+	bf = bomDefine.objects.get(product=product, bomserial = Serial)
 	part = partNumber.objects.get(Pid = Bid)
-	element = BomElement.objects.filter(product = product).filter(part=part)
-	print(element)
+	#element = BomElement.objects.filter(bf = bf).filter(part=part)
 	context={'product':product}
 	context.update({'part':part})
-	#element = product.bomelement_set.filter(Bid = Bid)
+	element = bf.bomelement_set.filter(part=part)
 	if element.count():
-		element = BomElement.objects.filter(product = product).get(part= part)
+		element = element[0]
 		context.update({'element':element})
-		print(context)
 		if request.POST:
 			qty = request.POST['unitQty']
 			schPN = request.POST['schPN']
 			if qty == "0":
 				element.delete()
-				print("delete")
+				
 			else:
 				element.unitQty = qty 
 				element.schPN = schPN
-				print("save")
+				element.user=request.user
+				element.date= date.today()
 				element.save()
 			path = '/erp/BOM/'+str(Pid)+'/'
 			return redirect(path)
@@ -216,30 +225,54 @@ def addElement(request, Pid, Bid):
 			user = request.user
 			qty = request.POST['unitQty']
 			schPN = request.POST['schPN']
-			BomElement.objects.create(product= product, part = part , \
+			BomElement.objects.create(bf = bf, part = part , \
 				unitQty = qty, schPN =schPN, user = user, date=date.today())
 			path = '/erp/BOM/'+str(Pid)+'/'
 			return redirect(path)
 	return render(request, 'addElement.html', context)
 
-def uploadBom(request, Pid):
+@login_required
+def uploadPart(request):
+	if request.POST:
+		user = request.user
+		today = date.today()
+		form = uploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			file = request.FILES['file']
+			data = file.read()
+			rows = data.split(b'\n')
+			for row in rows:
+				row=row.decode()
+				out = row.split(';')
+				if len(out) == 6 or len(out) == 12:
+					pt=partNumber.objects.create(name=out[0], location = out[1], \
+						category =out[2], level = int(out[3]), discription = out[4], \
+						buylink = out[5], date = today, user = user)
+					if len(out) == 12:
+						partNote.objects.create(part=pt, value=out[7], \
+							package=out[8], param2=out[9], addBuylink =out[10], param1 = out[11])
+				return render(request, 'uploadFaild.html')
+	else:
+		form =uploadFileForm()
+	return render(request,'uploadCSV.html',{'form':form})
+
+@login_required	
+def uploadBom(request, Pid, Serial):
 	if request.POST:
 		product = partNumber.objects.get(Pid=Pid)
-		form = uploadBomForm(request.POST, request.FILES)
+		bf = bomDefine.objects.get(product = product, bomserial = Serial)
+		form = uploadFileForm(request.POST, request.FILES)
 		if form.is_valid():
 			bom = request.FILES['file']
-			BomElement.objects.filter(product=product).delete()
-			#data = csv.reader(open(bom), delimiter=",")
+			BomElement.objects.filter(bf=bf).delete()
 			data = bom.read()
 			rows = data.split(b'\n')
-			print(rows)
 			for row in rows:
 				row = row.decode()
-				out = row.split(',')
-
+				out = row.split(';')
 				part = partNumber.objects.filter(name=out[0])
 				if part.count():
-					element = BomElement.objects.create(product = product, part=part[0])
+					element = BomElement.objects.create(bf = bf, part=part[0])
 					element.unitQty = out[1]
 					element.schPN = out[2]
 					element.user = request.user
@@ -248,10 +281,44 @@ def uploadBom(request, Pid):
 				else:
 					return render(request, 'uploadFaild.html')
 		else:
-			form = uploadBomForm()
+			form = uploadFileForm()
 	else:
-		form = uploadBomForm()
+		form = uploadFileForm()
 	return render(request, 'uploadCSV.html', {'form':form})
+
+def costEvaluation(request, Pid, Serial):
+	product = partNumber.objects.get(Pid=Pid)
+	bf = bomDefine.objects.get(product = product, bomserial = Serial)
+	eleset = bf.bomelement_set.all()
+	outlist =[]
+	total = 0
+	for ele in eleset:
+		priceset = ele.part.eleprice_set.order_by('-date')
+		if priceset.count():
+			price = float(priceset[0].price)
+		else:
+			price = 0
+
+		subtotal = float(ele.unitQty*price)
+		outlist.append([ele.part.name, price, ele.unitQty, subtotal])
+		total = total+subtotal
+
+	for subout in outlist:
+		print(subout)
+		if total:
+			
+			ratio = "{:2.2f}".format(100*subout[3]/total)+"%"
+			subout.append(ratio)
+		else:
+
+			subout.append('0%')
+	print(outlist)
+	if len(outlist):
+		outlist.append(["total","--","--",total,"100%"])
+		context={'cost':outlist}
+	else:
+		context={'None':"None"}
+	return render(request, 'cost.html', context)
 
 def purchasing(request):
 	category_list = partNumber.objects.values('category').distinct()
@@ -307,14 +374,20 @@ def discard(request):
 			if cate != "ALL":
 				partnumber_list = partnumber_list.filter(category=cate)
 			
-			context.update({'partnumber_list':partnumber_list})
-	
 		elif cate !="ALL":
 			partnumber_list = partNumber.objects.filter(category=cate)
-			context.update({'partnumber_list':partnumber_list})
+		
+		if partnumber_list.count():
+			outlist = []
+			for part in partnumber_list:
+				temp=part.pnqty_set.aggregate(Sum('Qty'))
+				curQty = temp.get('Qty__sum') 
+				outlist.append([part.name, part.discription, curQty, part.Pid])
+
+		context.update({'outlist':outlist})
 
 	return render(request, 'discard.html', context)
-
+@login_required
 def addDiscard(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	
@@ -332,7 +405,7 @@ def addDiscard(request, Pid):
 
 	return render(request, 'addDiscard.html',context)
 
-@login_required
+
 def planer(request):
 	user = request.user
 	planer_list = planerElement.objects.filter(user = user)
@@ -377,7 +450,7 @@ def addPlaner(request, Pid):
 		path ='/erp/planer/'
 		return redirect(path, context) 
 	return render(request, 'addPlaner.html', context)
-
+@login_required
 def PdCalculate(request):
 	user = request.user
 	plset = planerElement.objects.filter(user=user)
@@ -422,36 +495,42 @@ def PdRecord(request):
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
 			if cate != "ALL":
 				partnumber_list = partnumber_list.filter(category=cate)
-			
-			context.update({'pd_list':partnumber_list})
-	
 		elif cate !="ALL":
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
-			context.update({'pd_list':partnumber_list})
+		
+		if partnumber_list.count():
+			outlist = []
+			for part in partnumber_list:
+				temp=part.pnqty_set.aggregate(Sum('Qty'))
+				curQty = temp.get('Qty__sum') 
+				outlist.append([part.name, part.discription, curQty, part.Pid])
+
+		context.update({'pd_list':outlist})
 
 	return render(request, 'pdRecord.html', context)
-
+@login_required
 def addPdRecord(request,Pid):
 	product = partNumber.objects.get(Pid=Pid)
+	bf = bomDefine.objects.filter(product = product)
 	user = request.user
 	reason = QtyReason.objects.get(reason="production")
-	context ={'product':product}
+	context ={'bf':bf}
 	if request.POST:
 		pdQty = int(request.POST['qty'])
-		inout = request.POST['inout']
+		bomtype = request.POST['bomtype']
 		pnQty.objects.create(partNumber = product, untestQty = pdQty,\
 				Qty= 0, reason = reason, user = user, date = date.today())
-		if inout == "outside":
-			bomeleset = BomElement.objects.filter(product = product)
+		if bomtype != "inside":
+			bf2 = bf.get(bomserial=int(bomtype))
+			bomeleset = bf2.bomelement_set.all()
 			for ele in bomeleset:
 				consqty = ele.unitQty*pdQty*(-1)
 				pnQty.objects.create(partNumber = ele.part, Qty = consqty,\
 				reason = reason, user = user, date = date.today())
-
 	return render(request, 'addPdRecord.html', context)
-
+@login_required
 def uploadPO(request):
-	form = uploadBomForm()
+	form = uploadFileForm()
 	if form.is_valid():
 		pocsv = request.FILES['file']
 		data = pocsv.read()
@@ -487,7 +566,7 @@ def testRecord(request):
 			context.update({'pd_list':partnumber_list})
 
 	return render(request, 'testRecord.html', context)
-
+@login_required
 def addTestRecord(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	user = request.user
