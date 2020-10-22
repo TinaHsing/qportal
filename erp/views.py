@@ -112,7 +112,7 @@ def addPartNumber(request):
 		if request.user.is_authenticated:
 			user = request.user
 			if request.POST['partNumber']:
-				name = request.POST.get_or_create('partNumber')
+				name = request.POST['partNumber']
 			
 			if request.POST['location']:
 				location = request.POST['location']
@@ -294,6 +294,8 @@ def costEvaluation(request, Pid, Serial):
 	total = 0
 	for ele in eleset:
 		priceset = ele.part.eleprice_set.order_by('-date')
+		for pr in priceset:
+			print (pr.price)
 		if priceset.count():
 			price = float(priceset[0].price)
 		else:
@@ -421,20 +423,28 @@ def planer(request):
 		out = request.POST
 		pnKW =out['pnKW']
 		if pnKW !="":
-			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(planerelement__user=user).filter(level__gt=0)
-			context.update({'partnumber_list':partnumber_list})
+			#partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(planerelement__user=user).filter(level__gt=0)
+			bf = bomDefine.objects.filter(product__name__contains = pnKW).filter(product__level__gt =0)
+			print(bf)
+			context.update({'bf':bf})
 	return render(request, 'planer.html', context)
 @login_required
-def addPlaner(request, Pid):
+def addPlaner(request, bomserial):
 	user=request.user
-	part=partNumber.objects.get(Pid=Pid)
-	context = {'part':part}
-	planer_list = planerElement.objects.filter(user = user).filter(product__Pid=Pid)
+	bf = bomDefine.objects.get(bomserial = bomserial)
+	#part=partNumber.objects.get(Pid=Pid)
+	#context = {'part':part}
+	planer_list = planerElement.objects.filter(user = user).filter(bf__bomserial = bomserial)
+	#print(planer_list)
+	
 	if planer_list.count():
 		pl = planer_list[0]
-		context.update({'planer':pl})
+		context=({'planer':pl})
 	else:
-		pl = planerElement.objects.create(user = user, product = part)
+		pl = planerElement.objects.create(user = user)
+		pl.bf = bf
+		pl.save()
+		context=({'planer':pl})
 	if request.POST:
 		qty = request.POST['produceQty']
 		#print("qty" = qty)
@@ -443,6 +453,7 @@ def addPlaner(request, Pid):
 
 		else:
 			pl.produceQty = qty
+			print(pl)
 			pl.save()
 
 		plout = planerElement.objects.filter(user = user)
@@ -458,30 +469,35 @@ def PdCalculate(request):
 	outlist =[]
 	for pl in plset:
 		pdqty = pl.produceQty
-		blset = pl.product.bomelement_set.all()
-		for ele in blset:
-			partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'))
-			curQty = partP.get('Qty__sum')
-			if curQty== None:
-				curQty = 0
-			ttpdqty = ele.unitQty*pdqty
-			buyqty = max(ttpdqty - curQty, 0) 
-			outlist.append([ele.part.name, ele.part.Pid, curQty, ttpdqty , buyqty, ele.part.buylink] )
-	outlist = sorted(outlist, key = lambda l:l[1] )
-	preid = -1
-	i = 0
-	outlist2 =[]
-	for temp in outlist:
-		if temp[1] == preid:
-			outlist2[i-1][3] = temp[3]+outlist2[i-1][3]
-			outlist2[i-1][4] = temp[4]+outlist2[i-1][4
-			]
-		else:
-			outlist2.append(temp)
-		preid =temp[1]
-		i=i+1
-	context ={'table':outlist2}
-	return render(request,'pdCalculate.html', context)
+		pdproduct = pl.bf.product
+		blset = bomDefine.objects.get(product = pdproduct).bomelement_set.all()
+		#blset = pl.product.bomelement_set.all()
+		if blset.count():
+			for ele in blset:
+				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'))
+				curQty = partP.get('Qty__sum')
+				if curQty== None:
+					curQty = 0
+				ttpdqty = ele.unitQty*pdqty
+				buyqty = max(ttpdqty - curQty, 0) 
+				outlist.append([ele.part.name, ele.part.Pid, curQty, ttpdqty , buyqty, ele.part.buylink] )
+	if len(outlist):
+		outlist = sorted(outlist, key = lambda l:l[1] )
+		preid = -1
+		i = 0
+		outlist2 =[]
+		for temp in outlist:
+			if temp[1] == preid:
+				outlist2[i-1][3] = temp[3]+outlist2[i-1][3]
+				outlist2[i-1][4] = temp[4]+outlist2[i-1][4
+				]
+			else:
+				outlist2.append(temp)
+			preid =temp[1]
+			i=i+1
+		context ={'table':outlist2}
+		return render(request,'pdCalculate.html', context)
+	return render(request,'pdCalculate.html')
 
 def PdRecord(request):
 	category_list = partNumber.objects.values('category').distinct()
@@ -501,9 +517,10 @@ def PdRecord(request):
 		if partnumber_list.count():
 			outlist = []
 			for part in partnumber_list:
-				temp=part.pnqty_set.aggregate(Sum('Qty'))
+				temp=part.pnqty_set.aggregate(Sum('Qty'),Sum('untestQty'))
 				curQty = temp.get('Qty__sum') 
-				outlist.append([part.name, part.discription, curQty, part.Pid])
+				untestedQty = temp.get('untestQty__sum')
+				outlist.append([part.name, part.discription, curQty,untestedQty, part.Pid])
 
 		context.update({'pd_list':outlist})
 
@@ -517,7 +534,7 @@ def addPdRecord(request,Pid):
 	context ={'bf':bf}
 	if request.POST:
 		pdQty = int(request.POST['qty'])
-		bomtype = request.POST['bomtype']
+		bomtype = request.POST.get('bomtype', "inside")
 		pnQty.objects.create(partNumber = product, untestQty = pdQty,\
 				Qty= 0, reason = reason, user = user, date = date.today())
 		if bomtype != "inside":
@@ -548,6 +565,7 @@ def uploadPO(request):
 
 def testRecord(request):
 	category_list = partNumber.objects.values('category').distinct()
+	print(category_list)
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:

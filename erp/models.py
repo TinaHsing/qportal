@@ -27,7 +27,7 @@ class partNumber(models.Model):
 		return self.name
 class bomDefine(models.Model):
 	product = models.ForeignKey(partNumber,on_delete = models.CASCADE, blank = True, null =True)	
-	bomserial= models.IntegerField(default = 0)
+	bomserial= models.AutoField(primary_key= True)
 	discription = models.CharField(max_length = 100, blank=True, null= True)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
 	date = models.DateField(null=True, blank = True )
@@ -80,8 +80,8 @@ class pnQty(models.Model):
 
 class planerElement(models.Model):
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
-	product = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True)
-	produceQty = models.IntegerField(default=1)
+	bf = models.ForeignKey(bomDefine, on_delete = models.CASCADE, blank = True, null =True)
+	produceQty = models.IntegerField(default = 1)
 
 	def __str__(self):
 		return self.user.username

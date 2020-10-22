@@ -10,14 +10,6 @@
 <p>目前沒有計畫生產任何產品，請用 filter 篩選產品並新增</p>
 {% endif %}
 
-<form method ="post" action ="">
-	{% csrf_token%}
-	<div>
-	<td><label>生產產品包含關鍵字</label></td>
-	<td><input type="text" name="pnKW"></td>
-	<td><input type="submit" value="Filter to Add"/></td>
-	</div>
-</form>
 
 	<table width = "100%">
 	{% if planer_list %}
@@ -29,27 +21,36 @@
 		</tr>
 	{% for pl in planer_list %}
 		<tr>
-			<td>{{ pl.product }}</td>
-			<td>{{ pl.product.discription }}</td>
+			<td>{{ pl.bf.product }}</td>
+			<td>{{ pl.bf.discription }}</td>
 			<td>{{ pl.produceQty }}</td>
-			<td> <a href="{{pl.product.Pid}}/"  class ="btn btn-info"> Edit </a>
+			<td> <a href="{{pl.bf.bomserial}}/"  class ="btn btn-info"> Edit </a>
 			</td></tr>
 	{% endfor %}
 	{% endif %}
-
-	{% if partnumber_list %}
+	</table>
+<form method ="post" action ="">
+	{% csrf_token%}
+	<div>
+	<td><label>新增生產產品包含關鍵字</label></td>
+	<td><input type="text" name="pnKW"></td>
+	<td><input type="submit" value="Filter to Add"/></td>
+	</div>
+</form>
+<table width = "100%">
+	{% if bf %}
 		<tr>
 			<td>料號</td>
 			<td>描述</td>
 			<td>數量</td>
 			<td>新增</td>
 		</tr>
-	{% for pn in partnumber_list %}
+	{% for pn in bf %}
 		<tr>
-			<td>{{ pn.name }}</td>
+			<td>{{ pn.product }}</td>
 			<td>{{ pn.discription }}</td>
 			<td>0</td>
-			<td> <a href="{{pn.Pid}}/"  class ="btn btn-info"> Add </a>
+			<td> <a href="{{pn.bomserial}}/"  class ="btn btn-info"> Add </a>
 			</td></tr>
 
 	{% endfor %}
