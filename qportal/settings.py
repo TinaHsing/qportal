@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import os.path 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,7 +58,8 @@ ROOT_URLCONF = 'qportal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./template'],
+        'DIRS': ['./template/erp'],
+        #'DIRS': ['/template/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +70,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+TEMPLATE_DIRS = [
+    os.path.join(PROJECT_PATH, 'template/'),
 ]
 
 WSGI_APPLICATION = 'qportal.wsgi.application'
