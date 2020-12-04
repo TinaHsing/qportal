@@ -29,7 +29,9 @@ urlpatterns =[
 	path('production/<int:Pid>/', views.addPdRecord, name = 'addpPdRecord'),
 	path('testing/', views.testRecord, name ='testing'),
 	path('testing/<int:Pid>/', views.addTestRecord, name ='addTesting'),
-	
+	path('puraseList/', views.viewPurchaseList, name = 'purchaseList'),
+	path('puraseList/<int:Pid>/', views.addPurchaseList, name = 'addPurchaseList'),
+	path('puraseList/close/<int:serial>/', views.closePurchaseList, name = 'closePurchaseList'),
 	#path('partNumber/', views.viewPartNumber, name = 'viewPartNumber'),
 	#path(r'partNumber/?pnKW=(?P<pnKW>\W+)', views.selectPartNumber, name='selectPartNumber')
 	#path('partNumber/', views.selectPartNumber.as_view(), name='selectPartNumber'),

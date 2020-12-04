@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>採購需求登錄</h3>
+
+	<form method ="post" action ="">
+		{% csrf_token %}
+
+	<div>
+		<td><label > <font >{{ product.name }}</font> </label></td>
+	</div>
+	<div>
+		<td><label>購買數量</label></td>
+		<td><input type="number" name="qty"></td>
+	</div>
+
+	<div><input type="submit" value="添加採購需求"/></div>
+	</form>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

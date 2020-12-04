@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 #from django.views.generic import ListView
 from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePrice
-from .models import planerElement, partNote, bomDefine
+from .models import planerElement, partNote, bomDefine, purchaseList
 from django.db.models import Sum, F, Func
 from .forms import uploadFileForm
 from datetime import date
@@ -190,7 +190,6 @@ def editBomList(request, Pid, Serial):
 	if element.count():
 		context.update({'element':element})
 	return render(request, 'editBomList.html', context)
-
 
 @login_required
 def addElement(request, Pid, Serial, Bid):
@@ -389,6 +388,7 @@ def discard(request):
 		context.update({'outlist':outlist})
 
 	return render(request, 'discard.html', context)
+
 @login_required
 def addDiscard(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
@@ -406,7 +406,6 @@ def addDiscard(request, Pid):
 		return redirect('discard')
 
 	return render(request, 'addDiscard.html',context)
-
 
 def planer(request):
 	user = request.user
@@ -584,6 +583,7 @@ def testRecord(request):
 			context.update({'pd_list':partnumber_list})
 
 	return render(request, 'testRecord.html', context)
+
 @login_required
 def addTestRecord(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
@@ -595,3 +595,55 @@ def addTestRecord(request, Pid):
 		pnQty.objects.create(partNumber = product, untestQty = ((-1)*Qty),\
 				Qty= Qty, reason = reason, user = user, date = date.today())
 	return render(request, 'addTestRecord.html', context)
+
+@login_required
+def viewPurchaseList(request):
+	category_list = partNumber.objects.values('category').distinct()
+	context = {'category_list':category_list} 
+	if 'pnKW' in request.POST:
+		out = request.POST
+		pnKW =out['pnKW']
+		cate = out['category']
+		if pnKW !="":
+			partnumber_list = partNumber.objects.filter(name__contains= pnKW).filter(level=0)
+			if cate != "ALL":
+				partnumber_list = partnumber_list.filter(category=cate)
+			
+		elif cate !="ALL":
+			partnumber_list = partNumber.objects.filter(category=cate).filter(level=0)
+			
+		print(partnumber_list)
+		outlist =[]
+		for pt in partnumber_list:
+			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
+			curQty = temp.get('Qty__sum')
+			temp2 = pt.eleprice_set.order_by('-date')
+			if temp2.count():
+				temp2 = temp2[0]
+				outlist.append([pt.name, curQty,temp2.price, pt.location, pt.discription, pt.Pid])
+			else:
+				outlist.append([pt.name, curQty,"None", pt.location, pt.discription ,pt.Pid])
+		
+		context.update({'table': outlist})
+	pl = purchaseList.objects.filter(status=True)
+	context.update({'pl':pl})
+	return render(request, 'purchaseList.html', context)
+
+
+def addPurchaseList(request,Pid):
+	product = partNumber.objects.get(Pid=Pid)
+	context ={'product':product}
+	user = request.user	
+	if request.POST:
+		print("hi")
+		Qty = int(request.POST['qty'])
+		print(Qty)
+		purchaseList.objects.create(partNumber= product, Qty= Qty, user = user, reqDate = date.today(), status = True)
+		return redirect('/erp/puraseList/')
+	return render(request,'addPurchaseList.html', context)
+
+def closePurchaseList(request, serial):
+	pl = purchaseList.objects.get(plserial= serial)
+	pl.status = False
+	pl.save()
+	return redirect('/erp/puraseList/')

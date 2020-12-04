@@ -86,6 +86,17 @@ class planerElement(models.Model):
 	def __str__(self):
 		return self.user.username
 
+class purchaseList(models.Model):
+	plserial = models.AutoField(primary_key=True)
+	partNumber = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True)
+	Qty = models.IntegerField(default = 0)
+	user = models.ForeignKey(User,related_name="user", on_delete = models.SET_NULL, null= True, blank = True)
+	reqDate = models.DateField(null=True, blank = True)
+	status = models.BooleanField(default= True)
+	closeDate = models.DateField(null=True, blank = True)
+	def __str__(self):
+		return self.partNumber.name
+
 
 
 
