@@ -2,13 +2,13 @@
 
 {% block content %}
 	<div>
-		<h3>採購需求登錄</h3>
+		<h3>客訴登錄</h3>
 
 	<form method ="post" action ="">
 		{% csrf_token %}
 	
 	<div>
-		<td><label for="pnKW">新增料號包含關鍵字</label></td>
+		<td><label for="pnKW">客訴料號包含關鍵字</label></td>
 		<td><input id ="pnKW" type="text" name="pnKW"></td>
 	</div>
 	<div>
@@ -23,25 +23,19 @@
 
 	<div><input type="submit" value="Filter"/></div>
 	</form>
-	{% if table %}
-	<table width = "100%">
+	{% if partnumber_list %}
+	<table width = "60%">
 		<thead colspan="5"> <tr>Part Number List</tr> </thead>
 		<tr>
-			<td>料號</td>	
-			<td>庫存數</td>
-			<td>最新價格</td>
-			<td>位置</td>
-			<td>描述</td>
-			<td>採購登錄</td>
+			<td>料號</td>
+			<td>描述</td>	
+			<td>不良品登錄</td>
 		</tr>
-		{% for row in table %}
+		{% for part in partnumber_list %}
 		<tr>
-			<td>{{ row.0 }}</td>
-			<td>{{ row.1 }}</td>
-			<td>{{ row.2 }}</td>
-			<td>{{ row.3 }}</td>
-			<td>{{ row.4 }}</td>
-			<td><a href='{{ row.5 }}/' class="btn btn-info">採購登錄</td>
+			<td>{{ part.name }}</td>
+			<td>{{ part.discription }}</td>
+			<td><a href='{{ part.Pid }}/' class="btn btn-info">不良品登錄</td>
 
 		</tr>
 		{% endfor %}
@@ -49,27 +43,26 @@
 	{% else %}
 	<p> 無結果！ 請重設查詢條件 </p>
 	{% endif %}
-	{% if pl %}
 	
+	{% if pl %}
+	<h4>客訴登錄列表</h4>
 	<table width = "80%" >
 		<tr>
 			<td>料號</td>
-			<td>描述</td>
-			<td>連結</td>
-			<td>數量</td>
-			<td>需求者</td>
+			<td>客戶</td>
+			<td>序號</td>
 			<td>提出日期</td>
-			<td>購買完成登錄</td>
+			<td>不良狀況</td>
+			<td>處理登錄</td>
 		</tr>
 	{% for part in pl %}
 	<tr>
-		<td> {{ part.0 }} </td>
-		<td> {{ part.1 }} </td>
-		<td> {{ part.2 }} </td>
-		<td> {{ part.3 }} </td>
-		<td> {{ part.4 }} </td>
-		<td> {{ part.5 }} </td>
-		<td> <a href='close/{{ part.6 }}/' class="btn btn-info">已購買</td>
+		<td> {{ part.partNumber }} </td>
+		<td> {{ part.customer }} </td>
+		<td> {{ part.serialNumber }} </td>
+		<td> {{ part.reqDate }} </td>
+		<td> {{ part.failure }} </td>
+		<td> <a href='close/{{ part.ccnSerial }}/' class="btn btn-info">處理狀況回報</td>
 	</tr>
 	{% endfor %}
 	</table>

@@ -58,7 +58,7 @@ ROOT_URLCONF = 'qportal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./template/erp'],
+        'DIRS': ['./template/erp','./template/'],
         #'DIRS': ['/template/'],
         'APP_DIRS': True,
         'OPTIONS': {

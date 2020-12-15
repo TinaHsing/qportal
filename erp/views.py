@@ -3,12 +3,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 #from django.views.generic import ListView
 from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePrice
-from .models import planerElement, partNote, bomDefine, purchaseList
+from .models import planerElement, partNote, bomDefine, purchaseList, mpList
+from .models import customer, ccnList
 from django.db.models import Sum, F, Func
 from .forms import uploadFileForm
 from datetime import date
 import csv
 
+P_FINAN_LEVEL = 10
 
 # Create your views here.
 def erpindex(request):
@@ -531,6 +533,7 @@ def addPdRecord(request,Pid):
 	user = request.user
 	reason = QtyReason.objects.get(reason="production")
 	context ={'bf':bf}
+
 	if request.POST:
 		pdQty = int(request.POST['qty'])
 		bomtype = request.POST.get('bomtype', "inside")
@@ -543,6 +546,11 @@ def addPdRecord(request,Pid):
 				consqty = ele.unitQty*pdQty*(-1)
 				pnQty.objects.create(partNumber = ele.part, Qty = consqty,\
 				reason = reason, user = user, date = date.today())
+	temp = product.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
+	curQty = temp.get('Qty__sum')
+	utQty = temp.get('untestQty__sum')
+	pdinfo = [product.name, product.discription, curQty, utQty]
+	context.update({'pdinfo':pdinfo})
 	return render(request, 'addPdRecord.html', context)
 @login_required
 def uploadPO(request):
@@ -620,15 +628,19 @@ def viewPurchaseList(request):
 			temp2 = pt.eleprice_set.order_by('-date')
 			if temp2.count():
 				temp2 = temp2[0]
-				outlist.append([pt.name, curQty,temp2.price, pt.location, pt.discription, pt.Pid])
+				outlist.append([pt.name, pt.discription, pt.buylink,curQty,temp2.price, pt.location, pt.discription, pt.Pid])
 			else:
-				outlist.append([pt.name, curQty,"None", pt.location, pt.discription ,pt.Pid])
+				outlist.append([pt.name,  pt.discription, pt.buylink, curQty,"None", pt.location, pt.discription ,pt.Pid])
 		
 		context.update({'table': outlist})
 	pl = purchaseList.objects.filter(status=True)
-	context.update({'pl':pl})
+	outlist = []
+	
+	for pt in pl:
+		outlist.append([pt.partNumber.name, pt.partNumber.discription, pt.partNumber.buylink, pt.Qty, pt.user, pt.reqDate, pt.plserial])
+	
+	context.update({'pl':outlist})
 	return render(request, 'purchaseList.html', context)
-
 
 def addPurchaseList(request,Pid):
 	product = partNumber.objects.get(Pid=Pid)
@@ -645,5 +657,118 @@ def addPurchaseList(request,Pid):
 def closePurchaseList(request, serial):
 	pl = purchaseList.objects.get(plserial= serial)
 	pl.status = False
+	pl.closeDate = date.today()
 	pl.save()
 	return redirect('/erp/puraseList/')
+
+def viewMpList(request):
+	category_list = partNumber.objects.values('category').distinct()
+	context = {'category_list':category_list} 
+	if 'pnKW' in request.POST:
+		out = request.POST
+		pnKW =out['pnKW']
+		cate = out['category']
+		if pnKW !="":
+			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(level=0)
+			if cate != "ALL":
+				partnumber_list = partnumber_list.filter(category=cate)
+			
+		elif cate !="ALL":
+			partnumber_list = partNumber.objects.filter(category=cate).exclude(level=0)
+		outlist =[]
+		for pt in partnumber_list:
+			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
+			curQty = temp.get('Qty__sum')
+			utQty = temp.get('untestQty')	
+			outlist.append([pt.name, pt.discription, curQty, utQty , pt.location, pt.Pid])
+		context.update({'table': outlist})
+	pl = mpList.objects.filter(status=True)
+	outlist =[]
+	for part in pl:
+		outlist.append([part.partNumber.name, part.partNumber.discription, part.Qty , part.customer, part.reqDate, part.mpSerial])
+	context.update({'pl':outlist})
+	return render(request, 'mpList.html', context)
+
+def addMpList(request,Pid):
+	product = partNumber.objects.get(Pid=Pid)
+	customer_list = customer.objects.all()
+	context ={'product':product}
+	context.update({'customer_list':customer_list})
+		
+	if request.POST:
+		cus = request.POST['customer']
+		Qty = int(request.POST['qty'])
+		if cus != 'None':
+			user = customer_list.get(name = cus)
+			mpList.objects.create(partNumber= product, Qty= Qty, customer = user, reqDate = date.today(), status = True)
+		else:
+			mpList.objects.create(partNumber= product, Qty= Qty, reqDate = date.today(), status = True)
+		
+		return redirect('/erp/mpList/')
+	return render(request,'addMpList.html', context)
+
+def closeMpList(request, serial):
+	pl = mpList.objects.get(mpSerial= serial)
+	pl.status = False
+	pl.closeDate = date.today()
+	pl.save()
+	pid = pl.partNumber.Pid
+	path = '/erp/production/'+str(pid)+'/'
+	return redirect(path)
+
+def viewCCNList(request):
+	category_list = partNumber.objects.values('category').distinct()
+	context = {'category_list':category_list} 
+	if 'pnKW' in request.POST:
+		out = request.POST
+		pnKW =out['pnKW']
+		cate = out['category']
+		if pnKW !="":
+			partnumber_list = partNumber.objects.filter(name__contains= pnKW).filter(level=P_FINAN_LEVEL)
+			if cate != "ALL":
+				partnumber_list = partnumber_list.filter(category=cate)
+			
+		elif cate !="ALL":
+			partnumber_list = partNumber.objects.filter(category=cate).filter(level=P_FINAN_LEVEL)
+		
+		context.update({'partnumber_list': partnumber_list})
+	pl = ccnList.objects.filter(status=True)
+	context.update({'pl':pl})
+	return render(request,'ccnList.html', context)
+
+def addCCNList(request,Pid):
+	product = partNumber.objects.get(Pid=Pid)
+	customer_list = customer.objects.all()
+	context ={'product':product}
+	context.update({'customer_list':customer_list})
+		
+	if request.POST:
+		cus = request.POST['customer']
+		failure = request.POST['failure']
+		serial = request.POST['serial']
+		
+		if cus == 'internal':
+			ccnList.objects.create(partNumber= product, serialNumber=serial, failure=failure, \
+				reqDate = date.today(), status = True)
+		else:
+			user = customer_list.get(name = cus)
+			ccnList.objects.create(partNumber= product, customer = user, serialNumber=serial, failure=failure, \
+				reqDate = date.today(), status = True)
+		
+		return redirect('/erp/ccnList/')
+	return render(request,'addCCNList.html', context)
+
+@login_required
+def closeCCN(request, serial):
+	pl = ccnList.objects.get(ccnSerial= serial)
+	context = {'ccn_list':pl}
+	if request.POST:
+		if request.user.is_authenticated:
+			pl.rootCause = request.POST['rootCause']
+			pl.status = False
+			pl.closeDate = date.today()
+			pl.closeEng = request.user
+			pl.save()
+			return redirect('/erp/ccnList')
+
+	return render(request,'closeCCN.html', context)

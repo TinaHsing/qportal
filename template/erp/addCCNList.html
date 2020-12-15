@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>客訴登錄</h3>
+
+	<form method ="post" action ="">
+		{% csrf_token %}
+
+	<div>
+		<td><label > <font >{{ product.name }}</font> </label></td>
+	</div>
+	<div>
+		<td><label>終端客戶</label></td>
+		<td><select name = "customer">
+				<option> internal </option>
+			{% for cus in customer_list %}
+				<option > {{ cus.name }} </option>
+			{% endfor %}
+		</select> </td>	
+
+	</div>
+	<div>
+		<td><label>產品序號</label></td>
+		<td><input name="serial" type = "text"></td>
+	</div>
+	<div>
+		<td>失效描述</td>
+	</div>
+	<div>
+		<textarea name="failure" rows="20" cols ="100"></textarea>
+	</div>
+
+	<div><input type="submit" value="新增客訴需求"/></div>
+	</form>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

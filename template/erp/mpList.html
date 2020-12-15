@@ -2,7 +2,7 @@
 
 {% block content %}
 	<div>
-		<h3>採購需求登錄</h3>
+		<h3>量產登錄</h3>
 
 	<form method ="post" action ="">
 		{% csrf_token %}
@@ -27,11 +27,11 @@
 	<table width = "100%">
 		<thead colspan="5"> <tr>Part Number List</tr> </thead>
 		<tr>
-			<td>料號</td>	
+			<td>料號</td>
+			<td>描述</td>	
 			<td>庫存數</td>
-			<td>最新價格</td>
+			<td>未測試庫存數</td>
 			<td>位置</td>
-			<td>描述</td>
 			<td>採購登錄</td>
 		</tr>
 		{% for row in table %}
@@ -41,7 +41,7 @@
 			<td>{{ row.2 }}</td>
 			<td>{{ row.3 }}</td>
 			<td>{{ row.4 }}</td>
-			<td><a href='{{ row.5 }}/' class="btn btn-info">採購登錄</td>
+			<td><a href='{{ row.5 }}/' class="btn btn-info">量產登錄</td>
 
 		</tr>
 		{% endfor %}
@@ -55,11 +55,10 @@
 		<tr>
 			<td>料號</td>
 			<td>描述</td>
-			<td>連結</td>
-			<td>數量</td>
-			<td>需求者</td>
+			<td>要求生產數量</td>
+			<td>客戶</td>
 			<td>提出日期</td>
-			<td>購買完成登錄</td>
+			<td>量產完成登錄</td>
 		</tr>
 	{% for part in pl %}
 	<tr>
@@ -68,8 +67,7 @@
 		<td> {{ part.2 }} </td>
 		<td> {{ part.3 }} </td>
 		<td> {{ part.4 }} </td>
-		<td> {{ part.5 }} </td>
-		<td> <a href='close/{{ part.6 }}/' class="btn btn-info">已購買</td>
+		<td> <a href='close/{{ part.5 }}/' class="btn btn-info">已購買</td>
 	</tr>
 	{% endfor %}
 	</table>

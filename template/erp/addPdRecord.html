@@ -23,6 +23,22 @@
 
 	<div><input type="submit" value="生產"/></div>
 	</form>
+	{% if pdinfo %}
+	<table width = "80%">
+		<tr>
+			<td>料號</td>
+			<td>料號</td>
+			<td>料號</td>
+			<td>料號</td>
+		</tr>
+		<tr>
+			<td> {{ pdinfo.0 }}</td>
+			<td> {{ pdinfo.1 }}</td>
+			<td> {{ pdinfo.2 }}</td>
+			<td> {{ pdinfo.3 }}</td>
+		</tr>
+	</table>
+	{% endif %}
 {% endblock %}
 
 {% block sidebar %}

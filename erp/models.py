@@ -25,6 +25,7 @@ class partNumber(models.Model):
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank=True )
 	def __str__(self):
 		return self.name
+
 class bomDefine(models.Model):
 	product = models.ForeignKey(partNumber,on_delete = models.CASCADE, blank = True, null =True)	
 	bomserial= models.AutoField(primary_key= True)
@@ -96,6 +97,49 @@ class purchaseList(models.Model):
 	closeDate = models.DateField(null=True, blank = True)
 	def __str__(self):
 		return self.partNumber.name
+
+class customer(models.Model):
+	cid = models.AutoField(primary_key = True)
+	name = models.CharField(max_length = 30)
+	phone = models.CharField(max_length = 15)
+	add = models.CharField(max_length = 60,null=True, blank = True)
+	vax = models.CharField(max_length = 8 ,null=True, blank = True)
+	def __str__(self):
+		return self.name
+
+class mpList(models.Model):
+	mpSerial = models.AutoField(primary_key = True)
+	partNumber = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True)
+	Qty = models.IntegerField(default = 0)
+	customer = models.ForeignKey(customer, on_delete = models.CASCADE, blank = True, null =True)
+	reqDate = models.DateField()
+	status = models.BooleanField(default = True)
+	closeDate = models.DateField(null=True, blank = True)
+	def __str__(self):
+		return self.partNumber.name
+
+
+class ccnList(models.Model):
+	ccnSerial = models.AutoField(primary_key = True)
+	partNumber = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True)
+	serialNumber = models.CharField(max_length = 15)
+	customer = models.ForeignKey(customer, on_delete = models.CASCADE, blank = True, null =True)
+	reqDate =  models.DateField()
+	status = models.BooleanField(default = True)
+	failure = models.TextField(help_text='input failure phenomenon', null=True, blank = True)
+	rootCause = models.TextField(help_text='input the rootCause of failure', null=True, blank = True)
+	closeDate = models.DateField(null=True, blank = True)
+	closeEng = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
+	def __str__(self):
+		return self.partNumber.name
+
+class software(models.Model):
+	name = models.CharField(max_length = 15)
+	discription = models.CharField(max_length = 100)
+	history = models.TextField(help_text ='reversion history', null=True, blank = True)
+	return self.name
+
+
 
 
 

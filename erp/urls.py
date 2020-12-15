@@ -32,7 +32,10 @@ urlpatterns =[
 	path('puraseList/', views.viewPurchaseList, name = 'purchaseList'),
 	path('puraseList/<int:Pid>/', views.addPurchaseList, name = 'addPurchaseList'),
 	path('puraseList/close/<int:serial>/', views.closePurchaseList, name = 'closePurchaseList'),
-	#path('partNumber/', views.viewPartNumber, name = 'viewPartNumber'),
-	#path(r'partNumber/?pnKW=(?P<pnKW>\W+)', views.selectPartNumber, name='selectPartNumber')
-	#path('partNumber/', views.selectPartNumber.as_view(), name='selectPartNumber'),
+	path('mpList/', views.viewMpList, name = 'mpList'),
+	path('mpList/<int:Pid>/', views.addMpList, name = 'addMpList'),
+	path('mpList/close/<int:serial>/', views.closeMpList, name = 'closeMpList'),
+	path('ccnList/', views.viewCCNList, name = 'ccnList'),
+	path('ccnList/<int:Pid>/', views.addCCNList, name = 'addCCNList'),
+	path('ccnList/close/<int:serial>/', views.closeCCN, name = 'closeCCN')
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
