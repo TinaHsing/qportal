@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>軟體清單</h3>
+	</div>
+	<form method ="post" action ="">
+		{% csrf_token%}
+	<div>
+		<td><label>產品包含關鍵字</label></td>
+		<td><input type="text" name="pnKW"></td>
+	</div>
+	<div>
+		<td><label for="category">料號分類</label></td>
+		<td><select name = "category">
+				<option> ALL </option>
+			{% for cg in category_list %}
+				<option > {{ cg.category }} </option>
+			{% endfor %}
+		</select> </td>
+	</div>
+	<div><td><input type="submit" value="Filter"/></td></div>
+	</form>
+	<div>
+		<td><label >選擇產品添加軟體清單</label></td>
+	
+	</div>
+	<table width = "100%">
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>編輯</td>
+		</tr>
+		{% for pn in partnumber_list %}
+		<tr>
+			<td >{{ pn.name}}</td>
+			
+			<td>{{ pn.discription }}</td>
+			<td> <a href="{{ pn.Pid }}/"  class ="btn btn-info"> Edit </a></td>
+		</tr>
+		{% endfor %}
+	</table>	
+{%endblock%}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

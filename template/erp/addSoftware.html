@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>軟體清單登錄</h3>
+	</div>
+	<table width = "80%">
+		<tr><td colspan =3>{{ part.name }} 包含軟體</td></tr>
+		<tr><td> 軟體名稱 </td><td colspan= 2 >軟體描述</td></tr>
+		{% for swi in sw_in_part %}
+		<tr><td>{{ swi.name }}</td><td colspan= 2 >{{ swi.discription }}</td></tr>
+		{% endfor %}
+		
+		<tr><td colspan =3>{{ part.name }} 可新增軟體</td></tr>
+		<tr><td> 軟體名稱 </td><td >軟體描述</td><td>新增</td></tr>
+		{% for swo in sw_out_part %}
+		<tr>
+			<td>{{ swo.name }}</td>
+			<td>{{ swo.discription }}</td>
+			<td><a href="{{ swo.Sid }}/" class="btn btn-info"> 新增</a> </td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

@@ -12,6 +12,14 @@ class pnCategory(models.Model):
 	def __str__(self):
 		return self.category
 
+class software(models.Model):
+	Sid = models.AutoField(primary_key = True)
+	name = models.CharField(max_length = 15)
+	discription = models.CharField(max_length = 100)
+	history = models.TextField(help_text ='reversion history', null=True, blank = True)
+	def __str__(self):
+		return self.name
+
 class partNumber(models.Model):
 
 	Pid = models.AutoField(primary_key=True)
@@ -23,6 +31,8 @@ class partNumber(models.Model):
 	buylink = models.CharField(max_length = 200, help_text ='input the purchasing link', blank = True)
 	date = models.DateField(null = True, blank = True) 
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank=True )
+	software = models.ManyToManyField(software, blank = True)
+	status = models.BooleanField(default = False)
 	def __str__(self):
 		return self.name
 
@@ -45,6 +55,8 @@ class BomElement(models.Model):
 	date = models.DateField(null=True, blank = True )
 	def __str__(self):
 		return self.part.name
+
+
 
 class partNote(models.Model):
 	part = models.ForeignKey(partNumber, on_delete= models.CASCADE, blank=True, null=True)
@@ -133,11 +145,7 @@ class ccnList(models.Model):
 	def __str__(self):
 		return self.partNumber.name
 
-class software(models.Model):
-	name = models.CharField(max_length = 15)
-	discription = models.CharField(max_length = 100)
-	history = models.TextField(help_text ='reversion history', null=True, blank = True)
-	return self.name
+
 
 
 

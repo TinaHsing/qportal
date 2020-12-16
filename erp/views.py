@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 #from django.views.generic import ListView
 from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePrice
 from .models import planerElement, partNote, bomDefine, purchaseList, mpList
-from .models import customer, ccnList
+from .models import customer, ccnList, software
 from django.db.models import Sum, F, Func
 from .forms import uploadFileForm
 from datetime import date
@@ -772,3 +772,39 @@ def closeCCN(request, serial):
 			return redirect('/erp/ccnList')
 
 	return render(request,'closeCCN.html', context)
+
+def viewSoftware(request):
+	category_list = partNumber.objects.values('category').distinct()
+	context = {'category_list':category_list} 
+	if request.POST:
+		out = request.POST
+		pnKW =out['pnKW']
+		cate = out['category']
+		if pnKW !="":
+			partnumber_list = partNumber.objects.filter(name__contains= pnKW).filter(level=P_FINAN_LEVEL)
+			if cate != "ALL":
+				partnumber_list = partnumber_list.filter(category=cate)
+			
+		elif cate !="ALL":
+			partnumber_list = partNumber.objects.filter(category=cate).filter(level=P_FINAN_LEVEL)
+		
+		context.update({'partnumber_list': partnumber_list})
+	return render(request,'viewSoftware.html', context)
+
+def addSoftware(request, Pid):
+	part = partNumber.objects.get(Pid = Pid)
+	context ={'part':part}
+	sw_in_part = part.software.all()
+	sw_out_part = software.objects.exclude(Sid__in = sw_in_part)
+	context.update({'sw_in_part':sw_in_part})
+	context.update({'sw_out_part':sw_out_part})
+	return render(request,'addSoftware.html', context)
+
+def softwareToPd(request, Pid, Sid):
+	part = partNumber.objects.get(Pid= Pid)
+	sw = software.objects.get(Sid = Sid)
+	part.software.add(sw)
+	part.save()
+	path = '/erp/software/'+str(Pid)+'/'
+	return redirect(path)
+
