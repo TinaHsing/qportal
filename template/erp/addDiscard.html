@@ -2,16 +2,18 @@
 
 {% block content %}
 	<div>
-		<h3>報廢登錄</h3>
-
+		<h3>銷售或報廢登錄</h3>
+		<p>僅限不含序號的元件</p>
 	<form method ="post" action ="">
 		{% csrf_token %}
 
 	<div>
-		<td><label for="qty"> 報廢 <font color="red">{{ product.name }}</font> 數量 </label></td>
+		<td><label for="qty"> 銷售或報廢報廢 <font color="red">{{ product.name }}</font> 數量 </label></td>
 		<td><input type="number" name="qty"></td>
 	</div>
 	<div>
+		<td><input type="radio" name="reason" value="sold">
+			<label>銷售</label></td>
 		<td><input type="radio" name="reason" value="discard">
 			<label>報廢</label></td>
 		<td><input type="radio" name="reason" value="matchQty">

@@ -2,17 +2,30 @@
 
 {% block content %}
 	<div>
-		<h3>生產登錄</h3>
+		<h3>測試登錄</h3>
 
 
 	<form method ="post" action ="">
 		{% csrf_token %}
 	
 	<div>
-		<td><label for="qty">測試 <font color="red">{{ product.name }}</font> 數量</label></td>
-		<td><input type="number" name="qty"></td>
+		<td><label>請選擇 <font color="red">{{ product.name }}</font> 產品序號輸入測試結果</label></td>
 	</div>
+	{% for ep in epset %}
+	<div>
+		<input type = "radio" value = {{ ep.serial }} name = "serial">
+		<label>{{ ep.serial }}</label>
+	</div>
+	{% endfor %}
 
+	<div>
+		<input type="radio" name="result" value="passed" checked >
+		<label> passed </label>
+		<input type="radio" name="result" value="failed" >
+		<label> failed </label>
+		<input type="text" name="reason">
+		<label>failure mode </label>
+	</div>
 
 	<div><input type="submit" value="測試紀錄"/></div>
 	</form>

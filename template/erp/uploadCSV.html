@@ -1,8 +1,28 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p> 選擇要上傳的檔案，上傳前請檢查格式正確與否</p>
-	
+<p> 選擇要上傳的檔案，上傳前請檢查格式正確與否 上傳後須到相關頁面確認上傳結果，如有問題聯絡管理員</p>
+<table width = "80%">
+<tr><td>上傳檔案類型</td><td>上傳檔案格式</td></tr> 
+<tr>
+	<td>料號格式一</td>
+	<td>名稱; 位置; 分類; 生產等級; 描述; 購買連結 \n</td>
+</tr>
+<tr>
+	<td>料號格式二</td>
+	<td>名稱; 位置; 分類; 生產等級; 描述; 購買連結; 數值; 封裝; 第二購買連結;備註1; 備註2\n</td>
+</tr>
+<tr>
+	<td>材料清單格式</td>
+	<td>名稱; 數量;電路圖上的元件名(以逗號分開)\n</td>
+</tr>
+<tr>
+	<td>採購清單格式</td>
+	<td>名稱; 數量;價格\n</td>
+</tr>
+</table>
+
+<br></br>	
 <form method="post" enctype="multipart/form-data".>
 	{% csrf_token%}
 
