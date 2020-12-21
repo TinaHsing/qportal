@@ -27,11 +27,13 @@
 	<table width = "100%">
 		<thead colspan="5"> <tr>Part Number List</tr> </thead>
 		<tr>
-			<td>料號</td>	
+			<td>料號</td>
+			<td>描述</td>
+			<td>購買連結</td>	
 			<td>庫存數</td>
 			<td>最新價格</td>
 			<td>位置</td>
-			<td>描述</td>
+			
 			<td>採購登錄</td>
 		</tr>
 		{% for row in table %}
@@ -41,7 +43,8 @@
 			<td>{{ row.2 }}</td>
 			<td>{{ row.3 }}</td>
 			<td>{{ row.4 }}</td>
-			<td><a href='{{ row.5 }}/' class="btn btn-info">採購登錄</td>
+			<td>{{ row.5 }}</td>
+			<td><a href='{{ row.6 }}/' class="btn btn-info">採購登錄</td>
 
 		</tr>
 		{% endfor %}

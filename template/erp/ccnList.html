@@ -1,51 +1,10 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-	<div>
-		<h3>客訴登錄</h3>
-
-	<form method ="post" action ="">
-		{% csrf_token %}
-	
-	<div>
-		<td><label for="pnKW">客訴料號包含關鍵字</label></td>
-		<td><input id ="pnKW" type="text" name="pnKW"></td>
-	</div>
-	<div>
-		<td><label for="category">料號分類</label></td>
-		<td><select name = "category">
-				<option> ALL </option>
-			{% for cg in category_list %}
-				<option > {{ cg.category }} </option>
-			{% endfor %}
-		</select> </td>	
-	</div>
-
-	<div><input type="submit" value="Filter"/></div>
-	</form>
-	{% if partnumber_list %}
-	<table width = "60%">
-		<thead colspan="5"> <tr>Part Number List</tr> </thead>
-		<tr>
-			<td>料號</td>
-			<td>描述</td>	
-			<td>不良品登錄</td>
-		</tr>
-		{% for part in partnumber_list %}
-		<tr>
-			<td>{{ part.name }}</td>
-			<td>{{ part.discription }}</td>
-			<td><a href='{{ part.Pid }}/' class="btn btn-info">不良品登錄</td>
-
-		</tr>
-		{% endfor %}
-	</table>
-	{% else %}
-	<p> 無結果！ 請重設查詢條件 </p>
-	{% endif %}
+	<div>不良品列表</div>
 	
 	{% if pl %}
-	<h4>客訴登錄列表</h4>
+	
 	<table width = "80%" >
 		<tr>
 			<td>料號</td>
@@ -57,12 +16,12 @@
 		</tr>
 	{% for part in pl %}
 	<tr>
-		<td> {{ part.partNumber }} </td>
-		<td> {{ part.customer }} </td>
-		<td> {{ part.serialNumber }} </td>
-		<td> {{ part.reqDate }} </td>
-		<td> {{ part.failure }} </td>
-		<td> <a href='close/{{ part.ccnSerial }}/' class="btn btn-info">處理狀況回報</td>
+		<td> {{ part.0 }} </td>
+		<td> {{ part.1 }} </td>
+		<td> {{ part.2 }} </td>
+		<td> {{ part.3 }} </td>
+		<td> {{ part.4 }} </td>
+		<td> <a href='close/{{ part.5 }}/' class="btn btn-info">處理狀況回報</td>
 	</tr>
 	{% endfor %}
 	</table>

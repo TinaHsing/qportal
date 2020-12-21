@@ -10,26 +10,65 @@
 	
 	<div>
 		<td><label for="qty">生產 <font color="red">{{ bf.0.product.name }}</font> 數量</label></td>
-		<td><input type="number" name="qty"></td>
+		{% if lockQty %}
+			<td> 1 </td>
+		{% else %}
+			<td><input type="number" name="qty"></td>
+			
+		{% endif %}
+
 	</div>
 	<div>
-		{% for bf in bf %}
-		<td><input type="radio" name="bomtype" value={{ bf.bomserial }}>
-			<label>{{ bf.product}}__{{bf.discription}}</label></td>
+		{% for bfx in bf %}
+		<td><input type="radio" name="bomtype" value={{ bfx.bomserial }}>
+			<label>{{ bfx.product}}__{{bfx.discription}}</label></td>
 		{% endfor %}
-		<td><input type="radio" name="inout" value="inside">
+
+		
+		{% if lockQty %}
+			
+		{% else %}
+			<td><input type="radio" name="bomtype" value="inside" checked >
 			<label>RD 自行領料</label></td>
+		{% endif %}
+		
+	</div>
+	<div>
+		{% if lockQty %}
+			<td> 產品序號 </td>	
+		{% else %}
+			<td> 連續產品序號起始號 </td>
+		{% endif %}
+		<td><input type="number" name="serial"></td>
+	</div>
+	{% if lockQty %}
+	<div>
+		<table witdth = "50%">
+		{% for endp in endProduct %}
+
+		<tr>
+			<td>{{ endp.part }}</td>
+			<td>{{ endp.serial }}</td>
+			<td><input type="checkbox" value = {{ endp.serial }} name = "checklist"/> </td>
+		</tr>
+		
+	{% endfor %}
+	</table>
 	</div>
 
+	{% else %}
+	<div><td>此動作會自動產品添加產品序號，若標籤為不連續的標號，請分次輸入連續的</td></div>
+	{% endif %}
+	
 	<div><input type="submit" value="生產"/></div>
 	</form>
 	{% if pdinfo %}
 	<table width = "80%">
 		<tr>
 			<td>料號</td>
-			<td>料號</td>
-			<td>料號</td>
-			<td>料號</td>
+			<td>描述</td>
+			<td>庫存</td>
+			<td>未測試庫存</td>
 		</tr>
 		<tr>
 			<td> {{ pdinfo.0 }}</td>
