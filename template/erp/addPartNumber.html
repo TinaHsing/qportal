@@ -50,6 +50,9 @@
 	{% if done %}
 	<p>設定成功</p>
 	{% endif %}
+	{% if exist %}
+	<p><font color= "red"> 料號名稱重複 </font></p>
+	{% endif %}
 {%endblock%}
 
 {% block sidebar %}

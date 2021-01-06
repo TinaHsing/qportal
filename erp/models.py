@@ -14,7 +14,7 @@ class pnCategory(models.Model):
 
 class software(models.Model):
 	Sid = models.AutoField(primary_key = True)
-	name = models.CharField(max_length = 15)
+	name = models.CharField(max_length = 30)
 	discription = models.CharField(max_length = 100)
 	history = models.TextField(help_text ='reversion history', null=True, blank = True)
 	def __str__(self):
@@ -23,6 +23,7 @@ class software(models.Model):
 class customer(models.Model):
 	cid = models.AutoField(primary_key = True)
 	name = models.CharField(max_length = 30)
+	contact = models.CharField(max_length = 30)
 	phone = models.CharField(max_length = 15)
 	add = models.CharField(max_length = 60,null=True, blank = True)
 	vax = models.CharField(max_length = 8 ,null=True, blank = True)
@@ -32,9 +33,9 @@ class customer(models.Model):
 class partNumber(models.Model):
 
 	Pid = models.AutoField(primary_key=True)
-	name = models.CharField(max_length = 80, help_text='check partNumber rule for detail')
+	name = models.CharField(max_length = 80, unique=True, help_text='check partNumber rule for detail')
 	location = models.CharField(max_length = 15, blank = True, null =True)
-	category = models.CharField(max_length = 10)
+	category = models.ForeignKey(pnCategory, on_delete = models.SET_NULL, null = True, blank=True)
 	level = models.PositiveIntegerField(default = 0)
 	discription = models.TextField(help_text='must input key paramter discription here', null=True, blank = True)
 	buylink = models.CharField(max_length = 200, help_text ='input the purchasing link', blank = True)
@@ -54,7 +55,7 @@ class bomDefine(models.Model):
 	date = models.DateField(null=True, blank = True )
 
 	def __str__(self):
-		return self.product.discription
+		return self.product.name
 
 
 class endProduct(models.Model):
@@ -68,6 +69,7 @@ class endProduct(models.Model):
 	sDate = models.DateField(null = True, blank = True)
 	sUser = models.ForeignKey(User, related_name = 'sales',on_delete = models.CASCADE, null = True, blank = True )
 	subProduct = models.ManyToManyField("self", symmetrical = False, related_name = 'subp', through = 'addSubProduct')
+	software = models.ManyToManyField(software, blank= True)
 	status = models.CharField(default ="untested", max_length = 10)
 	customer = models.ForeignKey(customer, on_delete = models.SET_NULL, null=True)
 	def __str__(self):
@@ -109,7 +111,16 @@ class elePrice(models.Model):
 		return self.partNumber.name
 
 class QtyReason(models.Model):
-	reason = models.CharField(max_length = 10, default = "purchasing")
+	PR = "purchasing"
+	PD = "production"
+	TE = "testing"
+	SD = "sold"
+	DD = "discard"
+	MT = "matchQty"
+	EP = "experiment"
+	QTY_CHOICE =((PR,"purchasing"),(PD, "production"),(TE, "testing"),\
+		(SD, "sold"), (DD, "discard"), (MT, "matchQty"), (EP ,"experiment"))
+	reason = models.CharField(max_length = 10, choices= QTY_CHOICE, default = PR)
 	def __str__(self):
 		return self.reason
 

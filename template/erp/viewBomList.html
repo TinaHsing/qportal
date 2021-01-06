@@ -24,14 +24,13 @@
 		<tr>
 			<td>料號</td>
 			<td>描述</td>
-			<td>編輯</td>
+			
 		</tr>
 		{% for pn in partnumber_list %}
 		<tr>
-			<td >{{ pn.name}}</td>
+			<td ><a href ="{{pn.Pid}}/">{{ pn.name}}</a></td>
 			
 			<td>{{ pn.discription }}</td>
-			<td> <a href="{{pn.Pid}}/"  class ="btn btn-info"> Edit </a></td>
 		</tr>
 		{% endfor %}
 	</table>	

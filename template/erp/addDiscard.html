@@ -2,13 +2,13 @@
 
 {% block content %}
 	<div>
-		<h3>銷售或報廢登錄</h3>
-		<p>僅限不含序號的元件</p>
+		<h3>銷售或數量變更登錄</h3>
+		<p><font color ="red">僅限不含序號的元件</font></p>
 	<form method ="post" action ="">
 		{% csrf_token %}
 
 	<div>
-		<td><label for="qty"> 銷售或報廢報廢 <font color="red">{{ product.name }}</font> 數量 </label></td>
+		<td><label for="qty">  <font color="red">{{ product.name }}</font> 數量變更 </label></td>
 		<td><input type="number" name="qty"></td>
 	</div>
 	<div>
@@ -22,8 +22,12 @@
 			<label>實驗</label></td>
 	</div>
 
-	<div><input type="submit" value="報廢"/></div>
+	<div><input type="submit" value="數量變更"/></div>
 	</form>
+	{% if qtyError %}
+	<p><font color ="red">請輸入數量變更數目</font></p>
+	{% endif %}
+
 {% endblock %}
 
 {% block sidebar %}

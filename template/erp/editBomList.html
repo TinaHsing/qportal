@@ -25,11 +25,11 @@
 			</tr>
 			{% for ele in element %}
 			<tr>
-			<td> {{ ele.part.name }}  </td> 
+			<td><a href ="/erp/partNumber/{{ele.part.Pid }}/" >{{ ele.part.name }}</a>  </td> 
 			<td>{{ ele.part.discription }}</td>
 			<td> {{ ele.unitQty }}  </td> 
 			<td> {{ ele.schPN }}</td>
-			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit </a> </td>
+			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> 編輯材料清單 </a> </td>
 
 			</tr>
 			{% endfor%}

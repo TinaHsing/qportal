@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>新增軟體</h3>
+	</div>
+	<form action="" method="post">
+		{% csrf_token%}
+		<div>
+			<td>{{ form.name.label }}</td>
+			<td>{{ form.name }}</td>
+		</div>
+		<div>
+			<td>{{ form.discription.label }}</td>
+			<td>{{ form.discription }}</td>
+		</div>
+		<div>
+			<td>{{ form.history.label }}</td>
+			
+		</div>
+		<div>
+			<td>{{ form.history }}</td>	
+		</div>
+		<p><font color="red">{{ form.name.errors }}</font></p>
+		<input type="submit" value="OK">
+
+	</form>
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

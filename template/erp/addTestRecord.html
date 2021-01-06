@@ -1,12 +1,33 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+	
+
 	<div>
 		<h3>測試登錄</h3>
-
-
+		
 	<form method ="post" action ="">
 		{% csrf_token %}
+	<div>
+		<h3>軟體燒錄登錄</h3>
+		{% if software %}
+			<p>可複選 按登錄前請仔細確認軟體版號 如果選錯請洽管理員</p>
+			<table>
+				<tr><td> 軟體名稱 </td><td >軟體描述</td><td>新增</td></tr>
+				{% for sw in software %}
+				<tr>
+					<td>{{ sw.name }}</td>
+					<td>{{ sw.discription }}</td>
+					<td><input type="checkbox" value = {{ sw.Sid }} name = "software"/></td>
+				</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+
+			<p>如果有需要燒錄軟體但是上面沒有列表請至軟體清單將軟體登錄到對應硬體</p>
+
+		{% endif %}
+	</div>
 	
 	<div>
 		<td><label>請選擇 <font color="red">{{ product.name }}</font> 產品序號輸入測試結果</label></td>
@@ -29,6 +50,12 @@
 
 	<div><input type="submit" value="測試紀錄"/></div>
 	</form>
+	{% if serialEmpty %}
+	<p><font color ="red">請輸入序號</font></p>
+	{% endif %}
+	{% if softwareEmpty %}
+	<p><font color ="red">請勾選燒錄軟體</font></p>
+	{% endif %}
 {% endblock %}
 
 {% block sidebar %}

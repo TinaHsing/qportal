@@ -2,13 +2,13 @@
 
 {% block content %}
 	<div>
-		<h3>料件報廢</h3>
+		<h3>料件數量變更</h3>
 
 	<form method ="post" action ="">
 		{% csrf_token %}
 	
 	<div>
-		<td><label for="pnKW">新增料號包含關鍵字</label></td>
+		<td><label for="pnKW">數量變更料號包含關鍵字</label></td>
 		<td><input id ="pnKW" type="text" name="pnKW"></td>
 	</div>
 	<div>
@@ -29,14 +29,14 @@
 			<td>料號</td>
 			<td>描述</td>
 			<td>數量</td>
-			<td>登錄報廢</td>
+			<td>登錄變更</td>
 		</tr>
 		{% for pn in outlist %}
 		<tr>
 			<td> {{ pn.0 }}:</td>
 			<td> {{ pn.1 }} </td>
 			<td> {{ pn.2 }}</td>
-			<td> <a href="{{ pn.3 }}/" class="btn btn-info"> Discard </a></td>
+			<td> <a href="{{ pn.3 }}/" class="btn btn-info"> 數量變更 </a></td>
 		</tr>
 		{% endfor %}
 	</table>

@@ -6,9 +6,10 @@ from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePri
 from .models import planerElement, partNote, bomDefine, purchaseList, mpList
 from .models import customer, ccnList, software, endProduct
 from django.db.models import Sum, F, Func
-from .forms import uploadFileForm
+from .forms import uploadFileForm, createSoftwareForm, createCustomerForm
 from datetime import date
-import csv
+from django.http import FileResponse
+#import csv
 
 P_FINAN_LEVEL = 10
 
@@ -17,9 +18,8 @@ def erpindex(request):
 	return render(request, 'erpindex.html')
 
 def viewPartNumber(request):
-	category_list = partNumber.objects.values('category').distinct()
-	context = {'category_list':category_list}
-	 
+	category_list = pnCategory.objects.all()
+	context = {'category_list':category_list}	 
 	if 'pnKW' in request.GET:
 		out = request.GET
 		pnKW =out['pnKW']
@@ -27,12 +27,11 @@ def viewPartNumber(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
-			
-			#context.update({'partnumber_list':partnumber_list})
-			
-	
+				
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate)
 			#context.update({'partnumber_list':partnumber_list})
 		outlist =[]
@@ -45,10 +44,8 @@ def viewPartNumber(request):
 				temp2 = temp2[0]
 				outlist.append([pt.name, curQty, utQty, temp2.price, pt.location, pt.discription, pt.buylink, pt.Pid])
 			else:
-				outlist.append([pt.name, curQty, utQty, "None", pt.location, pt.discription, pt.buylink, pt.Pid])
-		
+				outlist.append([pt.name, curQty, utQty, "None", pt.location, pt.discription, pt.buylink, pt.Pid])	
 		context.update({'table': outlist})
-	
 	return render(request, 'viewPartNumber.html', context)
 
 
@@ -70,7 +67,8 @@ def editPartNumber(request, Pid):
 			if request.POST['location']:
 				pt.location = request.POST['location']
 			if request.POST['category']:
-				pt.category = request.POST['category']
+				cate = pnCategory.objects.get(category = request.POST['category'])
+				pt.category = cate
 			if request.POST['level']:
 				pt.level = request.POST['level']
 			if request.POST['discription']: 
@@ -105,7 +103,7 @@ def addCategory(request):
 @login_required
 def addPartNumber(request):
 	category_list = pnCategory.objects.values('category').distinct()
-	context = {'category_list':category_list, 'failed':'failed' }
+	context = {'category_list':category_list }
 	name =""
 	location =""
 	discription=""
@@ -115,11 +113,10 @@ def addPartNumber(request):
 			user = request.user
 			if request.POST['partNumber']:
 				name = request.POST['partNumber']
-			
 			if request.POST['location']:
 				location = request.POST['location']
 
-			category = request.POST['category']
+			category = pnCategory.objects.get(category = request.POST['category'])
 			level = request.POST['level']
 			
 			if request.POST['discription']:
@@ -127,11 +124,15 @@ def addPartNumber(request):
 
 			if request.POST['link']:
 				link = request.POST['link']
-		
-		partNumber.objects.create(name = name, location = location, level = level, \
-			category = category, discription = discription, buylink = link, \
-			user = user, date = date.today())
-		context = {'category_list':category_list, 'done':'ok' }
+		exist = partNumber.objects.filter(name = name).count()
+		if exist:
+			context.update({'exist':'exist'})
+		else:
+
+			partNumber.objects.create(name = name, location = location, level = level, \
+				category = category, discription = discription, buylink = link, \
+				user = user, date = date.today())
+			context.update({'done':'ok'})
 
 	return render(request, 'addPartNumber.html', context)
 
@@ -157,21 +158,26 @@ def viewBomDefine(request, Pid):
 @login_required
 def newBomDefine(request, Pid):
 	product = partNumber.objects.get(Pid= Pid)
-	serial = product.bomdefine_set.all().count()
+	context ={}
 	if request.POST:
 		discription = request.POST['discription']
-		bomDefine.objects.create(product=product, discription = discription,\
-			user = request.user, date = date.today())
-		path = "/erp/BOM/"+str(product.Pid)+"/"
-		return redirect(path)
-	return render(request, 'newBomDefine.html')
+		if discription:
+			if bomDefine.objects.filter(product=product).filter(discription = discription).count():
+				context.update({'repeatDis':'repeatDis'})
+				return render(request, 'newBomDefine.html', context)
+			bomDefine.objects.create(product=product, discription = discription,\
+				user = request.user, date = date.today())
+			path = "/erp/BOM/"+str(product.Pid)+"/"
+			return redirect(path)
+		context.update({'emptyDisp':'emptyDisp'})
+	return render(request, 'newBomDefine.html', context)
 @login_required
 def editBomList(request, Pid, Serial):
 	product = partNumber.objects.get(Pid=Pid)
 	bf = product.bomdefine_set.get(bomserial = Serial)
 	element = bf.bomelement_set.all()
 	context = {'bomdefine':bf}
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context.update({'category_list':category_list})
 	if request.POST:
 		if 'pnKW' in request.POST:
@@ -182,11 +188,13 @@ def editBomList(request, Pid, Serial):
 				partnumber_list = partNumber.objects.filter(name__contains= pnKW)
 				
 				if cate != "ALL":
+					cate = pnCategory.objects.get(category = out['category'])
 					partnumber_list = partnumber_list.filter(category=cate)
 				
 				context.update({'partnumber_list':partnumber_list})
 	
 			elif cate !="ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partNumber.objects.filter(category=cate)
 				context.update({'partnumber_list':partnumber_list})
 
@@ -249,19 +257,22 @@ def uploadPart(request):
 			file = request.FILES['file']
 			data = file.read()
 			rows = data.split(b'\n')
-			print(len(rows))
 			for row in rows:
 				row=row.decode()
 				out = row.split(';')
-				print(len(out))
 				if len(out) == 6 or len(out) == 12:
-					print("hi")
-					partNumber.objects.create(name=out[0], location = out[1], \
-						category =out[2], level = int(out[3]), discription = out[4], \
-						buylink = out[5], date = today, user = user)
-					if len(out) == 12:
-						partNote.objects.create(part=pt, value=out[7], \
-							package=out[8], param2=out[11], addBuylink =out[9], param1 = out[10])
+					exist = partNumber.objects.filter(name = out[0]).count()
+					if exist:
+						return render(request, 'uploadFaild.html')
+					else:
+						cate, _ = pnCategory.objects.get_or_create(category = out[2])
+
+						partNumber.objects.create(name=out[0], location = out[1], \
+							category =cate, level = int(out[3]), discription = out[4], \
+							buylink = out[5], date = today, user = user)
+						if len(out) == 12:
+							partNote.objects.create(part=pt, value=out[7], \
+								package=out[8], param2=out[11], addBuylink =out[9], param1 = out[10])
 				else:
 					return render(request, 'uploadFaild.html')
 	else:
@@ -307,8 +318,6 @@ def costEvaluation(request, Pid, Serial):
 	total = 0
 	for ele in eleset:
 		priceset = ele.part.eleprice_set.order_by('-date')
-		for pr in priceset:
-			print (pr.price)
 		if priceset.count():
 			price = float(priceset[0].price)
 		else:
@@ -336,22 +345,25 @@ def costEvaluation(request, Pid, Serial):
 	return render(request, 'cost.html', context)
 
 def purchasing(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:
 		out = request.POST
 		pnKW =out['pnKW']
-		cate = out['category']
+		cate =  out['category']
+		
 		if pnKW !="":
-			partnumber_list = partNumber.objects.filter(name__contains= pnKW)
+			partnumber_list = partNumber.objects.filter(name__contains= pnKW).filter(level = 0)
 			if cate != "ALL":
-				partnumber_list = partnumber_list.filter(category=cate)
+				cate = pnCategory.objects.get(category = out['category'])
+				partnumber_list = partnumber_list.filter(category=cate).filter(level = 0)
 			
 			context.update({'partnumber_list':partnumber_list})
 	
 		elif cate !="ALL":
-			partnumber_list = partNumber.objects.filter(category=cate)
+			cate = pnCategory.objects.get(category = out['category'])
+			partnumber_list = partNumber.objects.filter(category=cate).filter(level = 0)
 			context.update({'partnumber_list':partnumber_list})
 			
 
@@ -360,7 +372,7 @@ def purchasing(request):
 @login_required
 def addPurchasing(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
-	reason = QtyReason.objects.get(reason="purchasing")
+	reason, _ = QtyReason.objects.get_or_create(reason="purchasing")
 	user = request.user
 	if request.POST:
 		user = request.user
@@ -377,7 +389,7 @@ def addPurchasing(request, Pid):
 	return render(request, 'addPurchasing.html')
 
 def discard(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:
@@ -387,9 +399,11 @@ def discard(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 			
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate)
 		
 		if partnumber_list.count():
@@ -409,13 +423,16 @@ def addDiscard(request, Pid):
 	user = request.user
 	context ={'product':product}
 	if request.POST:
-		disQty = int(request.POST['qty'])*(-1)
-		temp = request.POST['reason']
-		reason = QtyReason.objects.get(reason=temp)
-		pnQty.objects.create(partNumber = product, Qty = disQty,\
-				reason = reason, user = user, date = date.today())
-		
-		return redirect('discard')
+		if request.POST['qty']:
+			disQty = int(request.POST['qty'])*(-1)
+			temp = request.POST['reason']
+			reason, _ = QtyReason.objects.get_or_create(reason=temp)
+			pnQty.objects.create(partNumber = product, Qty = disQty,\
+					reason = reason, user = user, date = date.today())
+			
+			return redirect('discard')
+		else:
+			context.update({'qtyError':'qtyError'})
 
 	return render(request, 'addDiscard.html',context)
 
@@ -486,13 +503,14 @@ def PdCalculate(request):
 		#blset = pl.product.bomelement_set.all()
 		if blset.count():
 			for ele in blset:
-				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'))
+				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 				curQty = partP.get('Qty__sum')
+				utQty = partP.get('untestQty__sum')
 				if curQty== None:
 					curQty = 0
 				ttpdqty = ele.unitQty*pdqty
 				buyqty = max(ttpdqty - curQty, 0) 
-				outlist.append([ele.part.name, ele.part.Pid, curQty, ttpdqty , buyqty, ele.part.buylink] )
+				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink] )
 	print(len(outlist))
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
@@ -517,7 +535,7 @@ def PdCalculate(request):
 	return render(request,'pdCalculate.html')
 
 def PdRecord(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:
@@ -527,8 +545,10 @@ def PdRecord(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
 		
 		if partnumber_list.count():
@@ -547,9 +567,10 @@ def addPdRecord(request,Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	bf = bomDefine.objects.filter(product = product)
 	user = request.user
-	reason = QtyReason.objects.get(reason="production")
+	reason, _ = QtyReason.objects.get_or_create(reason="production")
 	context ={'bf':bf}
-	eleset = BomElement.objects.filter(bf__in= bf).filter(part__category="PCBA")
+	cate, _ = pnCategory.objects.get_or_create(category ="PCBA")
+	eleset = BomElement.objects.filter(bf__in= bf).filter(part__level__gt=0) # 檢查物料中有沒有level >=0
 	pcbaCount = eleset.count()
 	if pcbaCount: # 撈出有序號的產品 並且將網頁的Qty設成1
 		endP = endProduct.objects.none()
@@ -560,14 +581,32 @@ def addPdRecord(request,Pid):
 		context.update({'lockQty':"lockQty"})
 		print(context)
 	if request.POST:
+		if not request.POST['serial']:
+			context.update({'serialEmpty':'serialEmpty'})
+			return render(request, 'addPdRecord.html', context)
 		serial_start = int(request.POST['serial'])
 		bomtype = request.POST.get('bomtype', "inside")
-
+		# 產生新的endProduct  如果有子產品的話登錄子產品序號
 		if pcbaCount:
 			pdQty = 1
 			selected = request.POST.getlist('checklist')
+			for ele in eleset:
+				bomQty = ele.unitQty
+				inputQty = endProduct.objects.filter(part = ele.part).filter(serial__in= selected).count()
+				if inputQty != bomQty:
+					context.update({'serialNotMatch':'serialNotMatch'})
+					return render(request, 'addPdRecord.html', context)
+			ep = endProduct.objects.filter(serial = serial_start)
+			if ep.count():
+				context.update({'serial_exist':'serial_exist'})
+				return render(request, 'addPdRecord.html', context)
+			if bomtype=="inside":
+				context.update({'selectBOM':'selectBOM'})
+				return render(request, 'addPdRecord.html', context)
+
 			mep =endProduct.objects.create(part = product,\
 				serial = serial_start, mDate = date.today(), mUser = user)#新增母產品 但未設定bom
+			
 			for serial_number in selected: # 將子序號設定到母產品
 				ep = endProduct.objects.get(serial = serial_number)
 				ep.sDate = date.today()
@@ -575,25 +614,64 @@ def addPdRecord(request,Pid):
 				ep.status = "used"
 				ep.save()
 				mep.subProduct.add(ep)
+			
+			bf2 = bf.get(bomserial=int(bomtype))
+			bomeleset = bf2.bomelement_set.all()
+			totalcost = 0
+			for ele in bomeleset:
+				priceset = ele.part.eleprice_set.order_by('-date')
+				if priceset.count():
+					price = float(priceset[0].price)
+				else:
+					price = 0
+				subtotal = float(ele.unitQty*price)
+				totalcost = totalcost + subtotal
+				consqty = ele.unitQty*(-1)
+				pnQty.objects.create(partNumber = ele.part, Qty = consqty,\
+				reason = reason, user = user, date = date.today())
+			mep.bom = bf2
+			elePrice.objects.create(partNumber=product, price = totalcost, user = user, date = date.today())				
+			mep.save()
 		else:
 			pdQty = int(request.POST['qty'])
-			for i in range(pdQty): #設定產品但未指定bom
+			if bomtype != "inside":
+				bf2 = bf.get(bomserial=int(bomtype))
+				bomeleset = bf2.bomelement_set.all()
+				manufactureCost = float(request.POST['cost'])
+				unitCost = manufactureCost/float(pdQty)
+				totalcost = unitCost
+				for ele in bomeleset:
+					priceset = ele.part.eleprice_set.order_by('-date')
+					if priceset.count():
+						price = float(priceset[0].price)
+					else:
+						price = 0
+					subtotal = float(ele.unitQty*price)
+					totalcost = totalcost +subtotal
+					consqty = ele.unitQty*pdQty*(-1)
+					pnQty.objects.create(partNumber = ele.part, Qty = consqty,\
+					reason = reason, user = user, date = date.today())
+				for i in range(pdQty): #設定產品但未指定bom
+					ep = endProduct.objects.filter(serial = serial_start+i)
+					if ep.count():
+						context.update({'serial_exist':'serial_exist'})
+						print("exist")
+						return render(request, 'addPdRecord.html', context)
+					mep = endProduct.objects.create(part = product,\
+							serial= serial_start+i, mUser = user, mDate = date.today(), bom = bf2)
+				elePrice.objects.create(partNumber=product, price = totalcost, user = user, date = date.today())
+			else:
+				for i in range(pdQty): #設定產品但未指定bom
+					ep = endProduct.objects.filter(serial = serial_start+i)
+					if ep.count():
+						context.update({'serial_exist':'serial_exist'})
+						print("exist")
+						return render(request, 'addPdRecord.html', context)
 					endProduct.objects.create(part = product,\
-						serial= serial_start+i, mUser = user, mDate = date.today())
+							serial= serial_start+i, mUser = user, mDate = date.today())
 
 		pnQty.objects.create(partNumber = product, untestQty = pdQty,\
 				Qty= 0, reason = reason, user = user, date = date.today())
-		if bomtype != "inside":
-			bf2 = bf.get(bomserial=int(bomtype))
-			bomeleset = bf2.bomelement_set.all()
-			for ele in bomeleset:
-				consqty = ele.unitQty*pdQty*(-1)
-				pnQty.objects.create(partNumber = ele.part, Qty = consqty,\
-				reason = reason, user = user, date = date.today())
-		else:
-			mep.bom = bf2
-			emp.save()
-
 	temp = product.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 	curQty = temp.get('Qty__sum')
 	utQty = temp.get('untestQty__sum')
@@ -610,12 +688,12 @@ def uploadPO(request):
 			print("UploadPO")
 			data = pocsv.read()
 			rows = data.split(b'\n')
-			reason = QtyReason.objects.get(reason='purchasing')
+			reason, _ = QtyReason.objects.get_or_create(reason='purchasing')
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
 				print(out)
-				part = partNumber.objects.filter(name=out[0])
+				part = partNumber.objects.filter(name=out[0]).filter(level = 0)
 				if part.count():
 					part = part[0]
 					ele = pnQty.objects.create(partNumber=part, reason = reason, Qty=int(out[1]), user = request.user, date = date.today())
@@ -625,7 +703,7 @@ def uploadPO(request):
 	return render(request, 'uploadCSV.html', {'form':form})
 
 def testRecord(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	print(category_list)
 	context = {'category_list':category_list}
 	 
@@ -636,11 +714,13 @@ def testRecord(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 			
 			context.update({'pd_list':partnumber_list})
 	
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
 			context.update({'pd_list':partnumber_list})
 
@@ -650,20 +730,35 @@ def testRecord(request):
 def addTestRecord(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	user = request.user
-	reason = QtyReason.objects.get(reason="testing")
+	reason, _ = QtyReason.objects.get_or_create(reason="testing")
 	context ={'product':product}
 	epset = endProduct.objects.filter(part= product).filter(status = "untested")
 	context.update({'epset':epset})
+	software = product.software.all()
+	if software.count():
+		context.update({'software':software})
 	if request.POST:
 		serial = int(request.POST.get('serial',"0"))
+		if not serial:
+			context.update({"serialEmpty":"serialEmpty"})
+			return render(request, 'addTestRecord.html', context)
 		ep = endProduct.objects.get(serial = serial)
+		swlist = request.POST.getlist('software')
+		if software.count() and len(swlist) == 0:
+			context.update({"softwareEmpty":"softwareEmpty"})
+			return render(request, 'addTestRecord.html', context)
+		for sw in swlist:
+			ep.software.add(sw)
 		if serial:
-			ep.today = date.today()
+			ep.tDate = date.today()
 			ep.tUser = user
+
 			if request.POST.get('result', "failed") == "passed":
 				ep.status = "tested"
 				pnQty.objects.create(partNumber = product, untestQty = -1,\
 						Qty= 1, reason = reason, user = user, date = date.today())
+
+
 			else:
 				failure = request.POST['reason']
 				ep.status = "discard"
@@ -679,7 +774,7 @@ def addTestRecord(request, Pid):
 
 @login_required
 def viewPurchaseList(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list} 
 	if 'pnKW' in request.POST:
 		out = request.POST
@@ -688,9 +783,11 @@ def viewPurchaseList(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).filter(level=0)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 			
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate).filter(level=0)
 			
 		print(partnumber_list)
@@ -768,7 +865,7 @@ def addSales(request, Pid):
 
 	return render(request, 'addSales.html', context)
 def viewMpList(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list} 
 	if 'pnKW' in request.POST:
 		out = request.POST
@@ -777,9 +874,11 @@ def viewMpList(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(level=0)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 			
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate).exclude(level=0)
 		outlist =[]
 		for pt in partnumber_list:
@@ -867,7 +966,7 @@ def closeCCN(request, serial):
 	return render(request,'closeCCN.html', context)
 
 def viewSoftware(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list} 
 	if request.POST:
 		out = request.POST
@@ -876,16 +975,18 @@ def viewSoftware(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(level=0)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 			
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate).exclude(level=0)
 		
 		context.update({'partnumber_list': partnumber_list})
 	return render(request,'viewSoftware.html', context)
 
 def viewSales(request):
-	category_list = partNumber.objects.values('category').distinct()
+	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list} 
 	if request.POST:
 		out = request.POST
@@ -894,9 +995,11 @@ def viewSales(request):
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(level=0)
 			if cate != "ALL":
+				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 			
 		elif cate !="ALL":
+			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate).exclude(level=0)
 		
 		context.update({'partnumber_list': partnumber_list})
@@ -929,7 +1032,82 @@ def tracking(request):
 			endp = endp[0]
 			context.update({'endp':endp})
 			subplist = endp.subProduct.all()
+			software = endp.software.all()
+			fromsub = endProduct.objects.filter(subProduct=endp)
+			print(fromsub)
+			context.update({'fromsub':fromsub })
 			context.update({'subplist':subplist})
+			context.update({'software':software})
 
 	return render(request, 'viewTracking.html', context)
 
+def exportPartNumber(request):
+	fp = open("partlist.csv","w")
+	pnlist = partNumber.objects.all()
+	for pn in pnlist:
+		#名稱; 位置; 分類; 生產等級; 描述; 購買連結; 數值; 封裝; 第二購買連結;備註1; 備註2\n
+		fp.write(pn.name +";"+ pn.location +";" + pn.category.category +";" +str(pn.level) +";" + pn.discription +";" + pn.buylink)
+		pnNote = partNote.objects.filter(part = pn)
+		if pnNote.count():
+			pnNote = pnNote[0]
+			if pnNote.value:
+				value = pnNote.value
+			else:
+				value =""
+			if pnNote.package:
+				package = pnNote.package
+			else:
+				package =""
+			if pnNote.addBuylink:
+				addBuylink = pnNote.addBuylink
+			else:
+				addBuylink =""
+			if pnNote.param1:
+				param1 = pnNote.param1
+			else:
+				param1 =""
+			if pnNote.param2:
+				param2 = pnNote.param2
+			else:
+				param2 =""
+			fp.write(";" + value + ";"+ package +";" + addBuylink +";" + param1 +";"+ param2 +"\n")
+		else:
+			fp.write(";;;;;\n")
+	fp.close()
+	fp = open("partlist.csv","rb")
+	response = FileResponse(fp)
+	return response
+def exportBom(request, Pid, Serial):
+	product = partNumber.objects.get(Pid=Pid)
+	bf = bomDefine.objects.get(bomserial = Serial)
+	element = bf.bomelement_set.all()
+	fname = product.name +"_"+ bf.discription +".csv"
+	fp = open(fname,"w")
+	for ele in element:
+		fp.write(ele.part.name+";" + str(ele.unitQty) +";"+ ele.schPN)
+	fp.close()
+	fp = open(fname,"rb")
+	response = FileResponse(fp)
+	return response
+
+def createSoftware(request):
+	template_name = 'createSoftware.html'
+	form = createSoftwareForm(request.POST or None)
+
+	if form.is_valid():
+		software.objects.create(name = form.cleaned_data.get('name'), \
+			discription = form.cleaned_data.get('discription'), \
+			history = form.cleaned_data.get('history'))
+		
+	return render(request, template_name, context ={'form':form})
+
+def createCustomer(request):
+	template_name = 'createCustomer.html'
+	form = createCustomerForm(request.POST or None)
+
+	if form.is_valid():
+		customer.objects.create(name = form.cleaned_data.get('name'),\
+			phone = form.cleaned_data.get('phone'),\
+			add = form.cleaned_data.get('add'),\
+			vax = form.cleaned_data.get('vax') )
+	return render(request, template_name, context ={'form':form})

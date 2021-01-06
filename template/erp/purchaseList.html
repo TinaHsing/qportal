@@ -38,7 +38,7 @@
 		</tr>
 		{% for row in table %}
 		<tr>
-			<td>{{ row.0 }}</td>
+			<td><a href="/erp/partNumber/{{ row.6 }}/">{{ row.0 }}</a></td>
 			<td>{{ row.1 }}</td>
 			<td>{{ row.2 }}</td>
 			<td>{{ row.3 }}</td>
@@ -66,7 +66,7 @@
 		</tr>
 	{% for part in pl %}
 	<tr>
-		<td> {{ part.0 }} </td>
+		<td> <a href="/erp/partNumber/{{ part.6 }}/">{{ part.0 }}</a> </td>
 		<td> {{ part.1 }} </td>
 		<td> {{ part.2 }} </td>
 		<td> {{ part.3 }} </td>

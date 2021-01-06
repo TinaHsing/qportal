@@ -9,12 +9,17 @@
 		{% csrf_token %}
 	
 	<div>
+
 		<td><label for="qty">生產 <font color="red">{{ bf.0.product.name }}</font> 數量</label></td>
 		{% if lockQty %}
 			<td> 1 </td>
 		{% else %}
 			<td><input type="number" name="qty"></td>
-			
+			</div>
+			<div>
+			<td><label>總生產成本(不需加入元件成本)</label></td>
+			<td><input type="number" name="cost"></td>
+		
 		{% endif %}
 
 	</div>
@@ -62,6 +67,18 @@
 	
 	<div><input type="submit" value="生產"/></div>
 	</form>
+	{% if serial_exist %}
+	<p><font color ="green">	序號重複請檢查後再次輸入，若為連續序號請檢查輸入到哪一筆資料</font></p>
+	{% endif %}
+	{% if selectBOM %}
+	<p><font color ="red">請選擇材料清單</font></p>
+	{% endif %}
+	{% if serialEmpty %}
+		<p><font color ="red">請輸入序號</font></p>
+	{% endif %}
+	{% if serialNotMatch %}
+	<p><font color ="red">子產品序號數量不符</font></p>
+	{% endif %}
 	{% if pdinfo %}
 	<table width = "80%">
 		<tr>
@@ -78,6 +95,7 @@
 		</tr>
 	</table>
 	{% endif %}
+	
 {% endblock %}
 
 {% block sidebar %}

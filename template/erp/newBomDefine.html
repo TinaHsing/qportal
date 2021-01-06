@@ -7,6 +7,12 @@
 	<input type="text" name="discription">
 	<input type="submit" name="submit">
 </form>
+{% if emptyDisp %}
+<p><font color = "red"> 建立失敗!請輸入清單描述</font></p>
+{% endif %}
+{% if repeatDis %}
+<p><font color = "red"> 建立失敗! 清單描述重複</font></p>
+{% endif %}
 
 {% endblock %}
 

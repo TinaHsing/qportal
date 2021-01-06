@@ -7,8 +7,9 @@
 		<tr>
 			<td>料號</td>
 			<td>目前數量</td>
+			<td>未測試數量</td>
 			<td>生產所需數量</td>
-			<td>所需購買數量</td>
+			<td>所需購買或測試數量</td>
 			<td>購買連結</td>
 		</tr>
 	{% for row in table %}
@@ -18,6 +19,7 @@
 		<td>{{ row.3 }}</td>
 		<td>{{ row.4 }}</td>
 		<td>{{ row.5 }}</td>
+		<td>{{ row.6 }}</td>
 	</tr>
 	{% endfor %}
 	</table>

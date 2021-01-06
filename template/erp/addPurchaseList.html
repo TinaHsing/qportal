@@ -8,7 +8,7 @@
 		{% csrf_token %}
 
 	<div>
-		<td><label > <font >{{ product.name }}</font> </label></td>
+		<td><a href="/erp/partNumber/{{ product.Pid }}">{{ product.name }}</a></td>
 	</div>
 	<div>
 		<td><label>購買數量</label></td>

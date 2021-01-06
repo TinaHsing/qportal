@@ -33,6 +33,9 @@ table,td{ border:1px solid #333;}
           <a style="color:red" href="{% url 'login'%}?next={{request.path}}">Login</a>
         {% endif %}
       </div>
+      {% if user.is_authenticated %}
+        <a style="color:green" href="{% url 'password_change' %}?next={{request.path}}">Change Password</a>
+      {% endif %}
 
     </div>
     <div class="row" style="background-color:lightcyan;">
