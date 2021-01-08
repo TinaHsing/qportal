@@ -34,14 +34,14 @@ table,td{ border:1px solid #333;}
         {% endif %}
       </div>
       {% if user.is_authenticated %}
-        <a style="color:green" href="{% url 'password_change' %}?next={{request.path}}">Change Password</a>
+        <a style="color:yellow" href="{% url 'password_change' %}?next={{request.path}}">Change Password</a>
       {% endif %}
 
     </div>
     <div class="row" style="background-color:lightcyan;">
       {% block topbar %}
       <div class = "col-sm"> <a href ={% url 'index' %}> Home </a> </div>
-      <div class = "col-sm"> <a href ={% url 'erpindex' %}> ERP </a> </div>
+      <div class = "col-sm"> <a href ={% url 'erpindex' %}> 庫存管理系統 </a> </div>
       <div class = "col-sm">  APP2 </div>
       {% endblock %}
     </div>

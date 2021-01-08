@@ -23,7 +23,7 @@ class software(models.Model):
 class customer(models.Model):
 	cid = models.AutoField(primary_key = True)
 	name = models.CharField(max_length = 30)
-	contact = models.CharField(max_length = 30)
+	contact = models.CharField(max_length = 30, null = True, blank = True)
 	phone = models.CharField(max_length = 15)
 	add = models.CharField(max_length = 60,null=True, blank = True)
 	vax = models.CharField(max_length = 8 ,null=True, blank = True)
