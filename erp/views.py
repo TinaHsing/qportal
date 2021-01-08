@@ -29,11 +29,14 @@ def viewPartNumber(request):
 			if cate != "ALL":
 				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
-				
 		elif cate !="ALL":
 			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate)
 			#context.update({'partnumber_list':partnumber_list})
+		else:
+			context.update({'emptyKW':'emptyKW'})
+			return render(request, 'viewPartNumber.html', context)
+
 		outlist =[]
 		for pt in partnumber_list:
 			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
@@ -121,12 +124,18 @@ def addPartNumber(request):
 			
 			if request.POST['discription']:
 				discription = request.POST['discription']
-
 			if request.POST['link']:
 				link = request.POST['link']
+
 		exist = partNumber.objects.filter(name = name).count()
-		if exist:
-			context.update({'exist':'exist'})
+		if name == "":
+			context.update({'nameEmpty':'nameEmpty'})
+		elif location == "":
+			context.update({'locationEmpty':'locationEmpty'})
+		elif discription == "":
+			context.update({'discriptionEmpty':'discriptionEmpty'})
+		elif exist:
+			context.update({'nameExist':'nameExist'})
 		else:
 
 			partNumber.objects.create(name = name, location = location, level = level, \
@@ -1107,7 +1116,8 @@ def createCustomer(request):
 
 	if form.is_valid():
 		customer.objects.create(name = form.cleaned_data.get('name'),\
+			contact = form.cleaned_data.get('contact'),\
 			phone = form.cleaned_data.get('phone'),\
-			add = form.cleaned_data.get('add'),\
-			vax = form.cleaned_data.get('vax') )
+			vax = form.cleaned_data.get('vax') ,\
+			add = form.cleaned_data.get('add') )
 	return render(request, template_name, context ={'form':form})

@@ -13,11 +13,21 @@
 	<div>
 		<td><label>料號</label></td>
 		<td><input name="partNumber" type = "text"></td>	
+		{% if nameEmpty %}
+		<td><font color= "red"> 請輸入料號名稱 </font></td>
+		{% endif %}
+		{% if nameExist %}
+		<td><font color= "red"> 料號名稱重複 </font></td>
+		{% endif %}
 	</div>
 	<div>
 		<td><label for="location">位置</label></td>
 		<td><input name="location" type = "text"></td>
+		{% if locationEmpty %}
+		<td><font color= "red"> 請輸入位置 </font></td>
+		{% else %}
 		<td><font color="red">必填，否則會找不到</font></td>
+		{% endif %}
 	</div>
 	<div>
 		<td><label for="category">料號分類</label></td>
@@ -40,6 +50,9 @@
 	<div>
 		<td><label for="discription">產品描述</label></td>
 		<td><input type="text" name="discription"></td>
+		{% if discriptionEmpty %}
+		<td><font color= "red"> 請輸入產品描述 </font></td>
+		{% endif %}
 	</div>
 	<div>
 		<td><label for="discription">購買連結</label></td>
@@ -49,9 +62,6 @@
 	</form>
 	{% if done %}
 	<p>設定成功</p>
-	{% endif %}
-	{% if exist %}
-	<p><font color= "red"> 料號名稱重複 </font></p>
 	{% endif %}
 {%endblock%}
 
