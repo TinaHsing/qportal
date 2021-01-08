@@ -6,24 +6,24 @@
 	</div>
 	<form action="" method="post">
 		{% csrf_token%}
-		<div>
+		<table border="0">
+		<tr>
 			<td>{{ form.name.label }}</td>
 			<td>{{ form.name }}</td>
-		</div>
-		<div>
+		</tr>
+		<tr>
 			<td>{{ form.discription.label }}</td>
 			<td>{{ form.discription }}</td>
-		</div>
-		<div>
+		</tr>
+		<tr>
 			<td>{{ form.history.label }}</td>
-			
-		</div>
-		<div>
 			<td>{{ form.history }}</td>	
-		</div>
-		<p><font color="red">{{ form.name.errors }}</font></p>
-		<input type="submit" value="OK">
-
+		</tr>
+		<tr>
+			<td><font color="red">{{ form.name.errors }}</font></td>
+			<td><input type="submit" value="OK"></td>
+		</tr>
+		</table>
 	</form>
 
 {% endblock %}

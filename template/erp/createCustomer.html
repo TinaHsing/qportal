@@ -6,8 +6,31 @@
 	</div>
 	<form action="" method="post">
 		{% csrf_token%}
-		{{ form }}
-		<input type="submit" value="OK">
+		<table border="0">
+		<tr>
+			<td>{{ form.name.label }}</td>
+			<td>{{ form.name }}</td>
+		</tr>
+		<tr>
+			<td>{{ form.contact.label }}</td>
+			<td>{{ form.contact }}</td>
+		</tr>
+		<tr>
+			<td>{{ form.phone.label }}</td>
+			<td>{{ form.phone }}</td>	
+		</tr>
+		<tr>
+			<td>{{ form.vax.label }}</td>
+			<td>{{ form.vax }}</td>	
+		</tr>
+		<tr>
+			<td>{{ form.add.label }}</td>
+			<td>{{ form.add }}</td>	
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value="OK"></td>
+		</tr>
 
 	</form>
 
