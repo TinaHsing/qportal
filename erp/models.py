@@ -25,8 +25,8 @@ class customer(models.Model):
 	name = models.CharField(max_length = 30)
 	contact = models.CharField(max_length = 30, null = True, blank = True)
 	phone = models.CharField(max_length = 15)
-	add = models.CharField(max_length = 60,null=True, blank = True)
 	vax = models.CharField(max_length = 8 ,null=True, blank = True)
+	add = models.CharField(max_length = 60,null=True, blank = True)
 	def __str__(self):
 		return self.name
 
