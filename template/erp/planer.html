@@ -56,7 +56,10 @@
 	{% endfor %}
 	{% endif%}
 	</table>
+{% if planer_list %}
 	<a href="{% url 'calculate' %}"  class ="btn btn-info"> 備料計算 </a>
+{% endif%}
+
 {% endblock %}
 
 {% block sidebar %}

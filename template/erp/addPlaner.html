@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-<p> 請輸入 <font color="red">{{ part.name }}</font> 的生產數量</p>
+<p> 請輸入 <font color="red">{{ part }}</font> 的生產數量</p>
 
 <form method ="post" action ="">
 	{% csrf_token%}
