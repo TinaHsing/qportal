@@ -5,30 +5,35 @@
 		<h3>銷售登錄</h3>
 		<p>僅限含序號的產品一次一件</p>
 		
-
+	<table>
 	<form method ="post" action ="">
 		{% csrf_token %}
 
-	<div>
-		<td><select name = "customer">
-			{% for cus in customer %}
-				<option > {{ cus.name }} </option>
-			{% endfor %}
-		</select> </td>	
+	<tr>
+		<td>客戶</td>
+		<td colspan="2">產品序號</td>
+	</tr>
+	<tr>
+		{% for cus in customer %}
+			<td><select name = "customer">
+			<option > {{ cus.name }} </option>
+			</select> </td>	
+		{% endfor %}
 		
-			{% if endp %}
+		{% if endp %}
 			<td><select name = "serial">
 			{% for ser in endp %}
-				<option > {{ ser.serial }} </option>
-			{% endfor %}
+			<option > {{ ser.serial }} </option>
 			</select> </td>	
-			{% else %}
-			<p>無完成測試產品 請先進行測試</p>
-			{% endif %}
+			{% endfor %}
+			<td><input type="submit" value="銷售登錄"/></td>
+		{% else %}
+			<td>無完成測試產品，請先進行測試</tr>
+		{% endif %}
+	</tr>
 		
-
-	<div><input type="submit" value="銷售登錄"/></div>
 	</form>
+	</table>
 {% endblock %}
 
 {% block sidebar %}
