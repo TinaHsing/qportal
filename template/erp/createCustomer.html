@@ -4,12 +4,17 @@
 	<div>
 		<h3>新增客戶</h3>
 	</div>
+		<li><a href={% url 'viewCustomer' %}>搜尋客戶</a>
 	<form action="" method="post">
 		{% csrf_token%}
 		<table border="0">
 		<tr>
 			<td>{{ form.name.label }}</td>
 			<td>{{ form.name }}</td>
+		</tr>
+		<tr>
+			<td>{{ form.vax.label }}</td>
+			<td>{{ form.vax }}</td>	
 		</tr>
 		<tr>
 			<td>{{ form.contact.label }}</td>
@@ -20,15 +25,11 @@
 			<td>{{ form.phone }}</td>	
 		</tr>
 		<tr>
-			<td>{{ form.vax.label }}</td>
-			<td>{{ form.vax }}</td>	
-		</tr>
-		<tr>
 			<td>{{ form.add.label }}</td>
 			<td>{{ form.add }}</td>	
 		</tr>
 		<tr>
-			<td></td>
+			<td><font color="red">{{ form.name.errors }}</font></td>
 			<td><input type="submit" value="OK"></td>
 		</tr>
 

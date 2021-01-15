@@ -1129,3 +1129,14 @@ def createCustomer(request):
 			vax = form.cleaned_data.get('vax') ,\
 			add = form.cleaned_data.get('add') )
 	return render(request, template_name, context ={'form':form})
+
+def viewCustomer(request):
+	context = {}
+	if request.POST:
+		out = request.POST
+		cn = out['customer']
+		if cn !="":
+			cus = customer.objects.filter(name__contains = cn)
+			context.update({'customer_list':cus})
+			print(context)
+	return render(request, 'viewCustomer.html', context)
