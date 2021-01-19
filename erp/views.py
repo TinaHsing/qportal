@@ -356,6 +356,7 @@ def costEvaluation(request, Pid, Serial):
 def purchasing(request):
 	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list}
+	B_partnumber_flag = False
 	 
 	if 'pnKW' in request.POST:
 		out = request.POST
@@ -367,14 +368,28 @@ def purchasing(request):
 			if cate != "ALL":
 				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate).filter(level = 0)
+				B_partnumber_flag = True
 			
 			context.update({'partnumber_list':partnumber_list})
 	
 		elif cate !="ALL":
 			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate).filter(level = 0)
+			B_partnumber_flag = True
 			context.update({'partnumber_list':partnumber_list})
-			
+
+		if (B_partnumber_flag):
+			outlist = []
+			for pt in partnumber_list:
+				temp = pt.pnqty_set.aggregate(Sum('Qty'))
+				curQty = temp.get('Qty__sum')
+				temp2 = pt.eleprice_set.order_by('-date')
+				if temp2.count():
+					temp2 = temp2[0]
+					outlist.append([pt.name, curQty, pt.location, pt.discription, pt.Pid])
+				else:
+					outlist.append([pt.name, curQty, pt.location, pt.discription, pt.Pid])	
+			context.update({'table': outlist})
 
 	return render(request, 'purchasing.html', context)
 
@@ -383,19 +398,27 @@ def addPurchasing(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	reason, _ = QtyReason.objects.get_or_create(reason="purchasing")
 	user = request.user
+	context = {'product':product}
+
 	if request.POST:
 		user = request.user
 		qty = request.POST['qty']
 		price = request.POST['price']
-		if product.level == 0:
-			pnQty.objects.create(partNumber = product, Qty = qty,\
-				reason = reason, user = user, date = date.today())
+
+		if (qty == '') or (price == ''):
+			return render(request, 'addPurchasing.html', context)
 		else:
-			pnQty.objects.create(partNumber = product, Qty = qty,\
-				reason = reason, user = user, date = date.today())
-		elePrice.objects.create(partNumber = product, price = price, user = user, date= date.today() )
-		return redirect('purchasing')
-	return render(request, 'addPurchasing.html')
+			if product.level == 0:
+				pnQty.objects.create(partNumber = product, Qty = qty,\
+					reason = reason, user = user, date = date.today())
+			else:
+				pnQty.objects.create(partNumber = product, Qty = qty,\
+					reason = reason, user = user, date = date.today())
+
+			elePrice.objects.create(partNumber = product, price = price, user = user, date= date.today() )
+			return redirect('purchasing')
+
+	return render(request, 'addPurchasing.html', context)
 
 def discard(request):
 	category_list = pnCategory.objects.all()

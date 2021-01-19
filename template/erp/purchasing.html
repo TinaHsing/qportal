@@ -27,14 +27,18 @@
 	<table border="1">
 		<tr>
 			<td>料號</td>
+			<td>庫存數</td>
+			<td>位置</td>
 			<td>描述</td>
 			<td>登錄進貨</td>
 		</tr>
-		{% for pn in partnumber_list %}
+		{% for row in table %}
 		<tr>
-			<td> {{pn.name}}:</td>
-			<td> {{pn.discription}} </td>
-			<td> <a href="{{ pn.Pid }}/" class="btn btn-info" > Add </a></td>
+			<td>{{ row.0 }}</td>
+			<td>{{ row.1 }}</td>
+			<td>{{ row.2 }}</td>
+			<td>{{ row.3 }}</td>
+			<td> <a href="{{ row.4 }}/" class="btn btn-info" > Add </a></td>
 		</tr>
 		{% endfor %}
 	</table>
