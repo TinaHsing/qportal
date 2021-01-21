@@ -3,31 +3,30 @@
 {% block content %}
 
 	<h3>不良品分析結案</h3>
-	{% if ccn_list %}
+	{% if part %}
 	<div>
-		<td>品名</td>
-		<td>{{ ccn_list.partNumber }}</td>
+		<td>品名：</td>
+		<td>{{ part.0 }}</td>
 	</div>
-	<div><td>客戶:</td>
-		<td>{{ ccn_list.customer }}</td>
+	<div><td>客戶：</td>
+		<td>{{ part.1 }}</td>
 	 </div>
 	 <div>
-	 	<td>產品序號:</td>
-	 	<td>{{ ccn_list.serialNumber }}</td>
+	 	<td>產品序號：</td>
+	 	<td>{{ part.2 }}</td>
 	 </div>
 	 <div>
-	 	<td>登錄日期:</td>
-	 	<td>{{ ccn_list.reqDate }}</td>
+	 	<td>登錄日期：</td>
+	 	<td>{{ part.3 }}</td>
 	 </div>
-
 
 	<form method ="post" action ="">
 		{% csrf_token %}
 	<div>
-		<td>失效分析與措施:</td>
+		<td>失效分析與措施：</td>
 	</div>
 	<div>
-		<textarea name="rootCause" rows="20" cols ="100">{{ ccn_list.failure }}</textarea>
+		<textarea name="rootCause" rows="20" cols ="100">{{ part.4 }}</textarea>
 	</div>
 
 	<div><input type="submit" value="結案"/></div>

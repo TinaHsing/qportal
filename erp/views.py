@@ -854,9 +854,8 @@ def addPurchaseList(request,Pid):
 	context ={'product':product}
 	user = request.user	
 	if request.POST:
-		print("hi")
 		Qty = int(request.POST['qty'])
-		print(Qty)
+		# print(Qty)
 		purchaseList.objects.create(partNumber= product, Qty= Qty, user = user, reqDate = date.today(), status = True)
 		return redirect('/erp/puraseList/')
 	return render(request,'addPurchaseList.html', context)
@@ -877,7 +876,7 @@ def addSales(request, Pid):
 	customer_list = customer.objects.all()
 	
 	context.update({'customer':customer_list})
-	print(context)
+	# print(context)
 	context.update({'endp':endp})
 	
 	if endp.count():
@@ -961,11 +960,11 @@ def closeMpList(request, serial):
 
 def viewCCNList(request):
 	pl = ccnList.objects.filter(status=True)
-	print(pl)
+	# print(pl)
 	outlist = []
 	for ccn in pl:
 		outlist.append([ccn.endp.part.name, ccn.endp.customer, ccn.endp.serial,\
-		ccn.reqDate,ccn.failure, ccn.ccnSerial] )
+		ccn.reqDate, ccn.failure, ccn.ccnSerial] )
 	context={'pl':outlist}
 	return render(request,'ccnList.html', context)
 
@@ -990,7 +989,15 @@ def addCCNList(request):
 @login_required
 def closeCCN(request, serial):
 	pl = ccnList.objects.get(ccnSerial= serial)
-	context = {'ccn_list':pl}
+	# context = {'ccn_list':pl}
+	outlist = []
+	outlist.append(pl.endp.part.name) 
+	outlist.append(pl.endp.customer)
+	outlist.append(pl.endp.serial)
+	outlist.append(pl.reqDate)
+	outlist.append(pl.failure) 
+	outlist.append(pl.ccnSerial)
+	context={'part':outlist}
 	if request.POST:
 		if request.user.is_authenticated:
 			pl.rootCause = request.POST['rootCause']
@@ -1144,6 +1151,12 @@ def createSoftware(request):
 def createCustomer(request):
 	template_name = 'createCustomer.html'
 	form = createCustomerForm(request.POST or None)
+
+	# if request.GET:
+	# 	cid = out['cid']
+	# 	if cid !="":
+	# 		cus = customer.objects.filter(cid = cid)
+	# 		context.update({'customer_list':cus})
 
 	if form.is_valid():
 		customer.objects.create(name = form.cleaned_data.get('name'),\
