@@ -574,7 +574,7 @@ def PdRecord(request):
 	 
 	if 'pnKW' in request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
@@ -583,7 +583,7 @@ def PdRecord(request):
 				partnumber_list = partnumber_list.filter(category=cate)
 		elif cate !="ALL":
 			cate = pnCategory.objects.get(category = out['category'])
-			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
+			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW).filter(category=cate)
 		else:
 			return render(request, 'pdRecord.html', context)
 		
@@ -595,7 +595,7 @@ def PdRecord(request):
 				untestedQty = temp.get('untestQty__sum')
 				outlist.append([part.name, part.discription, curQty,untestedQty, part.Pid])
 
-		context.update({'pd_list':outlist})
+			context.update({'pd_list':outlist})
 
 	return render(request, 'pdRecord.html', context)
 
@@ -815,7 +815,7 @@ def viewPurchaseList(request):
 	context = {'category_list':category_list} 
 	if 'pnKW' in request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).filter(level=0)
@@ -828,7 +828,8 @@ def viewPurchaseList(request):
 		else:
 			return render(request, 'purchaseList.html', context)
 		print(partnumber_list)
-		outlist =[]
+		outlist = []
+
 		for pt in partnumber_list:
 			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 			curQty = temp.get('Qty__sum')
@@ -840,6 +841,7 @@ def viewPurchaseList(request):
 				outlist.append([pt.name,  pt.discription, pt.buylink, curQty,"None", pt.location ,pt.Pid])
 		
 		context.update({'table': outlist})
+
 	pl = purchaseList.objects.filter(status=True)
 	outlist = []
 	
