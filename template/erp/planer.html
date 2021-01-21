@@ -10,7 +10,6 @@
 <p>目前沒有計畫生產任何產品，請用 filter 篩選產品並新增</p>
 {% endif %}
 
-
 	<table width = "100%">
 	{% if planer_list %}
 		<tr>
@@ -29,6 +28,7 @@
 	{% endfor %}
 	{% endif %}
 	</table>
+	<hr>
 <form method ="post" action ="">
 	{% csrf_token%}
 	<div>

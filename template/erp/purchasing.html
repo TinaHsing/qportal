@@ -23,7 +23,8 @@
 
 	<div><input type="submit" value="Filter"/></div>
 	</form>
-	{% if partnumber_list %}
+
+	{% if table %}
 	<table border="1">
 		<tr>
 			<td>料號</td>
@@ -45,8 +46,8 @@
 	{% else %}
 	<p> 無結果！請重設查詢條件 </p>
 	{% endif %}
-
-	<p><a href="Upload/" class="btn btn-info" >上傳 csv 購買紀錄</a></p>
+	<hr>
+	<div><a href="Upload/" class="btn btn-info" >上傳 csv 購買紀錄</a></div>
 {% endblock %}
 
 {% block sidebar %}

@@ -3,7 +3,35 @@
 {% block content %}
 	<div>
 		<h3>採購需求登錄</h3>
+	{% if pl %}
+	<div>
+		以下為 <font color=red>尚未採購</font> 的需求清單：
+	</div>
+	<table width = "80%" >
+		<tr>
+			<td>料號</td>
+			<td>描述</td>
+			<td>連結</td>
+			<td>數量</td>
+			<td>需求者</td>
+			<td>提出日期</td>
+			<td>購買完成登錄</td>
+		</tr>
+	{% for part in pl %}
+	<tr>
+		<td> <a href="/erp/partNumber/{{ part.6 }}/">{{ part.0 }}</a> </td>
+		<td> {{ part.1 }} </td>
+		<td> {{ part.2 }} </td>
+		<td> {{ part.3 }} </td>
+		<td> {{ part.4 }} </td>
+		<td> {{ part.5 }} </td>
+		<td> <a href='close/{{ part.6 }}/' class="btn btn-info">已購買</td>
+	</tr>
+	{% endfor %}
+	</table>
+	{% endif %}
 
+	<hr>
 	<form method ="post" action ="">
 		{% csrf_token %}
 	
@@ -33,7 +61,6 @@
 			<td>庫存數</td>
 			<td>最新價格</td>
 			<td>位置</td>
-			
 			<td>採購登錄</td>
 		</tr>
 		{% for row in table %}
@@ -50,32 +77,7 @@
 		{% endfor %}
 	</table>
 	{% else %}
-	<p> 無結果！ 請重設查詢條件 </p>
-	{% endif %}
-	{% if pl %}
-	
-	<table width = "80%" >
-		<tr>
-			<td>料號</td>
-			<td>描述</td>
-			<td>連結</td>
-			<td>數量</td>
-			<td>需求者</td>
-			<td>提出日期</td>
-			<td>購買完成登錄</td>
-		</tr>
-	{% for part in pl %}
-	<tr>
-		<td> <a href="/erp/partNumber/{{ part.6 }}/">{{ part.0 }}</a> </td>
-		<td> {{ part.1 }} </td>
-		<td> {{ part.2 }} </td>
-		<td> {{ part.3 }} </td>
-		<td> {{ part.4 }} </td>
-		<td> {{ part.5 }} </td>
-		<td> <a href='close/{{ part.6 }}/' class="btn btn-info">已購買</td>
-	</tr>
-	{% endfor %}
-	</table>
+	<p> 料號搜尋無結果！ 請重設查詢條件 </p>
 	{% endif %}
 
 {% endblock %}

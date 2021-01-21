@@ -21,6 +21,8 @@
 	</div>
 	<div><td><input type="submit" value="Filter"/></td></div>
 	</form>
+
+	{% if partnumber_list %}
 	<div>
 		<td><label >選擇產品添加軟體清單</label></td>
 	
@@ -40,6 +42,7 @@
 		</tr>
 		{% endfor %}
 	</table>	
+	{% endif %}
 {%endblock%}
 
 {% block sidebar %}
