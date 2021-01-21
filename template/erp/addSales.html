@@ -14,18 +14,18 @@
 		<td colspan="2">產品序號</td>
 	</tr>
 	<tr>
+		<td><select name = "customer">
 		{% for cus in customer %}
-			<td><select name = "customer">
 			<option > {{ cus.name }} </option>
-			</select> </td>	
 		{% endfor %}
+		</select> </td>	
 		
 		{% if endp %}
 			<td><select name = "serial">
 			{% for ser in endp %}
 			<option > {{ ser.serial }} </option>
-			</select> </td>	
 			{% endfor %}
+			</select> </td>	
 			<td><input type="submit" value="銷售登錄"/></td>
 		{% else %}
 			<td>無完成測試產品，請先進行測試</tr>
