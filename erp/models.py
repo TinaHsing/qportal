@@ -158,8 +158,8 @@ class mpList(models.Model):
 
 class ccnList(models.Model):
 	ccnSerial = models.AutoField(primary_key = True)
-	endp = models.ForeignKey(endProduct, on_delete = models.SET_NULL ,null = True)
-	PcSwVer = models.TextField(help_text='PC software version', null=True, blank = True)
+	endp = models.ForeignKey(endProduct, on_delete = models.SET_NULL, null = True, blank = True)
+	software = models.ForeignKey(software, on_delete = models.SET_NULL, null = True, blank = True)
 	reqDate =  models.DateField()
 	status = models.BooleanField(default = True)
 	failure = models.TextField(help_text='input failure phenomenon', null=True, blank = True)
