@@ -12,7 +12,8 @@
 	</div>
 	<div><td><input type="submit" value="搜尋"></td></div>
 	</form>
-<p>
+<hr>
+
 {% if customer_list %}
 <table>
 <tr>
@@ -31,7 +32,7 @@
 	<td>{{ cn.phone }}</td>
 	<td>{{ cn.add }}</td>
 	<td>
-	 <a href="../createCustomer?cid={{ cn.cid }}" class="btn btn-info" > Edit </a>
+	 <a href="../editCustomer/{{ cn.cid }}/" class="btn btn-info" > Edit </a>
 	</td>
 </tr>
 {% endfor %}

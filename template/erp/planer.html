@@ -23,13 +23,13 @@
 			<td>{{ pl.bf.product }}</td>
 			<td>{{ pl.bf.discription }}</td>
 			<td>{{ pl.produceQty }}</td>
-			<td> <a href="{{pl.bf.bomserial}}/"  class ="btn btn-info"> Edit </a>
+			<td> <a href="{{pl.bf.bomserial}}/" class ="btn btn-info"> Edit </a>
 			</td></tr>
 	{% endfor %}
 	{% endif %}
 	</table>
 {% if planer_list %}
-	<a href="{% url 'calculate' %}"  class ="btn btn-info"> 備料計算 </a>
+	<a href="{% url 'calculate' %}" class ="btn btn-info"> 備料計算 </a>
 {% endif%}
 	<hr>
 <form method ="post" action ="">
@@ -53,7 +53,7 @@
 			<td>{{ pn.product }}</td>
 			<td>{{ pn.discription }}</td>
 			<td>0</td>
-			<td> <a href="{{pn.bomserial}}/"  class ="btn btn-info"> Add </a>
+			<td> <a href="{{pn.bomserial}}/" class ="btn btn-info"> Add </a>
 			</td></tr>
 
 	{% endfor %}

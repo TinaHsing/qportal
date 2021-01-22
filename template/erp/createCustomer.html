@@ -2,11 +2,15 @@
 
 {% block content %}
 	<div>
+		{% if status == "add_new" or status == "add_ok" %}
 		<h3>新增客戶</h3>
+		{% else %}
+		<h3>修改客戶</h3>
+		{% endif %}
 	</div>
 		<li><a href={% url 'viewCustomer' %}>搜尋客戶</a>
 	<form action="" method="post">
-		{% csrf_token%}
+		{% csrf_token %}
 		<table border="0">
 		<tr>
 			<td>{{ form.name.label }}</td>
@@ -34,6 +38,18 @@
 		</tr>
 
 	</form>
+
+	{% if status != '' %}
+	<hr>
+	<div><font color = red>
+	{% if status == "add_ok" %}
+		新增成功
+	{% endif %}
+	{% if status == "edit_ok" %}
+		修改成功
+	{% endif %}
+	</font></div>
+	{% endif %}
 
 {% endblock %}
 

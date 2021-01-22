@@ -21,11 +21,11 @@
 	</div>
 	<div><td><input type="submit" value="Filter"/></td></div>
 	</form>
+<hr>
 
 	{% if partnumber_list %}
 	<div>
-		<td><label >選擇產品添加韌體清單</label></td>
-	
+		<li>選擇產品添加韌體清單</li>
 	</div>
 	<table width = "100%">
 		<tr>
@@ -36,7 +36,6 @@
 		{% for pn in partnumber_list %}
 		<tr>
 			<td >{{ pn.name}}</td>
-			
 			<td>{{ pn.discription }}</td>
 			<td> <a href="{{ pn.Pid }}/"  class ="btn btn-info"> Edit </a></td>
 		</tr>

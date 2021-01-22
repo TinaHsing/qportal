@@ -8,9 +8,6 @@
 		{% csrf_token %}
 
 	<div>
-		<td><label > <font >{{ product.name }}</font> </label></td>
-	</div>
-	<div>
 		<td><label>客戶</label></td>
 		<td><select name = "customer">
 			{% for cus in customer_list %}
@@ -23,8 +20,13 @@
 		<td><input name="serial" type = "text"></td>
 	</div>
 	<div>
-		<td><label>PC軟體版號</label></td>
-		<td><input name="PcSwVer" type = "text"></td>
+		<td><label>軟體 / 韌體版號</label></td>
+		<td><select name = "SwVer">
+			{% for sw in software_list %}
+				<option > {{ sw.name }} </option>
+			{% endfor %}
+		</select> </td>	
+
 	</div>
 	<div>
 		<td>錯誤或失效描述</td>
