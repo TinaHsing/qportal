@@ -16,17 +16,21 @@
 	 	<td>{{ part.2 }}</td>
 	 </div>
 	 <div>
-	 	<td>登錄日期：</td>
+	 	<td>PC軟體版號：</td>
 	 	<td>{{ part.3 }}</td>
+	 </div>
+	 <div>
+	 	<td>登錄日期：</td>
+	 	<td>{{ part.4 }}</td>
 	 </div>
 
 	<form method ="post" action ="">
 		{% csrf_token %}
 	<div>
-		<td>失效分析與措施：</td>
+		<td>錯誤或失效 分析與措施：</td>
 	</div>
 	<div>
-		<textarea name="rootCause" rows="20" cols ="100">{{ part.4 }}</textarea>
+		<textarea name="rootCause" rows="20" cols ="100">{{ part.5 }}</textarea>
 	</div>
 
 	<div><input type="submit" value="結案"/></div>

@@ -31,7 +31,6 @@ class customer(models.Model):
 		return self.name
 
 class partNumber(models.Model):
-
 	Pid = models.AutoField(primary_key=True)
 	name = models.CharField(max_length = 80, unique=True, help_text='check partNumber rule for detail')
 	location = models.CharField(max_length = 15, blank = True, null =True)
@@ -43,7 +42,6 @@ class partNumber(models.Model):
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank=True )
 	software = models.ManyToManyField(software, blank = True)
 	approve = models.BooleanField(default = False)
-	
 	def __str__(self):
 		return self.name
 
@@ -53,10 +51,8 @@ class bomDefine(models.Model):
 	discription = models.CharField(max_length = 100, blank=True, null= True)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
 	date = models.DateField(null=True, blank = True )
-
 	def __str__(self):
 		return self.product.name
-
 
 class endProduct(models.Model):
 	part = models.ForeignKey(partNumber,on_delete = models.CASCADE, blank = True, null =True)
@@ -79,7 +75,6 @@ class addSubProduct(models.Model):
 	mother = models.ForeignKey(endProduct, related_name='mother' , on_delete = models.CASCADE, blank = True, null =True)
 	child = models.ForeignKey(endProduct, related_name = 'child',on_delete = models.CASCADE, blank = True, null =True )
 	
-
 class BomElement(models.Model):
 	bf= models.ForeignKey(bomDefine, on_delete = models.CASCADE, blank = True, null =True) #bom belongs to what product
 	part = models.ForeignKey(partNumber, related_name = "element", on_delete = models.CASCADE, blank = True, null =True)
@@ -89,8 +84,6 @@ class BomElement(models.Model):
 	date = models.DateField(null=True, blank = True )
 	def __str__(self):
 		return self.part.name
-
-
 
 class partNote(models.Model):
 	part = models.ForeignKey(partNumber, on_delete= models.CASCADE, blank=True, null=True)
@@ -138,7 +131,6 @@ class planerElement(models.Model):
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
 	bf = models.ForeignKey(bomDefine, on_delete = models.CASCADE, blank = True, null =True)
 	produceQty = models.IntegerField(default = 1)
-
 	def __str__(self):
 		return self.user.username
 
@@ -164,10 +156,10 @@ class mpList(models.Model):
 	def __str__(self):
 		return self.partNumber.name
 
-
 class ccnList(models.Model):
 	ccnSerial = models.AutoField(primary_key = True)
 	endp = models.ForeignKey(endProduct, on_delete = models.SET_NULL ,null = True)
+	PcSwVer = models.TextField(help_text='PC software version', null=True, blank = True)
 	reqDate =  models.DateField()
 	status = models.BooleanField(default = True)
 	failure = models.TextField(help_text='input failure phenomenon', null=True, blank = True)
@@ -175,4 +167,4 @@ class ccnList(models.Model):
 	closeDate = models.DateField(null=True, blank = True)
 	closeEng = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
 	def __str__(self):
-		return self.endp.part.name
+		return str(self.ccnSerial)

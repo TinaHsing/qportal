@@ -22,7 +22,7 @@ def viewPartNumber(request):
 	context = {'category_list':category_list}	 
 	if 'pnKW' in request.GET:
 		out = request.GET
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW)
@@ -965,26 +965,34 @@ def viewCCNList(request):
 	# print(pl)
 	outlist = []
 	for ccn in pl:
-		outlist.append([ccn.endp.part.name, ccn.endp.customer, ccn.endp.serial,\
-		ccn.reqDate, ccn.failure, ccn.ccnSerial] )
+		if (ccn.endp != None):
+			outlist.append([ccn.endp.part.name, ccn.endp.customer, ccn.endp.serial,\
+			ccn.PcSwVer, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
+		else:
+			outlist.append([None, None, None,\
+			ccn.PcSwVer, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
 	context={'pl':outlist}
 	return render(request,'ccnList.html', context)
 
 def addCCNList(request):
 	customer_list = customer.objects.all()
-	context={'customer_list':customer_list}
+	context = {'customer_list':customer_list}
 
 	if request.POST:
 		cus = request.POST['customer']
-		failure = request.POST['failure']
 		serial = request.POST['serial']
+		PcSwVer = request.POST['PcSwVer']
+		failure = request.POST['failure']
 		if (serial != ''):
 			endp = endProduct.objects.filter(serial = serial)
 			user = customer_list.get(name = cus)
 			if endp.count():
 				endp = endp[0]
-				ccnList.objects.create(endp =endp , failure=failure, \
-					reqDate = date.today(), status = True)		
+				ccnList.objects.create(endp = endp , failure = failure, \
+					reqDate = date.today(), status = True)
+		elif (PcSwVer != ''):
+			ccnList.objects.create(PCswVer = PcSwVer , failure = failure, \
+				reqDate = date.today(), status = True)
 		return redirect('/erp/ccnList/')
 	return render(request,'addCCNList.html', context)
 
@@ -993,9 +1001,15 @@ def closeCCN(request, serial):
 	pl = ccnList.objects.get(ccnSerial= serial)
 	# context = {'ccn_list':pl}
 	outlist = []
-	outlist.append(pl.endp.part.name) 
-	outlist.append(pl.endp.customer)
-	outlist.append(pl.endp.serial)
+	if (pl.endp != None):
+		outlist.append(pl.endp.part.name) 
+		outlist.append(pl.endp.customer)
+		outlist.append(pl.endp.serial)
+	else:
+		outlist.append(None) 
+		outlist.append(None)
+		outlist.append(None)
+	outlist.append(pl.PcSwVer)
 	outlist.append(pl.reqDate)
 	outlist.append(pl.failure) 
 	outlist.append(pl.ccnSerial)
