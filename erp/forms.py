@@ -9,7 +9,7 @@ class uploadFileForm(forms.Form):
 class createSoftwareForm(ModelForm):
 	class Meta:
 		model = software
-		fields = ['name', 'discription', 'history']
+		fields = ['name', 'pc', 'discription', 'history']
 
 	def clean_name(self):
 		name = self.cleaned_data.get('name')

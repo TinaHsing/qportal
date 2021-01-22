@@ -675,8 +675,13 @@ def addPdRecord(request,Pid):
 			if bomtype != "inside":
 				bf2 = bf.get(bomserial=int(bomtype))
 				bomeleset = bf2.bomelement_set.all()
-				manufactureCost = float(request.POST['cost'])
-				unitCost = manufactureCost/float(pdQty)
+				cost = request.POST['cost']
+				if (cost == ''):
+					cost = 0
+					unitCost = 0
+				else:
+					manufactureCost = float(cost)
+					unitCost = manufactureCost/float(pdQty)
 				totalcost = unitCost
 				for ele in bomeleset:
 					priceset = ele.part.eleprice_set.order_by('-date')
@@ -978,23 +983,25 @@ def viewCCNList(request):
 	return render(request,'ccnList.html', context)
 
 def addCCNList(request):
-	customer_list = customer.objects.all()
-	context = {'customer_list':customer_list}
-	software_list = software.objects.all()
-	context.update({'software_list':software_list})
+	# customer_list = customer.objects.all()
+	# context = {'customer_list':customer_list}
+	software_list = software.objects.filter(pc = True)
+	context = {'software_list':software_list}
 
 	if request.POST:
-		cus = request.POST['customer']
+		# cus = request.POST['customer']
 		serial = request.POST['serial']
 		SwVer = request.POST['SwVer']
 		failure = request.POST['failure']
 		if (serial != ''):
 			endp = endProduct.objects.filter(serial = serial)
-			user = customer_list.get(name = cus)
+			# user = customer_list.get(name = cus)
 			if endp.count():
 				endp = endp[0]
 				ccnList.objects.create(endp = endp , failure = failure, \
 					reqDate = date.today(), status = True)
+			else:
+				context.update({'cus_error':"cus_error"})
 		elif (SwVer != ''):
 			sw = software_list.get(name = SwVer)
 			ccnList.objects.create(software = sw , failure = failure, \
@@ -1036,7 +1043,7 @@ def viewSoftware(request):
 	context = {'category_list':category_list} 
 	if request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(level=0)
@@ -1076,13 +1083,13 @@ def addSoftware(request, Pid):
 	part = partNumber.objects.get(Pid = Pid)
 	context ={'part':part}
 	sw_in_part = part.software.all()
-	sw_out_part = software.objects.exclude(Sid__in = sw_in_part)
+	sw_out_part = software.objects.exclude(Sid__in = sw_in_part).filter(pc = False)
 	context.update({'sw_in_part':sw_in_part})
 	context.update({'sw_out_part':sw_out_part})
 	return render(request,'addSoftware.html', context)
 
 def softwareToPd(request, Pid, Sid):
-	part = partNumber.objects.get(Pid= Pid)
+	part = partNumber.objects.get(Pid = Pid)
 	sw = software.objects.get(Sid = Sid)
 	part.software.add(sw)
 	part.save()
@@ -1101,11 +1108,15 @@ def tracking(request):
 				context.update({'endp':endp})
 				subplist = endp.subProduct.all()
 				software = endp.software.all()
+				if (endp.customer):
+					customer = endp.customer.name
 				fromsub = endProduct.objects.filter(subProduct=endp)
 				print(fromsub)
 				context.update({'fromsub':fromsub })
 				context.update({'subplist':subplist})
 				context.update({'software':software})
+				if (endp.customer):
+					context.update({'customer':customer})
 
 	return render(request, 'viewTracking.html', context)
 
@@ -1168,6 +1179,7 @@ def createSoftware(request):
 
 	if form.is_valid():
 		software.objects.create(name = form.cleaned_data.get('name'), \
+			pc = form.cleaned_data.get('pc'), \
 			discription = form.cleaned_data.get('discription'), \
 			history = form.cleaned_data.get('history'))
 		context.update({'status':"add_ok"})
