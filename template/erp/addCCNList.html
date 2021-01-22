@@ -3,11 +3,10 @@
 {% block content %}
 	<div>
 		<h3>客訴登錄</h3>
-
 	<form method ="post" action ="">
 		{% csrf_token %}
 
-	<div>
+<!-- 	<div>
 		<td><label>客戶</label></td>
 		<td><select name = "customer">
 			{% for cus in customer_list %}
@@ -15,19 +14,20 @@
 			{% endfor %}
 		</select> </td>	
 	</div>
-	<div>
-		<td><label>產品序號</label></td>
+ -->
+ 	<div>
+		<td><li>硬體請填：產品序號</li></td>
 		<td><input name="serial" type = "text"></td>
 	</div>
 	<div>
-		<td><label>軟體 / 韌體版號</label></td>
+		<td><li>軟體請選：軟體版號</li></td>
 		<td><select name = "SwVer">
-			{% for sw in software_list %}
-				<option > {{ sw.name }} </option>
-			{% endfor %}
+		{% for sw in software_list %}
+			<option > {{ sw.name }} </option>
+		{% endfor %}
 		</select> </td>	
-
 	</div>
+
 	<div>
 		<td>錯誤或失效描述</td>
 	</div>

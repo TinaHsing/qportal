@@ -8,7 +8,23 @@
 	<form method ="post" action ="">
 		{% csrf_token %}
 	<div>
-		<li><font color="red">{{ product.name }}</font> 軟體燒錄登錄 </li>
+		<li>請選擇 <font color="red">{{ product.name }}</font> 產品序號：</li>
+	</div>
+	{% if epset%}
+		{% for ep in epset %}
+		<input type = "radio" value = {{ ep.serial }} name = "serial">
+		<label> {{ ep.serial }}　</label>
+		{% endfor %}
+	{% else %}
+		<label>無生產序號</label>
+	{% endif %}
+	{% if serialEmpty %}
+		<p><font color ="red">請選擇序號</font></p>
+	{% endif %}
+<hr>
+
+	<div>
+		<li><font color="red">{{ product.name }}</font> 軟體燒錄登錄：</li>
 		{% if software %}
 			<p>可複選，按登錄前請仔細確認軟體版號，如果選錯請洽管理員。</p>
 			<table>
@@ -22,46 +38,29 @@
 				{% endfor %}
 			</table>
 		{% else %}
-
-			<p>如果有需要燒錄軟體，但是上面沒有列表，請至軟體清單將軟體登錄到對應硬體。</p>
-
+			<p>如果有需要燒錄軟體，但是上面沒有列表，請至韌體清單將軟體登錄到對應硬體。</p>
 		{% endif %}
+	{% if softwareEmpty %}
+		<p><font color ="red">請勾選燒錄軟體</font></p>
+	{% endif %}
 	</div>
-<hr>
-
-	<div>
-		<li>請選擇 <font color="red">{{ product.name }}</font> 產品序號</li>
-	</div>
-	{% for ep in epset %}
-	<div>
-		<input type = "radio" value = {{ ep.serial }} name = "serial">
-		<label>{{ ep.serial }}</label>
-	</div>
-	{% endfor %}
 <hr>
 
 	<li>輸入測試結果</li>
 	<div>
 		<input type="radio" name="result" value="passed" checked >
-		<label> passed </label>
-		<p>
+		<label> passed　</label>
 		<input type="radio" name="result" value="failed" >
 		<label> failed </label>
-		<label>，failure mode：</label>
+		<label> 描述：</label>
 		<input type="text" name="reason">
 		{% if ferror %}
-		<font color="red">請輸入原因</font>
+		<p><font color="red">請輸入錯誤或失敗的情況</font></p>
 		{% endif %}
 	</div>
 
 	<div><input type="submit" value="新增測試紀錄"/></div>
 	</form>
-	{% if serialEmpty %}
-	<p><font color ="red">請輸入序號</font></p>
-	{% endif %}
-	{% if softwareEmpty %}
-	<p><font color ="red">請勾選燒錄軟體</font></p>
-	{% endif %}
 {% endblock %}
 
 {% block sidebar %}

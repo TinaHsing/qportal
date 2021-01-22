@@ -33,23 +33,22 @@
 			<td>{{ form.add }}</td>	
 		</tr>
 		<tr>
-			<td><font color="red">{{ form.name.errors }}</font></td>
+			<td><font color="red">
+			{% if status != '' %}
+				{% if status == "add_ok" %}
+					新增成功
+				{% endif %}
+				{% if status == "edit_ok" %}
+					修改成功
+				{% endif %}
+			{% else %}
+				{{ form.name.errors }}
+			{% endif %}
+			</font></td>
 			<td><input type="submit" value="OK"></td>
 		</tr>
 
 	</form>
-
-	{% if status != '' %}
-	<hr>
-	<div><font color = red>
-	{% if status == "add_ok" %}
-		新增成功
-	{% endif %}
-	{% if status == "edit_ok" %}
-		修改成功
-	{% endif %}
-	</font></div>
-	{% endif %}
 
 {% endblock %}
 

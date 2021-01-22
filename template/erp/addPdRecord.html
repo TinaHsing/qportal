@@ -4,10 +4,8 @@
 	<div>
 		<h3>生產登錄</h3>
 
-
 	<form method ="post" action ="">
 		{% csrf_token %}
-	
 	<div>
 
 		<td><label for="qty">生產 <font color="red">{{ bf.0.product.name }}</font> 數量</label></td>
@@ -29,7 +27,6 @@
 			<label>{{ bfx.product}}__{{bfx.discription}}</label></td>
 		{% endfor %}
 
-		
 		{% if lockQty %}
 			
 		{% else %}
@@ -67,8 +64,10 @@
 	
 	<div><input type="submit" value="生產"/></div>
 	</form>
+<hr>
+
 	{% if serial_exist %}
-	<p><font color ="green">	序號重複請檢查後再次輸入，若為連續序號請檢查輸入到哪一筆資料</font></p>
+	<p><font color ="green">序號重複請檢查後再次輸入，若為連續序號請檢查輸入到哪一筆資料</font></p>
 	{% endif %}
 	{% if selectBOM %}
 	<p><font color ="red">請選擇材料清單</font></p>

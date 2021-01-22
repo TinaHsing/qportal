@@ -12,6 +12,13 @@
 			<td>{{ form.name }}</td>
 		</tr>
 		<tr>
+			<td><label> Used in </label></td>
+			<td>
+				<input type="radio" name="pc" value ="True"><label>　PC　</label>
+				<input type="radio" name="pc" value ="False" checked><label>　HW　</label>
+			</td>
+		</tr>
+		<tr>
 			<td>{{ form.discription.label }}</td>
 			<td>{{ form.discription }}</td>
 		</tr>
@@ -20,7 +27,13 @@
 			<td>{{ form.history }}</td>	
 		</tr>
 		<tr>
-			<td><font color="red">{{ form.name.errors }}</font></td>
+			<td><font color="red">
+			{% if status == "add_ok" %}
+				新增成功
+			{% else %}
+				{{ form.name.errors }}
+			{% endif %}
+			</font></td>
 			<td><input type="submit" value="OK"></td>
 		</tr>
 		</table>

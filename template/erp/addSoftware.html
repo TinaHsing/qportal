@@ -4,16 +4,20 @@
 	<div>
 		<h3>韌體清單登錄</h3>
 	</div>
-	<li><font color=red>{{ part.name }}</font> 已包含韌體</li>
+	<li><font color=red>{{ part.name }}</font> 已包含韌體：</li>
 	<table>
-		<tr><td> 韌體名稱 </td><td colspan= 2 >韌體描述</td></tr>
-		{% for swi in sw_in_part %}
-		<tr><td>{{ swi.name }}</td><td colspan= 2 >{{ swi.discription }}</td></tr>
-		{% endfor %}
+		{% if sw_in_part %}
+			<tr><td> 韌體名稱 </td><td colspan= 2 >韌體描述</td></tr>
+			{% for swi in sw_in_part %}
+			<tr><td>{{ swi.name }}</td><td colspan= 2 >{{ swi.discription }}</td></tr>
+			{% endfor %}
+		{% else %}
+			<label>目前無登錄！</label>
+		{% endif %}
 	</table>
 <hr>
-	<li><font color=red>{{ part.name }}</font> 可新增韌體</li>
-	<li>若發現清單沒有在下面列表，請通知管理員新增</li>
+	<li><font color=red>{{ part.name }}</font> 可新增韌體：</li>
+	<label>（若發現清單沒有在下面列表，請通知管理員新增）</label>
 	<table>
 		<tr><td> 韌體名稱 </td><td >韌體描述</td><td>新增</td></tr>
 		{% for swo in sw_out_part %}
