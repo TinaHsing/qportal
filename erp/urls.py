@@ -48,5 +48,6 @@ urlpatterns =[
 	path('BOM/<int:Pid>/download/<int:Serial>/', views.exportBom, name = 'exportBom'),
 	path('createSoftware/', views.createSoftware, name = 'createSoftware'),
 	path('createCustomer/', views.createCustomer, name = 'createCustomer'),
-	path('viewCustomer/', views.viewCustomer, name = 'viewCustomer')
+	path('viewCustomer/', views.viewCustomer, name = 'viewCustomer'),
+	path('editCustomer/<int:cid>/', views.editCustomer, name = 'editCustomer')
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

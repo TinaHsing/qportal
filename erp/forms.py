@@ -30,7 +30,11 @@ class createCustomerForm(ModelForm):
 		if cu.count():
 			raise forms.ValidationError('Customer already exists')
 		return name 
-		
+	
+class updateCustomerForm(ModelForm):
+	class Meta:
+		model = customer 
+		fields = '__all__'
 
 
 

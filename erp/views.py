@@ -6,7 +6,7 @@ from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePri
 from .models import planerElement, partNote, bomDefine, purchaseList, mpList
 from .models import customer, ccnList, software, endProduct
 from django.db.models import Sum, F, Func
-from .forms import uploadFileForm, createSoftwareForm, createCustomerForm
+from .forms import uploadFileForm, createSoftwareForm, createCustomerForm, updateCustomerForm
 from datetime import date
 from django.http import FileResponse
 #import csv
@@ -796,14 +796,17 @@ def addTestRecord(request, Pid):
 				ep.status = "tested"
 				pnQty.objects.create(partNumber = product, untestQty = -1,\
 						Qty= 1, reason = reason, user = user, date = date.today())
+				ep.save()
 			else:
 				failure = request.POST['reason']
-				ep.status = "discard"
-				pnQty.objects.create(partNumber = product, untestQty = -1,\
-					reason = reason, user = user, date = date.today())
-				ccnList.objects.create(endp = ep, failure = failure, reqDate = date.today(), status = True  )
-
-			ep.save()
+				if (failure == ''):
+					context.update({'ferror':'ferror'})
+				else:
+					ep.status = "discard"
+					pnQty.objects.create(partNumber = product, untestQty = -1,\
+						reason = reason, user = user, date = date.today())
+					ccnList.objects.create(endp = ep, failure = failure, reqDate = date.today(), status = True  )
+				ep.save()
 		else:
 			context.update({'error':'error'})
 	
@@ -967,21 +970,23 @@ def viewCCNList(request):
 	for ccn in pl:
 		if (ccn.endp != None):
 			outlist.append([ccn.endp.part.name, ccn.endp.customer, ccn.endp.serial,\
-			ccn.PcSwVer, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
+			ccn.software, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
 		else:
 			outlist.append([None, None, None,\
-			ccn.PcSwVer, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
+			ccn.software, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
 	context={'pl':outlist}
 	return render(request,'ccnList.html', context)
 
 def addCCNList(request):
 	customer_list = customer.objects.all()
 	context = {'customer_list':customer_list}
+	software_list = software.objects.all()
+	context.update({'software_list':software_list})
 
 	if request.POST:
 		cus = request.POST['customer']
 		serial = request.POST['serial']
-		PcSwVer = request.POST['PcSwVer']
+		SwVer = request.POST['SwVer']
 		failure = request.POST['failure']
 		if (serial != ''):
 			endp = endProduct.objects.filter(serial = serial)
@@ -990,8 +995,9 @@ def addCCNList(request):
 				endp = endp[0]
 				ccnList.objects.create(endp = endp , failure = failure, \
 					reqDate = date.today(), status = True)
-		elif (PcSwVer != ''):
-			ccnList.objects.create(PCswVer = PcSwVer , failure = failure, \
+		elif (SwVer != ''):
+			sw = software_list.get(name = SwVer)
+			ccnList.objects.create(software = sw , failure = failure, \
 				reqDate = date.today(), status = True)
 		return redirect('/erp/ccnList/')
 	return render(request,'addCCNList.html', context)
@@ -1009,7 +1015,7 @@ def closeCCN(request, serial):
 		outlist.append(None) 
 		outlist.append(None)
 		outlist.append(None)
-	outlist.append(pl.PcSwVer)
+	outlist.append(pl.software)
 	outlist.append(pl.reqDate)
 	outlist.append(pl.failure) 
 	outlist.append(pl.ccnSerial)
@@ -1157,22 +1163,23 @@ def createSoftware(request):
 	template_name = 'createSoftware.html'
 	form = createSoftwareForm(request.POST or None)
 
+	context = {'form':form}
+	context.update({'status':"add_new"})
+
 	if form.is_valid():
 		software.objects.create(name = form.cleaned_data.get('name'), \
 			discription = form.cleaned_data.get('discription'), \
 			history = form.cleaned_data.get('history'))
-		
-	return render(request, template_name, context ={'form':form})
+		context.update({'status':"add_ok"})
+
+	return render(request, template_name, context)
 
 def createCustomer(request):
 	template_name = 'createCustomer.html'
 	form = createCustomerForm(request.POST or None)
 
-	# if request.GET:
-	# 	cid = out['cid']
-	# 	if cid !="":
-	# 		cus = customer.objects.filter(cid = cid)
-	# 		context.update({'customer_list':cus})
+	context = {'form':form}
+	context.update({'status':"add_new"})
 
 	if form.is_valid():
 		customer.objects.create(name = form.cleaned_data.get('name'),\
@@ -1180,7 +1187,8 @@ def createCustomer(request):
 			phone = form.cleaned_data.get('phone'),\
 			vax = form.cleaned_data.get('vax') ,\
 			add = form.cleaned_data.get('add') )
-	return render(request, template_name, context ={'form':form})
+		context.update({'status':"add_ok"})
+	return render(request, template_name, context)
 
 def viewCustomer(request):
 	context = {}
@@ -1190,5 +1198,23 @@ def viewCustomer(request):
 		if cn !="":
 			cus = customer.objects.filter(name__contains = cn)
 			context.update({'customer_list':cus})
-			print(context)
 	return render(request, 'viewCustomer.html', context)
+
+def editCustomer(request, cid):
+	template_name = 'createCustomer.html'
+	cus = customer.objects.get(cid = cid)
+	cus_data = {'name':cus.name,'vax':cus.vax,'contact':cus.contact,'phone':cus.phone,'add':cus.add}
+	form = updateCustomerForm(initial = cus_data, data = request.POST or None)
+
+	context = {'form':form}
+	context.update({'status':"update_old"})
+
+	if form.is_valid():
+		cus.name = form.cleaned_data.get('name')
+		cus.contact = form.cleaned_data.get('contact')
+		cus.phone = form.cleaned_data.get('phone')
+		cus.vax = form.cleaned_data.get('vax')
+		cus.add = form.cleaned_data.get('add')
+		cus.save()
+		context.update({'status':"edit_ok"})
+	return render(request, template_name, context)
