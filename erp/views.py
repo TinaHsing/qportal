@@ -569,7 +569,13 @@ def PdCalculate(request):
 	return render(request,'pdCalculate.html')
 
 def PdRecord(request):
-	category_list = pnCategory.objects.all()
+	#category_list = pnCategory.objects.all()
+
+	cate= partNumber.objects.filter(level__gt=0).values_list('category', flat = True).distinct()
+	category_list = pnCategory.objects.filter(id__in=cate)
+	#filter(level__gt=0).select_related('category')
+	print(category_list)
+	#category_list = pnCategory.objects..disinct()
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:
@@ -747,8 +753,9 @@ def uploadPO(request):
 	return render(request, 'uploadCSV.html', {'form':form})
 
 def testRecord(request):
-	category_list = pnCategory.objects.all()
-	print(category_list)
+	cate= partNumber.objects.filter(level__gt=0).values_list('category', flat = True).distinct()
+	category_list = pnCategory.objects.filter(id__in=cate)
+
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:
@@ -910,7 +917,8 @@ def addSales(request, Pid):
 	return render(request, 'addSales.html', context)
 
 def viewMpList(request):
-	category_list = pnCategory.objects.all()
+	cate= partNumber.objects.filter(level__gt=0).values_list('category', flat = True).distinct()
+	category_list = pnCategory.objects.filter(id__in=cate)
 	context = {'category_list':category_list} 
 	if 'pnKW' in request.POST:
 		out = request.POST
