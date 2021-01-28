@@ -52,7 +52,8 @@
 	<p> 無結果！ 請重設查詢條件 </p>
 	{% endif %}
 	{% if pl %}
-	
+<hr>
+
 	<table width = "80%" >
 		<tr>
 			<td>料號</td>
@@ -69,7 +70,7 @@
 		<td> {{ part.2 }} </td>
 		<td> {{ part.3 }} </td>
 		<td> {{ part.4 }} </td>
-		<td> <a href='close/{{ part.5 }}/' class="btn btn-info">已購買</td>
+		<td> <a href='close/{{ part.5 }}/' class="btn btn-info">已生產</td>
 	</tr>
 	{% endfor %}
 	</table>
