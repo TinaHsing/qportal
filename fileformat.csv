@@ -1,7 +1,0 @@
-IC_ADC_LT2541_SO8;A5;ADC;0;16 bit ADC;http://localhost/
-IC_PWM_RT7299_SO8;A3;PWM;0;3A buck;http://localhost/
-R_3.3k_0.125W_0805;A6;R;0;SMD resistor;http://localhost/
-C_0.1u_25V_X7R_0805;G5;C;0;X7R MLCC;http://localhost/
-PCBA_DTC03_P04S00;F4;PCBA;1;pcb for temperature control;http://localhost/
-DTC03;O3;Final;10;tempeature controller;http://localhost/
-PCBA_ESI_P04S00;A9;PCBA;1;16 bit ADC;http://localhost/
