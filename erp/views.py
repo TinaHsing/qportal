@@ -469,6 +469,7 @@ def addDiscard(request, Pid):
 
 	return render(request, 'addDiscard.html',context)
 
+@login_required
 def planer(request):
 	user = request.user
 	planer_list = planerElement.objects.filter(user = user)
@@ -866,6 +867,7 @@ def viewPurchaseList(request):
 	context.update({'pl':outlist})
 	return render(request, 'purchaseList.html', context)
 
+@login_required
 def addPurchaseList(request,Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	context ={'product':product}
