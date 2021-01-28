@@ -18,19 +18,15 @@
 <table>
 <tr>
 	<td> 客戶名稱 </td>
-	<td> 統一編號 </td>
 	<td> 聯絡人 </td>
-	<td> 電話 </td>
-	<td> 地址 </td>
+	<td> Email </td>
 	<td></td>
 </tr>
 {% for cn in customer_list %}
 <tr>
 	<td>{{ cn.name }}</td>
-	<td>{{ cn.vax }}</td>
 	<td>{{ cn.contact }}</td>
-	<td>{{ cn.phone }}</td>
-	<td>{{ cn.add }}</td>
+	<td>{{ cn.other }}</td>
 	<td>
 	 <a href="../editCustomer/{{ cn.cid }}/" class="btn btn-info" > Edit </a>
 	</td>

@@ -28,6 +28,7 @@ class createCustomerForm(ModelForm):
 		name = self.cleaned_data.get('name')
 		cu = customer.objects.filter(name = name)
 		if cu.count():
+			print("error")
 			raise forms.ValidationError('Customer already exists')
 		return name 
 	
@@ -35,7 +36,4 @@ class updateCustomerForm(ModelForm):
 	class Meta:
 		model = customer 
 		fields = '__all__'
-
-
-
 

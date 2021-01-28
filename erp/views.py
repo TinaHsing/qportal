@@ -1204,9 +1204,13 @@ def createCustomer(request):
 	if form.is_valid():
 		customer.objects.create(name = form.cleaned_data.get('name'),\
 			contact = form.cleaned_data.get('contact'),\
-			phone = form.cleaned_data.get('phone'),\
 			vax = form.cleaned_data.get('vax') ,\
-			add = form.cleaned_data.get('add') )
+			email = form.cleaned_data.get('email'),\
+			phone = form.cleaned_data.get('phone'),\
+			mobile = form.cleaned_data.get('mobile'),\
+			fax = form.cleaned_data.get('fax'),\
+			add = form.cleaned_data.get('add'),\
+			other = form.cleaned_data.get('other') )
 		context.update({'status':"add_ok"})
 	return render(request, template_name, context)
 
@@ -1223,7 +1227,8 @@ def viewCustomer(request):
 def editCustomer(request, cid):
 	template_name = 'createCustomer.html'
 	cus = customer.objects.get(cid = cid)
-	cus_data = {'name':cus.name,'vax':cus.vax,'contact':cus.contact,'phone':cus.phone,'add':cus.add}
+	cus_data = {'name':cus.name,'vax':cus.vax,'contact':cus.contact,'email':cus.email,\
+	'phone':cus.phone,'mobile':cus.mobile,'fax':cus.fax,'add':cus.add,'other':cus.other}
 	form = updateCustomerForm(initial = cus_data, data = request.POST or None)
 
 	context = {'form':form}
@@ -1231,10 +1236,14 @@ def editCustomer(request, cid):
 
 	if form.is_valid():
 		cus.name = form.cleaned_data.get('name')
-		cus.contact = form.cleaned_data.get('contact')
-		cus.phone = form.cleaned_data.get('phone')
 		cus.vax = form.cleaned_data.get('vax')
+		cus.contact = form.cleaned_data.get('contact')
+		cus.email = form.cleaned_data.get('email')
+		cus.phone = form.cleaned_data.get('phone')
+		cus.mobile = form.cleaned_data.get('mobile')
+		cus.fax = form.cleaned_data.get('fax')
 		cus.add = form.cleaned_data.get('add')
+		cus.other = form.cleaned_data.get('other')
 		cus.save()
 		context.update({'status':"edit_ok"})
 	return render(request, template_name, context)

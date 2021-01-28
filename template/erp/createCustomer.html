@@ -25,22 +25,35 @@
 			<td>{{ form.contact }}</td>
 		</tr>
 		<tr>
+			<td>{{ form.email.label }}</td>
+			<td>{{ form.email }}</td>	
+		</tr>
+		<tr>
 			<td>{{ form.phone.label }}</td>
 			<td>{{ form.phone }}</td>	
+		</tr>
+		<tr>
+			<td>{{ form.mobile.label }}</td>
+			<td>{{ form.mobile }}</td>	
+		</tr>
+		<tr>
+			<td>{{ form.fax.label }}</td>
+			<td>{{ form.fax }}</td>	
 		</tr>
 		<tr>
 			<td>{{ form.add.label }}</td>
 			<td>{{ form.add }}</td>	
 		</tr>
 		<tr>
+			<td>{{ form.other.label }}</td>
+			<td>{{ form.other }}</td>	
+		</tr>
+		<tr>
 			<td><font color="red">
-			{% if status != '' %}
-				{% if status == "add_ok" %}
-					新增成功
-				{% endif %}
-				{% if status == "edit_ok" %}
-					修改成功
-				{% endif %}
+			{% if status == "add_ok" %}
+				新增成功
+			{% elif status == "edit_ok" %}
+				修改成功
 			{% else %}
 				{{ form.name.errors }}
 			{% endif %}
