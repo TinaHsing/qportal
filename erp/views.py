@@ -575,7 +575,7 @@ def PdRecord(request):
 	cate= partNumber.objects.filter(level__gt=0).values_list('category', flat = True).distinct()
 	category_list = pnCategory.objects.filter(id__in=cate)
 	#filter(level__gt=0).select_related('category')
-	print(category_list)
+	# print(category_list)
 	#category_list = pnCategory.objects..disinct()
 	context = {'category_list':category_list}
 	 
