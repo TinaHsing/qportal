@@ -1,17 +1,18 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p>請輸入清單描述</p>
+<p>請輸入 <font color=red>{{ pname }}</font> 新增 BOM 描述<br>
+（ex："full" for 手焊, "fact" for 工廠）</p>
 <form method ="post" action ="">
 	{% csrf_token %}
 	<input type="text" name="discription">
 	<input type="submit" name="submit">
 </form>
 {% if emptyDisp %}
-<p><font color = "red"> 建立失敗!請輸入清單描述</font></p>
+<p><font color = "red"> 建立失敗！請輸入 BOM 描述</font></p>
 {% endif %}
 {% if repeatDis %}
-<p><font color = "red"> 建立失敗! 清單描述重複</font></p>
+<p><font color = "red"> 建立失敗！BOM 描述重複</font></p>
 {% endif %}
 
 {% endblock %}

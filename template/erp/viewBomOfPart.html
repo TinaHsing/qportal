@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p><font color=red>{{ pname }}</font> 所屬 BOM 表</p>
+
+	{% if element %}
+	<table width = 60% >
+		<tr>
+			<td> BOM </td>
+			<td> 數量 </td>
+			<td> PCB part </td>
+			<td> 編輯 </td>
+		</tr>
+
+		{% for ele in element %}
+		<tr>
+			<td> <a href="../../BOM/{{ ele.bf.product.Pid }}/{{ele.bf.bomserial}}/">{{ ele.bf.product }}_{{ ele.bf.discription }}</a>  </td> 
+			<td> {{ ele.unitQty }}  </td> 
+			<td> {{ ele.schPN }}</td>
+			<td> <a href="../../BOM/{{ ele.bf.product.Pid }}/{{ele.bf.bomserial}}/{{ele.part.Pid}}/" class="btn btn-info"> 編輯材料清單 </a> </td>
+
+		</tr>
+		{% endfor%}
+	</table>
+	{% endif %}
+	
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}

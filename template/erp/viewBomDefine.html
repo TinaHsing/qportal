@@ -1,13 +1,13 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p>{{ product.name }} 清單編輯</p>
+<p><font color=red>{{ product.name }}</font> 清單編輯</p>
+	{% if bomdefine %}
 	<table width = 60% >
 		<tr>
 			<td>清單描述</td>
 			<td>下載</td>
 		</tr>
-	{% if bomdefine %}
 
 		{% for bf in bomdefine %}
 		<tr>
@@ -15,12 +15,10 @@
 			<td><a href='download/{{ bf.bomserial}}/' class = "btn btn-info">下載</td>
 		</tr>
 		{% endfor %}
-	{% endif %}
-		<tr>
-		<td><a href='new/'>新增</a></td>
-			<td></td>
-		</tr>
 	</table>
+	{% endif %}
+<hr>
+<a href='new/' class = "btn btn-info">新增</a></td>
 	
 
 {% endblock %}

@@ -61,7 +61,7 @@ def editPartNumber(request, Pid):
 	else:
 		ptnote=partNote.objects.create(part = pt)
 	category_list = pnCategory.objects.all()
-	context ={'part':pt, 'ptnote':ptnote, 'cate':category_list }
+	context = {'part':pt, 'ptnote':ptnote, 'cate':category_list }
 	if request.POST:
 		if request.user.is_authenticated:
 			pt.user = request.user
@@ -155,7 +155,7 @@ def viewBomList(request):
 		if productKW != "":
 			partnumber_list = partnumber_list.filter(name__contains = productKW)
 
-	context ={'partnumber_list':partnumber_list}
+	context = {'partnumber_list':partnumber_list}
 	return render(request, "viewBomList.html", context)	
 
 def viewBomDefine(request, Pid):
@@ -170,8 +170,8 @@ def viewBomDefine(request, Pid):
 
 @login_required
 def newBomDefine(request, Pid):
-	product = partNumber.objects.get(Pid= Pid)
-	context ={}
+	product = partNumber.objects.get(Pid = Pid)
+	context = {'pname':product.name}
 	if request.POST:
 		discription = request.POST['discription']
 		if discription:
@@ -223,8 +223,9 @@ def addElement(request, Pid, Serial, Bid):
 	bf = bomDefine.objects.get(product=product, bomserial = Serial)
 	part = partNumber.objects.get(Pid = Bid)
 	#element = BomElement.objects.filter(bf = bf).filter(part=part)
-	context={'product':product}
+	context = {'product':product}
 	context.update({'part':part})
+	context.update({'discription':bf.discription})
 	element = bf.bomelement_set.filter(part=part)
 	if element.count():
 		element = element[0]
@@ -237,8 +238,8 @@ def addElement(request, Pid, Serial, Bid):
 			else:
 				element.unitQty = qty 
 				element.schPN = schPN
-				element.user=request.user
-				element.date= date.today()
+				element.user = request.user
+				element.date = date.today()
 				element.save()
 			#path = '/erp/BOM/'+str(Pid)+'/'
 			path = '/erp/BOM/'+str(Pid)+'/'+str(Serial)+'/'
@@ -455,7 +456,7 @@ def discard(request):
 def addDiscard(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	user = request.user
-	context ={'product':product}
+	context = {'product':product}
 	if request.POST:
 		if request.POST['qty']:
 			disQty = int(request.POST['qty'])*(-1)
@@ -565,7 +566,7 @@ def PdCalculate(request):
 				i=i+1
 			preid =temp[1]
 			
-		context ={'table':outlist2}
+		context = {'table':outlist2}
 		return render(request,'pdCalculate.html', context)
 	return render(request,'pdCalculate.html')
 
@@ -612,7 +613,7 @@ def addPdRecord(request,Pid):
 	bf = bomDefine.objects.filter(product = product)
 	user = request.user
 	reason, _ = QtyReason.objects.get_or_create(reason="production")
-	context ={'bf':bf}
+	context = {'bf':bf}
 	cate, _ = pnCategory.objects.get_or_create(category ="PCBA")
 	eleset = BomElement.objects.filter(bf__in= bf).filter(part__level__gt=0) # 檢查物料中有沒有level >=0
 	pcbaCount = eleset.count()
@@ -783,7 +784,7 @@ def addTestRecord(request, Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	user = request.user
 	reason, _ = QtyReason.objects.get_or_create(reason="testing")
-	context ={'product':product}
+	context = {'product':product}
 	epset = endProduct.objects.filter(part= product).filter(status = "untested")
 	context.update({'epset':epset})
 	software = product.software.all()
@@ -870,7 +871,7 @@ def viewPurchaseList(request):
 @login_required
 def addPurchaseList(request,Pid):
 	product = partNumber.objects.get(Pid=Pid)
-	context ={'product':product}
+	context = {'product':product}
 	user = request.user	
 	if request.POST:
 		Qty = int(request.POST['qty'])
@@ -888,7 +889,7 @@ def closePurchaseList(request, serial):
 
 def addSales(request, Pid):
 	part = partNumber.objects.get(Pid = Pid)
-	context ={'product':part}
+	context = {'product':part}
 
 	endp = endProduct.objects.filter(part = part).filter(status="tested")
 
@@ -954,7 +955,7 @@ def viewMpList(request):
 def addMpList(request,Pid):
 	customer_list = customer.objects.all()
 	product = partNumber.objects.get(Pid=Pid)
-	context ={'product':product}
+	context = {'product':product}
 	context.update({'customer_list':customer_list})
 		
 	if request.POST:
@@ -1091,7 +1092,7 @@ def viewSales(request):
 
 def addSoftware(request, Pid):
 	part = partNumber.objects.get(Pid = Pid)
-	context ={'part':part}
+	context = {'part':part}
 	sw_in_part = part.software.all()
 	sw_out_part = software.objects.exclude(Sid__in = sw_in_part).filter(pc = False)
 	context.update({'sw_in_part':sw_in_part})
@@ -1107,7 +1108,7 @@ def softwareToPd(request, Pid, Sid):
 	return redirect(path)
 
 def tracking(request):
-	context ={}
+	context = {}
 	if request.POST:
 		serial = request.POST['serial']
 		if (serial != ''):
@@ -1248,4 +1249,12 @@ def editCustomer(request, cid):
 		cus.other = form.cleaned_data.get('other')
 		cus.save()
 		context.update({'status':"edit_ok"})
+	return render(request, template_name, context)
+
+def viewBomOfPart(request, Pid):
+	template_name = 'viewBomOfPart.html'
+	product = partNumber.objects.get(Pid = Pid)
+	context = {'pname':product.name}
+	element = BomElement.objects.filter(part = product)
+	context.update({'element':element})
 	return render(request, template_name, context)

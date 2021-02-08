@@ -44,6 +44,7 @@
 			<td>描述</td>
 			<td>購買連結</td>
 			<td>編輯</td>
+			<td>所屬 BOM 表</td>
 		</tr>
 		{% for row in table %}
 		<tr>
@@ -53,8 +54,9 @@
 			<td>{{ row.3 }}</td>
 			<td>{{ row.4 }}</td>
 			<td>{{ row.5 }}</td>
-			<td><a href={{ row.6}}>{{ row.6 }}</a></td>
+			<td><a href={{ row.6 }}>{{ row.6 }}</a></td>
 			<td><a href='{{ row.7 }}/' class="btn btn-info">Edit</td>
+			<td><a href='../viewBomOfPart/{{ row.7 }}/' class="btn btn-info">View BOM</td>
 
 		</tr>
 		{% endfor %}

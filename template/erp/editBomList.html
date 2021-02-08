@@ -9,10 +9,12 @@
 		<li><a href={% url 'addCategory' %}>新建料號分類</a>
 	</div>
 	<div> 
-		<td> Edit BOM of <font color="red">{{ bomdefine.product.name }}__{{ bomdefine.discription }}</font></td> </div>
+		<td> Edit BOM of <font color="red">{{ bomdefine.product.name }}_{{ bomdefine.discription }}</font></td> </div>
 	<div>
 		<td><a href='cost/' class="btn btn-info"> 計算成本 </a></td>
 	</div>
+<hr>
+
 	<table width = "100%">
 		
 		{% if element %}
@@ -38,7 +40,7 @@
 		{% endif %}
 
 	</table>
-	<a href="upload/" class="btn btn-info"> 上傳BOM表檔案(原本資料會被清除) </a>
+	<a href="upload/" class="btn btn-info"> 上傳 BOM 表檔案（原本資料會被清除）</a>
 	<hr>
 	<form method ="post" action ="">
 		{% csrf_token %}
