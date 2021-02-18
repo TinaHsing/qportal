@@ -7,7 +7,7 @@ from .models import bomDefine, purchaseList, mpList
 from .models import customer, ccnList, software, endProduct
 
 
-#admin.site.register(pnCategory)
+admin.site.register(pnCategory)
 #admin.site.register(BomElement)
 #admin.site.register(QtyReason)
 #admin.site.register(planerElement)
