@@ -6,7 +6,6 @@
 	</div>
 	<div>
 		<li><a href={% url 'addPartNumber' %}>新建料號</a>
-		<li><a href={% url 'addCategory' %}>新建料號分類</a>
 	</div>
 	<form method ="post" action ="">
 		{% csrf_token%}
@@ -18,7 +17,12 @@
 	</form>
 	{% if done %}
 		<p> 設定成功 </p>
+	{% elif exist %}
+		<p><font color=red> 料號分類重複 </font></p>
+	{% elif empty %}
+		<p><font color=red> 請輸入料號分類 </font></p>
 	{% endif %}
+
 {%endblock%}
 
 {% block sidebar %}

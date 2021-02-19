@@ -100,10 +100,14 @@ def addCategory(request):
 			user = request.user
 			category = request.POST['category']
 			if (category == ''):
-				return render(request, 'addCategory.html',{'failed':'failed'})
+				return render(request, 'addCategory.html',{'empty':'empty'})
 			else:
-				pnCategory.objects.create(category=category, user = user, date=date.today())
-				return render(request, 'addCategory.html', {'done':'ok'})	
+				exist = pnCategory.objects.filter(category = category).count()
+				if exist:
+					return render(request, 'addCategory.html',{'exist':'exist'})
+				else:
+					pnCategory.objects.create(category=category, user = user, date=date.today())
+					return render(request, 'addCategory.html', {'done':'ok'})	
 	return render(request, 'addCategory.html',{'failed':'failed'})
 
 @login_required
@@ -130,21 +134,21 @@ def addPartNumber(request):
 			if request.POST['link']:
 				link = request.POST['link']
 
-		exist = partNumber.objects.filter(name = name).count()
 		if name == "":
 			context.update({'nameEmpty':'nameEmpty'})
 		elif location == "":
 			context.update({'locationEmpty':'locationEmpty'})
 		elif discription == "":
 			context.update({'discriptionEmpty':'discriptionEmpty'})
-		elif exist:
-			context.update({'nameExist':'nameExist'})
 		else:
-
-			partNumber.objects.create(name = name, location = location, level = level, \
+			exist = partNumber.objects.filter(name = name).count()
+			if exist:
+				context.update({'nameExist':'nameExist'})
+			else:
+				partNumber.objects.create(name = name, location = location, level = level, \
 				category = category, discription = discription, buylink = link, \
 				user = user, date = date.today())
-			context.update({'done':'ok'})
+				context.update({'done':'ok'})
 
 	return render(request, 'addPartNumber.html', context)
 
@@ -270,7 +274,7 @@ def uploadPart(request):
 			data = file.read()
 			rows = data.split(b'\n')
 			for row in rows:
-				row=row.decode()
+				row = row.decode()
 				out = row.split(';')
 				if len(out) == 6 or len(out) == 12:
 					exist = partNumber.objects.filter(name = out[0]).count()
