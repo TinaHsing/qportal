@@ -95,20 +95,26 @@ def editPartNumber(request, Pid):
 
 @login_required
 def addCategory(request):
+	category_list = pnCategory.objects.values('category').distinct()
+	context = {'category_list':category_list }
 	if 'category' in request.POST:
 		if request.user.is_authenticated:
 			user = request.user
-			category = request.POST['category']
+			category = request.POST['category'].upper()
 			if (category == ''):
-				return render(request, 'addCategory.html',{'empty':'empty'})
+				context.update({'empty':'empty'})
+				return render(request, 'addCategory.html', context)
 			else:
 				exist = pnCategory.objects.filter(category = category).count()
 				if exist:
-					return render(request, 'addCategory.html',{'exist':'exist'})
+					context.update({'exist':'exist'})
+					return render(request, 'addCategory.html', context)
 				else:
 					pnCategory.objects.create(category=category, user = user, date=date.today())
-					return render(request, 'addCategory.html', {'done':'ok'})	
-	return render(request, 'addCategory.html',{'failed':'failed'})
+					context.update({'done':'done'})
+					return render(request, 'addCategory.html', context)
+	context.update({'failed':'failed'})
+	return render(request, 'addCategory.html', context)
 
 @login_required
 def addPartNumber(request):
@@ -122,7 +128,7 @@ def addPartNumber(request):
 		if request.user.is_authenticated:
 			user = request.user
 			if request.POST['partNumber']:
-				name = request.POST['partNumber']
+				name = request.POST['partNumber'].upper()
 			if request.POST['location']:
 				location = request.POST['location']
 

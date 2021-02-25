@@ -23,6 +23,17 @@
 		<p><font color=red> 請輸入料號分類 </font></p>
 	{% endif %}
 
+<hr>
+	{% if category_list %}
+		<table>
+		<tr><td>料號分類</td></tr>
+		{% for cg in category_list %}
+			<tr><td>{{ cg.category }}</td></tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<font color=red> 目前無料號分類 </font>
+	{% endif %}
 {%endblock%}
 
 {% block sidebar %}
