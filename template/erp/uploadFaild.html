@@ -1,7 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+{% if exist %}
+<p>料號名稱重複</p>
+{% endif %}
+{% if format %}
 <p>上傳檔案格式錯誤，請檢查後再上傳</p>
+{% endif %}
 {% endblock %}
 
 {% block sidebar %}

@@ -120,10 +120,10 @@ def addCategory(request):
 def addPartNumber(request):
 	category_list = pnCategory.objects.values('category').distinct()
 	context = {'category_list':category_list }
-	name =""
-	location =""
-	discription=""
-	link=""
+	name = ""
+	location = ""
+	discription = ""
+	link = ""
 	if request.POST:
 		if request.user.is_authenticated:
 			user = request.user
@@ -282,23 +282,23 @@ def uploadPart(request):
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
-				if len(out) == 6 or len(out) == 12:
+				if len(out) == 6 or len(out) == 11:
 					exist = partNumber.objects.filter(name = out[0]).count()
 					if exist:
-						return render(request, 'uploadFaild.html')
+						return render(request, 'uploadFaild.html', {'exist':'exist'})
 					else:
 						cate, _ = pnCategory.objects.get_or_create(category = out[2])
 
-						partNumber.objects.create(name=out[0], location = out[1], \
-							category =cate, level = int(out[3]), discription = out[4], \
+						pt = partNumber.objects.create(name = out[0], location = out[1], \
+							category = cate, level = int(out[3]), discription = out[4], \
 							buylink = out[5], date = today, user = user)
-						if len(out) == 12:
-							partNote.objects.create(part=pt, value=out[7], \
-								package=out[8], param2=out[11], addBuylink =out[9], param1 = out[10])
+						if len(out) == 11:
+							partNote.objects.create(part = pt, value = out[6], \
+								package = out[7], addBuylink = out[8], param1 = out[9], param2 = out[10])
 				else:
-					return render(request, 'uploadFaild.html')
+					return render(request, 'uploadFaild.html', {'format':'format'})
 	else:
-		form =uploadFileForm()
+		form = uploadFileForm()
 	return render(request,'uploadCSV.html',{'form':form})
 
 @login_required	
@@ -325,7 +325,7 @@ def uploadBom(request, Pid, Serial):
 					element.date = date.today()
 					element.save()
 				else:
-					return render(request, 'uploadFaild.html')
+					return render(request, 'uploadFaild.html', {'format':'format'})
 		else:
 			form = uploadFileForm()
 	else:
@@ -761,7 +761,7 @@ def uploadPO(request):
 					ele = pnQty.objects.create(partNumber=part, reason = reason, Qty=int(out[1]), user = request.user, date = date.today())
 					price = elePrice.objects.create(partNumber = part, price = float(out[2]), user = user, date= date.today() )
 				else:
-					return render(request, 'uploadFaild.html')
+					return render(request, 'uploadFaild.html', {'format':'format'})
 	return render(request, 'uploadCSV.html', {'form':form})
 
 def testRecord(request):
