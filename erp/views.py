@@ -42,12 +42,19 @@ def viewPartNumber(request):
 			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 			curQty = temp.get('Qty__sum')
 			utQty = temp.get('untestQty__sum')
+
 			temp2 = pt.eleprice_set.order_by('-date')
 			if temp2.count():
-				temp2 = temp2[0]
-				outlist.append([pt.name, curQty, utQty, temp2.price, pt.location, pt.discription, pt.buylink, pt.Pid])
+				price = temp2[0].price
 			else:
-				outlist.append([pt.name, curQty, utQty, "None", pt.location, pt.discription, pt.buylink, pt.Pid])	
+				price = "None"
+
+			if pt.buylink.find("http") == 0:
+				buy_type = "http"
+			else:
+				buy_type = "text"
+
+			outlist.append([pt.name, curQty, utQty, price, pt.location, pt.discription, pt.buylink, pt.Pid, buy_type])
 		context.update({'table': outlist})
 	return render(request, 'viewPartNumber.html', context)
 

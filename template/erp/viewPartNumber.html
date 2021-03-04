@@ -43,20 +43,22 @@
 			<td>位置</td>
 			<td>描述</td>
 			<td>購買連結</td>
-			<td>編輯</td>
 			<td>所屬 BOM 表</td>
 		</tr>
 		{% for row in table %}
 		<tr>
-			<td>{{ row.0 }}</td>
+			<td><a href='{{ row.7 }}/' > {{ row.0 }} </a></td>
 			<td>{{ row.1 }}</td>
 			<td>{{ row.2 }}</td>
 			<td>{{ row.3 }}</td>
 			<td>{{ row.4 }}</td>
 			<td>{{ row.5 }}</td>
-			<td><a href={{ row.6 }}>{{ row.6 }}</a></td>
-			<td><a href='{{ row.7 }}/' class="btn btn-info">Edit</td>
-			<td><a href='../viewBomOfPart/{{ row.7 }}/' class="btn btn-info">View BOM</td>
+			{% if row.8 == "http" %}
+			<td><a href='{{ row.6 }}/' target='_blank' class="btn btn-info"> Buy </a></td>
+			{% else %}
+			<td>{{ row.6 }}</td>
+			{% endif %}
+			<td><a href='../viewBomOfPart/{{ row.7 }}/' class="btn btn-info"> View BOM </td>
 
 		</tr>
 		{% endfor %}
