@@ -357,13 +357,13 @@ def costEvaluation(request, Pid, Serial):
 		total = total+subtotal
 
 	for subout in outlist:
-		print(subout)
+		# print(subout)
 		if total:
 			ratio = "{:2.2f}".format(100*subout[3]/total)+"%"
 			subout.append(ratio)
 		else:
 			subout.append('0%')
-	print(outlist)
+	# print(outlist)
 	if len(outlist):
 		outlist.append(["total","--","--",total,"100%"])
 		context={'cost':outlist}
@@ -503,7 +503,7 @@ def planer(request):
 		if pnKW !="":
 			#partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(planerelement__user=user).filter(level__gt=0)
 			bf = bomDefine.objects.filter(product__name__contains = pnKW).filter(product__level__gt =0)
-			print(bf)
+			# print(bf)
 			context.update({'bf':bf})
 
 	return render(request, 'planer.html', context)
@@ -534,7 +534,7 @@ def addPlaner(request, bomserial):
 			pl.delete()
 		else:
 			pl.produceQty = qty
-			print(pl)
+			# print(pl)
 			pl.save()
 
 		plout = planerElement.objects.filter(user = user)
@@ -565,17 +565,17 @@ def PdCalculate(request):
 				ttpdqty = ele.unitQty*pdqty
 				buyqty = max(ttpdqty - curQty, 0) 
 				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink] )
-	print(len(outlist))
+	# print(len(outlist))
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
 		preid = -1
 		i = 0
 		outlist2 =[]
 		for temp in outlist:
-			print("len of outlist2" +str(len(outlist2)))
-			print("inside sort loop"+str(i))
+			# print("len of outlist2" +str(len(outlist2)))
+			# print("inside sort loop"+str(i))
 			if temp[1] == preid:
-				print("equal")
+				# print("equal")
 				outlist2[i-1][3] = temp[3]+outlist2[i-1][3]
 				outlist2[i-1][4] = temp[4]+outlist2[i-1][4]
 			else:
@@ -641,7 +641,7 @@ def addPdRecord(request,Pid):
 		
 		context.update({'endProduct':endP})
 		context.update({'lockQty':"lockQty"})
-		print(context)
+		# print(context)
 
 	if request.POST:
 		if not request.POST['serial']:
@@ -723,7 +723,7 @@ def addPdRecord(request,Pid):
 					ep = endProduct.objects.filter(serial = serial_start+i)
 					if ep.count():
 						context.update({'serial_exist':'serial_exist'})
-						print("exist")
+						# print("exist")
 						return render(request, 'addPdRecord.html', context)
 					mep = endProduct.objects.create(part = product,\
 							serial= serial_start+i, mUser = user, mDate = date.today(), bom = bf2)
@@ -733,7 +733,7 @@ def addPdRecord(request,Pid):
 					ep = endProduct.objects.filter(serial = serial_start+i)
 					if ep.count():
 						context.update({'serial_exist':'serial_exist'})
-						print("exist")
+						# print("exist")
 						return render(request, 'addPdRecord.html', context)
 					endProduct.objects.create(part = product,\
 							serial= serial_start+i, mUser = user, mDate = date.today())
@@ -754,14 +754,14 @@ def uploadPO(request):
 		if form.is_valid():
 			pocsv = request.FILES['file']
 			user = request.user
-			print("UploadPO")
+			# print("UploadPO")
 			data = pocsv.read()
 			rows = data.split(b'\n')
 			reason, _ = QtyReason.objects.get_or_create(reason='purchasing')
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
-				print(out)
+				# print(out)
 				part = partNumber.objects.filter(name=out[0]).filter(level = 0)
 				if part.count():
 					part = part[0]
@@ -861,7 +861,7 @@ def viewPurchaseList(request):
 			partnumber_list = partNumber.objects.filter(category=cate).filter(level=0)
 		else:
 			return render(request, 'purchaseList.html', context)
-		print(partnumber_list)
+		# print(partnumber_list)
 		outlist = []
 
 		for pt in partnumber_list:
@@ -1139,7 +1139,7 @@ def tracking(request):
 				if (endp.customer):
 					customer = endp.customer.name
 				fromsub = endProduct.objects.filter(subProduct=endp)
-				print(fromsub)
+				# print(fromsub)
 				context.update({'fromsub':fromsub })
 				context.update({'subplist':subplist})
 				context.update({'software':software})
