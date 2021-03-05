@@ -69,6 +69,7 @@ def editPartNumber(request, Pid):
 		ptnote=partNote.objects.create(part = pt)
 	category_list = pnCategory.objects.all()
 	context = {'part':pt, 'ptnote':ptnote, 'cate':category_list }
+	# print("["+str(pt.category)+"]")
 	if request.POST:
 		if request.user.is_authenticated:
 			pt.user = request.user

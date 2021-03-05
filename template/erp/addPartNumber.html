@@ -30,9 +30,9 @@
 	</div>
 	<div>
 		<td><label for="category">料號分類</label></td>
-		<td><select name = "category">
+		<td><select name="category">
 			{% for cg in category_list %}
-				<option > {{ cg.category }} </option>
+				<option value="{{ cg.category }}">{{ cg.category }}</option>
 			{% endfor %}
 		</select> </td>
 	</div>

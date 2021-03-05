@@ -17,9 +17,12 @@
 		</div>
 		<div>
 			<td><label>分類</label></td>
-			<td><select name = 'category'>
+			<td><select name='category'>
+				<option value="{{ part.category }}" selected = "selected">{{ part.category }}</option>
 				{% for cg in cate %}
-				<option {% if cg.category == part.category %} selected="selected" {% endif %}> {{ cg.category }}</option>
+					{% if cg.category != part.category %}
+						<option value="{{ cg.category }}">{{ cg.category }}</option>
+					{% endif %}
 				{% endfor %}
 			</select></td>
 		</div>
