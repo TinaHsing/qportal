@@ -8,40 +8,6 @@
 		<li><a href={% url 'addPartNumber' %}>新建料號</a>
 		<li><a href={% url 'addCategory' %}>新建料號分類</a>
 	</div>
-	<div> 
-		<td> Edit BOM of <font color="red">{{ bomdefine.product.name }}_{{ bomdefine.discription }}</font></td> </div>
-	<div>
-		<td><a href='cost/' class="btn btn-info"> 計算成本 </a></td>
-	</div>
-<hr>
-
-	<table width = "100%">
-		
-		{% if element %}
-			<tr>
-				<td>料號</td>
-				<td>描述</td>
-				<td>數量</td>
-				<td>PCB part (以","隔開)</td>
-				<td>編輯</td>
-			</tr>
-			{% for ele in element %}
-			<tr>
-			<td><a href ="/erp/partNumber/{{ele.part.Pid }}/" >{{ ele.part.name }}</a>  </td> 
-			<td>{{ ele.part.discription }}</td>
-			<td> {{ ele.unitQty }}  </td> 
-			<td> {{ ele.schPN }}</td>
-			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> 編輯材料清單 </a> </td>
-
-			</tr>
-			{% endfor%}
-		{% else %}
-			<p>Bom list is empty</p>
-		{% endif %}
-
-	</table>
-	<a href="upload/" class="btn btn-info"> 上傳 BOM 表檔案（原本資料會被清除）</a>
-	<hr>
 	<form method ="post" action ="">
 		{% csrf_token %}
 	
@@ -80,6 +46,38 @@
 	{% else %}
 	<p> 無結果！ 請重設查詢條件 </p>
 	{% endif %}
+<hr>
+	<div> 
+		BOM of <font color="red">{{ bomdefine.product.name }}_{{ bomdefine.discription }}</font>
+		<a href='cost/' class="btn btn-info"> 計算成本 </a>
+	</div>
+
+	<table width = "100%">
+		{% if element %}
+			<tr>
+				<td>料號</td>
+				<td>描述</td>
+				<td>數量</td>
+				<td>PCB part (以","隔開)</td>
+				<td>編輯</td>
+			</tr>
+			{% for ele in element %}
+			<tr>
+			<td><a href ="/erp/partNumber/{{ele.part.Pid }}/" >{{ ele.part.name }}</a>  </td> 
+			<td>{{ ele.part.discription }}</td>
+			<td> {{ ele.unitQty }}  </td> 
+			<td> {{ ele.schPN }}</td>
+			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit </a> </td>
+
+			</tr>
+			{% endfor%}
+		{% else %}
+			<p>Bom list is empty</p>
+		{% endif %}
+
+	</table>
+	<a href="upload/" class="btn btn-info"> 上傳 BOM 表檔案</a>
+<font color ="red">（注意：原本資料會被清除！）</font>
 {% endblock %}
 
 {% block sidebar %}
