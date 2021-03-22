@@ -288,6 +288,7 @@ def uploadPart(request):
 			data = file.read()
 			rows = data.split(b'\n')
 			context = {'done':'done'}
+			done_list = []
 			exist_list = []
 			for row in rows:
 				row = row.decode()
