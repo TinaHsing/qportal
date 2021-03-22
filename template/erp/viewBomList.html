@@ -9,7 +9,7 @@
 		<li><a href={% url 'addCategory' %}>新建料號分類</a>
 	</div>
 	<form method ="post" action ="">
-		{% csrf_token%}
+		{% csrf_token %}
 	<div>
 		<td><label>材料清單包含關鍵字</label></td>
 		<td><input type="text" name="productKW"></td>

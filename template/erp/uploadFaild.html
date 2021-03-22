@@ -1,12 +1,27 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+
+{% if done %}
+	<p>以下料號上傳完成</p>
+	{% for dl in done_list %}
+		<li>{{ dl }}<br>
+	{% endfor %}
+	<hr>
+{% endif %}
+
 {% if exist %}
-<p>料號名稱重複</p>
+	<p>以下料號名稱重複</p>
+	{% for el in exist_list %}
+		<li>{{ el }}<br>
+	{% endfor %}
+	<hr>
 {% endif %}
+
 {% if format %}
-<p>上傳檔案格式錯誤，請檢查後再上傳</p>
+	<p>上傳檔案格式錯誤，請檢查後再上傳</p>
 {% endif %}
+
 {% endblock %}
 
 {% block sidebar %}

@@ -287,14 +287,21 @@ def uploadPart(request):
 			file = request.FILES['file']
 			data = file.read()
 			rows = data.split(b'\n')
+			context = {'done':'done'}
+			exist_list = []
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
 				if len(out) == 6 or len(out) == 11:
 					exist = partNumber.objects.filter(name = out[0]).count()
 					if exist:
-						return render(request, 'uploadFaild.html', {'exist':'exist'})
+						context.update({'exist':'exist'})
+						exist_list.append(out[0])
+						context.update({'exist_list':exist_list})
 					else:
+						done_list.append(out[0])
+						context.update({'done_list':done_list})
+
 						cate, _ = pnCategory.objects.get_or_create(category = out[2])
 
 						pt = partNumber.objects.create(name = out[0], location = out[1], \
@@ -304,7 +311,8 @@ def uploadPart(request):
 							partNote.objects.create(part = pt, value = out[6], \
 								package = out[7], addBuylink = out[8], param1 = out[9], param2 = out[10])
 				else:
-					return render(request, 'uploadFaild.html', {'format':'format'})
+					context.update({'format':'format'})
+			return render(request, 'uploadFaild.html', context)
 	else:
 		form = uploadFileForm()
 	return render(request,'uploadCSV.html',{'form':form})
