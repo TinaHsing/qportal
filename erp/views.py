@@ -293,7 +293,8 @@ def uploadPart(request):
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
-				if len(out) == 6 or len(out) == 11:
+				len_of_out = len(out)
+				if (len_of_out == 6) or (len_of_out == 11):
 					exist = partNumber.objects.filter(name = out[0]).count()
 					if exist:
 						context.update({'exist':'exist'})
@@ -311,7 +312,7 @@ def uploadPart(request):
 						if len(out) == 11:
 							partNote.objects.create(part = pt, value = out[6], \
 								package = out[7], addBuylink = out[8], param1 = out[9], param2 = out[10])
-				else:
+				elif (len_of_out > 1):
 					context.update({'format':'format'})
 			return render(request, 'uploadFaild.html', context)
 	else:
