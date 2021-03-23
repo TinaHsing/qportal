@@ -16,8 +16,9 @@
 		{% endif %}
 	</table>
 <hr>
+	<li> PCBA 勾選燒錄韌體時，因可採複選，系統無檢查機制，請務必勾選正確的韌體版本再按登錄。</li>
+	<li>若發現清單沒有在下面列表，請通知管理員新增。</li>
 	<li><font color=red>{{ part.name }}</font> 可新增韌體：</li>
-	<label>（若發現清單沒有在下面列表，請通知管理員新增）</label>
 	<table>
 		<tr><td> 韌體名稱 </td><td >韌體描述</td><td>新增</td></tr>
 		{% for swo in sw_out_part %}

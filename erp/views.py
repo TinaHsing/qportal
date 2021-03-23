@@ -191,7 +191,7 @@ def newBomDefine(request, Pid):
 	product = partNumber.objects.get(Pid = Pid)
 	context = {'pname':product.name}
 	if request.POST:
-		discription = request.POST['discription']
+		discription = request.POST['discription'].upper()
 		if discription:
 			if bomDefine.objects.filter(product=product).filter(discription = discription).count():
 				context.update({'repeatDis':'repeatDis'})
@@ -295,7 +295,7 @@ def uploadPart(request):
 				out = row.split(';')
 				len_of_out = len(out)
 				if (len_of_out == 6) or (len_of_out == 11):
-					exist = partNumber.objects.filter(name = out[0]).count()
+					exist = partNumber.objects.filter(name = out[0].upper()).count()
 					if exist:
 						context.update({'exist':'exist'})
 						exist_list.append(out[0])
@@ -303,10 +303,10 @@ def uploadPart(request):
 					else:
 						done_list.append(out[0])
 						context.update({'done_list':done_list})
+						new_cate = out[2].upper()
+						cate, _ = pnCategory.objects.get_or_create(category = new_cate)
 
-						cate, _ = pnCategory.objects.get_or_create(category = out[2])
-
-						pt = partNumber.objects.create(name = out[0], location = out[1], \
+						pt = partNumber.objects.create(name = out[0].upper(), location = out[1], \
 							category = cate, level = int(out[3]), discription = out[4], \
 							buylink = out[5], date = today, user = user)
 						if len(out) == 11:
@@ -334,7 +334,7 @@ def uploadBom(request, Pid, Serial):
 				row = row.decode()
 				out = row.split(';')
 				part = partNumber.objects.filter(name=out[0])
-				if part.count():
+				if (part.count()):
 					part = part[0]
 					element = BomElement.objects.create(bf = bf, part=part)
 					element.unitQty = int(out[1])
@@ -342,7 +342,7 @@ def uploadBom(request, Pid, Serial):
 					element.user = request.user
 					element.date = date.today()
 					element.save()
-				else:
+				elif (len(out) > 1):
 					return render(request, 'uploadFaild.html', {'format':'format'})
 		else:
 			form = uploadFileForm()
@@ -773,13 +773,17 @@ def uploadPO(request):
 				row = row.decode()
 				out = row.split(';')
 				# print(out)
-				part = partNumber.objects.filter(name=out[0]).filter(level = 0)
-				if part.count():
+				part = partNumber.objects.filter(name=out[0].upper()).filter(level = 0)
+				if (part.count()):
 					part = part[0]
 					ele = pnQty.objects.create(partNumber=part, reason = reason, Qty=int(out[1]), user = request.user, date = date.today())
 					price = elePrice.objects.create(partNumber = part, price = float(out[2]), user = user, date= date.today() )
-				else:
+				elif (len(out) > 1):
 					return render(request, 'uploadFaild.html', {'format':'format'})
+		else:
+			form = uploadFileForm()
+	else:
+		form = uploadFileForm()
 	return render(request, 'uploadCSV.html', {'form':form})
 
 def testRecord(request):

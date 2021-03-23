@@ -1,8 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p>請輸入 <font color=red>{{ pname }}</font> 新增 BOM 描述<br>
-（ex："full" for 手焊, "fact" for 工廠）</p>
+<li> PCBA 建立 [材料清單] 時，請務必建立一個＂ALL＂包含所有料件，如果有些料打件廠可以代購，再建立一個＂SMT＂，移除打件廠會備的料件，因功能不同有 BOM option 時，也可以建立功能型材料清單。</li>
+<li>輸入 <font color=red>{{ pname }}</font> 新增 BOM 描述</li>
+（ex："ALL" for 手焊, "SMT" for 工廠）</p>
 <form method ="post" action ="">
 	{% csrf_token %}
 	<input type="text" name="discription">

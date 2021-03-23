@@ -7,6 +7,7 @@
 	<div>
 		<li><a href={% url 'addPartNumber' %}>新建料號</a>
 		<li><a href={% url 'addCategory' %}>新建料號分類</a>
+<li> 填寫 [材料清單] 時如果有無法計量的用品，例如：熱縮套管，散熱膏等，請一併填寫，使用數量則為＂0＂，使採購人員備料前可以檢查。</li>
 	</div>
 	<form method ="post" action ="">
 		{% csrf_token %}
