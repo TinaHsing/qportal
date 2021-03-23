@@ -316,6 +316,8 @@ def uploadPart(request):
 				elif (len_of_out > 1):
 					context.update({'format':'format'})
 			return render(request, 'uploadFaild.html', context)
+		else:
+			form = uploadFileForm()
 	else:
 		form = uploadFileForm()
 	return render(request,'uploadCSV.html',{'form':form})
