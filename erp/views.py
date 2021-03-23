@@ -294,19 +294,20 @@ def uploadPart(request):
 				row = row.decode()
 				out = row.split(';')
 				len_of_out = len(out)
+				p_name = out[0].upper()
 				if (len_of_out == 6) or (len_of_out == 11):
-					exist = partNumber.objects.filter(name = out[0].upper()).count()
+					exist = partNumber.objects.filter(name = p_name).count()
 					if exist:
 						context.update({'exist':'exist'})
-						exist_list.append(out[0])
+						exist_list.append(p_name)
 						context.update({'exist_list':exist_list})
 					else:
-						done_list.append(out[0])
+						done_list.append(p_name)
 						context.update({'done_list':done_list})
 						new_cate = out[2].upper()
 						cate, _ = pnCategory.objects.get_or_create(category = new_cate)
 
-						pt = partNumber.objects.create(name = out[0].upper(), location = out[1], \
+						pt = partNumber.objects.create(name = p_name, location = out[1], \
 							category = cate, level = int(out[3]), discription = out[4], \
 							buylink = out[5], date = today, user = user)
 						if len(out) == 11:
@@ -333,7 +334,7 @@ def uploadBom(request, Pid, Serial):
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
-				part = partNumber.objects.filter(name=out[0])
+				part = partNumber.objects.filter(name=out[0].upper())
 				if (part.count()):
 					part = part[0]
 					element = BomElement.objects.create(bf = bf, part=part)
