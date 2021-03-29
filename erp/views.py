@@ -575,14 +575,17 @@ def PdCalculate(request):
 	user = request.user
 	plset = planerElement.objects.filter(user=user)
 	pdtotal = BomElement.objects.none()
-	outlist =[]
+	outlist = []
 	for pl in plset:
 		pdqty = pl.produceQty
 		#pdproduct = pl.bf.product
 		bomserial = pl.bf.bomserial 
 		blset = bomDefine.objects.get(bomserial= bomserial).bomelement_set.all()
 		#blset = pl.product.bomelement_set.all()
-		if blset.count():
+		total = blset.count()
+		context = {'total':total}
+		# print(total)
+		if (total > 0):
 			for ele in blset:
 				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 				curQty = partP.get('Qty__sum')
@@ -601,7 +604,7 @@ def PdCalculate(request):
 		outlist = sorted(outlist, key = lambda l:l[1] )
 		preid = -1
 		i = 0
-		outlist2 =[]
+		outlist2 = []
 		for temp in outlist:
 			# print("len of outlist2" +str(len(outlist2)))
 			# print("inside sort loop"+str(i))
@@ -612,9 +615,9 @@ def PdCalculate(request):
 			else:
 				outlist2.append(temp)
 				i=i+1
-			preid =temp[1]
+			preid = temp[1]
 			
-		context = {'table':outlist2}
+		context.update({'table':outlist2})
 		return render(request,'pdCalculate.html', context)
 	return render(request,'pdCalculate.html')
 
