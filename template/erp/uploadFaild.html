@@ -18,6 +18,14 @@
 	<hr>
 {% endif %}
 
+{% if not_exist %}
+	<p>以下料號名稱不存在</p>
+	{% for el in nexist_list %}
+		<li>{{ el }}<br>
+	{% endfor %}
+	<hr>
+{% endif %}
+
 {% if format %}
 	<p>上傳檔案格式錯誤，請檢查後再上傳</p>
 {% endif %}

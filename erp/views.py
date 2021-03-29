@@ -333,20 +333,33 @@ def uploadBom(request, Pid, Serial):
 			BomElement.objects.filter(bf=bf).delete()
 			data = bom.read()
 			rows = data.split(b'\n')
+			context = {'done':'done'}
+			done_list = []
+			nexist_list = []
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
-				part = partNumber.objects.filter(name=out[0].upper())
-				if (part.count()):
-					part = part[0]
-					element = BomElement.objects.create(bf = bf, part=part)
-					element.unitQty = int(out[1])
-					element.schPN = out[2]
-					element.user = request.user
-					element.date = date.today()
-					element.save()
-				elif (len(out) > 1):
-					return render(request, 'uploadFaild.html', {'format':'format'})
+				len_of_out = len(out)
+				if (len_of_out == 3):
+					p_name = out[0].upper()
+					part = partNumber.objects.filter(name=p_name)
+					if (part.count()):
+						done_list.append(p_name)
+						context.update({'done_list':done_list})
+						part = part[0]
+						element = BomElement.objects.create(bf = bf, part=part)
+						element.unitQty = int(out[1])
+						element.schPN = out[2]
+						element.user = request.user
+						element.date = date.today()
+						element.save()
+					else:
+						context.update({'not_exist':'not_exist'})
+						nexist_list.append(p_name)
+						context.update({'nexist_list':nexist_list})
+				elif (len_of_out > 1):
+					context.update({'format':'format'})
+			return render(request, 'uploadFaild.html', context)
 		else:
 			form = uploadFileForm()
 	else:
@@ -392,7 +405,7 @@ def purchasing(request):
 	 
 	if 'pnKW' in request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate =  out['category']
 		
 		if pnKW !="":
@@ -772,17 +785,30 @@ def uploadPO(request):
 			data = pocsv.read()
 			rows = data.split(b'\n')
 			reason, _ = QtyReason.objects.get_or_create(reason='purchasing')
+			context = {'done':'done'}
+			done_list = []
+			nexist_list = []
 			for row in rows:
 				row = row.decode()
 				out = row.split(';')
 				# print(out)
-				part = partNumber.objects.filter(name=out[0].upper()).filter(level = 0)
-				if (part.count()):
-					part = part[0]
-					ele = pnQty.objects.create(partNumber=part, reason = reason, Qty=int(out[1]), user = request.user, date = date.today())
-					price = elePrice.objects.create(partNumber = part, price = float(out[2]), user = user, date= date.today() )
-				elif (len(out) > 1):
-					return render(request, 'uploadFaild.html', {'format':'format'})
+				len_of_out = len(out)
+				if (len_of_out == 3):
+					p_name = out[0].upper()
+					part = partNumber.objects.filter(name=p_name).filter(level = 0)
+					if (part.count()):
+						done_list.append(p_name)
+						context.update({'done_list':done_list})
+						part = part[0]
+						ele = pnQty.objects.create(partNumber=part, reason = reason, Qty=int(out[1]), user = request.user, date = date.today())
+						price = elePrice.objects.create(partNumber = part, price = float(out[2]), user = user, date= date.today() )
+					else:
+						context.update({'not_exist':'not_exist'})
+						nexist_list.append(p_name)
+						context.update({'nexist_list':nexist_list})
+				elif (len_of_out > 1):
+					context.update({'format':'format'})
+			return render(request, 'uploadFaild.html', context)
 		else:
 			form = uploadFileForm()
 	else:
