@@ -218,13 +218,10 @@ def editBomList(request, Pid, Serial):
 			cate = out['category']
 			if pnKW !="":
 				partnumber_list = partNumber.objects.filter(name__contains= pnKW)
-				
 				if cate != "ALL":
 					cate = pnCategory.objects.get(category = out['category'])
 					partnumber_list = partnumber_list.filter(category=cate)
-				
 				context.update({'partnumber_list':partnumber_list})
-	
 			elif cate !="ALL":
 				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partNumber.objects.filter(category=cate)
@@ -401,7 +398,6 @@ def costEvaluation(request, Pid, Serial):
 def purchasing(request):
 	category_list = pnCategory.objects.all()
 	context = {'category_list':category_list}
-	B_partnumber_flag = False
 	 
 	if 'pnKW' in request.POST:
 		out = request.POST
@@ -413,17 +409,13 @@ def purchasing(request):
 			if cate != "ALL":
 				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate).filter(level = 0)
-				B_partnumber_flag = True
-			
 			context.update({'partnumber_list':partnumber_list})
-	
 		elif cate !="ALL":
 			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate).filter(level = 0)
-			B_partnumber_flag = True
 			context.update({'partnumber_list':partnumber_list})
 
-		if (B_partnumber_flag):
+		if partnumber_list.count():
 			outlist = []
 			for pt in partnumber_list:
 				temp = pt.pnqty_set.aggregate(Sum('Qty'))
