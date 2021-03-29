@@ -6,15 +6,17 @@
 		<thead colspan="5"> <tr> 備料計算：{{ total }} </tr> </thead>
 		<tr>
 			<td>料號</td>
+			<td>位置</td>
 			<td>目前數量</td>
 			<td>未測試數量</td>
 			<td>生產所需數量</td>
-			<td>所需購買或測試數量</td>
+			<td>所需購買或<br>測試數量</td>
 			<td>購買連結</td>
 		</tr>
 	{% for row in table %}
 	<tr>
 		<td>{{ row.0 }}</td>
+		<td>{{ row.8 }}</td>
 		<td>{{ row.2 }}</td>
 		<td>{{ row.3 }}</td>
 		<td>{{ row.4 }}</td>

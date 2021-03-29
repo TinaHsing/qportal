@@ -598,7 +598,7 @@ def PdCalculate(request):
 					buy_type = "http"
 				else:
 					buy_type = "text"
-				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink, buy_type] )
+				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink, buy_type, ele.part.location] )
 	# print(len(outlist))
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
