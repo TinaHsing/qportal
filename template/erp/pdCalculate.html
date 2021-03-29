@@ -3,7 +3,7 @@
 {% block content %}
 {% if table %}
 	<table width = "100%">
-		<thead colspan="5"> <tr> Planer Output </tr> </thead>
+		<thead colspan="5"> <tr> 備料計算 </tr> </thead>
 		<tr>
 			<td>料號</td>
 			<td>目前數量</td>
@@ -19,7 +19,11 @@
 		<td>{{ row.3 }}</td>
 		<td>{{ row.4 }}</td>
 		<td>{{ row.5 }}</td>
-		<td><a href={{ row.6 }} target="_blank">{{ row.6 }}</td>
+		{% if row.7 == "http" %}
+			<td><a href='{{ row.6 }}/' target='_blank' class="btn btn-info"> Buy </a></td>
+		{% else %}
+			<td>{{ row.6 }}</td>
+		{% endif %}
 	</tr>
 	{% endfor %}
 	</table>

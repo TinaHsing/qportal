@@ -590,8 +590,12 @@ def PdCalculate(request):
 				if curQty== None:
 					curQty = 0
 				ttpdqty = ele.unitQty*pdqty
-				buyqty = max(ttpdqty - curQty, 0) 
-				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink] )
+				buyqty = max(ttpdqty - curQty, 0)
+				if ele.part.buylink.find("http") == 0:
+					buy_type = "http"
+				else:
+					buy_type = "text"
+				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink, buy_type] )
 	# print(len(outlist))
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
