@@ -49,7 +49,7 @@
 	{% endif %}
 <hr>
 	<div> 
-		BOM of <font color="red">{{ bomdefine.product.name }}_{{ bomdefine.discription }}</font>
+		BOM of <font color="blue">{{ bomdefine.product.name }}</font>_<font color="red">{{ bomdefine.discription }}</font>
 		<a href='cost/' class="btn btn-info"> 計算成本 </a>
 	</div>
 
@@ -58,16 +58,18 @@
 			<tr>
 				<td>料號</td>
 				<td>描述</td>
+				<td>位置</td>
 				<td>數量</td>
 				<td>PCB part (以","隔開)</td>
 				<td>編輯</td>
 			</tr>
 			{% for ele in element %}
 			<tr>
-			<td><a href ="/erp/partNumber/{{ele.part.Pid }}/" >{{ ele.part.name }}</a>  </td> 
-			<td>{{ ele.part.discription }}</td>
-			<td> {{ ele.unitQty }}  </td> 
-			<td> {{ ele.schPN }}</td>
+			<td> <a href ="/erp/partNumber/{{ele.part.Pid }}/" >{{ ele.part.name }}</a> </td> 
+			<td> {{ ele.part.discription }} </td>
+			<td> {{ ele.part.location }} </td>
+			<td> {{ ele.unitQty }} </td> 
+			<td> {{ ele.schPN }} </td>
 			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit </a> </td>
 
 			</tr>

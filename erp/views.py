@@ -529,11 +529,12 @@ def planer(request):
 
 @login_required
 def addPlaner(request, bomserial):
-	user=request.user
+	user = request.user
 	bf = bomDefine.objects.get(bomserial = bomserial)
 	# part=partNumber.objects.get(Pid=Pid)
 	context = {'part':bf.product.name}
-	#print(context)
+	context.update({'bf':bf.discription})
+	# print(context)
 	planer_list = planerElement.objects.filter(user = user).filter(bf__bomserial = bomserial)
 	#print(planer_list)
 
@@ -576,7 +577,7 @@ def PdCalculate(request):
 		#blset = pl.product.bomelement_set.all()
 		total = blset.count()
 		context = {'total':total}
-		# print(total)
+		print(total)
 		if (total > 0):
 			for ele in blset:
 				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
@@ -598,12 +599,12 @@ def PdCalculate(request):
 		i = 0
 		outlist2 = []
 		for temp in outlist:
-			# print("len of outlist2" +str(len(outlist2)))
-			# print("inside sort loop"+str(i))
+			# print("len of outlist2 = " +str(len(outlist2)))
+			# print("inside sort loop = "+str(i))
 			if temp[1] == preid:
 				# print("equal")
-				outlist2[i-1][3] = temp[3]+outlist2[i-1][3]
-				outlist2[i-1][4] = temp[4]+outlist2[i-1][4]
+				outlist2[i-1][3] = temp[3] + outlist2[i-1][3]
+				outlist2[i-1][4] = temp[4] + outlist2[i-1][4]
 			else:
 				outlist2.append(temp)
 				i=i+1
