@@ -208,9 +208,11 @@ def editBomList(request, Pid, Serial):
 	product = partNumber.objects.get(Pid=Pid)
 	bf = product.bomdefine_set.get(bomserial = Serial)
 	element = bf.bomelement_set.all()
+	total = element.count()
 	context = {'bomdefine':bf}
 	category_list = pnCategory.objects.all()
 	context.update({'category_list':category_list})
+	context.update({'total':total})
 	if request.POST:
 		if 'pnKW' in request.POST:
 			out = request.POST
@@ -227,7 +229,7 @@ def editBomList(request, Pid, Serial):
 				partnumber_list = partNumber.objects.filter(category=cate)
 				context.update({'partnumber_list':partnumber_list})
 
-	if element.count():
+	if ( total > 0 ):
 		context.update({'element':element})
 	
 	return render(request, 'editBomList.html', context)
