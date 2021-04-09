@@ -2,7 +2,7 @@
 
 {% block content %}
 <div>
-	<p>新增 <font color="orange">{{ part.name }}</font> 到 <font color="red">{{ product.name }}_{{ discription }}</font> 的材料清單</p>
+	<p>新增 <font color="orange">{{ part.name }}</font> 到 <font color="blue">{{ product.name }}</font>_<font color=red>{{ discription }}</font> 的材料清單</p>
 </div>
 <form method ="post" action ="">
 	{% csrf_token %}
