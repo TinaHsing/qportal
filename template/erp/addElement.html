@@ -8,7 +8,11 @@
 	{% csrf_token %}
 	<div>
 		<td><label>使用數量 (輸入 0 可以刪除)</label> </td>
-		<td><input type="number" name="unitQty"{% if element %}value={{ element.unitQty }}{% endif %}></td>
+		<td><input type="number" name="unitQty"{% if element %}value={{ element.unitQty }}{% endif %}>
+		{% if empty %}
+			<font color=red>請輸入數量</font>
+		{% endif %}
+		</td>
 	</div>
 	<div>
 		<label>在電路圖上面的元件名稱列表</label></td>

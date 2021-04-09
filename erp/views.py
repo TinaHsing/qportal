@@ -250,10 +250,13 @@ def addElement(request, Pid, Serial, Bid):
 		if request.POST:
 			qty = request.POST['unitQty']
 			schPN = request.POST['schPN']
-			if qty == "0":
+			if (qty == ""):
+				context.update({'empty':'empty'})
+				return render(request, 'addElement.html', context)
+			elif (qty == "0"):
 				element.delete()
 			else:
-				element.unitQty = qty 
+				element.unitQty = int(qty) 
 				element.schPN = schPN
 				element.user = request.user
 				element.date = date.today()
@@ -263,18 +266,22 @@ def addElement(request, Pid, Serial, Bid):
 			#print(path)
 			#return redirect(path)
 			return redirect(path)
-
-		return render(request, 'addElement.html', context)
-	else:
-		if request.POST:
-			user = request.user
-			qty = request.POST['unitQty']
-			schPN = request.POST['schPN']
+		else:
+			return render(request, 'addElement.html', context)
+	elif request.POST:
+		user = request.user
+		qty = request.POST['unitQty']
+		schPN = request.POST['schPN']
+		if (qty == "") or (qty == "0"):
+			context.update({'empty':'empty'})
+			return render(request, 'addElement.html', context)
+		else:
 			BomElement.objects.create(bf = bf, part = part , \
 				unitQty = qty, schPN =schPN, user = user, date=date.today())
 			path = '/erp/BOM/'+str(Pid)+'/'+str(Serial)+'/'
 			return redirect(path)
-	return render(request, 'addElement.html', context)
+	else:
+		return render(request, 'addElement.html', context)
 
 @login_required
 def uploadPart(request):

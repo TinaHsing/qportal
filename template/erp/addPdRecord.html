@@ -24,7 +24,7 @@
 	<div>
 		{% for bfx in bf %}
 		<td><input type="radio" name="bomtype" value={{ bfx.bomserial }}>
-			<label>{{ bfx.product}}__{{bfx.discription}}</label></td>
+			<label>{{ bfx.product}}_<font color=red>{{bfx.discription}}</font></label></td>
 		{% endfor %}
 
 		{% if lockQty %}
