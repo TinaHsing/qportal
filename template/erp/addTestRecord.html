@@ -4,24 +4,24 @@
 
 	<div>
 		<h3>測試登錄</h3>
-		
+
 	<form method ="post" action ="">
 		{% csrf_token %}
+	{% if epuntest %}
 	<div>
-		<li>請選擇 <font color="red">{{ product.name }}</font> 產品序號：</li>
+		<li>請選擇 <font color=red>{{ product.name }}</font> <font color=blue>未測試</font> 產品序號：</li>
 	</div>
-	{% if epset%}
-		{% for ep in epset %}
+		{% for ep in epuntest %}
 		<input type = "radio" value = {{ ep.serial }} name = "serial">
 		<label> {{ ep.serial }}　</label>
 		{% endfor %}
 	{% else %}
-		<label>無生產序號</label>
+		<label>無 <font color=blue>未測試</font> 產品序號</label>
 	{% endif %}
+<hr>
 	{% if serialEmpty %}
 		<p><font color ="red">請選擇序號</font></p>
 	{% endif %}
-<hr>
 
 	<div>
 		<li><font color="red">{{ product.name }}</font> 軟體燒錄登錄：</li>
@@ -45,13 +45,13 @@
 	{% endif %}
 	</div>
 <hr>
-
+	{% if epuntest %}
 	<li>輸入測試結果</li>
 	<div>
 		<input type="radio" name="result" value="passed" checked >
-		<label> passed　</label>
+		<label> Passed　</label>
 		<input type="radio" name="result" value="failed" >
-		<label> failed </label>
+		<label> Failed </label>
 		<label> 描述：</label>
 		<input type="text" name="reason">
 		{% if ferror %}
@@ -60,7 +60,19 @@
 	</div>
 
 	<div><input type="submit" value="新增測試紀錄"/></div>
+	{% endif %}
 	</form>
+<hr>
+	{% if eptest %}
+	<div>
+		<li><font color=red>{{ product.name }}</font> <font color=blue>已測試 Passed </font> 產品序號：</li>
+	</div>
+		{% for ep in eptest %}
+			{{ ep.serial }}, 
+		{% endfor %}
+	{% else %}
+		<label>無 <font color=blue>已測試</font> 產品序號</label>
+	{% endif %}
 {% endblock %}
 
 {% block sidebar %}

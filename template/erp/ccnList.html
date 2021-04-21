@@ -20,10 +20,13 @@
 		<td> {{ part.0 }} </td>
 		<td> {{ part.1 }} </td>
 		<td> {{ part.2 }} </td>
+		<td> {% for sw in software %}
+			 	{{ sw }} , 
+			 {% endfor %}
+		</td>
 		<td> {{ part.3 }} </td>
 		<td> {{ part.4 }} </td>
-		<td> {{ part.5 }} </td>
-		<td> <a href='close/{{ part.6 }}/' class="btn btn-info">處理狀況回報</td>
+		<td> <a href='close/{{ part.5 }}/' class="btn btn-info">處理狀況回報</td>
 	</tr>
 	{% endfor %}
 	</table>

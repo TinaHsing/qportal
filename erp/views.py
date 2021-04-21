@@ -855,8 +855,10 @@ def addTestRecord(request, Pid):
 	user = request.user
 	reason, _ = QtyReason.objects.get_or_create(reason="testing")
 	context = {'product':product}
-	epset = endProduct.objects.filter(part= product).filter(status = "untested")
-	context.update({'epset':epset})
+	eptest = endProduct.objects.filter(part= product).filter(status = "tested")
+	context.update({'eptest':eptest})
+	epuntest = endProduct.objects.filter(part= product).filter(status = "untested")
+	context.update({'epuntest':epuntest})
 	software = product.software.all()
 	if software.count():
 		context.update({'software':software})
@@ -879,7 +881,7 @@ def addTestRecord(request, Pid):
 			if request.POST.get('result', "failed") == "passed":
 				ep.status = "tested"
 				pnQty.objects.create(partNumber = product, untestQty = -1,\
-						Qty= 1, reason = reason, user = user, date = date.today())
+						Qty = 1, reason = reason, user = user, date = date.today())
 				ep.save()
 			else:
 				failure = request.POST['reason']
@@ -893,7 +895,7 @@ def addTestRecord(request, Pid):
 				ep.save()
 		else:
 			context.update({'error':'error'})
-	
+
 	return render(request, 'addTestRecord.html', context)
 
 @login_required
@@ -1054,13 +1056,15 @@ def viewCCNList(request):
 	# print(pl)
 	outlist = []
 	for ccn in pl:
+		software = ccn.endp.software.all()
 		if (ccn.endp != None):
 			outlist.append([ccn.endp.part.name, ccn.endp.customer, ccn.endp.serial,\
-			ccn.software, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
+			ccn.reqDate, ccn.failure, ccn.ccnSerial] )
 		else:
 			outlist.append([None, None, None,\
-			ccn.software, ccn.reqDate, ccn.failure, ccn.ccnSerial] )
-	context={'pl':outlist}
+			ccn.reqDate, ccn.failure, ccn.ccnSerial] )
+	context = {'pl':outlist}
+	context.update({'software':software})
 	return render(request,'ccnList.html', context)
 
 def addCCNList(request):
