@@ -559,10 +559,13 @@ def addPlaner(request, bomserial):
 	if request.POST:
 		qty = request.POST['produceQty']
 		#print("qty" = qty)
-		if int(qty) == 0 :
+		if (qty == ""):
+			context.update({'empty':'empty'})
+			return render(request, 'addPlaner.html', context)
+		elif (qty == "0"):
 			pl.delete()
 		else:
-			pl.produceQty = qty
+			pl.produceQty = int(qty)
 			# print(pl)
 			pl.save()
 

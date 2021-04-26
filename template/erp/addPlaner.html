@@ -7,9 +7,12 @@
 	{% csrf_token%}
 	<div>
 	<td><label>生產數量</label></td>
-	<td><input type="number" name="produceQty" ></td>
+	<td><input type="number" name="produceQty"></td>
 	<td><input type="submit" value="Ok"/></td>
 	</div>
+	{% if empty %}
+		<font color=red>請輸入數量</font>
+	{% endif %}
 </form>
 {% endblock %}
 
