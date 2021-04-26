@@ -2,12 +2,12 @@
 
 {% block content %}
 	<div>
-		<h3>韌體清單登錄</h3>
+		<h3>軟/韌體清單登錄</h3>
 	</div>
-	<li><font color=red>{{ part.name }}</font> 已包含韌體：</li>
+	<li><font color=red>{{ part.name }}</font> 已包含軟/韌體：</li>
 	<table>
 		{% if sw_in_part %}
-			<tr><td> 韌體名稱 </td><td colspan= 2 >韌體描述</td></tr>
+			<tr><td> 軟/韌體名稱 </td><td colspan= 2 >軟/韌體描述</td></tr>
 			{% for swi in sw_in_part %}
 			<tr><td>{{ swi.name }}</td><td colspan= 2 >{{ swi.discription }}</td></tr>
 			{% endfor %}
@@ -16,11 +16,11 @@
 		{% endif %}
 	</table>
 <hr>
-	<li> PCBA 勾選燒錄韌體時，因可採複選，系統無檢查機制，請務必勾選正確的韌體版本再按登錄。</li>
+	<li> PCBA 或產品勾選燒錄軟/韌體時，因可採複選，系統無檢查機制，請務必勾選正確的軟/韌體版本再按登錄。</li>
 	<li>若發現清單沒有在下面列表，請通知管理員新增。</li>
-	<li><font color=red>{{ part.name }}</font> 可新增韌體：</li>
+	<li><font color=red>{{ part.name }}</font> 可新增軟/韌體：</li>
 	<table>
-		<tr><td> 韌體名稱 </td><td >韌體描述</td><td>新增</td></tr>
+		<tr><td> 軟/韌體名稱 </td><td> 軟/韌體描述 </td><td> 新增 </td></tr>
 		{% for swo in sw_out_part %}
 		<tr>
 			<td>{{ swo.name }}</td>

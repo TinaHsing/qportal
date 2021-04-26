@@ -1168,7 +1168,11 @@ def addSoftware(request, Pid):
 	part = partNumber.objects.get(Pid = Pid)
 	context = {'part':part}
 	sw_in_part = part.software.all()
-	sw_out_part = software.objects.exclude(Sid__in = sw_in_part).filter(pc = False)
+	sw_out_part = software.objects.exclude(Sid__in = sw_in_part)
+	if (part.level == 10):
+		sw_out_part = sw_out_part.filter(pc = True)
+	else:
+		sw_out_part = sw_out_part.filter(pc = False)
 	context.update({'sw_in_part':sw_in_part})
 	context.update({'sw_out_part':sw_out_part})
 	return render(request,'addSoftware.html', context)
