@@ -103,7 +103,7 @@ def editPartNumber(request, Pid):
 
 @login_required
 def addCategory(request):
-	category_list = pnCategory.objects.values('category').distinct()
+	category_list = pnCategory.objects.values('category').order_by('category').distinct()
 	context = {'category_list':category_list }
 	if 'category' in request.POST:
 		if request.user.is_authenticated:
@@ -126,7 +126,7 @@ def addCategory(request):
 
 @login_required
 def addPartNumber(request):
-	category_list = pnCategory.objects.values('category').distinct()
+	category_list = pnCategory.objects.values('category').order_by('category').distinct()
 	context = {'category_list':category_list }
 	name = ""
 	location = ""
