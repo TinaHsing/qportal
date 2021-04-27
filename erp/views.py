@@ -18,7 +18,7 @@ def erpindex(request):
 	return render(request, 'erpindex.html')
 
 def viewPartNumber(request):
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list}	 
 	if 'pnKW' in request.GET:
 		out = request.GET
@@ -67,7 +67,7 @@ def editPartNumber(request, Pid):
 		ptnote = ptnote[0]
 	else:
 		ptnote=partNote.objects.create(part = pt)
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context = {'part':pt, 'ptnote':ptnote, 'cate':category_list }
 	# print("["+str(pt.category)+"]")
 	if request.POST:
@@ -210,7 +210,7 @@ def editBomList(request, Pid, Serial):
 	element = bf.bomelement_set.all()
 	total = element.count()
 	context = {'bomdefine':bf}
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context.update({'category_list':category_list})
 	context.update({'total':total})
 	if request.POST:
@@ -405,7 +405,7 @@ def costEvaluation(request, Pid, Serial):
 	return render(request, 'cost.html', context)
 
 def purchasing(request):
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:
@@ -467,7 +467,7 @@ def addPurchasing(request, Pid):
 	return render(request, 'addPurchasing.html', context)
 
 def discard(request):
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list}
 	 
 	if 'pnKW' in request.POST:
@@ -903,7 +903,7 @@ def addTestRecord(request, Pid):
 
 @login_required
 def viewPurchaseList(request):
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list} 
 	if 'pnKW' in request.POST:
 		out = request.POST
@@ -1127,7 +1127,7 @@ def closeCCN(request, serial):
 	return render(request,'closeCCN.html', context)
 
 def viewSoftware(request):
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list} 
 	if request.POST:
 		out = request.POST
@@ -1147,7 +1147,7 @@ def viewSoftware(request):
 	return render(request,'viewSoftware.html', context)
 
 def viewSales(request):
-	category_list = pnCategory.objects.all()
+	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list} 
 	if request.POST:
 		out = request.POST
