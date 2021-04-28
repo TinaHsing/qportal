@@ -50,5 +50,6 @@ urlpatterns =[
 	path('createCustomer/', views.createCustomer, name = 'createCustomer'),
 	path('viewCustomer/', views.viewCustomer, name = 'viewCustomer'),
 	path('editCustomer/<int:cid>/', views.editCustomer, name = 'editCustomer'),
-	path('viewBomOfPart/<int:Pid>/', views.viewBomOfPart, name = 'viewBomOfPart')
+	path('viewBomOfPart/<int:Pid>/', views.viewBomOfPart, name = 'viewBomOfPart'),
+	path('addTestLink', views.addTestLink, name = 'addTestLink')
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

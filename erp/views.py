@@ -1339,3 +1339,11 @@ def viewBomOfPart(request, Pid):
 	element = BomElement.objects.filter(part = product)
 	context.update({'element':element})
 	return render(request, template_name, context)
+
+def addTestLink(request, Pid):
+	template_name = 'addTestLink.html'
+	partNumber_list = partNumber.objects.filer(level__gt=0)
+	contest={'pnlist':partnumber_list}
+
+	return render(request, 'addTestLink.html', context)
+

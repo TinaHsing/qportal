@@ -21,6 +21,9 @@ class software(models.Model):
 	def __str__(self):
 		return self.name
 
+
+
+
 class customer(models.Model):
 	cid = models.AutoField(primary_key = True)
 	name = models.CharField(max_length = 100)
@@ -49,7 +52,12 @@ class partNumber(models.Model):
 	approve = models.BooleanField(default = False)
 	def __str__(self):
 		return self.name
-
+class testlink(models.Model):
+	pn = models.OneToOneField(partNumber, primary_key = True, on_delete = models.CASCADE)
+	testlink = models.CharField(max_length = 80)
+	def __str__(self):
+		return self.partNumber
+		
 class bomDefine(models.Model):
 	product = models.ForeignKey(partNumber,on_delete = models.CASCADE, blank = True, null =True)	
 	bomserial = models.AutoField(primary_key= True)
