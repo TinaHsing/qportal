@@ -9,7 +9,8 @@
 		{% csrf_token %}
 	{% if epuntest %}
 	<div>
-		<li>請選擇 <font color=red>{{ product.name }}</font> <font color=blue>未測試</font> 產品序號：</li>
+		<li>請選擇 <font color=red>{{ product.name }}</font> <font color=blue>未測試</font> 產品序號：
+		<a href="{{ testurl }}" target="_blank"> 填寫測試報告 </a></li>
 	</div>
 		{% for ep in epuntest %}
 		<input type = "radio" value = {{ ep.serial }} name = "serial">
