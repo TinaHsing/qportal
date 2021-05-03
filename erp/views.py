@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 #from django.views.generic import ListView
 from .models import partNumber, pnCategory, BomElement, QtyReason, pnQty, elePrice
 from .models import planerElement, partNote, bomDefine, purchaseList, mpList
-from .models import customer, ccnList, software, endProduct
+from .models import customer, ccnList, software, endProduct, testlink
 from django.db.models import Sum, F, Func
 from .forms import uploadFileForm, createSoftwareForm, createCustomerForm, updateCustomerForm
 from datetime import date
@@ -87,7 +87,6 @@ def editPartNumber(request, Pid):
 				pt.buylink = request.POST['buylink']
 			if 'ptvalue'in request.POST:
 				ptnote.value = request.POST['ptvalue']
-
 			if request.POST['package']:
 				ptnote.package = request.POST['package']
 			if request.POST['param2']:
@@ -216,7 +215,7 @@ def editBomList(request, Pid, Serial):
 	if request.POST:
 		if 'pnKW' in request.POST:
 			out = request.POST
-			pnKW =out['pnKW']
+			pnKW = out['pnKW']
 			cate = out['category']
 			if pnKW !="":
 				partnumber_list = partNumber.objects.filter(name__contains= pnKW)
@@ -411,7 +410,7 @@ def purchasing(request):
 	if 'pnKW' in request.POST:
 		out = request.POST
 		pnKW = out['pnKW']
-		cate =  out['category']
+		cate = out['category']
 		
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).filter(level = 0)
@@ -472,7 +471,7 @@ def discard(request):
 	 
 	if 'pnKW' in request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 
 		if pnKW !="":
@@ -527,7 +526,7 @@ def planer(request):
 
 	if request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		if pnKW !="":
 			#partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(planerelement__user=user).filter(level__gt=0)
 			bf = bomDefine.objects.filter(product__name__contains = pnKW).filter(product__level__gt =0)
@@ -835,7 +834,7 @@ def testRecord(request):
 	 
 	if 'pnKW' in request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(level__gt=0).filter(name__contains= pnKW)
@@ -923,7 +922,7 @@ def viewPurchaseList(request):
 		outlist = []
 
 		for pt in partnumber_list:
-			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
+			temp = pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 			curQty = temp.get('Qty__sum')
 			temp2 = pt.eleprice_set.order_by('-date')
 			if temp2.count():
@@ -979,7 +978,7 @@ def addSales(request, Pid):
 	if request.POST:
 		serial = int(request.POST.get('serial','0'))
 		if serial:
-			name=request.POST['customer']
+			name = request.POST['customer']
 			cus = customer_list.get(name=name)
 			endp = endp.get(serial = serial)
 			endp.status= "sold"
@@ -1000,7 +999,7 @@ def viewMpList(request):
 	context = {'category_list':category_list} 
 	if 'pnKW' in request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(level=0)
@@ -1151,7 +1150,7 @@ def viewSales(request):
 	context = {'category_list':category_list} 
 	if request.POST:
 		out = request.POST
-		pnKW =out['pnKW']
+		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(level=0)
@@ -1340,10 +1339,26 @@ def viewBomOfPart(request, Pid):
 	context.update({'element':element})
 	return render(request, template_name, context)
 
-def addTestLink(request, Pid):
+def addTestLink(request):
 	template_name = 'addTestLink.html'
-	partNumber_list = partNumber.objects.filer(level__gt=0)
-	contest={'pnlist':partnumber_list}
+	partNumber_list = partNumber.objects.filter(level__gt=0)
+	context = {'pnlist':partNumber_list}
 
-	return render(request, 'addTestLink.html', context)
+	if request.POST:
+		pname = request.POST['partnumber']
+		# print(pname)
+		testurl = request.POST['testurl']
+		# print(testurl)
+		pt = partNumber.objects.get(name = pname)
+		pt_link = testlink.objects.filter(pn = pt)
+		if (pt_link.count() > 0):
+			pt_link = testlink.objects.get(pn = pt)
+			pt_link.testurl = testurl
+			pt_link.save()
+			context.update({'edit_done':'edit_done'})
+		else:
+			testlink.objects.create(pn = pt, testurl = testurl)
+			context.update({'add_done':'add_done'})
+
+	return render(request, template_name, context)
 

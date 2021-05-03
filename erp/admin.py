@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import partNumber, pnCategory, BomElement, QtyReason
 from .models import elePrice, pnQty, planerElement, partNote
-from .models import bomDefine, purchaseList, mpList
+from .models import bomDefine, purchaseList, mpList, testlink
 from .models import customer, ccnList, software, endProduct
 
 
@@ -18,6 +18,7 @@ admin.site.register(mpList)
 admin.site.register(customer)
 #admin.site.register(ccnList)
 admin.site.register(software)
+admin.site.register(testlink)
 
 @admin.register(partNumber)
 class partNumberAdmin(admin.ModelAdmin):

@@ -10,21 +10,30 @@
 		<tr>
 			<td>產品型號</td>
 			<td>
-				<select nmae = "partnumber">
+				<select name = "partnumber">
 					{% for pn in pnlist %}
 					<option>
 						{{ pn.name }}
 					</option>
 					{% endfor %}
 				 </select>
-					}
 				
 			</td>
 		</tr>
 		<tr><td>測試連結</td>
-			<td><input type="text" name="testlink"></td>
+			<td><input type="text" name="testurl"></td>
 		</tr>
-
+		<tr>
+			<td>
+				{% if add_done %}
+					<font color=red> 新增成功 </font>
+				{% endif %}
+				{% if edit_done %}
+					<font color=red> 修改成功 </font>
+				{% endif %}
+			</td>
+			<td><input type="submit" value="add"></td>
+		</tr>
 
 	</form>
 
