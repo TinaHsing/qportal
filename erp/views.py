@@ -1061,6 +1061,7 @@ def viewCCNList(request):
 	pl = ccnList.objects.filter(status=True)
 	# print(pl)
 	outlist = []
+	context ={}
 	for ccn in pl:
 		software = ccn.endp.software.all()
 		if (ccn.endp != None):
@@ -1069,7 +1070,7 @@ def viewCCNList(request):
 		else:
 			outlist.append([None, None, None,\
 			ccn.reqDate, ccn.failure, ccn.ccnSerial] )
-		context = {'pl':outlist}
+	context.update({'pl':outlist})
 	context.update({'software':software})
 	return render(request,'ccnList.html', context)
 
