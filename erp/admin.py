@@ -16,7 +16,7 @@ admin.site.register(bomDefine)
 #admin.site.register(purchaseList)
 admin.site.register(mpList)
 admin.site.register(customer)
-#admin.site.register(ccnList)
+admin.site.register(ccnList)
 admin.site.register(software)
 admin.site.register(testlink)
 
