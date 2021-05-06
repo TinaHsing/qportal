@@ -1070,8 +1070,9 @@ def viewCCNList(request):
 		else:
 			outlist.append([None, None, None,\
 			ccn.reqDate, ccn.failure, ccn.ccnSerial] )
+		
+		context.update({'software':software})
 	context.update({'pl':outlist})
-	context.update({'software':software})
 	return render(request,'ccnList.html', context)
 
 def addCCNList(request):
