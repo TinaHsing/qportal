@@ -862,7 +862,7 @@ def addTestRecord(request, Pid):
 	epuntest = endProduct.objects.filter(part = product).filter(status = "untested")
 	context.update({'epuntest':epuntest})
 	pt_link = testlink.objects.filter(pn = product)
-	context.update({'testurl':pt_link.testurl})
+	context.update({'testurl':pt_link})
 	software = product.software.all()
 	if software.count():
 		context.update({'software':software})
