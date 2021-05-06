@@ -864,7 +864,7 @@ def addTestRecord(request, Pid):
 	pt_link = testlink.objects.filter(pn = product)
 	if pt_link.count():
 		print(pt_link.testurl)
-		context.update({'testurl':pt_link.testurl})
+		context.update({'testurl':pt_link[0].testurl})
 	software = product.software.all()
 	if software.count():
 		context.update({'software':software})
