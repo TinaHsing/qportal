@@ -2,7 +2,7 @@
 
 {% block content %}
 	<div>
-		<h3>客訴登錄</h3>
+		<h3>修改需求 / 客訴登錄</h3>
 	<form method ="post" action ="">
 		{% csrf_token %}
 
@@ -14,7 +14,8 @@
 			{% endfor %}
 		</select> </td>	
 	</div>
- -->
+-->
+
  	<div>
 		<td><li>硬體請填：產品序號</li></td>
 		<td><input name="serial" type = "text"></td>
@@ -29,7 +30,7 @@
 	</div>
 
 	<div>
-		<td>錯誤或失效描述</td>
+		<td>修改需求 / 錯誤或失效描述</td>
 	</div>
 	<div>
 		<textarea name="failure" rows="20" cols ="100"></textarea>
