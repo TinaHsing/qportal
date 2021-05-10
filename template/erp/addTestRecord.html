@@ -10,7 +10,9 @@
 	{% if epuntest %}
 	<div>
 		<li>請選擇 <font color=red>{{ product.name }}</font> <font color=blue>未測試</font> 產品序號：</li>
+		{% if testurl %}
 		<li><a href="{{ testurl }}" target="_blank"> 填寫測試報告 </a></li>
+		{% endif }
 	</div>
 		{% for ep in epuntest %}
 		<input type = "radio" value = {{ ep.serial }} name = "serial">
