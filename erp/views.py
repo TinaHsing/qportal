@@ -503,7 +503,7 @@ def addDiscard(request, Pid):
 	context = {'product':product}
 	if request.POST:
 		if request.POST['qty']:
-			disQty = int(request.POST['qty'])*(-1)
+			disQty = int(request.POST['qty']) #*(-1)
 			temp = request.POST['reason']
 			reason, _ = QtyReason.objects.get_or_create(reason=temp)
 			pnQty.objects.create(partNumber = product, Qty = disQty,\
