@@ -403,6 +403,7 @@ def costEvaluation(request, Pid, Serial):
 			subout.append('0%')
 	# print(outlist)
 	if len(outlist):
+		total = round(total)
 		outlist.append(["total","--","--",total,"100%"])
 		context={'cost':outlist}
 	else:
