@@ -17,6 +17,11 @@ P_FINAN_LEVEL = 10
 def erpindex(request):
 	return render(request, 'erpindex.html')
 
+def round(num):
+	text = '%.2f'%float(num)
+	new = float(text)
+	return new
+
 def viewPartNumber(request):
 	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list}	 
@@ -385,6 +390,7 @@ def costEvaluation(request, Pid, Serial):
 			price = 0
 
 		subtotal = float(ele.unitQty*price)
+		subtotal = round(subtotal)
 		outlist.append([ele.part.name, price, ele.unitQty, subtotal])
 		total = total+subtotal
 
@@ -459,7 +465,7 @@ def addPurchasing(request, Pid):
 			else:
 				pnQty.objects.create(partNumber = product, Qty = qty,\
 					reason = reason, user = user, date = date.today())
-
+			price = round(price)
 			elePrice.objects.create(partNumber = product, price = price, user = user, date= date.today() )
 			return redirect('purchasing')
 
@@ -731,6 +737,7 @@ def addPdRecord(request,Pid):
 				pnQty.objects.create(partNumber = ele.part, Qty = consqty,\
 				reason = reason, user = user, date = date.today())
 			mep.bom = bf2
+			totalcost = round(totalcost)
 			elePrice.objects.create(partNumber=product, price = totalcost, user = user, date = date.today())				
 			mep.save()
 		else:
@@ -765,6 +772,7 @@ def addPdRecord(request,Pid):
 						return render(request, 'addPdRecord.html', context)
 					mep = endProduct.objects.create(part = product,\
 							serial= serial_start+i, mUser = user, mDate = date.today(), bom = bf2)
+				totalcost = round(totalcost)
 				elePrice.objects.create(partNumber=product, price = totalcost, user = user, date = date.today())
 			else:
 				for i in range(pdQty): #設定產品但未指定bom
@@ -812,7 +820,8 @@ def uploadPO(request):
 						context.update({'done_list':done_list})
 						part = part[0]
 						ele = pnQty.objects.create(partNumber=part, reason = reason, Qty=int(out[1]), user = request.user, date = date.today())
-						price = elePrice.objects.create(partNumber = part, price = float(out[2]), user = user, date= date.today() )
+						out_price = round(float(out[2], 2))
+						price = elePrice.objects.create(partNumber = part, price = out_price, user = user, date= date.today() )
 					else:
 						context.update({'not_exist':'not_exist'})
 						nexist_list.append(p_name)
