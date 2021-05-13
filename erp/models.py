@@ -108,7 +108,7 @@ class partNote(models.Model):
 
 class elePrice(models.Model):
 	partNumber = models.ForeignKey(partNumber, on_delete = models.CASCADE, blank = True, null =True)
-	price = models.DecimalField(max_digits = 6, decimal_places =2 )
+	price = models.DecimalField(max_digits = 10, decimal_places =2 )
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
 	date = models.DateField(null=True, blank = True )
 	def __str__(self):
