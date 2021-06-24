@@ -78,8 +78,8 @@ class endProduct(models.Model):
 	subProduct = models.ManyToManyField("self", symmetrical = False, related_name = 'subp', through = 'addSubProduct')
 	software = models.ManyToManyField(software, blank= True)
 	status = models.CharField(default ="untested", max_length = 10)
-	customer = models.ForeignKey(customer, on_delete = models.SET_NULL, null=True)
-	note = models.TextField(help_text='Note', null=True, blank = True)
+	customer = models.ForeignKey(customer, on_delete = models.SET_NULL, null = True, blank = True)
+	note = models.TextField(help_text='Note', null = True, blank = True)
 	def __str__(self):
 		return str(self.serial)
 
