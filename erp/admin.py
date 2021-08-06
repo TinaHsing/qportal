@@ -23,8 +23,8 @@ admin.site.register(testlink)
 @admin.register(partNumber)
 class partNumberAdmin(admin.ModelAdmin):
 	list_display =('name','approve', 'discription')
-	list_filter =('approve',)
-	search_fields = ('name',)
+	list_filter =('approve','category')
+	search_fields = ('name','category')
 
 @admin.register(elePrice)
 class elePriceAdmin(admin.ModelAdmin):
