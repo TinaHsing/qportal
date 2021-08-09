@@ -610,22 +610,23 @@ def PdCalculate(request):
 				else:
 					buy_type = "text"
 				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink, buy_type, ele.part.location] )
-	# print(len(outlist))
+	
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
 		preid = -1
 		i = 0
 		outlist2 = []
 		for temp in outlist:
-			# print("len of outlist2 = " +str(len(outlist2)))
-			# print("inside sort loop = "+str(i))
+			if temp[3] == None:
+					temp[3] = 0 
+			
 			if temp[1] == preid:
-				# print("equal")
 				outlist2[i-1][3] = temp[3] + outlist2[i-1][3]
 				outlist2[i-1][4] = temp[4] + outlist2[i-1][4]
 			else:
 				outlist2.append(temp)
 				i=i+1
+			
 			preid = temp[1]
 			
 		context.update({'table':outlist2})
