@@ -140,7 +140,7 @@ def addPartNumber(request):
 		if request.user.is_authenticated:
 			user = request.user
 			if request.POST['partNumber']:
-				name = request.POST['partNumber'].upper()
+				name = request.POST['partNumber']
 			if request.POST['location']:
 				location = request.POST['location']
 
@@ -159,7 +159,7 @@ def addPartNumber(request):
 		elif discription == "":
 			context.update({'discriptionEmpty':'discriptionEmpty'})
 		else:
-			exist = partNumber.objects.filter(name = name).count()
+			exist = partNumber.objects.filter(name__iexact = name).count()
 			if exist:
 				context.update({'nameExist':'nameExist'})
 			else:
@@ -304,9 +304,9 @@ def uploadPart(request):
 				row = row.decode()
 				out = row.split(';')
 				len_of_out = len(out)
-				p_name = out[0].upper()
+				p_name = out[0]
 				if (len_of_out == 6) or (len_of_out == 11):
-					exist = partNumber.objects.filter(name = p_name).count()
+					exist = partNumber.objects.filter(name__iexact = p_name).count()
 					if exist:
 						context.update({'exist':'exist'})
 						exist_list.append(p_name)
@@ -351,8 +351,8 @@ def uploadBom(request, Pid, Serial):
 				out = row.split(';')
 				len_of_out = len(out)
 				if (len_of_out == 3):
-					p_name = out[0].upper()
-					part = partNumber.objects.filter(name=p_name)
+					p_name = out[0]
+					part = partNumber.objects.filter(name__iexact = p_name)
 					if (part.count()):
 						done_list.append(p_name)
 						context.update({'done_list':done_list})
