@@ -595,7 +595,6 @@ def PdCalculate(request):
 		#blset = pl.product.bomelement_set.all()
 		total = blset.count()
 		context = {'total':total}
-		print(total)
 		if (total > 0):
 			for ele in blset:
 				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
@@ -604,12 +603,12 @@ def PdCalculate(request):
 				if curQty== None:
 					curQty = 0
 				ttpdqty = ele.unitQty*pdqty
-				buyqty = max(ttpdqty - curQty, 0)
+				# buyqty = max(ttpdqty - curQty, 0)
 				if ele.part.buylink.find("http") == 0:
 					buy_type = "http"
 				else:
 					buy_type = "text"
-				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , buyqty, ele.part.buylink, buy_type, ele.part.location] )
+				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , 0 , ele.part.buylink, buy_type, ele.part.location] )
 	
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
@@ -628,6 +627,7 @@ def PdCalculate(request):
 				i=i+1
 			
 			preid = temp[1]
+			outlist2[i-1][5] = max(outlist2[i-1][4]-outlist2[i-1][2], 0)
 			
 		context.update({'table':outlist2})
 		return render(request,'pdCalculate.html', context)
