@@ -618,7 +618,6 @@ def PdCalculate(request):
 		i = 0
 		outlist2 = []
 		for temp in outlist:
-			num += 1
 			if temp[3] == None:
 					temp[3] = 0 
 			
