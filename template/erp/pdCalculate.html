@@ -5,6 +5,7 @@
 	<table width = "100%">
 		<thead colspan="5"> <tr> 備料計算：{{ total }} </tr> </thead>
 		<tr>
+			<td> </td>
 			<td>料號</td>
 			<td>位置</td>
 			<td>目前數量</td>
@@ -15,6 +16,7 @@
 		</tr>
 	{% for row in table %}
 	<tr>
+		<td>{{ row.9 }}</td>
 		<td><a href='../../partNumber/{{row.1}}/'>{{ row.0 }}</a></td>
 		<td>{{ row.8 }}</td>
 		<td>{{ row.2 }}</td>

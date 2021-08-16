@@ -596,7 +596,9 @@ def PdCalculate(request):
 		total = blset.count()
 		context = {'total':total}
 		if (total > 0):
+			num = 0
 			for ele in blset:
+				num += 1
 				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 				curQty = partP.get('Qty__sum')
 				utQty = partP.get('untestQty__sum')
@@ -608,7 +610,7 @@ def PdCalculate(request):
 					buy_type = "http"
 				else:
 					buy_type = "text"
-				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , 0 , ele.part.buylink, buy_type, ele.part.location] )
+				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , 0 , ele.part.buylink, buy_type, ele.part.location, num] )
 	
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
