@@ -611,7 +611,7 @@ def PdCalculate(request):
 				else:
 					buy_type = "text"
 				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , 0 , ele.part.buylink, buy_type, ele.part.location, num] )
-	
+	total = num	
 	if len(outlist):
 		outlist = sorted(outlist, key = lambda l:l[1] )
 		preid = -1
