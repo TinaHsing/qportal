@@ -594,11 +594,8 @@ def PdCalculate(request):
 		blset = bomDefine.objects.get(bomserial= bomserial).bomelement_set.all()
 		#blset = pl.product.bomelement_set.all()
 		total = blset.count()
-		context = {'total':total}
 		if (total > 0):
-			num = 0
 			for ele in blset:
-				num += 1
 				partP=partNumber.objects.get(Pid=ele.part.Pid).pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 				curQty = partP.get('Qty__sum')
 				utQty = partP.get('untestQty__sum')
@@ -610,14 +607,18 @@ def PdCalculate(request):
 					buy_type = "http"
 				else:
 					buy_type = "text"
-				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , 0 , ele.part.buylink, buy_type, ele.part.location, num] )
-	total = num	
-	if len(outlist):
+				outlist.append([ele.part.name, ele.part.Pid, curQty, utQty, ttpdqty , 0 , ele.part.buylink, buy_type, ele.part.location] )
+
+	total = len(outlist)
+	context = {'total':total}
+
+	if (total > 0):
 		outlist = sorted(outlist, key = lambda l:l[1] )
 		preid = -1
 		i = 0
 		outlist2 = []
 		for temp in outlist:
+			num += 1
 			if temp[3] == None:
 					temp[3] = 0 
 			
