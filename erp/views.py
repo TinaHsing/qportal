@@ -817,8 +817,8 @@ def uploadPO(request):
 				# print(out)
 				len_of_out = len(out)
 				if (len_of_out == 3):
-					p_name = out[0].upper()
-					part = partNumber.objects.filter(name=p_name).filter(level = 0)
+					p_name = out[0]
+					part = partNumber.objects.filter(name__iexact=p_name)
 					if (part.count()):
 						done_list.append(p_name)
 						context.update({'done_list':done_list})
