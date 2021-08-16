@@ -824,7 +824,7 @@ def uploadPO(request):
 						context.update({'done_list':done_list})
 						part = part[0]
 						ele = pnQty.objects.create(partNumber=part, reason = reason, Qty=int(out[1]), user = request.user, date = date.today())
-						out_price = round(float(out[2], 2))
+						out_price = round(float(out[2]), 2)
 						price = elePrice.objects.create(partNumber = part, price = out_price, user = user, date= date.today() )
 					else:
 						context.update({'not_exist':'not_exist'})
