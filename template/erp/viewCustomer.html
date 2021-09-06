@@ -20,6 +20,10 @@
 	<td> 客戶名稱 </td>
 	<td> 聯絡人 </td>
 	<td> Email </td>
+	<td> 電話 </td>
+	<td> 手機 </td>
+</tr><tr>
+	<td colspan="4"> 地址 </td>
 	<td></td>
 </tr>
 {% for cn in customer_list %}
@@ -27,6 +31,10 @@
 	<td>{{ cn.name }}</td>
 	<td>{{ cn.contact }}</td>
 	<td>{{ cn.email }}</td>
+	<td>{{ cn.phone }}</td>
+	<td>{{ cn.mobile }}</td>
+</tr><tr>
+	<td colspan="4">{{ cn.add }}</td>
 	<td>
 	 <a href="../editCustomer/{{ cn.cid }}/" class="btn btn-info" > Edit </a>
 	</td>
