@@ -30,13 +30,13 @@ def viewPartNumber(request):
 		pnKW = out['pnKW']
 		cate = out['category']
 		if pnKW !="":
-			partnumber_list = partNumber.objects.filter(name__contains= pnKW)
+			partnumber_list = partNumber.objects.filter(name__contains = pnKW).order_by('name')
 			if cate != "ALL":
 				cate = pnCategory.objects.get(category = out['category'])
 				partnumber_list = partnumber_list.filter(category=cate)
 		elif cate !="ALL":
 			cate = pnCategory.objects.get(category = out['category'])
-			partnumber_list = partNumber.objects.filter(category=cate)
+			partnumber_list = partNumber.objects.filter(category=cate).order_by('name')
 			#context.update({'partnumber_list':partnumber_list})
 		else:
 			context.update({'emptyKW':'emptyKW'})
@@ -171,7 +171,7 @@ def addPartNumber(request):
 	return render(request, 'addPartNumber.html', context)
 
 def viewBomList(request):
-	partnumber_list = partNumber.objects.exclude(level =0)
+	partnumber_list = partNumber.objects.exclude(level = 0)
 	if request.POST:
 		productKW = request.POST['productKW']
 		if productKW != "":
@@ -223,7 +223,7 @@ def editBomList(request, Pid, Serial):
 			pnKW = out['pnKW']
 			cate = out['category']
 			if pnKW !="":
-				partnumber_list = partNumber.objects.filter(name__contains= pnKW)
+				partnumber_list = partNumber.objects.filter(name__contains = pnKW)
 				if cate != "ALL":
 					cate = pnCategory.objects.get(category = out['category'])
 					partnumber_list = partnumber_list.filter(category=cate)
