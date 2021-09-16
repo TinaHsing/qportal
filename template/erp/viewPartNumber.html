@@ -27,6 +27,7 @@
 			{% endfor %}
 		</select> </td>
 	</div>
+	{% if show_package %}
 	<div>
 		<td><font color="red"> Package : ( only Use in C or R )</font></td> 
 	</div>
@@ -63,6 +64,9 @@
 		{% endif %}
 		</td>
 	</div>
+	{% else %}
+		<input type="hidden" name="package" value="All">
+	{% endif %}
 	<div><input type="submit" value="submit"/></div>
 	</form>
 <hr>

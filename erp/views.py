@@ -42,6 +42,7 @@ def viewPartNumber(request):
 			partnumber_list = partNumber.objects.filter(category = cate).order_by('name')
 			#context.update({'partnumber_list':partnumber_list})
 			if (category == 'C') or (category == 'R'):
+				context.update({'show_package':'show_package'})
 				if (package == '0402') or (package == '0603') or (package == '0805'):
 					partnumber_list = partnumber_list.filter(name__contains = package)
 				elif (package == 'other'):
