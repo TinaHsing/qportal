@@ -20,7 +20,9 @@
 	<div>
 		<td><label for="category">料號分類</label></td>
 		<td><select name = "category">
+		{% if category %}
 				<option> {{ category }} </option>
+		{% endif %}
 				<option> ALL </option>
 			{% for cg in category_list %}
 				<option > {{ cg.category }} </option>
