@@ -28,23 +28,33 @@ def viewPartNumber(request):
 	if 'pnKW' in request.GET:
 		out = request.GET
 		pnKW = out['pnKW']
-		cate = out['category']
+		category = out['category']
+		context.update({'category':category})
+		package = out['package']
+		context.update({'package':package})
 		if pnKW !="":
 			partnumber_list = partNumber.objects.filter(name__contains = pnKW).order_by('name')
-			if cate != "ALL":
-				cate = pnCategory.objects.get(category = out['category'])
-				partnumber_list = partnumber_list.filter(category=cate)
-		elif cate !="ALL":
-			cate = pnCategory.objects.get(category = out['category'])
-			partnumber_list = partNumber.objects.filter(category=cate).order_by('name')
+			if category != "ALL":
+				cate = pnCategory.objects.get(category = category)
+				partnumber_list = partnumber_list.filter(category = cate)
+		elif category != "ALL":
+			cate = pnCategory.objects.get(category = category)
+			partnumber_list = partNumber.objects.filter(category = cate).order_by('name')
 			#context.update({'partnumber_list':partnumber_list})
+			if (category == 'C') or (category == 'R'):
+				if (package == '0402') or (package == '0603') or (package == '0805'):
+					partnumber_list = partnumber_list.filter(name__contains = package)
+				elif (package == 'other'):
+					partnumber_list = partnumber_list.exclude(name__contains = '0402')
+					partnumber_list = partnumber_list.exclude(name__contains = '0603')
+					partnumber_list = partnumber_list.exclude(name__contains = '0805')
 		else:
 			context.update({'emptyKW':'emptyKW'})
 			return render(request, 'viewPartNumber.html', context)
 
 		outlist =[]
 		for pt in partnumber_list:
-			temp=pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
+			temp = pt.pnqty_set.aggregate(Sum('Qty'), Sum('untestQty'))
 			curQty = temp.get('Qty__sum')
 			utQty = temp.get('untestQty__sum')
 
@@ -71,7 +81,7 @@ def editPartNumber(request, Pid):
 	if ptnote.count():
 		ptnote = ptnote[0]
 	else:
-		ptnote=partNote.objects.create(part = pt)
+		ptnote = partNote.objects.create(part = pt)
 	category_list = pnCategory.objects.all().order_by('category')
 	context = {'part':pt, 'ptnote':ptnote, 'cate':category_list }
 	# print("["+str(pt.category)+"]")
@@ -171,7 +181,7 @@ def addPartNumber(request):
 	return render(request, 'addPartNumber.html', context)
 
 def viewBomList(request):
-	partnumber_list = partNumber.objects.exclude(level = 0)
+	partnumber_list = partNumber.objects.exclude(level = 0).order_by('name')
 	if request.POST:
 		productKW = request.POST['productKW']
 		if productKW != "":

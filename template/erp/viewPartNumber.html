@@ -10,7 +10,6 @@
 		<li><a href={% url 'uploadPart' %}>批次建立新料號</a></li>
 	</div>
 	<form method ="get" action ="">
-		
 	<div>
 		<td><label for="pnKW">料號包含關鍵字</label></td>
 		<td><input id ="pnKW" type="text" name="pnKW"></td>
@@ -21,12 +20,48 @@
 	<div>
 		<td><label for="category">料號分類</label></td>
 		<td><select name = "category">
+				<option> {{ category }} </option>
 				<option> ALL </option>
 			{% for cg in category_list %}
 				<option > {{ cg.category }} </option>
 			{% endfor %}
 		</select> </td>
-		
+	</div>
+	<div>
+		<td><font color="red"> Package : ( only Use in C or R )</font></td> 
+	</div>
+	<div>
+		<td>
+		{% if package == "All" %}
+			<input type="radio" name="package" value="All" checked> All </input>
+		{% else %}
+			<input type="radio" name="package" value="All"> All </input>
+		{% endif %}
+
+		{% if package == "0402" %}
+			<input type="radio" name="package" value="0402" checked> 0402 </input>
+		{% else %}
+			<input type="radio" name="package" value="0402"> 0402 </input>
+		{% endif %}
+
+		{% if package == "0603" %}
+			<input type="radio" name="package" value="0603" checked> 0603 </input>
+		{% else %}
+			<input type="radio" name="package" value="0603"> 0603 </input>
+		{% endif %}
+
+		{% if package == "0805" %}
+			<input type="radio" name="package" value="0805" checked> 0805 </input>
+		{% else %}
+			<input type="radio" name="package" value="0805"> 0805 </input>
+		{% endif %}
+
+		{% if package == "other" %}
+			<input type="radio" name="package" value="other" checked> other </input>
+		{% else %}
+			<input type="radio" name="package" value="other"> other </input>
+		{% endif %}
+		</td>
 	</div>
 	<div><input type="submit" value="submit"/></div>
 	</form>
