@@ -440,6 +440,9 @@ def purchasing(request):
 			cate = pnCategory.objects.get(category = out['category'])
 			partnumber_list = partNumber.objects.filter(category=cate).filter(level = 0)
 			context.update({'partnumber_list':partnumber_list})
+		else:
+			context.update({'emptyKW':'emptyKW'})
+			return render(request, 'purchasing.html', context)
 
 		if partnumber_list.count():
 			outlist = []

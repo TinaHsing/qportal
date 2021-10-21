@@ -10,6 +10,9 @@
 	<div>
 		<td><label for="pnKW">新增料號包含關鍵字</label></td>
 		<td><input id ="pnKW" type="text" name="pnKW"></td>
+		{% if emptyKW %}
+			<td><font color=red>請輸入關鍵字</font></td>
+		{% endif %}
 	</div>
 	<div>
 		<td><label for="category">料號分類</label></td>
