@@ -424,7 +424,7 @@ def costEvaluation(request, Pid, Serial):
 def purchasing(request):
 	category_list = pnCategory.objects.all().order_by('category')
 	context = {'category_list':category_list}
-	 
+
 	if 'pnKW' in request.POST:
 		out = request.POST
 		pnKW = out['pnKW']
@@ -617,7 +617,11 @@ def PdCalculate(request):
 					curQty = 0
 				ttpdqty = ele.unitQty*pdqty
 				# buyqty = max(ttpdqty - curQty, 0)
-				if ele.part.buylink.find("http") == 0:
+				if ele.part.buylink.find("digikey") > 0:
+					buy_type = "Digikey"
+				elif ele.part.buylink.find("mouser") > 0:
+					buy_type = "Mouser"
+				elif ele.part.buylink.find("http") == 0:
 					buy_type = "http"
 				else:
 					buy_type = "text"
