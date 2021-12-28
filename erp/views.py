@@ -1294,7 +1294,7 @@ def exportBom(request, Pid, Serial):
 	fp = open(fname,"w")
 	for ele in element:
 		fp.write(ele.part.name+";" + str(ele.unitQty) +";"+ ele.schPN)
-		if ele.schPN[-1:] != '\n':
+		if (ele.schPN[-1:] != '\n') and (ele.schPN[-1:] != '\r'):
 			fp.write('\n')
 	fp.close()
 	fp = open(fname,"rb")
