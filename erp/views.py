@@ -1289,7 +1289,7 @@ def exportPartNumber(request):
 def exportBom(request, Pid, Serial):
 	product = partNumber.objects.get(Pid=Pid)
 	bf = bomDefine.objects.get(bomserial = Serial)
-	element = bf.bomelement_set.all()
+	element = bf.bomelement_set.all().order_by('part__name')
 	fname = product.name +"_"+ bf.discription +".csv"
 	fp = open(fname,"w")
 	for ele in element:
