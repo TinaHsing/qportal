@@ -550,7 +550,7 @@ def planer(request):
 		pnKW = out['pnKW']
 		if pnKW !="":
 			#partnumber_list = partNumber.objects.filter(name__contains= pnKW).exclude(planerelement__user=user).filter(level__gt=0)
-			bf = bomDefine.objects.filter(product__name__contains = pnKW).filter(product__level__gt =0)
+			bf = bomDefine.objects.filter(product__name__contains = pnKW).filter(product__level__gt =0).order_by('product__name')
 			# print(bf)
 			context.update({'bf':bf})
 
