@@ -1381,7 +1381,7 @@ def viewBomOfPart(request, Pid):
 
 def addTestLink(request):
 	template_name = 'addTestLink.html'
-	partNumber_list = partNumber.objects.filter(level__gt=0)
+	partNumber_list = partNumber.objects.filter(level__gt=0).order_by('name')
 	context = {'pnlist':partNumber_list}
 
 	if request.POST:
