@@ -1,0 +1,528 @@
+IC_LDO_ADP7182_TSOT23-5;H10;LDO;N/A;Low noise negative 200mA LDO. Lowest input voltage -28V with EN;Ask Answer Tech first;;SOT23-5;https://www.digikey.tw/product-detail/zh/analog-devices-inc/ADP7182AUJZ-R7/ADP7182AUJZ-R7CT-ND/;  ;  
+L_1.2uH_35mA_0402;H8;L;N/A;FIXED IND 1.2UH 35MA 790 MOHM;https://www.digikey.tw/product-detail/zh/tdk-corporation/MLF1005G1R2KT000/445-15684-1-ND/4327980;1.2u;R0402;;  ;  
+R_120R_60mW_0402_0.1%;H4;R;N/A;Resistor in 0402 SMD package;https://www.digikey.tw/product-detail/zh/yageo/RT0402BRD07120RL/YAG1349CT-ND/;120 0.1%;RC0402N-L;;    ;    
+R_28.7R_60mW_0402_0.1%;H4;R;N/A;Resisotr in 0402 SMD package;https://www.digikey.tw/product-detail/zh/panasonic-electronic-components/ERJ-2RKF28R7X/P28-7LCT-ND/;28.7, 1%;RC0402N-L;;  ;  
+C_0.1u_50V_TANT_1206;K13;C;N/A;0.1u 50V 10% in 1206;https://www.digikey.tw/product-detail/zh/kemet/T491A104K050AT/399-8263-1-ND/;0.1u, Tant;POL_C1206_0805;;   ;   
+D_TVS_SMAJ5-0CA_DO214AC;TBD;DIODE;N/A;TVS DIODE 5V 9.2V DO214AC;https://www.digikey.tw/product-detail/zh/littelfuse-inc/SMAJ5-0CA/SMAJ5-0CALFCT-ND/762463;5V;DIONM5126X250N;;  ; 
+R_665R_60mW_0402_0.1%;H4;R;N/A;665R resistor in 0402 package;https://www.digikey.tw/product-detail/zh/panasonic-electronic-components/ERA-2AEB6650X/P665DCCT-ND/3063879;665, 0.1%;RC0402N-L;;    ;    
+IC_MIXER_AD633ARZ_SO8 ;B5-4;MIXER;N/A;IC MULTIPLIER ANALOG 8-SOIC;Ask Answer Tech first;AD633;SOP8;https://www.digikey.tw/product-detail/zh/analog-devices-inc/AD633JRZ-R7/AD633JRZ-R7CT-ND/3314096;  ;  
+IC_LDO_ADP7118_TSOT23-5;H10;LDO;N/A;Low Noise 200mA adjustble postive LDO, 20V input voltage, with EN;Ask Answer Tech first;ADP7118AUJZ-R7;SOT23-5;https://www.digikey.tw/product-detail/zh/analog-devices-inc/ADP7118AUJZ-R7/ADP7118AUJZ-R7CT-ND/;  ;  
+IC_ADC_ADS1115_SSOP10;H8;ADC;N/A;Automotive 16-Bit 860SPS 4-Ch Delta-Sigma ADC With PGA, Oscillator, VREF, Comparator, and I2C;Ask YSM Tech first;ADS1115BQDGSRQ1;VSSOP-10;https://www.digikey.tw/product-detail/zh/texas-instruments/ADS1115IDGSR/296-38849-1-ND/;  ; 
+IC_SPST_ADG5412_SSOP16;B10-3;SPST;N/A;1.5 ohm on resistance 4xSPST with +/-15V supply voltage;Ask Answer Tech first;ANALOG_SW_SPST;TSSOP-16;https://www.digikey.tw/product-detail/zh/analog-devices-inc/ADG1412YRUZ-REEL7/ADG1412YRUZ-REEL7CT-ND/4885441; ; 
+IC_OPAMP_OPA2277_SO8;E2;OPAMP;N/A;high precision Low offset Dual OpAmp with 1MHz bandwidth;https://www.digikey.tw/product-detail/zh/LMH6612MAX%2fNOPB/296-46310-1-ND/;DOPOPA2277;SOP8;;  ;  
+IC_DIGITAL_FT232R_SSOP28;C9;DIGITAL;N/A;USB to UART IC;https://www.digikey.tw/product-detail/zh/FT232RL-REEL/768-1007-1-ND/;FT232R;SSOP-28;; ; 
+L_Bead_10R_3A_100MHz_0402(phase_out);H8;L;N/A;bead 10ohm @100MHz 3A maximum;https://www.digikey.tw/product-detail/zh/tdk-corporation/MPZ1005S100CT000/445-2978-1-ND/;LCB1608-600Y-N;R0402;; ; 
+IC_SPECIAL_LTC1966_SOP8;H6;ANALOG;N/A;rms to DC converter;https://www.digikey.tw/product-detail/zh/analog-devices-inc/LTC1966CMS8-PBF/LTC1966CMS8-PBF-ND/807753;LTC1966HMS8;MSOP8;; ; 
+IC_FILTER_MAX294_SO8;H8;FILTER;N/A;8th order low pass digital filter with up to 25kHz corner frequency;https://www.digikey.tw/product-detail/zh/maxim-integrated/MAX294CSA/MAX294CSA-ND/;MAX294CSA+;SOIC8_4P9X3P9MC;; ; 
+IC_DIFFAMP_INA163_SO14;H8;DIFFAMP;N/A;Low Noise Instrument Amplifier, bandwidth 800kHz @ gain = 100;https://www.digikey.tw/product-detail/zh/texas-instruments/INA163UA-2K5/INA163UACT-ND/2499121;OP_INA163;SO-14;;  ;  
+IC_COMP_MCP6566_SC70-5;H8;COMP;N/A;TBD;https://www.digikey.tw/product-detail/zh/microchip-technology/MCP6566T-E-LT/MCP6566T-E-LTCT-ND/2060176;OP_MCP6566;SC70-5;; ; 
+IC_MCU_STM32F405RG_LQFP-64;防潮箱B-3;MCU;N/A;MCU 32-Bit, ARM Cortex M4, 1MB Flash STMicroelectronics STM32F405RGT6, 32bit ARM Cortex M4F Microcontroller, 168MHz, 1024 kB Flash, 64-Pin LQFP;Ask YSM Tech first;STM32F405RGT6;LQFP-64;https://www.digikey.tw/product-detail/zh/stmicroelectronics/STM32F405RGT7TR/497-19007-1-ND/9974339; ; 
+IC_SPDT_TS5A3159A_SC70-6;B10-2;SPDT;N/A;5V SPDT analog switch;https://www.digikey.tw/product-detail/zh/texas-instruments/TS5A3159ADCKR/296-21188-1-ND;TS5A3159A;SC70-6;;   ;   
+R_4.53R_60mW_0402;TBD;R;N/A;TBD;https://www.digikey.tw/product-detail/zh/vishay-dale/CRCW04024R53FKED/541-4-53LLCT-ND/1961957;4.53, 1%;RC0402N-L;;;
+PCBA_QSS014_MAIN_P03;防潮箱;PCBA;1;PCBA for QSS014_MAIN_P03;EmbPCB;None;None;None; None; None
+導熱膠;防潮箱;ACCESSORIES;N/A;高導熱接著劑;https://www.ruten.com.tw/item/show?21307099531415;None;None;None; None; None
+PCB_QSS014_MAIN_P03;防潮箱A-2;PCBA;N/A;PCB for QSS014 main p03;Emb PCB;None;None;None;  None;  None
+PCB_QSS017_MASS_PWR_P01;防潮箱A-1;PCBA;N/A;PCB for QSS017 mass pwr p01;Emb PCB;None;None;None;   None;   None
+R_0R_60mW_0402;book;R;N/A;RES 0 OHM JUMPER 1/16W 0402;Guang Hua;;;;;
+R_0R_125mW_0805;book;R;N/A;0 ohm 1/8W SMD0805;Guang Hua;;;;;
+R_1.2k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_1.82k_100mW_0603;H4;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/stackpole-electronics-inc/RMCF0603FT1K82/RMCF0603FT1K82CT-ND/1943006;None;None;None; None; None
+R_10R_333mW_0603_1%_THICK_FILM;H8;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/vishay-dale/CRCW060310R0FKEAHP/541-10.0SCT-ND/;None;None;None;  None;  None
+R_100k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_10k_100mW_0603;book;R;N/A;RES SMD 10K OHM 1% 1/10W 0603;光華;None;None;None; None; None
+R_12k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_13.7k_200mW_0603_0.5%;H4;R;N/A;RES SMD 13.7K OHM 0.5% 1/5W 0603;https://www.digikey.tw/products/zh?keywords=P20411CT-ND;;;;;
+R_17.4k_100mW_0603;H4;R;N/A;RES SMD 17.4K OHM 1% 1/10W 0603;https://www.digikey.tw/products/zh?keywords=311-17.4khrct-nd;;;;;
+R_1k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_2.2k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_2.49k_100mW_0603;H4;R;N/A;RES SMD 2.49K OHM 1% 1/10W 0603;https://www.digikey.tw/products/zh?keywords=311-2.49KHRCT-ND;;;;;
+R_215k_100mW_0603;H4;R;N/A;RES SMD 215K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-07215KL/311-215KHRCT-ND;;;;;
+R_23.2k_100mW_0603;H4;R;N/A;RES SMD 23.2K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-0723K2L/311-23.2KHRCT-ND;;;;;
+R_24.9k_100mW_0603;H4;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/vishay-beyschlag-draloric-bc-components/MCT06030C2492FP500/749-1627-1-ND/7347935;None;None;None; None; None
+R_28k_100mW_0603;H4;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/stackpole-electronics-inc/RMCF0603FT28K0/RMCF0603FT28K0CT-ND/2418007;None;None;None; None; None
+R_2k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_3.3k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_3.4k_100mW_0603;H4;R;N/A;RES SMD 3.4K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-073K4L/311-3.40KHRCT-ND;;;;;
+R_3.48k_100mW_0603;H4;R;N/A;RES SMD 4.7K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-074K7L/311-4-70KHRCT-ND/730159;None;None;None;  None;  None
+R_30.9k_100mW_0603;H4;R;N/A;RES SMD 30.9K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-0730K9L/311-30.9KHRCT-ND;;;;;
+R_3k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_4.7k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_42.2k_100mW_0603;H4;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/stackpole-electronics-inc/RMCF0603FT42K2/RMCF0603FT42K2CT-ND/1943096;None;None;None; None; None
+R_432R_100mW_0603;H4;R;N/A;RES SMD 432 OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-07432RL/311-432HRCT-ND;;;;;
+R_432k_100mW_0603;H4;R;N/A;RES SMD 432K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-07432KL/311-432KHRCT-ND;;;;;
+R_46.4k_100mW_0603;H4;R;N/A;RES SMD 46.4K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-0746K4L/311-46.4KHRDKR-ND;;;;;
+R_48.7k_100mW_0603_0.5%;H4;R;N/A;RES SMD 48.7KOHM 0.5% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RT0603DRE0748K7L/311-2594-1-ND;;;;;
+R_5.1k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_499k_100mW_0603;H4;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/stackpole-electronics-inc/RMCF0603FT499K/RMCF0603FT499KCT-ND/1943138;None;None;None; None; None
+R_59k_100mW_0603;H4;R;N/A;RES SMD 59K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-0759KL/311-59.0KHRCT-ND;;;;;
+R_6.8k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_61.9k_100mW_0603;H4;R;N/A;RES SMD 61.9K OHM 1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/yageo/RC0603FR-0761K9L/311-61.9KHRCT-ND;;;;;
+R_9.65k_100mW_0603; N/A;R;N/A;N/A;Need to check;;;;;
+D_LED_GREEN_0603;E3;DIODE;N/A;LED GREEN CLEAR SMD;https://www.digikey.tw/product-detail/zh/w%C3%BCrth-elektronik/150060VS75000/732-4980-1-ND/4489904;None;None;;; None
+D_LED_RED_0603;E3;DIODE;N/A;LED RED CLEAR SMD;https://www.digikey.tw/product-detail/zh/lite-on-inc/LTST-C191KRKT/160-1447-1-ND;;;;;
+R_33R_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_47k_100mW_0603;book;R;N/A;N/A;Guang Hua;;;;;
+R_9.53k_100mW_0603;H4;R;N/A;RES SMD 9.53KOHM 0.1% 1/10W 0603;https://www.digikey.tw/product-detail/zh/panasonic-electronic-components/ERA-3AEB9531V/P9-53KDBCT-ND/3076089;None;None;None;  None;  None
+D_ZENER_18V_500mW_SOD123;H8;DIODE;N/A;DIODE ZENER 18V 500MW SOD123;光華;None;None;https://www.digikey.tw/product-detail/zh/diodes-incorporated/BZT52C18-7-F/BZT52C18-FDICT-ND/;  None;  None
+D_TVS_ESD401DPYR_X1SON;H6;DIODE;N/A;TVS DIODE 5.5V 24V 2X1SON;https://www.digikey.tw/product-detail/zh/texas-instruments/ESD401DPYR/296-47160-1-ND/7650254;;;;;
+D_Schottky_SD107WS_SOD323;E3;DIODE;N/A;DIODE SCHOTTKY 30V 100MA SOD323;https://www.digikey.tw/product-detail/zh/diodes-incorporated/SD107WS-7-F/SD107WS-FDICT-ND;;;;;
+D_TVS_SMAJ20CA_DO214AC;E3;DIODE;N/A;TVS DIODE 20V 32.4V DO214AC;https://www.digikey.tw/product-detail/zh/micro-commercial-co/SMAJ20CA-TP/SMAJ20CA-TPMSCT-ND/;None;None;None; None; None
+D_TVS_SMAJ11CA_DO214AC;H8;DIODE;N/A;TVS DIODE 11V  DO214AC;https://www.digikey.tw/product-detail/zh/littelfuse-inc/SMAJ11CA/SMAJ11CALFCT-ND/;None;None;None;    None;    None
+D_TVS_PESD15VL2BT_SOT23;H8;DIODE;N/A;TVS DIODE 11V 18.2V DO214AC;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/PESD15VL2BT-215/1727-3813-1-ND/;None;None;None; None; None
+X_12MHz_NA_HC49S;E11-1;CRYSTAL;N/A;12M XTAL;Guang Hua;;;;;
+IC_LDO_TPS73525DRB_SON8;E3;LDO;N/A;IC REG LINEAR 2.5V 500MA 8SON;https://www.digikey.tw/product-detail/zh/texas-instruments/TPS73525DRBR/296-23647-1-ND;;;;;
+IC_EEPROM_93LC56BT_SOT23-6(phase out);E2;EERPOM;N/A;IC EEPROM 2K SPI 2MHZ SOT23-6;https://www.mouser.tw/ProductDetail/Microchip-Technology/93LC56BT-I-OT?qs=lQv0JY93vrc7B5Rh5LPW8g%3D%3D;None;None;None;  https://www.mouser.tw/ProductDetail/Microchip-Technology/93AA56BT-I-OT?qs=hul3WK2zl4p%252B6%2FsdRU7j4A%3D%3D;  None
+IC_DIGITAL_FT232HL_LQFP48;E2;DIGITAL;N/A;IC USB TO UART/FIFO 48LQFP;https://www.digikey.tw/product-detail/zh/ftdi-future-technology-devices-international-ltd/FT232HL-REEL/768-1101-1-ND;None;None;None; None; None
+IC_OPAMP_LM7171_SO8;C4-2;OPAMP;N/A;High speed opamp with 200MHz bandwidth and FB pin;https://www.digikey.tw/product-detail/zh/texas-instruments/LM7171AIMX-NOPB/296-35428-1-ND/3739132;None;None;None; None; None
+IC_DIGITAL_MAX3232CDR_SO16;B8-1;DIGITAL;N/A;IC DRVR/RCVR MULTCH RS232 16SOIC;https://www.mouser.tw/ProductDetail/Texas-Instruments/MAX3232CDR?qs=8Pd2FuFSoMGcjerL7c%2FCzg%3D%3D;None;None;None;  https://www.mouser.tw/ProductDetail/MaxLinear/SP3232EEN-L?qs=H%252BP%2FcHWii3cxzh6f4Jel3Q%3D%3D;  None
+IC_REF_5025IDGKT_VSSOP8;H8;REFERENCE;N/A;refrence ic with 5V or 2.5 output;https://www.digikey.tw/product-detail/zh/texas-instruments/REF5025IDGKT/296-24499-1-ND/2060771;None;None;None; None; None
+IC_DIGITAL_74HC4052D_SO16;H8;DIGITAL;N/A;4 ch mux IC;https://www.digikey.tw/product-detail/zh/toshiba-semiconductor-and-storage/74HC4052D/74HC4052DCT-ND/;None;None;None; None; None
+IC_LDO_LT3065HMSE_MSOP12;E3;LDO;N/A;IC REG LIN POS ADJ 500MA 12MSOP;https://www.digikey.tw/product-detail/zh/LT3065HMSE%23PBF/LT3065HMSE%23PBF-ND/;None;None;None; None; None
+IC_LDO_LT3091HR_7DDPAK;H5;LDO;N/A;IC REG LIN NEG ADJ 1.5A 7DDPAK;https://www.digikey.tw/product-detail/zh/analog-devices-inc/LT3091HR-PBF/505-LT3091HR-PBF-ND/5432248;None;None;https://www.mouser.tw/ProductDetail/Analog-Devices/LT3091ERPBF?qs=sGAEpiMZZMuLLNXTG1MZatyj5S63XTnmXyPmRyrC42aQ0jyP1YkQBQ%3D%3D;   None;   None
+IC_PWM_ADP2384ACPZN_LFCSP24;E3;PWM;N/A;IC REG BUCK ADJ 4A 24LFCSP;https://www.digikey.tw/zh/products/detail/analog-devices-inc/ADP2384ACPZN-R7/3758433;None;None;https://www.mouser.tw/ProductDetail/Analog-Devices/ADP2384ACPZN-R7?qs=%2Fha2pyFadujEe6vr7S7bPwJzMi%252BDCIuKP0ThllHh1Y%2FI31KbaQcJlw%3D%3D;  None;  None
+IC_LDO_NCP135AMT040TBG_WDFN;E3;LDO;N/A;Postive 500mA low dropout LDO;https://www.digikey.tw/product-detail/zh/on-semiconductor/NCP135AMT040TBG/NCP135AMT040TBGOSCT-ND;None;None;None; None; None
+IC_DAC_8718SPAG_TQFP64;H8;DAC;N/A;8 ch DAC IC with +/- 15V output;https://www.digikey.tw/product-detail/zh/texas-instruments/DAC8718SPAG/296-27423-5-ND/;None;None;None;  None;  None
+IC_REF_AZ431LANTR-G1_SOT23;C5;REFERENCE;N/A;100mA linear LDO 1.24V to 18V;https://www.digikey.tw/product-detail/zh/diodes-incorporated/AZ431LANTR-G1/AZ431LANTR-G1DICT-ND;None;None;https://www.mouser.tw/ProductDetail/Diodes-Incorporated/AZ431LANTR-G1?qs=eSfX1CQlHqofs8CHA3JQaw==; https://www.digikey.tw/product-detail/zh/stmicroelectronics/TS3431ILT/497-8096-1-ND/1883735;https://www.mouser.tw/ProductDetail/onsemi/TLV431CSN1T1G?qs=dbuNSGnowt1DjYMSHayOCQ%3D%3D
+MOS_N/P_SI4559ADY_60V_5.3A_SO8;E3;MOS;N/A;MOSFET N/P-CH 60V 5.3A 8-SOIC;https://www.digikey.tw/product-detail/zh/vishay-siliconix/SI4559ADY-T1-GE3/SI4559ADY-T1-GE3CT-ND;None;None;https://www.digikey.tw/product-detail/en/alpha-omega-semiconductor-inc/AO4611/785-1203-1-ND/2353921; https://www.digikey.tw/product-detail/en/infineon-technologies/AUIRF7343QTR/AUIRF7343QCT-ND/6559909;https://www.mouser.tw/ProductDetail/Vishay-Semiconductors/SI4559ADY-T1-E3?qs=G1LhLIAbs1yiXElVY9RYcg%3D%3D
+BJT_NPN_2SC3906KT146S_120V_0.05A_SOT23;E3;BJT;N/A;TRANS NPN 120V 0.05A SOT-346;https://www.digikey.tw/product-detail/zh/rohm-semiconductor/2SC3906KT146S/2SC3906KT146SCT-ND;;;;;
+CON_SMA_180;E4-1;CONNECTOR;N/A;N/A;Guang Hua;None;None;None;   None;   None
+CON_WAFER_2.54_6P_M_180;紙箱;CONNECTOR;N/A;2.54mm 6P male connector;https://knowing-tech.com/product/2545m06/;None;None;None; None; None
+CON_WAFER_2.54_3P_M_180;紙箱;CONNECTOR;N/A;2.54mm 3P male connector;https://knowing-tech.com/product/2545m03/;None;None;None; None; None
+CON_SMA_90;E4-1;CONNECTOR;N/A;SMA connector 90 degree for PCB;https://www.lihyeu.com.tw/chinese/prob.php?cid=53&cid_2=158&cid_3=239&cid_4=240&id=950;;;;;
+PCBA_QSS017_MASS_PWR_P01;防潮箱A-4;PCBA;1;PCBA for QSS017_MASS_PWR_P01;Emb PCB;None;None;None;  None;  None
+C_0.1u_50V_X7R_0603;K6;C;N/A;CAP CER 0.1UF 50V X7R 0603;https://www.digikey.tw/product-detail/zh/kemet/C0603C104M5RACTU/399-7845-1-ND;None;None;None;None;None
+C_0.47u_16V_X7R_0603;K6;C;N/A;CAP CER 0.47UF 16V X7R 0603;https://www.digikey.tw/product-detail/zh/tdk-corporation/C1608X7R1C474K080AC/445-5192-1-ND;None;None;None;  None;  None
+C_10n_25V_X7R_0603;book;C;N/A;0.01u 25V in 0603	;Guang Hua;None;None;None;   None;   None
+C_10p_50V_C0G_0603;book;C;N/A;10pF 50V in 0603	;Guang Hua;None;None;None; None; None
+C_18p_50V_C0G_0603;book;C;N/A;N/A;Guang Hua;;;;;
+C_27p_50V_C0G_0603;book;C;N/A;N/A;Guang Hua;;;;;
+C_10u_25V_X5R_0805;K10;C;N/A;10u 25V MLCC capacitor in 0805;https://www.digikey.tw/product-detail/zh/murata-electronics-north-america/GRM21BR61E106KA73K/490-16824-1-ND/7595732?cur=USD&lang=zh;None;None;None; None; None
+C_10u_25V_X7R_1206;K11;C;N/A;CAP CER 10UF 25V X7R 1206;https://www.digikey.tw/product-detail/zh/murata-electronics/GRM31CR71E106KA12L/490-6518-1-ND;None;None;None; None; None
+C_22u_10V_X7R_1206;E3;C;N/A;CAP CER 22UF 10V X7R 1206;https://www.digikey.tw/product-detail/zh/taiyo-yuden/LMK316AB7226KL-TR/587-3425-1-ND;;;;;
+C_1u_25V_X7R_0603;K6;C;N/A;CAP CER 1UF 25V X7R 0603;https://www.digikey.tw/product-detail/zh/samsung-electro-mechanics/CL10B105KA8NNNC/1276-1184-1-ND/3889270;None;None;https://www.digikey.tw/product-detail/zh/tdk-corporation/C1608X7R1E105K080AB/445-5956-1-ND/2443997;      None;      None
+C_1u_25V_X7R_0805;K9;C;N/A;CAP CER 1UF 25V X7R 0805;https://www.digikey.tw/product-detail/zh/w-rth-elektronik/885012207078/732-7672-1-ND;None;None;None; None; None
+C_1u_16V_X7R_1206;K11;C;N/A;CAP CER 1UF 16V X7R 1206;https://www.digikey.tw/product-detail/zh/w-rth-elektronik/885012208036/732-7692-1-ND;None;None;None; None; None
+C_2.2u_25V_X5R_0603;K6;C;N/A;CAP CER 2.2UF 25V X5R 0603;https://www.digikey.tw/product-detail/zh/taiyo-yuden/TMK107ABJ225KA-T/587-2909-1-ND/2649029;None;None;None;    None;    None
+C_22n_25V_X7R_0603;book;C;N/A;N/A;Guang Hua;;;;;
+C_3.3n_50V_C0G_0603;H4;C;N/A;CAP CER 3300PF 50V C0G/NP0 0603;https://www.digikey.tw/product-detail/zh/murata-electronics/GRM1885C1H332JA01D/490-6385-1-ND;;;;;
+C_33n_16V_X7R_0603;book;C;N/A;N/A;Guang Hua;;;;;
+C_4.7n_50V_C0G_0603;H4;C;N/A;CAP CER 4700PF 50V C0G/NP0 0603;https://www.digikey.tw/product-detail/zh/murata-electronics/GRM1885C1H472JA01D/490-9669-1-ND;;;;;
+C_4.7u_35V_X7R_0805;F6;C;N/A;35V 4.7u X7R 0805(50V 4.7u X7R 0805 缺貨);https://www.digikey.tw/product-detail/zh/C2012X7R1V475K125AC/445-7555-1-ND/2733627;None;None;https://www.digikey.tw/product-detail/zh/tdk-corporation/C2012X7R1H475K125AC/445-C2012X7R1H475K125ACCT-ND;    None;    None
+C_6.8p_50V_C0G_0603;book;C;N/A;N/A;Guang Hua;;;;;
+C_8.2p_50V_C0G_0603;book;C;N/A;N/A;Guang Hua;;;;;
+C_6.8n_50V_C0G_0603;H4;C;N/A;CAP CER 6800PF 50V C0G/NP0 0603;https://www.digikey.tw/product-detail/zh/murata-electronics/GRM1885C1H682JA01D/490-11477-1-ND;;;;;
+C_68n_25V_X7R_0603;H4;C;N/A;CAP 68NF 25V X7R 0603;https://www.digikey.tw/product-detail/zh/yageo/CC0603KRX7R8BB683/311-4091-1-ND/;None;None;None;    None;    None
+C_22u_25V_X7R_1210;E3;C;N/A;CAP CER 22UF 25V X7R 1210;https://www.digikey.tw/product-detail/en/murata-electronics/GRM32ER71E226ME15L/490-10758-1-ND/5251341;None;None;https://www.digikey.tw/product-detail/zh/taiyo-yuden/TMK325B7226MM-PR/587-5481-1-ND;https://www.digikey.tw/product-detail/zh/taiyo-yuden/TMK325B7226MMHP/587-TMK325B7226MMHPCT-ND/;https://www.digikey.tw/product-detail/en/avx-corporation/12103C226KAT2A/478-9964-1-ND/6149088
+C_100u_10V_X5R_1210;K12;C;N/A;CAP CER 100UF 10V X5R 1210;https://www.digikey.tw/product-detail/zh/taiyo-yuden/LMK325ABJ107MM-T/587-6152-1-ND;None;None;None;None;None
+L_2.2uH_18A_12X11;H5;L;N/A;FIXED IND 2.2UH 18A;https://www.digikey.tw/product-detail/zh/w-rth-elektronik/7443320220/732-2140-1-ND;;;;;
+L_4.7uH_9.5A_10X10;H5;L;N/A;FIXED IND 4.7UH 9.5A;https://www.digikey.tw/product-detail/en/taiyo-yuden/NS10145T4R7NNA/587-3131-1-ND/2774693;None;None;https://www.digikey.tw/product-detail/zh/w-rth-elektronik/7447798470/732-2424-1-ND;None; None
+L_10uH_140mA_1210;E3;L;N/A;FIXED IND 10UH 140MA;https://www.digikey.tw/product-detail/zh/murata-electronics/LQW32FT100M0HL/490-18065-1-ND;;;;;
+L_BEAD_600R_500mA_100MHz_0603;H8;L;N/A;600ohm_100MHz_0603 MMZ1608Y601BTA00 in 0603;https://www.digikey.tw/product-detail/zh/tdk-corporation/MMZ1608Y601BTA00/445-1551-1-ND/;None;None;None;   None;   None
+CON_PINHEAD_3X2_M_180;E7;CONNECTOR;N/A;N/A;Guang Hua;;;;;
+CON_PINHEAD_4X2_M_180;E7;CONNECTOR;N/A;N/A;Guang Hua;;;;;
+CON_PINHEAD_5X2_M_180;E7;CONNECTOR;N/A;N/A;Guang Hua;;;;;
+CON_PINHEAD_1X2_M_180;E7;CONNECTOR;N/A;N/A;Guang Hua;;;;;
+CON_PINHEAD_8X2_M_180;E7;CONNECTOR;N/A;N/A;Guang Hua;;;;;
+CON_USB_MICRO;E3;CONNECTOR;N/A;micro usb connector SMD;https://www.digikey.tw/product-detail/zh/te-connectivity-amp-connectors/1981568-1/A97800CT-ND;;;;;
+X_16MHz_NA_HC49S;E11-1;CRYSTAL;N/A;16M XTAL;Guang Hua;;;;;
+CON_KK_2.54_3_M;F3-2;CONNECTOR;N/A;2.54mm 3P male connector;Guang Hua;None;None;None; None; None
+CON_HV;D4-1;CONNECTOR;N/A;CONN JACK TEST HORIZ INSUL MIL B;https://www.digikey.tw/product-detail/zh/cinch-connectivity-solutions-johnson/105-2210-201/J586-ND/;;;;;
+PCB_QSS011_GYROA_MAIN_P03;防潮箱A-1;PCBA;N/A;PCB for QSS011_GyroA_Main_P03;Emb PCB;None;None;None; None; None
+PCBA_QSS011_GYROA_MAIN_P03;防潮箱A-4;PCBA;1;PCBA for QSS011_GyroA_Main_P03;Emb PCB;None;None;None; None; None
+CON_PINHEAD_3X2_F;E8;CONNECTOR;N/A;3X2 pin female pin header ;Guang Hua ;;;;;
+C_14p_50V_C0G_0402;K1;C;N/A;CAP CER 14pF 50V C0G/NP0 0402;https://www.digikey.tw/product-detail/zh/murata-electronics/GJM1555C1H140GB01D/490-14443-1-ND;None;None;None;  None;  None
+D_SCHOTTKY_1PS70SB84_SOT323;E1;DIODE;N/A;DIODE ARRAY SCHOTTKY 15V SOT323;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/1PS70SB84,115/1727-5440-1-ND;;;;;
+D_SCHOTTKY_1PS70SB85_SOT323;E1;DIODE;N/A;DIODE ARRAY SCHOTTKY 15V SOT323;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/1PS70SB85,115/1727-5441-1-ND;;;;;
+D_SCHOTTKY_1PS70SB86_SOT323;E1;DIODE;N/A;DIODE ARRAY SCHOTTKY 15V SOT323;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/1PS70SB86,115/1727-5442-1-ND;;;;;
+IC_EEPROM_34LC02-I/SN_SO8;H5;EERPOM;N/A;IC EEPROM 2K I2C 1MHZ 8SOIC ;https://www.digikey.tw/product-detail/zh/microchip-technology/34LC02-I-SN/34LC02-I-SN-ND/1635972;;;;;
+L_BEAD_68R_1.5A_100MHz_0402;E1;L;N/A;FERRITE BEAD 68 OHM 0402 1LN;https://www.digikey.tw/product-detail/zh/taiyo-yuden/BKP1005TS680-TV/587-3961-1-ND;;;;;
+R_750R_60mW_0402;E1;R;N/A;RES SMD 750 OHM 1% 1/10W 0402;https://www.digikey.tw/product-detail/zh/panasonic-electronic-components/ERJ-2RKF7500X/P750LCT-ND;;;;;
+IC_ADC_LTC2145IUP-14PBF_QFN64;H5;ADC;N/A;IC ADC 14BIT PIPELINED 64QFN ;https://www.digikey.tw/product-detail/zh/linear-technology-analog-devices/LTC2145IUP-14-PBF/LTC2145IUP-14-PBF-ND/2699163;;;;;
+IC_DAC_AD9747BCPZ_72LFCSP;H5;DAC;N/A;IC DAC 16BIT A-OUT 72LFCSP ;https://www.digikey.tw/product-detail/zh/analog-devices-inc/AD9747BCPZ/505-AD9747BCPZ-ND/1643592;None;None;https://www.mouser.tw/ProductDetail/Analog-Devices/AD9747BCPZ?qs=BpaRKvA4VqGnBVNQ1gHUGg%3D%3D;https://www.digikey.tw/product-detail/zh/analog-devices-inc/AD9747BCPZRL/2156-AD9747BCPZRL-ND/;   None
+X_125MHz_DSC1123BL5_CDFN-6;E1;CRYSTAL;N/A;MEMS OSC XO 125.0000MHZ LVDS SMD;https://www.digikey.tw/product-detail/zh/microchip-technology/DSC1123BL5-125.0000/DSC1123BL5-125.0000-ND;None;None; https://www.mouser.tw/ProductDetail/Microchip-Technology/DSC1123BL5-1250000?qs=1mbolxNpo8dRId9O%2FTy08Q%3D%3D; None; None
+IC_FPGA_EP4CE40F23I7N_484FBGA;防潮箱;FPGA;N/A;IC FPGA 328 I/O 484FBGA ;https://www.digikey.tw/product-detail/zh/intel/EP4CE40F23I7N/544-2812-ND;None;None;None; None; None
+IC_FLASH_EPCQ64ASI16N_SO16;E1;FLASH;N/A;IC CONFIG DEVICE 64MBIT 16SOIC ;https://www.digikey.tw/product-detail/zh/intel/EPCQ64ASI16N/544-3438-ND;;;;;
+D_TVS_ESD7002WTT1G_SOT323;E1;DIODE;N/A;TVS DIODE 5V SC70-3 ;https://www.digikey.tw/product-detail/zh/on-semiconductor/ESD7002WTT1G/ESD7002WTT1GOSCT-ND;;;;;
+X_50MHz_LFSPXO071239_NA;E1;CRYSTAL;N/A;XTAL OSC XO 50.0000MHZ CMOS SMD;https://www.digikey.tw/product-detail/zh/iqd-frequency-products/LFSPXO071239REEL/1923-1067-1-ND;;;;;
+IC_SDRAM_IS42VM16160K_BGA54;E1;SDRAM;N/A;IC DRAM 256M PARALLEL 54TFBGA ;https://www.digikey.tw/product-detail/zh/issi-integrated-silicon-solution-inc/IS42VM16160K-75BLI/706-1313-ND;;;;;
+C_2.2u_4V_Y5V_0805;TBD;C;N/A;CAP CER 2.2UF 4V X7S 0805;https://www.digikey.tw/product-detail/zh/murata-electronics/LLA219C70G225MA01L/490-4422-1-ND;None;None;None; None; None
+IC_TRANSLATOR_NB4N855SMR4G_MSOP10;E1;TRANSLATOR;N/A;IC DRVR/RCVR/BUFF/XLATOR MICRO10;https://www.digikey.tw/product-detail/zh/microchip-technology/SY55855VKG-TR/SY55855VKG-CT-ND/;None;None;https://www.digikey.tw/product-detail/zh/on-semiconductor/NB4N855SMR4G/NB4N855SMR4GOSCT-ND; None; None
+IC_CLKBUF_NB6N11SMNR2G_QFN16;E1;CLKBUF;N/A;IC CLK BUFFER 1:2 2GHZ 16QFN;https://www.digikey.tw/product-detail/zh/on-semiconductor/NB6N11SMNR2G/NB6N11SMNR2GOSCT-ND;;;;;
+IC_OPAMP_ADA4932-1_16LFCSP;E1;OPAMP;N/A;IC OPAMP DIFF 1 CIRCUIT 16LFCSP ;Anstek ;None;None;https://www.digikey.tw/product-detail/zh/analog-devices-inc/ADA4932-1YCPZ-R7/ADA4932-1YCPZ-R7CT-ND/; None; None
+IC_OPAMP_LMH6612_SOIC8;E1;OPAMP;N/A;IC OPAMP GP 2 CIRCUIT 8SOIC ;https://www.digikey.tw/product-detail/zh/texas-instruments/LMH6612MAX-NOPB/296-46310-1-ND;None;None;https://www.mouser.tw/ProductDetail/Texas-Instruments/LMH6612MAX-NOPB?qs=7lkVKPoqpbYkkjxJnAARvQ%3D%3D; None; None
+CON_PINHEAD_1X2_F;E8;CONNECTOR;N/A;2 pin female pin header ;Guang Hua ;;;;;
+CON_PINHEAD_5X2_M_NA_90;E7;CONNECTOR;N/A;5x2 pin male pin header ;Guang Hua ;;;;;
+IC_TRANSLATOR_SN74AUP1T17DCKR_SC70-5;E1;TRANSLATOR;N/A;IC BUF NON-INVERT 3.6V SC70-5 ;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/74AUP1T17GWH/1727-7726-1-ND/;None;None;https://www.digikey.tw/product-detail/zh/texas-instruments/SN74AUP1T17DCKR/296-27395-1-ND; None; None
+MASS_017_P01;防潮箱A-4;FINAL;10;mass pcba system for grc;N/A;None;None;None; None; None
+CABLE_SMA_SMA_15;實驗室牆壁;CABLE;N/A;SMA(M-M)RG174 L:15CM;捷寶;;;;;
+FPE001C;防潮箱B-4;FINAL;10;Etalon for Cs spectral filtering;N/A;None;None;None; None; None
+FPE002C;防潮箱B-3;FINAL;10;Etalon for Rb spectral filtering;N/A;None;None;None; None; None
+D_LED_GREEN_1206;E3;DIODE;N/A;LED GREEN CLEAR SMD;N/A;;;;;
+PCB_QSS017_SSR_P01;防潮箱A-1;PCBA;N/A;PCB for QSS017_SSR_P01;Emb PCB;None;None;None;  None;  None
+CABLE_QSS017_DAC_16PIN;架上;CABLE;N/A;cable for QSS017_DAC_16pin;N/A;;;;;
+CABLE_PWR_WAFER_3PIN;架上;CABLE;N/A;cable for pwr_wafer_3pin;原鄉;None;None;None; None; None
+CABLE_DATA_WAFER_6PIN;架上;CABLE;N/A;cable for data_wafer_6pin;原鄉;None;None;None; None; None
+L_680u_20mA_1007;H5;L;N/A;680uH 20mA inductor in 1007 pacage;https://www.digikey.tw/product-detail/zh/taiyo-yuden/LB2518T681K/587-2524-1-ND/2230390;None;None;None;  None;  None
+IC_OPAMP_AD706JRZ_SO8;H9;OPAMP;N/A;Dual picoamp input bipoloar current opamp;https://twcn.rs-online.com/web/p/op-amps/0195098/;None;None;None;  None;  None
+PCB_BLD_P05;防潮箱A-2;PCBA;N/A;PCB for balance detector;EmbPCB;None;None;None;  None;  None
+CON_WAFER_2.54_3P_M_90;紙箱;CONNECTOR;N/A;connector 2.54 pitch 3Pin Male 90 degree;https://knowing-tech.com/product/2545ml03/;None;None;None;  None;  None
+R_10R_60mW_0402;book;ACCESSORIES;N/A;10 ohm 0402 resistor;N/A;;;;;
+R_10k_60mW_0402_0.1%_THINFILM;H4;R;N/A;thin Film 10kohm 0402 resistor;https://www.digikey.tw/product-detail/en/vishay-dale/TNPU040210K0BZEP00/541-TNPU040210K0BZEP00CT-ND;None;None;None;     None;     None
+C_2.2p_50V_C0G_0805;book;C;N/A;2.2pF 0805 capacitor;N/A;;;;;
+R_100R_60mW_0402;BOOK;R;N/A;R 100R 1/16W 0402 1%;N/A;;;;;
+R_1k_60mW_0402;B3;R;N/A;R 1k 1/16W 0402 1%;光華;None;None;None;  None;  None
+R_51R_60mW_0402;BOOK;R;N/A;R 51R 1/16W 0402 1%;N/A;;;;;
+R_7.5k_60mW_0402;BOOK;R;N/A;R 7.5K 1/16W 0402 1%;N/A;;;;;
+IC_OPAMP_AD829_SO8;C9;OPAMP;N/A;high speed low noise video opamp;https://www.digikey.tw/product-detail/zh/AD829ARZ/AD829ARZ-ND/;;;;;
+IC_REF_LM399_CAN;C7-1;REFERENCE;N/A;6.95V reference ic;https://www.digikey.tw/product-detail/zh/analog-devices-inc/LM399H-PBF/LM399H-PBF-ND/2181684;None;None;https://www.digikey.tw/product-detail/zh/analog-devices-inc/LM399AH-PBF/LM399AH-PBF-ND/4071473; None; None
+IC_EEPROM_93LC56BT_SOIC8;E2;EERPOM;N/A;eeprom IC EEPROM 2K SPI 2MHZ SO8;https://www.digikey.tw/product-detail/zh/microchip-technology/93LC56BT-SN/93LC56BT-SNCT-ND/8638084;;;;;
+PCB_QSS011_PWR_P02;防潮箱;PCBA;N/A;PCB for QSS011 power;EmbPCB;None;None;None; None; None
+PCBA_QSS011_PWR_P02;防潮;PCBA;1;pcba for QSS011 power;EmbPCB;None;None;None; None; None
+GYRO_QSS011_P01;防潮箱;FINAL;10;QSS011 gyro system;N/A;;;;;
+JFET_N_BF861C_25V_12mA_SOT23;H2;MOS;N/A;N ch JEFT 25V 12 to 25mA;https://twcn.rs-online.com/web/p/jfets/6262412/;None;None;None; None; None
+PCBA_BLD_P05;TBD;PCBA;1;PCBA for BLD_P05;EmbPCB;None;None;None; None; None
+R_4.99k_60mW_0402;F6;R;N/A;4.99k 0402 1/16W resistor;https://www.digikey.tw/product-detail/zh/yageo/RC0402FR-074K99L/311-4-99KLRCT-ND/2827886;None;None;None; None; None
+R_51R_0.5W_0805;TBD;R;N/A;50ohm 0805 0.5W resistor;https://www.digikey.tw/product-detail/zh/vishay-dale/CRCW080551R0FKEAHP/541-51-0TCT-ND/2222841;;;;;
+IC_PWM_LMR14050_SO8;H2;PWM;N/A;40V 5A 2.2A async buck converter;https://www.digikey.tw/product-detail/en/texas-instruments/LMR14050SSQDDAQ1/296-43690-ND/5822955;None;None;None; None; None
+PCBA_DTC03A_MAIN_P01;TBD;C;1;PCBA for DTC03A MAIN (Temp_Control);EmbPCB;None;None;None;  None;  None
+C_1u_50V_X7R_0805;K9;C;N/A;1u Capacitor in 0805 package;https://www.digikey.com/product-detail/en/tdk-corporation/C2012X7R1H105K125AE/445-8890-1-ND;None;None;None; None; None
+C_0.1u_25V_X5R_0402;K3;C;N/A;0.1u 25V X5R 0402;https://www.digikey.tw/product-detail/zh/murata-electronics/GRM155R61E104KA87D/490-5920-1-ND/3721277;None;None;None;  None;  None
+C_0.1u_25V_X7R_0402;K3;C;N/A;0.1u 25V X7R 0402;https://www.digikey.tw/product-detail/zh/samsung-electro-mechanics/CL05B104KA5NNNC/1276-6720-1-ND/5961579;None;None;None;  None;  None
+C_4.7u_50V_X7R_1206;TBD;C;N/A;4.7u 50v x7r 1206;https://www.digikey.tw/product-detail/zh/samsung-electro-mechanics/CL31B475KBHNFNE/1276-3179-1-ND/;None;None;https://www.digikey.tw/product-detail/zh/samsung-electro-mechanics/CL31B475KBHNFNE/1276-3179-1-ND/3891265;  None;  None
+C_10u_25V_X7R_1210;K12;C;N/A;10u 25V in 1210;https://www.digikey.tw/product-detail/zh/CC1210KFX7R8BB106/13-CC1210KFX7R8BB106CT-ND;None;None;None;   None;   None
+C_10u_16V_X7R_0805;K10;C;N/A;10u 16V in 0805;https://www.digikey.tw/product-detail/zh/taiyo-yuden/EMK212BB7106KG-T/587-6139-1-ND/;None;None;None;  None;  None
+C_1n_25V_C0G_0402;K2;C;N/A;1nF 25V in 0402;https://www.digikey.tw/product-detail/zh/kemet/C0402C102K3GAC7867/399-17362-1-ND;None;None;None;   None;   None
+C_0.13u_50V_X7R_0603;TBD;C;N/A;50V X7R;N/A;;;;;
+C_100u_25V_Al_poly_6.3x8;K14;C;N/A;Al poly 100uF 25V 6.3mm x 6mm;https://www.digikey.tw/product-detail/zh/kemet/A768EB107M1ELAS036/399-A768EB107M1ELAS036CT-ND/13420616;None;None;https://www.digikey.tw/product-detail/zh/rubycon/25PFV100M6-3X8/1189-3791-1-ND/;None;None
+C_82n_50V_X7R_0603;TBD;C;N/A;0.082u 50V X7R;https://www.digikey.tw/product-detail/zh/yageo/CC0603KRX7R9BB823/311-4102-1-ND/;None;None;None; None; None
+C_10n_25V_X7R_0402;book;C;N/A;0.01u 25V in 0402;N/A;None;None;None;   None;   None
+C_47u_25V_X7R_2220;TBD;C;N/A;25V X7R;https://www.mouser.tw/ProductDetail/TDK/CGA9N3X7R1E476M230KB?qs=%2Fha2pyFaduiYauREvl%252ByR%252B7t5cYznhNQlMdhTEJ4G0eBEjw1SzXDWwxbQg%252BDaTy8lbVyceUFvk8%3D;None;None;https://www.digikey.tw/product-detail/zh/tdk-corporation/CGA9N3X7R1E476M230KB/445-174773-1-ND/;    None;    None
+C_100p_25V_X7R_0402;book;C;N/A;100pF 25V in 0402;N/A;None;None;None;  None;  None
+C_10p_25V_C0G_0402;book;C;N/A;10pF 25V in 0402;N/A;None;None;None;  None;  None
+C_4.7n_50V_X7R_0402;book;C;N/A;50V X7R;N/A;None;None;None; None; None
+C_330p_25V_X7R_0402;book;C;N/A;25V X7R;N/A;None;None;None; None; None
+C_510p_25V_X7R_0402;TBD;C;N/A;25V X7R;https://www.digikey.tw/product-detail/zh/taiyo-yuden/UMK105CH511JVHF/587-5090-1-ND/;None;None;https://www.digikey.tw/product-detail/zh/taiyo-yuden/UMK105CH511JVHF/587-5090-1-ND/6563933;    None;    None
+C_2.2u_16V_X7R_0805;K10;C;N/A;2.2u 16V in 0805;https://www.digikey.tw/product-detail/zh/taiyo-yuden/EMK212B7225MGHT/587-4872-1-ND/6563715;None;None;None;  None;  None
+C_4.7u_16V_X7R_0805;E3;C;N/A;CAP CER 4.7u 16V X7R 0805;https://www.digikey.tw/product-detail/zh/murata-electronics/GRM21BR71C475KE51L/490-14466-1-ND;;;;;
+D_ZENER_14.7V_350mW_SOD123;TBD;TBD;N/A;Zener 14.7V 350mW SOD123;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/BZT52-C15J/1727-7749-1-ND;None;None;https://www.mouser.tw/ProductDetail/Nexperia/BZT52-C15J?utm_term=BZT52-C15J&qs=u16ybLDytRaweVQabhwRRA==&utm_campaign=BZT52-C15J;  None;  None
+D_GP_SM4002PL_SOD123;B12-1 ;DIODE;N/A;diode 1.1V 1A ;https://www.digikey.tw/product-detail/zh/micro-commercial-co/SM4002PL-TP/SM4002PL-TPMSCT-ND;None;None;None; None; None
+D_TVS_0402ESDA-AEC1_0402;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/eaton-electronics-division/0402ESDA-AEC1/283-4793-1-ND/;None;None;None;  None;  None
+D_GP_BAV199_SOT23;E1 ;DIODE;N/A;DIODE DUAL 85V 140MA SOT23 ;https://www.digikey.tw/product-detail/zh/diodes-incorporated/BAV199-7-F/BAV199-FDICT-ND/;None;None;https://www.digikey.tw/product-detail/en/diodes-incorporated/BAV199Q-7-F/BAV199Q-7-FDICT-ND/6006039?cur=TWD&lang=en;  None;  None
+D_SCHOTTKY_B340A_SMA;H6 ;TBD;N/A;Diode Schottky 40V 3A Surface Mount DO-214AC (SMA);https://www.digikey.tw/product-detail/en/vishay-general-semiconductor-diodes-division/B340A-M3-61T/B340A-M3-61TGICT-ND/7717425?cur=TWD&lang=en;;;;;
+D_SCHOTTKY_SS10PH45_TO227A;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/vishay-general-semiconductor-diodes-division/SS10PH45HM3-A-H/SS10PH45HM3-A-HGICT-ND/9601204;None;None;https://www.digikey.tw/product-detail/zh/vishay-general-semiconductor-diodes-division/SS10PH45HM3-A-I/SS10PH45HM3-A-IGIDKR-ND/;   None;   None
+D_SCHOTTKY_PMEG40_SOD128;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/PMEG40T50EPX/1727-7483-1-ND/7897329;;;;;
+GD_90V_2KA_1812;TBD;TBD;N/A;Gas Discharge Tube 90V 2000A (2kA) 30% 2 Pole Surface Mount;https://www.digikey.tw/product-detail/en/bourns-inc/2051-09-SM-RPLF/2051-09-SM-RPLFCT-ND/2625123;;;;;
+CON_3.96_2P_M_180;F2-1 ;CONNECTOR;N/A;3.96mm 2P male connector ;;None;None;None; None; None
+CON_WAFER_2.54_2P_M_180;紙箱;CONNECTOR;N/A;N/A;https://knowing-tech.com/product/2545m02//;None;None;None;   None;   None
+CON_DSUB_15_F_90;F9-1;CONNECTOR;N/A;15 pin D connector female 90degree;N/A;None;None;None; None; None
+CON_PINHEAD_2X12_M_SM_180;E7 ;CONNECTOR;N/A;12 pin male pin header ;;None;None;None; None; None
+CON_WAFER_2.54_4P_M_180;紙箱;CONNECTOR;N/A;N/A;https://knowing-tech.com/product/2545m04//;None;None;None;   None;   None
+CON_DPDT_TXS2-L2-3V_G6SK-2;TBD;SPDT;N/A;General Purpose Relay DPDT (2 Form C) Through Hole;https://www.digikey.tw/product-detail/en/panasonic-electric-works/TXS2-L2-3V/255-2339-5-ND/650147;None;None;None;  None;  None
+L_22u_7.5A_SRP1245C-220M;TBD;L;N/A;FIXED IND 22UH 7.5A 58 MOHM SMD;https://www.digikey.tw/product-detail/en/bourns-inc/SRP1245C-220M/118-SRP1245C-220MCT-ND/11633892?cur=TWD&lang=en;None;None;None;  None;  None
+L_1u_4.5A_IHLP1616BZET1R0M11;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/vishay-dale/IHLP1616BZET1R0M11/541-9903-1-ND/9698807;;;;;
+L_2.2u_6.75A_IHLP2020CZER2R2M11;TBD;TBD;N/A;2.2uH Shielded Molded Inductor 6.75A 25mOhm Max Nonstandard;https://www.digikey.tw/product-detail/zh/vishay-dale/IHLP2020CZER2R2M11/541-1236-1-ND/2025126;;;;;
+MOS_P_SI4435DY_30V_8.8A_SO8;D7-2;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/on-semiconductor/SI4435DY/SI4435DYFSCT-ND/;None;None;None;  None;  None
+BJT_NPN_MMBT2222_0.6A_SOT23;D9-1;BJT;N/A;NPN BJT 0.6A ;https://www.digikey.tw/product-detail/zh/comchip-technology/MMBT2222A-G/641-1942-1-ND/9477875;None;None;https://www.digikey.tw/product-detail/zh/MMBT2222A-TP/MMBT2222ATPMSCT-ND;   None;   None
+JFET_N_LSK170B_40V_6mA_SOT23;TBD;TBD;N/A;N/A;https://store.nacsemi.com/products/detail?part=LSK170B-SOT-23&stock=LIS000000000639;None;None;None; None; None
+BJT_PNP_MMBT2907_0.8A_SOT23;D9-2 ;BJT;N/A;PNP BJT 0.8A ;https://www.digikey.tw/product-detail/zh/onsemi/NSVBCW68GLT1G/NSVBCW68GLT1GOSCT-ND/;None;None;None;  None;  None
+BJT_NPN_BCX56-16_80V_1A_SOT89-3;TBD;BJT;N/A;N/A;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/BCX56-16TF/1727-BCX56-16TFCT-ND/;None;None;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/BCX56-16TX/1727-BCX56-16TXCT-ND/;https://www.mouser.tw/ProductDetail/Nexperia/BCX56-16135?qs=me8TqzrmIYXAk3%252BzOyLfRg%3D%3D;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/BCX56-16-115/1727-2930-1-ND/
+BJT_PNP_BCX53-16_80V_1A_SOT89-3;TBD;BJT;N/A;N/A;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/BCX53-16-115/1727-2929-1-ND/763468?cur=TWD&lang=zh;None;None;None; None; None
+MOS_N_BSS123_100V_170mA_SOT23;B5-2;TBD;N/A;High speed NMOS;https://www.digikey.tw/product-detail/zh/diodes-incorporated/BSS123-7-F/BSS123-FDICT-ND/717842;None;None;https://www.digikey.tw/product-detail/zh/onsemi/BSS123/BSS123NCT-ND; None; None
+MOS_P_RQ3E100AT_30V_10A_VSON8;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/rohm-semiconductor/RQ3E100ATTB/RQ3E100ATTBCT-ND/10233063;;;;;
+MOS_N_RQ3E100BN_30V_10A_VSON8;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/rohm-semiconductor/RQ3E100BNTB/RQ3E100BNTBCT-ND/5042544;;;;;
+R_2k_60mW_0402;BOOK;R;N/A;2 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric)  Thick Film;https://www.digikey.tw/product-detail/zh/CR0402-FX-2001GLF/CR0402-FX-2001GLFCT-ND/4247662?itemSeq=376364186;None;None;https://www.digikey.tw/product-detail/zh/panasonic-electronic-components/ERA-2AEB202X/P2.0KDCCT-ND/1706190; None;  None
+R_22k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_75k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_10k_60mW_0402;B3;R;N/A;RES SMD 10K OHM 1% 1/16W 0402;https://www.digikey.tw/product-detail/zh/te-connectivity-passive-product/CRG0402F10K/A121528CT-ND/5246515;None;None;None; None; None
+R_5.6k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_330R_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_47k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_240R_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_0.1R_60mW_0402;TBD;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/delta-electronics-cyntec/RL-1005-1-R100-FNH/2037-RL-1005-1-R100-FNHCT-ND/11494633;None;None;https://www.digikey.tw/product-detail/zh/yageo/PE0402FRF070R1L/13-PE0402FRF070R1LCT-ND/12704394; None; None
+R_715R_60mW_0402;TBD;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/yageo/RC0402FR-07715RL/311-715LRCT-ND/729604;None;None;None; None; None
+R_100R_0.5W_1210;TBD;R;N/A;100 Ohms ±1% 0.5W, 1/2W Chip Resistor 1210 (3225 Metric) Automotive AEC-Q200 Thick Film;https://www.digikey.tw/product-detail/zh/stackpole-electronics-inc/RMCF1210FT100R/RMCF1210FT100RCT-ND/1942837;None;None;https://www.digikey.tw/product-detail/zh/yageo/RC1210FR-07100RL/13-RC1210FR-07100RLCT-ND/12707758;  None;  None
+R_4.02k_60mW_0402;TBD;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/yageo/RC0402FR-074K02L/311-4-02KLRCT-ND/2827912;None;None;None; None; None
+R_16k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_10k_0.3W_1506_0.01%_0.2PPM/C;TBD;R;N/A;0.01% 0.2ppm/C;https://www.digikey.tw/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y163110K0000T9R/Y1631-10-0KACT-ND/4333541;;;;;
+R_12.7k_60mW_0402;TBD;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/RC0402FR-0712K7L/YAG2964CT-ND;None;None;None; None; None
+R_1.58k_60mW_0402;TBD;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/yageo/RC0402FR-071K58L/YAG3041CT-ND;None;None;None; None; None
+R_2.5k_0.1W_0805_0.01%_0.2PPM/C;TBD;R;N/A;0.01% 0.2ppm/C;https://www.digikey.tw/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y16292K50000T9R/Y1629-2-50KACT-ND/4340632;;;;;
+R_510R_0.5W_1210;TBD;R;N/A;510 Ohms ±1% 0.5W, 1/2W Chip Resistor 1210 (3225 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC1210FR-07510RL/13-RC1210FR-07510RLCT-ND/12705719?cur=TWD&lang=en;None;None;None; None; None
+R_330R_0.5W_1210;TBD;R;N/A;330 Ohms ±1% 0.5W, 1/2W Chip Resistor 1210 (3225 Metric) Automotive AEC-Q200 Thick Film;https://www.digikey.tw/product-detail/en/stackpole-electronics-inc/RMCF1210FT330R/RMCF1210FT330RCT-ND/7906951;None;None;https://www.digikey.tw/product-detail/en/te-connectivity-passive-product/CRGCQ1210F330R/A129865DKR-ND/8578927; None; None
+R_1.3k_0.5W_1210;TBD;R;N/A;RES SMD 1.3K OHM 1% 1/2W 1210;https://www.digikey.tw/product-detail/en/yageo/RC1210FR-071K3L/13-RC1210FR-071K3LCT-ND/12704334;None;None;https://www.digikey.tw/product-detail/en/panasonic-electronic-components/ERJ-14NF1301U/P1-30KAACT-ND/283363; None; None
+R_33R_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_680k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_3.9k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_3.48k_60mW_0402;TBD;R;N/A;N/A;https://www.digikey.tw/product-detail/zh/yageo/RC0402FR-073K48L/YAG3148CT-ND;None;None;None;  None;  None
+R_6.2k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_1.15k_60mW_0402;TBD;R;N/A;1.15 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-071K15L/YAG3033CT-ND/5281898;None;None;https://www.digikey.tw/product-detail/en/stackpole-electronics-inc/RMCF0402FT1K15/RMCF0402FT1K15CT-ND/2417555; None; None
+R_6.8k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_20k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_34.8k_60mW_0402;TBD;R;N/A;34.8 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric)  Thin Film;https://www.digikey.tw/product-detail/en/yageo/RT0402FRE0734K8L/13-RT0402FRE0734K8LCT-ND/12703933;None;None;None; None; None
+R_180k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_82R_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_176k_60mW_0402;TBD;R;N/A;N/A;N/A;;;;;
+R_200R_250mW_1206;TBD;R;N/A;200 Ohms ±1% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC1206FR-07200RL/311-200FRCT-ND/731622;None;None;None; None; None
+R_20m_1W_3216;TBD;R;N/A;20 mOhms 1% 1W Chip Resistor 1206 (3216 Metric) Automotive AEC-Q200, Current Sense Thick Film;https://www.digikey.tw/product-detail/en/panasonic-electronic-components/ERJ-8CWFR020V/P0-02BVCT-ND/4927042;;;;;
+R_100k_60mW_0402;B3;R;N/A;RES SMD 100K OHM 0.5% 1/16W 0402;https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERA-2AED104X/P100KDECT-ND;;;;;
+R_33k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_68k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_10R_100mW_0603;TBD;R;N/A;10 Ohms ±1% 0.25W, 1/4W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200, Pulse Withstanding Thick Film;https://www.digikey.tw/product-detail/en/rohm-semiconductor/ESR03EZPF10R0/RHM10-0ADCT-ND/1983755;None;None;None; None; None
+R_62R_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_4.7k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_1.06k_60mW_0402_0.1%;TBD;R;N/A;N/A;N/A;;;;;
+R_18k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_24.3k_60mW_0402;TBD;R;N/A;24.3 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-0724K3L/YAG3071CT-ND/5281936;None;None;None; None; None
+R_2.1k_60mW_0402;TBD;R;N/A;2.1 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-072K1L/YAG3098CT-ND/5281963;None;None;None; None; None
+R_820R_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_1R_0.5W_1210;TBD;R;N/A;1 Ohms ±1% 0.5W, 1/2W Chip Resistor 1210 (3225 Metric) Automotive AEC-Q200 Thick Film;https://www.digikey.tw/product-detail/en/stackpole-electronics-inc/RMCF1210FT1R00/RMCF1210FT1R00CT-ND/2418939;None;None;None; None; None
+R_10R_0.5W_0805;TBD;R;N/A;10 Ohms 5% 0.5W, 1/2W Chip Resistor 0805 (2012 Metric) Automotive AEC-Q200, Pulse Withstanding Thick Film;https://www.digikey.tw/product-detail/zh/panasonic-electronic-components/ERJ-P06J100V/P10ADCT-ND/525435;;;;;
+R_36k_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+R_12.4k_60mW_0402;TBD;R;N/A;12.4 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric)  Thick Film;https://www.digikey.tw/product-detail/en/delta-electronics-cyntec/PFR05S-1242-FNH/2037-PFR05S-1242-FNHCT-ND/10124154;None;None;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-0712K4L/311-12-4KLRCT-ND/2827940; None; None
+R_90.9k_60mW_0402;TBD;R;N/A;90.9 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Automotive AEC-Q200, Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/AC0402FR-0790K9L/YAG5314CT-ND/7063657;None;None;https://www.digikey.tw/product-detail/en/koa-speer-electronics-inc/RK73H1ETTP9092F/2019-RK73H1ETTP9092FCT-ND/9846260; None; None
+R_10.1k_60mW_0402;TBD;R;N/A;N/A;N/A;None;None;None;   None;   None
+R_22R_60mW_0402;book;R;N/A;N/A;N/A;None;None;None; None; None
+SW_SPST_TS-1102A;TBD;TBD;N/A;100y 4.5 x 4.5 x 5 push button;https://ok.100y.com.tw/Goods/117618;;;;;
+IC_LDO_NCP1117DTA_TO252-2;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/on-semiconductor/NCP1117DTARKG/NCP1117DTARKGOSCT-ND/2121238;;;;;
+IC_SPECIAL_MAX5492PA01500_SOT23-5;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/maxim-integrated/MAX5492PA01500/MAX5492PA01500-ND/6227227;None;None;None; None; None
+IC_OPAMP_ADA4625-2_SOIC8-1EP;TBD;OPAMP;N/A;Dual 36 V, 18 MHz, Low Noise, Fast Settling Single Supply, RRO, JFET Op Amp;https://www.mouser.tw/ProductDetail/Analog-Devices/ADA4625-2ARDZ?qs=P1JMDcb91o7LZpOHm1xoQA%3D%3D;None;None;https://www.digikey.tw/product-detail/en/analog-devices-inc/ADA4625-2ARDZ/505-ADA4625-2ARDZ-ND/10659199?cur=TWD&lang=en;    None;    None
+IC_TTL_74LVC2G86_VSSOP8;TBD;TTL;N/A;XOR (Exclusive OR) IC 2 Channel  8-VSSOP;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/74LVC2G86DC-125/1727-3496-1-ND/1023421;None;None;None;  None;  None
+IC_TTL_74LVC2G14_SC74-6;TBD;TTL;N/A;Inverter IC 2 Channel Schmitt Trigger 6-TSOP;https://www.digikey.tw/product-detail/zh/nexperia-usa-inc/74LVC2G14GV-Q100H/1727-2071-1-ND/5221589;None;None;https://www.mouser.tw/ProductDetail/Nexperia/74LVC2G14GV-Q100H?qs=fi7yB2oewZktpXIJsIRy1A%3D%3D;   None;   None
+IC_OPAMP_LT6370_SOIC8-1EP;TBD;DIFFAMP;N/A;25μV, 0.3μV/°C, Low Noise Instrumentation Amplifier;https://www.digikey.tw/product-detail/en/analog-devices-inc/LT6370AIS8E-PBF/161-LT6370AIS8E-PBF-ND/10816307;None;None;https://www.digikey.tw/product-detail/en/analog-devices-inc/LT6370AHS8E-PBF/161-LT6370AHS8E-PBF-ND/10816302?cur=TWD&lang=en;     None;     None
+IC_ADC_AD4004_MSOP10;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/en/analog-devices-inc/AD4004BRMZ/AD4004BRMZ-ND/7324271?cur=TWD&lang=en;;;;;
+IC_COMP_LM393_SOIC8;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/stmicroelectronics/LM393ADT/497-4267-1-ND/725548;;;;;
+IC_OP_OP07_SO8;C4-1;TBD;N/A;general purpose OP;https://www.digikey.tw/product-detail/zh/texas-instruments/OP07CDRG4/296-41343-1-ND/5222825;;;;;
+IC_LDO_UA78L05_SOT89-3;TBD;LDO;N/A;N/A;https://www.digikey.tw/zh/products/detail/texas-instruments/UA78L05ACPKE6/15712904;None;None;https://www.digikey.tw/product-detail/zh/texas-instruments/UA78L05ACPK/296-11118-1-ND/382184;     None;     None
+IC_GATEDRIVER_UCC27517A_SOT23-5;TBD;GATEDRIVER;N/A;Low-Side Gate Driver IC Inverting, Non-Inverting SOT-23-5;https://www.mouser.tw/ProductDetail/Texas-Instruments/UCC27517AQDBVRQ1?qs=T7SOdw%2F%2FRB8ZWIQStZWwSQ%3D%3D;None;None;https://www.digikey.tw/product-detail/zh/texas-instruments/UCC27517AQDBVRQ1/296-41038-1-ND/5178915;   None;   None
+IC_DAC_MCP4716A2_SOT23-6;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/microchip-technology/MCP4716A2T-E-CH/MCP4716A2T-E-CHCT-ND/9642870;;;;;
+IC_DIFFAMP_INA827_MSOP8;H2;DIFFAMP;N/A;Differential opamp with low temperature coefficient;https://www.mouser.tw/ProductDetail/Texas-Instruments/INA827AIDGK?qs=4whTb%2F0XQMjCMY8OfLWUhA%3D%3D;None;None;https://www.digikey.tw/product-detail/zh/texas-instruments/INA827AIDGKR/296-30588-1-ND/3479388;    None;    None
+IC_OPAMP_MCP6002_MSOP8;TBD;OPAMP;N/A;N/A;https://www.digikey.tw/product-detail/zh/microchip-technology/MCP6002T-E-MS/MCP6002T-E-MSCT-ND/5148850;None;None;None; None; None
+IC_DAC_MCP4716A1_SOT23-6;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/microchip-technology/MCP4716A1T-E-CH/MCP4716A1T-E-CHCT-ND/7065581;None;None;None; None; None
+IC_PWM_TC962_SOIC-16W;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/microchip-technology/TC962COE713/TC962COE713CT-ND/8547924;;;;;
+IC_LDO_L79L05_SOT89-3;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/micro-commercial-co/MC79L05F-TP/MC79L05F-TPMSCT-ND/804711;None;None;https://www.digikey.tw/product-detail/zh/stmicroelectronics/L79L05ACUTR/497-1219-1-ND/586219;  None;  None
+IC_LDO_MC7812_TO252-2;D3-3 ;TBD;N/A;12V 1A LDO ;https://www.digikey.tw/product-detail/en/on-semiconductor/MC7812BDTRKG/MC7812BDTRKGOSCT-ND/1967123?cur=TWD&lang=en;;;;;
+X_16M_EB13E2H2H-16.000M_SMD3225-4PIN;TBD;CRYSTAL;N/A;16MHz XO (Standard) CMOS Oscillator 3.3V Enable/Disable 4-SMD, No Lead;https://www.digikey.tw/product-detail/en/ecliptek/EB13E2H2H-16-000M-TR/2773-EB13E2H2H-16-000MCT-ND/12618925;None;None;None; None; None
+PCB_DTC03A_MAIN_P01;防潮箱B2;PCBA;N/A;PCB for DTC03A MAIN (Temp_Control);EmbPCB;None;None;None;    None;    None
+PCB_DTC03A_GLCD_P01;防潮箱B2;PCBA;N/A;PCB for DTC03A GLCD;EmbPCB;None;None;None;  None;  None
+PCB_DTC03A_ESL_P01;防潮箱B2;PCBA;N/A;PCB for DTC03A ESL;EmbPCB;None;None;None;   None;   None
+PCBA_DTC03A_GLCD_P01;TBD;PCBA;1;PCBA for DTC03A GLCD;EmbPCB;None;None;None; None; None
+PCBA_DTC03A_ESL_P01;TBD;PCBA;1;PCBA for DTC03A ESL;EmbPCB;None;None;None; None; None
+C_0.1u_16V_X7R_0402;BOOK;TBD;N/A;16V X7R;N/A;None;None;None; None; None
+C_22p_16V_C0G_0402;book;TBD;N/A;16V C0G;N/A;None;None;None; None; None
+CON_PINHEAD_1X20_M_SM_180;E7 ;CONNECTOR;N/A;20pin male pin header ;光華;None;None;None;  None;  None
+CON_WAFER_2.54_6P_M_90;紙箱;CONNECTOR;N/A;WAFER254-6P 90 degree;https://knowing-tech.com/product/2545ml06//;None;None;None;   None;   None
+CON_WAFER_2.54_2P_M_90;紙箱;CONNECTOR;N/A;WAFER254-2P 90 degree;https://knowing-tech.com/product/2545ml02//;None;None;None;  None;  None
+CON_WAFER_2.54_4P_M_90;紙箱;CONNECTOR;N/A;WAFER254-4P 90 degree;https://knowing-tech.com/product/2545ml04//;None;None;None;  None;  None
+CON_PINHEAD_2X3_M_SM_90;E7 ;TBD;N/A;N/A;光華;None;None;None; None; None
+R_51R_250mW_1206;TBD;R;N/A;51 Ohms ±1% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC1206FR-0751RL/311-51-0FRCT-ND/731920;None;None;None;  None;  None
+VR_20K_3006P-1-203;TBD;TBD;N/A;Burns 3006P-1-203;https://ok.100y.com.tw/Goods/15002;;;;;
+IC_MCU_AEMEG328P_TQFP32;B1-1 ;TBD;N/A;8bit 32kb flash MCU ;https://www.digikey.tw/product-detail/zh/0/ATMEGA328P-AURCT-ND;;;;;
+C_0.1u_50V_X7R_0805;K9;C;N/A;0.1µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric);https://www.digikey.tw/product-detail/zh/avx-corporation/08055C104KAT4A/478-10836-1-ND/7536355;None;None;None;None;None
+CON_USB_TYPE-B_FEMALE;F10-2;TBD;N/A;USB connector type_B Female ;光華;None;None;None;  None;  None
+R_1M_0.5W_1210;TBD;R;N/A;1 MOhms ±1% 0.5W, 1/2W Chip Resistor 1210 (3225 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC1210FR-071ML/13-RC1210FR-071MLCT-ND/12704447;None;None;None;  None;  None
+R_330R_125mW_0805;book;TBD;N/A;N/A;N/A;None;None;None; None; None
+SW_DPDT_MHP2283;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/apem-inc/MHPS2283/679-3532-ND/1795387;;;;;
+ENCODER_20PPR_EN11-HSM1BF20;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/tt-electronics-bi/EN11-HSM1BF20/987-1398-ND/2620667;;;;;
+IC_TTL_MC14044B_SO16;TBD;TBD;N/A;N/A;https://www.digikey.tw/product-detail/zh/on-semiconductor/MC14044BDR2G/MC14044BDR2GOSCT-ND/3462303?cur=TWD&lang=zh;;;;;
+CON_BNC_Auto;TBD;CONNECTOR;N/A;BNC right angle;光華;;;;;
+PCBA_QSS014_LockIn_P04;TBD;PCBA;1;PCBA for LockIn P04 version;EmbPCB;None;None;None; None; None
+VR_10k_3296;TBD;TBD;N/A;VR 10k 3296;Guan Hwa;;;;;
+R_1.3M_60mW_0402;book;TBD;N/A;R 1.3M 0402;;None;None;None; None; None
+R_1.5k_60mW_0402;book;TBD;N/A;R 1.5k 0402;;None;None;None; None; None
+R_11k_60mW_0402;book;TBD;N/A;R 1.3M 0402;;None;None;None; None; None
+R_1k_60mW_0402_0.1%;TBD;TBD;N/A;R 1k 0402 1%;;;;;;
+R_2.2k_60mW_0402;book;TBD;N/A;R 2.2k 0402;;None;None;None; None; None
+R_47R_60mW_0402;book;TBD;N/A;R 47R 0402;;None;None;None; None; None
+C_0.82u_10V_X5R_0402;book;TBD;N/A;C 0.82u 10V X5R;;None;None;https://www.digikey.tw/product-detail/zh/taiyo-yuden/LMK105BJ105KVHF/587-3712-1-ND/4811182;  None;  None
+R_9.1k_60mW_0402;book;R;N/A;R 9.1k 0402;N/A;None;None;None; None; None
+CON_BNC_90;TBD;CONNECTOR;N/A;BNC right angle;Guan Hwa;None;None;None; None; None
+PCB_QSS014_LockIn_P04;TBD;PCBA;N/A;PCB for QSS014 LockIn P04;EmbPCB;None;None;None; None; None
+R_20m_1W_1206;TBD;R;N/A;20 mOhms ±1% 1W Chip Resistor 1206 (3216 Metric) Current Sense, Non-Inductive Metal Element;https://www.digikey.tw/product-detail/en/riedon/CSRL1-0R02F8/696-1847-1-ND/9666111?cur=TWD&lang=en;;;;;
+R_178k_60mW_0402;TBD;R;N/A;178 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-07178KL/YAG3010CT-ND/5281875;;;;;
+R_1.07K_60mW_0402_0.1%;TBD;ACCESSORIES;N/A;1.07 kOhms ±0.1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Automotive AEC-Q200 Thin Film;https://www.digikey.tw/product-detail/en/panasonic-electronic-components/ERA-2AEB1071X/P1-07KDCCT-ND/3063650;;;;;
+IC_LDO_BA17805_TO252-2;TBD;LDO;N/A;Linear Voltage Regulator IC Positive Fixed 1 Output  1A TO-252;https://www.digikey.tw/product-detail/zh/diodes-incorporated/AS7805ADTR-G1/AS7805ADTR-G1DICT-ND/;None;None;https://www.digikey.tw/product-detail/en/rohm-semiconductor/BA17805FP-E2/BA17805FP-E2CT-ND/3663732?cur=TWD&lang=en; None; None
+IC_LDO_7905_D2PAK;TBD;LDO;N/A;Linear Voltage Regulator IC Negative Fixed 1 Output 1.5A D2PAK;https://www.digikey.tw/product-detail/zh/stmicroelectronics/L7905ACD2T-TR/497-7292-1-ND/1883414;;;;;
+IC_ADC_MAX11619_QSOP16;TBD;ADC;N/A;10 Bit Analog to Digital Converter 4 Input 1 SAR 16-QSOP;https://www.digikey.tw/product-detail/en/maxim-integrated/MAX11619EEE/MAX11619EEE-ND/2793238?cur=TWD&lang=en;None;None;None;  None;  None
+IC_LDO_LP38500-ADJ_TO263-5;TBD;LDO;N/A;Linear Voltage Regulator IC Positive Adjustable 1 Output  1.5A TO-263-5 Thin;https://www.digikey.tw/product-detail/en/texas-instruments/LP38500ATJ-ADJ-NOPB/LP38500ATJ-ADJ-NOPBCT-ND/1957477?cur=TWD&lang=en;;;;;
+D_ZENER_10V_500mW_SOD123;A11;DIODE;N/A;Zener Diode 10V 500mW ±6% Surface Mount SOD-123;https://www.digikey.tw/product-detail/zh/micro-commercial-co/MMSZ5240B-TP/353-MMSZ5240B-TPCT-ND/;None;None;https://www.digikey.tw/product-detail/en/diodes-incorporated/BZT52C10-7-F/BZT52C10-FDICT-ND/717846?cur=TWD&lang=en; None; None
+D_ZENER_6.8V_500mW_SOD123;TBD;DIODE;N/A;Zener Diode 6.8V 500mW ±6% Surface Mount SOD-123;https://www.digikey.tw/product-detail/zh/onsemi/MMSZ6V8T1G/MMSZ6V8T1GOSCT-ND/;None;None;https://www.digikey.tw/product-detail/en/diodes-incorporated/BZT52C6V8-7-F/BZT52C6V8-FDICT-ND/815403;https://www.mouser.tw/ProductDetail/863-MMSZ6V8T1G;    None
+C_0.47u_50V_X7R_0805;K9;C;N/A;0.47µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric);https://www.digikey.tw/product-detail/en/w%C3%BCrth-elektronik/885012207102/732-7677-1-ND/5454304;None;None;None; None; None
+C_15u_16V_X7R_1210;TBD;C;N/A;15µF ±20% 16V Ceramic Capacitor X7R 1210 (3225 Metric);https://www.digikey.tw/product-detail/en/tdk-corporation/C3225X7R1C156M250AB/445-3944-1-ND/1944440;;;;;
+CON_IDC_2.54_8P_M_90;TBD;CONNECTOR;N/A;IDC簡易公座 90° 8P;https://ok.100y.com.tw/Goods/86426;None;None;None;https://www.digikey.tw/product-detail/en/w%C3%BCrth-elektronik/61200821721/732-5405-ND/4846917?cur=TWD&lang=en; None
+L_10u_330mA_0805;A8-2;L;N/A;L 10u 330mA 0805;https://www.digikey.tw/product-detail/zh/tdk-corporation/MLZ2012M100HTD25/445-17072-1-ND/;;;;;
+C_1u_16V_TANT_1206;TBD;C;N/A;C_1u_16V_TANT_1206;https://www.digikey.tw/product-detail/zh/kemet/T491A105M016AT/399-3681-1-ND/;None;None;None; None; None
+C_0.1u_25V_X7R_0805;K9;C;N/A;0.1u 25V in 0805;https://www.digikey.tw/product-detail/zh/avx-corporation/08053C104KAT2A/478-3755-1-ND;None;None;None;None;None
+C_0.1u_630V_X7T_1210;K12;C;N/A;0.1u 630V in 1210;https://www.digikey.tw/product-detail/zh/tdk-corporation/C3225X7T2J104M160AC/445-14941-1-ND;None;None;None;None;None
+C_1.3n_50V_C0G_0805;K8;C;N/A;C_1.3n_50V_0805_MLCC;https://www.digikey.tw/product-detail/zh/murata-electronics-north-america/GRM2165C1H132JA01D/490-1624-1-ND;None;None;None;None;None
+C_10n_630V_X7R_1206;K11;C;N/A;10n 630V in 1206;https://www.digikey.tw/product-detail/zh/tdk-corporation/C3216X7R2J103K115AA/445-2291-1-ND;None;None;None; None; None
+C_10p_250V_C0G_0805;K7;C;N/A;10p 250V in 0805;https://www.digikey.tw/product-detail/zh/samsung-electro-mechanics-america-inc/CL21C100JECNNWC/1276-6648-1-ND;None;None;None; None; None
+C_1n_630V_C0G_1206;TBD;C;N/A;1n 630V in 1206;https://www.digikey.tw/product-detail/zh/tdk-corporation/C3216C0G2J102J085AA/445-2342-1-ND;None;None;None; None; None
+C_1u_450V_X7T_2220;K12;C;N/A;1u 450V in 2220;https://www.digikey.tw/product-detail/zh/tdk-corporation/CGA9P4X7T2W105M250KE/445-7998-1-ND;None;None;None; None; None
+C_220u_16V_TANT_2917;A10-2;C;N/A;220u 16V in 2917;https://www.digikey.tw/product-detail/zh/kemet/T491X227K016AT/399-8415-1-ND;;;;;
+C_220u_25V_Al_poly_DIP_3.5-8;A12-1;C;N/A;220u 25V capacitor;Guang Hua;;;;;
+C_22p_1kV_C0G_1206;A9-1;C;N/A;22p 1kV in 1206;https://www.digikey.tw/product-detail/zh/johanson-dielectrics-inc/102R18N220JV4E/709-1289-1-ND;;;;;
+C_22u_25V_X5R_0805;A7-2;C;N/A;22u 25V in 0805;https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL21A226MAQNNNE/1276-2908-1-ND;;;;;
+C_22u_25V_Al_poly_DIP_E2.5-5;A12-1;C;N/A;22u 25V capacitor;Guang Hua;;;;;
+C_47u_16V_TANT_2917;A10-1;C;N/A;47u 16V in 2917;Guang Hua;;;;;
+C_10u_16V_TANT_2312;K13;C;N/A;10u 16V 20% in 2312;https://www.digikey.tw/products/zh?keywords=718-1042-1-ND;None;None;None;   None;   None
+C_0.1u_35V_TANT_1206;K13;C;N/A;0.1u 35V 10% in 1206;https://www.digikey.tw/products/zh?keywords=399-3676-1-ND;None;None;None; None; None
+C_150p_25V_C0G_0805;K7;C;N/A;150pF 25V in 0805;https://www.digikey.tw/products/zh?keywords=732-7834-1-ND;None;None;None; None; None
+C_0.15u_25V_X7R_0805;K9;C;N/A;0.15u 25V in 0805;https://www.digikey.tw/products/zh?keywords=478-1397-1-ND;None;None;None; None; None
+C_470p_25V_C0G_0805;D10;C;N/A;470p 25V in 0805;https://www.digikey.tw/products/zh?keywords=732-7837-1-ND;;;;;
+C_0.47u_25V_X7R_0805;K9;C;N/A;0.47µF ±10% 25V Ceramic Capacitor X7R 0805 (2012 Metric)		;https://www.digikey.tw/products/zh?keywords=1276-2961-1-ND;None;None;None;   None;   None
+C_1500p_50V_C0G_0805;K8;C;N/A;1.5nF 50V in 0805;https://www.digikey.tw/products/zh?keywords=445-1331-1-ND;None;None;None; None; None
+C_1.5u_25V_X7R_0805;K9;C;N/A;1.5u 25V in 0805;https://www.digikey.com/en/products/detail/tdk-corporation/C2012X7R1E155K125AC/2733003?s=N4IgTCBcDaICxwKwFoDsiBsAOZBGZAcgCIgC6AvkA;None;None;None;None;None
+C_15n_50V_X7R_0805;K8;C;N/A;15nF 50V in 0805;https://www.digikey.tw/products/zh?keywords=490-12552-1-ND;None;None;None; None; None
+C_15u_35V_X5R_0805;K10;C;N/A;15u 35V in 0805;https://www.digikey.com/en/products/detail/tdk-corporation/C2012X5R1V156M125AC/3951659?s=N4IgTCBcDaICxwKwFoCMCwGY3IHIBEQBdAXyA;None;None;None; None; None
+C_1000p_50V_C0G_0805;K8;C;N/A;1nF 50V in 0805;https://www.digikey.tw/products/zh?keywords=399-1136-1-ND;None;None;None; None; None
+C_4700p_50V_C0G_0805;D10;C;N/A;4.7n 50V in 0805;https://www.digikey.tw/products/zh?keywords=445-7512-1-ND;;;;;
+C_47n_50V_X7R_0805;D10;C;N/A;47n 50V in 0805;https://www.digikey.tw/products/zh?keywords=478-5297-1-ND;;;;;
+C_47u_25V_JB_1206;D10;C;N/A;47u 25V in 1206;https://www.digikey.tw/products/zh?keywords=445-11717-1-ND;;;;;
+C_10n_3KV_X7R_RADIAL;K14;C;N/A;CAP CER 10000PF 3KV X7R RADIAL;https://www.digikey.com/product-detail/en/kemet/C637C103MHR5TA7303/399-13564-1-ND;None;None;None; None; None
+C_1u_25V_JB_0402;K3;C;N/A;CAP CER 1UF 25V JB 0402;https://www.digikey.tw/product-detail/zh/tdk-corporation/CGB2A1JB1E105M033BC/445-12016-1-ND/;None;None;None; None; None
+C_22p_25V_C0G_0402;B3;C;N/A;CAP CER 22PF 25V C0G/NP0 0402;https://www.digikey.com/product-detail/en/kemet/C0402C220J3GACTU/399-7774-1-ND;;;;;
+C_10n_3KV_X7R_2220;K12;C;N/A;CAP CER 10000PF 3KV X7R 2220;https://www.digikey.com/product-detail/en/vishay-vitramon/HV2220Y103KXHATHV/720-1564-1-ND;None;None;None; None; None
+C_47u_50V_Al_poly;B4;C;N/A;CAP ALUM 47UF 20% 50V SMD;https://www.digikey.com/product-detail/en/panasonic-electronic-components/EEE-FK1H470XP/PCE3816CT-ND;;;;;
+C_10u_6.3V_X6S_0402;K3;C;N/A;CAP CER 10UF 6.3V X6S 0402;https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM155C80J106ME11D/490-13233-1-ND;None;None;None; None; None
+C_0.5p_1.5kV_C0G_1111;K12;C;N/A;0.5pF 1.5kV in 1111;https://www.digikey.com/en/products/detail/vishay-vitramon/VJ1111D0R5VXRAJ/4976045?s=N4IgTCBcDaIOxgAwFoCMBWVAWNyByAIgAQgC6AvkA;None;None;None; None; None
+C_2.2u_25V_X7R_0805;K10;C;N/A;CAP CER 2.2UF 25V X7R 0805;https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71E225KE11L/6606096?s=N4IgTCBcDaICwE4AMBaAjHOA2A7OlAcgCIgC6AvkA;None;None;None; None; None
+C_2.2u_4V_X7S_0805;K10;C;N/A;CAP CER 2.2UF 4V X7S 0805;https://www.digikey.tw/product-detail/zh/murata-electronics/LLA219C70G225MA01L/490-4422-1-ND;None;None;None; None; None
+C_0.1u_16V_X7R_0603;K6;C;N/A;CAP CER 0.1UF 25V X7R 0603;https://www.digikey.tw/product-detail/zh/yageo/CC0603KRX7R8BB104/311-1341-1-ND;None;None;None; None; None
+C_1u_16V_X7R_0603;K6;C;N/A;CAP CER 1UF 16V X7R 0603;https://www.digikey.tw/product-detail/zh/kemet/C0603C105K4RACTU/399-7847-1-ND;None;None;None; None; None
+C_4.7u_50V_X7R_0805;E3;C;N/A;50V 4.7u X7R 0805;https://www.digikey.tw/product-detail/zh/tdk-corporation/C2012X7R1H475K125AC/445-C2012X7R1H475K125ACCT-ND;;;;;
+C_10n_50V_X7R_0603;K5;C;N/A;CAP CER 10000PF 50V X7R 0603;https://www.digikey.tw/product-detail/zh/yageo/CC0603KRX7R9BB103/311-1085-1-ND;None;None;None; None; None
+C_200p_100V_C0G_0805;E2;C;N/A;CAP CER 200PF 100V C0G/NP0 0805;https://www.digikey.tw/products/zh?keywords=490-7183-1-ND;;;;;
+C_0.1u_25V_Y5V_0603;TBD;C;N/A;CAP CER 0.1UF 25V Y5V 0603;https://www.digikey.tw/products/zh?keywords=311-1087-1-ND;None;None;None; None; None
+C_22u_25V_X5R_1206;H6;C;N/A;CAP CER 22UF 25V X5R 1206;https://www.digikey.tw/products/zh?keywords=311-3448-1-ND;;;;;
+C_3300u_10V_Al_poly;H6;C;N/A;CAP ALUM 3300UF 20% 10V RADIAL;https://www.digikey.tw/product-detail/zh/rubycon/10PX3300MEFC10X20/1189-1056-ND;;;;;
+C_0.1u_500V_X7R_1210;K12;C;N/A;0.1u 500V in 1210 (C_0.1u_630V_1210_X7R);https://www.digikey.tw/product-detail/zh/kemet/C1210C104KCRACTU/399-6747-1-ND;None;None;None;  None;  None
+IC_OPAMP_OPA227_SO8;E2;OPAMP;N/A;Low noise OPAMP;https://www.digikey.tw/product-detail/zh/texas-instruments/OPA227UA-2K5/296-26248-1-ND;;;;;
+PCB_QSS018_DigitalServo_PWR_P01;防潮箱B-2;PCBA;N/A;digital servo power board;EmbPCB;None;None;None;  None;  None
+PCBA_QSS018_DigitalServo_PWR_P01;TBD;PCBA;1;digital servo power board;EmbPCB;;;;;
+C_68p_50V_C0G_0603;book;C;N/A;16V COG;;None;None;None; None; None
+R_27R_100mW_0603;book;R;N/A;27 Ohms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200, Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/te-connectivity-passive-product/CRGCQ0603F27R/A129669CT-ND/8577501;None;None;None;  None;  None
+R_680R_250mW_1206;TBD;R;N/A;680 Ohms ±1% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC1206FR-07680RL/311-680FRCT-ND/732011?cur=TWD&lang=en;None;None;None; None; None
+R_15k_100mW_0603;book;R;N/A;TBD;;None;None;None; None; None
+R_8.06k_60mW_0402;TBD;R;N/A;8.06 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-078K06L/311-8-06KLRCT-ND/729608;None;None;None; None; None
+R_8.2k_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_16.2k_60mW_0402;TBD;R;N/A;16.2 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-0716K2L/311-16-2KLRCT-ND/729492;None;None;None; None; None
+R_36.5k_60mW_0402;TBD;R;N/A;36.5 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-0736K5L/YAG3135CT-ND/5282000;None;None;None; None; None
+R_3.4k_60mW_0402;TBD;R;N/A;3.4 kOhms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-073K4L/YAG3149CT-ND/5282014;None;None;None; None; None
+R_3.3k_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_432R_60mW_0402;TBD;R;N/A;432 Ohms ±1% 0.063W, 1/16W Chip Resistor 0402 (1005 Metric) Moisture Resistant Thick Film;https://www.digikey.tw/product-detail/en/yageo/RC0402FR-07432RL/YAG3160CT-ND/5282025;None;None;None; None; None
+R_470R_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_680R_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_15k_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_13k_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_620k_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_200k_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+R_1.6k_60mW_0402;book;R;N/A;TBD;;None;None;None; None; None
+CON_USB_TYPE-B_FEMALE_90;F10-2;CONNECTOR;N/A;USB connector type_B Female degree 90;光華;None;None;None; None; None
+X_12MHz_NA_3225-4Pin;TBD;CRYSTAL;N/A;12MHz ±25ppm Crystal 18pF 100 Ohms 4-SMD, No Lead;https://www.digikey.tw/product-detail/en/ecs-inc/ECS-120-18-33-AGN-TR/XC2910CT-ND/9648931?cur=TWD&lang=en;;;;;
+IC_LDO_MCP1824_SOT223-5;TBD;LDO;N/A;Linear Voltage Regulator IC Positive Fixed 1 Output  300mA SOT-223-5;https://www.digikey.tw/product-detail/en/microchip-technology/MCP1824T-3302E-DC/MCP1824T-3302E-DCCT-ND/1817323?cur=TWD&lang=en;None;None;https://www.mouser.tw/ProductDetail/Microchip-Technology/MCP1824T-3302E-DC?qs=gsqZ4L1luKoRItowQxdVrQ%3D%3D; None; None
+PCB_QSS011_GYROA_MAIN_P04;防潮箱A-1;PCBA;N/A;PCB for QSS011_GyroA_Main_P04;Emb PCB;;;;;
+PCBA_QSS011_GYROA_MAIN_P04;防潮箱A-4;PCBA;1;PCBA for QSS011_GyroA_Main_P04;Emb PCB;;;;;
+R_340R_60mW_0402_1%;TBD;R;N/A;RES 340 OHM 1% 1/16W 0402;https://www.digikey.tw/product-detail/zh/yageo/RC0402FR-07340RL/YAG3122CT-ND/;None;None;None;   None;   None
+PCB_QSS014_LockIn_P05;防潮箱A-2;PCBA;N/A;QSS014_LockIn_P05 PCB;N/A;None;None;None; None; None
+Box_BLD;左架子;ACCESSORIES;N/A;box for BLD;https://tw.misumi-ec.com/vona2/detail/222005902204/;None;None;None; None; None
+IC_FPGA_EP4CE40F23C8_484FBGA;TBD;FPGA;N/A;FPGA - Field Programmable Gate Array FPGA - Cyclone IV E40F23C8 2475 LABs 328 IOs;https://www.mouser.tw/ProductDetail/Intel-Altera/EP4CE40F23C8?qs=jblrfmjbeiHRab7LjK2oUw%3D%3D;;;;;
+D_TVS_MMBZ27VAWT1G_SOT323;TBD;DIODE;N/A;40V Clamp 1A Ipp Tvs Diode Surface Mount SC-70-3 (SOT323);https://www.digikey.tw/product-detail/en/onsemi/MMBZ27VAWT1G/MMBZ27VAWT1GOSCT-ND/5801826?cur=TWD&lang=en;;;;;
+IC_FILTER_LTC1063_SO16;H7;FILTER;N/A;50kHz low pass filter;https://www.digikey.tw/product-detail/zh/analog-devices-inc/LTC1063CSW-PBF/505-LTC1063CSW-PBF-ND/889572;;;;;
+R_10k_2%_UL_NTC;A5-1;R;N/A;THERM NTC 10KOHM 3984K RING LUG;http://www.digikey.tw/product-detail/zh/vishay-bc-components/NTCALUG02A103G/BC2741-ND/;;;;;
+C_10u_25V_Al_poly_6.3x5.8;TBD;C;N/A;10µF 25V Aluminum - Polymer Capacitors Radial, Can - SMD 30mOhm 2000 Hrs @ 105°C;https://www.digikey.tw/product-detail/en/w%C3%BCrth-elektronik/875105544001/732-6434-1-ND/5147985?cur=TWD&lang=en;;;;;
+X_10MHz_ABM8AIG-10.000MHZ_3225-4Pin;E3 ;;N/A;CRYSTAL 10MHZ 12PF SMD ;https://www.digikey.tw/product-detail/zh/abracon-llc/ABM8AIG-10.000MHZ-12-2Z-T3/535-13380-1-ND/;;;;;
+R_33R_330mW_0603;F6 ;R;N/A;RES SMD 33 OHM 1% 1/3W 0603 ;https://www.digikey.tw/product-detail/zh/vishay-dale/CRCW060333R0FKEAHP/541-33.0SCT-ND/;;;;;
+L_BEAD_68R_1A_100MHz_0603;E3 ;L;N/A;FERRITE BEAD 68 OHM 0603 1LN;https://www.digikey.tw/product-detail/zh/laird-signal-integrity-products/MI0603J680R-10/240-2372-1-ND/;;;;;
+IC_MCU_ATMEGA328P-MNR_VQFN32-1EP;E3 ;;N/A;IC MCU 8BIT 32KB FLASH 32VQFN;https://www.digikey.tw/product-detail/zh/microchip-technology/ATMEGA328P-MNR/ATMEGA328P-MNRCT-ND/;None;None;None; None; None
+L_10u_140mA_1210;E3 ;L;N/A;FIXED IND 10UH 140MA 400MOHM SMD ;https://www.digikey.tw/product-detail/zh/murata-electronics/LQW32FT100M0HL/490-18065-1-ND/;;;;;
+IC_DIGITAL_MAX3079EASD+_SOIC14;E3 ;;N/A;IC TRANSCEIVER FULL 1/1 14SOIC ;https://www.digikey.tw/product-detail/zh/MAX3079EASD%2b/MAX3079EASD%2b-ND/;;;;;
+IC_REF_REF2030_TSOT23-5;E3 ;;N/A;IC VREF SERIES 0.05% SOT23-5 ;https://www.digikey.tw/product-detail/zh/texas-instruments/REF2030AIDDCT/296-38496-1-ND/;;;;;
+D_TVS_CDSOT23-SM712_SOT323;E3 ;;N/A;TVS DIODE 7V/12V 14V/26V SOT23-3 ;https://www.digikey.tw/product-detail/zh/bourns-inc/CDSOT23-SM712/CDSOT23-SM712CT-ND/;;;;;
+D_TVS_TPD4S012_USON6;E3 ;;N/A;TVS DIODE 5.5V 6SON ;https://www.digikey.tw/product-detail/zh/texas-instruments/TPD4S012DRYR/296-24244-1-ND/;;;;;
+R_120R_0.5W_0805;H4 ;R;N/A;RES SMD 120 OHM 5% 1/2W 0805;https://www.digikey.tw/product-detail/zh/panasonic-electronic-components/ERJ-P06J121V/P120ADCT-ND/;;;;;
+IC_DIGITAL_FT232RQ_QFN32-1EP;E3;DIGITAL;N/A;USB Bridge, USB to UART USB 2.0 UART Interface 32-QFN (5x5);https://www.digikey.tw/product-detail/zh/ftdi-future-technology-devices-international-ltd/FT232RQ-REEL/768-1008-1-ND/;None;None;None;  None;  None
+IC_GATEDRIVER_TPS28225-Q1_SOIC8;TBD;GATEDRIVER;N/A;Half-Bridge Gate Driver IC Non-Inverting 8-SOIC;https://www.digikey.tw/products/zh?keywords=296-47877-1-ND;None;None;None; None; None
+IC_OPAMP_LMH6611_TSOT23-6;TBD;OPAMP;N/A;345 MHz General Purpose Amplifier 1 Circuit Rail-to-Rail TSOT-23-6;https://www.digikey.tw/products/en?keywords=LMH6611MKE%2FNOPBCT-ND;;;;;
+IC_COMP_LT1713_MSOP8;TBD;COMP;N/A;Comparator with Latch CMOS, Complementary, Rail-to-Rail, TTL 8-MSOP;https://www.digikey.tw/product-detail/en/analog-devices-inc/LT1713CMS8-PBF/505-LT1713CMS8-PBF-ND/962511;None;None;https://www.mouser.tw/ProductDetail/Analog-Devices/LT1713CMS8PBF?qs=ytflclh7QUW98nqGG0sqzA%3D%3D; None; None
+IC_COMP_TLV3501_SOIC8;TBD;COMP;N/A;4.5ns Comparator General Purpose CMOS, Push-Pull, Rail-to-Rail, TTL 8-SOIC;https://www.digikey.tw/product-detail/en/texas-instruments/TLV3501AIDR/296-43611-1-ND/5864779;;;;;
+IC_TTL_74LVC2G02_VSSOP8;TBD;TTL;N/A;NOR Gate IC 2 Channel  8-VSSOP;https://www.digikey.tw/product-detail/en/nexperia-usa-inc/74LVC2G02DC-125/1727-8427-1-ND/9747995?cur=TWD&lang=en;;;;;
+IC_TTL_74LVC1G08_SC74-A;TBD;TTL;N/A;Single AND Gate, Low-Voltage CMOS;https://www.mouser.tw/ProductDetail/Nexperia/74LVC1G08GV125?qs=me8TqzrmIYXEnurJEPZc7A%3D%3D;;;;;
+D_Schottky_SS13HE_SOD323HE;TBD;DIODE;N/A;Diode Schottky 30V 1A Surface Mount SOD-323HE;https://www.digikey.tw/product-detail/en/onsemi/SS13HE/SS13HECT-ND/6009712;;;;;
+C_500p_50V_C0G_0805_2%;TBD;C;N/A;500pF ±2% 50V Ceramic Capacitor C0G, NP0 0805 (2012 Metric);https://www.digikey.tw/product-detail/zh/kyocera-avx/08055A501GAT2A/478-10532-1-ND/6797473;;;;;
+IC_DIFFAMP_INA240A1_SOIC8;TBD;DIFFAMP;N/A;-4 to 80V, bidirectional, ultra-precise current sense amplifier with enhanced PWM rejection 8-SOIC -40 to 125;https://www.mouser.tw/ProductDetail/Texas-Instruments/INA240A1D?qs=u4fy%2FsgLU9OqCdP7Ou6Gjw%3D%3D;;;;;
+IC_DAC_AD5683RBCPZ-1_LFCSP8-1EP;TBD;DAC;N/A;16 Bit Digital to Analog Converter 1 8-LFCSP-UD (2x2);https://www.mouser.tw/ProductDetail/Analog-Devices/AD5683RBCPZ-1RL7?qs=xbTpb2TSnD8e7Il7bT177w%3D%3D;;;;;
+IC_OPAMP_OPA187_SOT23-5;TBD;OPAMP;N/A;Zero-Drift Amplifier 1 Circuit Rail-to-Rail SOT-23-5;https://www.digikey.tw/product-detail/en/texas-instruments/OPA187IDBVR/296-53156-1-ND/9860197;;;;;
+IC_OPAMP_OPA189_SOT23-5;TBD;OPAMP;N/A;Zero-Drift Amplifier 1 Circuit Rail-to-Rail SOT-23-5;https://www.digikey.tw/product-detail/en/texas-instruments/OPA189IDBVR/296-OPA189IDBVRCT-ND/10435151;;;;;
+R_35m_3W_2512;TBD;R;N/A;35 mOhms ±1% 3W Chip Resistor 2512 (6432 Metric) Anti-Sulfur, Automotive AEC-Q200, Current Sense Metal Element;https://www.digikey.tw/en/products/detail/te-connectivity-passive-product/TLRP3A30DR035FTE/14652181;;;;;
+IC_COMP_TLV3502_SOIC8;TBD;COMP;N/A;Dual Comparator General Purpose CMOS, Push-Pull, Rail-to-Rail, TTL 8-SOIC;https://www.digikey.tw/en/products/detail/texas-instruments/TLV3502AIDR/1669430;None;None;https://www.mouser.tw/ProductDetail/Texas-Instruments/TLV3502AIDR?qs=m96fseALk3WMRQzOszVlcA%3D%3D; https://www.mouser.tw/ProductDetail/Texas-Instruments/TLV3502AIDG4?qs=m96fseALk3XPkYSqdiEXsQ%3D%3D; https://www.mouser.tw/ProductDetail/Texas-Instruments/TLV3502AID?qs=m96fseALk3U4Ee5H4Lg7qw%3D%3D
+IC_TTL_74LVC1G123_TSSOP8;TBD;TTL;N/A;Single Retrigerrable Monostabile Multivibrator, Low-Voltage CMOS;https://www.mouser.tw/ProductDetail/Nexperia/74LVC1G123DP-Q100H?qs=fi7yB2oewZnm6k5YPfl36A%3D%3D;;;;;
+R_25m_3W_2512;TBD;R;N/A;Current Sense Resistors - SMD 2512 25mOhms 1% Power;https://www.mouser.tw/ProductDetail/Welwyn-Components-TT-Electronics/LRMAP2512-R025FT4?qs=sGAEpiMZZMtlleCFQhR%2FzXTpMIqVoLl3o61G8s5DfTc%3D;;;;;
+IC_OPAMP_MCP6491_SOT23-5;TBD;OPAMP;N/A;2.4V to 7.5V 7.5 MHz General Purpose Amplifier 1 Circuit Rail-to-Rail SOT-23-5;https://www.mouser.tw/ProductDetail/Microchip-Technology/MCP6491T-E-OT?qs=OCR3PNzn1cfcC%252B1MkK495A%3D%3D;;;;;
+IC_TTL_74LVC1G02_SOT23-5;TBD;TTL;N/A;Single NOR Gate, Low-Voltage CMOS;https://www.digikey.tw/zh/products/detail/texas-instruments/SN74LVC1G02DBVR/385714;;;;;
+SW_DPDT_KPA-2201;TBD;;N/A;DPDT 有段按鍵開關;https://shop.cpu.com.tw/product/1718/info/;;;;;
+IC_LDO_UA78L10_SOT89-3;TBD;LDO;N/A;Linear Voltage Regulators 10V 0.1A Positive;https://www.mouser.tw/ProductDetail/Texas-Instruments/UA78L10ACPK?qs=sGAEpiMZZMt1hubY80%2Fs8LXjKK53frsmnnJ%252BJdp0vKk%3D;None;None;https://www.mouser.tw/ProductDetail/STMicroelectronics/L78L10ACUTR?qs=sGAEpiMZZMt1hubY80%2Fs8P31GhaRtRXkkDmHpb3tvgQ%3D; None; None
+IC_LDO_AZ1117IH_SOT223-3;TBD;LDO;N/A;PMIC - 穩壓器 - 線性 正 可調式 1 輸出 1A SOT-223-3;https://www.digikey.tw/zh/products/detail/diodes-incorporated/AZ1117IH-ADJTRG1/5699671;;;;;
+C_22u_16V_Al_poly_5.0x5.8;TBD;C;N/A;Aluminum Organic Polymer Capacitors WCAP-PSLP 16V 22uF 20%;https://www.mouser.tw/ProductDetail/Wurth-Elektronik/875105359003?qs=0KOYDY2FL29jQO14iscAeA%3D%3D;;;;;
+IC_TTL_74LVC1G17_SC74-A;TBD;TTL;N/A;Buffer, Non-Inverting 1 Element 1 Bit per Element Push-Pull Output SOT-25;https://www.digikey.tw/zh/products/detail/nexperia-usa-inc/74LVC1G17GV-Q100-1/3679042;None;None;None; None; None
+C_10u_35V_X7R_1210;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT 10uF+/-10% 35V X7R 1210;https://www.mouser.tw/ProductDetail/Samsung-Electro-Mechanics/CL32B106KLJNNNE?qs=sGAEpiMZZMvsSlwiRhF8qvCY8MbTG5UF1wKx61LcJ00%3D;;;;;
+C_18p_25V_C0G_0402;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT 18pF +-5% 25V;https://www.mouser.tw/ProductDetail/Walsin/0402N180J250CT?qs=sGAEpiMZZMvsSlwiRhF8qiCWdSglASQOXV3P8vZHsZXSt1CV23OwSA%3D%3D;;;;;
+IC_DAC_AD5683RACPZ-1_LFCSP8-1EP;TBD;DAC;N/A;16 位元數位類比轉換器 1 8-LFCSP-UD (2x2);https://www.digikey.tw/zh/products/detail/analog-devices-inc/AD5683RACPZ-1RL7/4901128;;;;;
+C_82p_25V_C0G_0402;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT 82pF 5% 25V;https://www.mouser.tw/ProductDetail/Walsin/RF15N820J250CT?qs=sGAEpiMZZMvsSlwiRhF8qtsBU8Zhqm2RLicgnsLhV2Q8JsdqyCsYSQ%3D%3D;;;;;
+C_100p_25V_C0G_0402;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT 25V 100pF C0G 0402 5%;https://www.mouser.tw/ProductDetail/YAGEO/CC0402JRNPO8BN101?qs=sGAEpiMZZMvsSlwiRhF8qt9jFSwKJhisM%2FmaPIJ7UbI%3D;;;;;
+C_1n_50V_C0G_0402_1%;TBD;C;N/A;1000 pF ±1% 50V 陶瓷電容 C0G、NP0 0402 (公制 1005);https://www.digikey.tw/zh/products/detail/murata-electronics/GRM1555C1H102FA01D/2543860;None;None;None; None; None
+C_270p_25V_C0G_0805;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT;https://www.mouser.tw/ProductDetail/Murata-Electronics/GRT1555C1E271FA02D?qs=RcG8xmE7yp0TadETcYDNbw%3D%3D;;;;;
+C_270p_250V_C0G_0805;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT 0805 270pF 250volts C0G 5%;https://www.mouser.tw/ProductDetail/Murata-Electronics/GRM21A5C2E271JW01D?qs=ui%252B2d9lVEI7xcmnxZuPh7w%3D%3D;;;;;
+C_0.33u_25V_C0G_1206;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT;https://www.mouser.tw/ProductDetail/Murata-Electronics/GRM31C5C1E334JE01L?qs=hd1VzrDQEGg5898k%2FtO9Mg%3D%3D;;;;;
+C_0.22u_25V_X7R_0603;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT 0603 0.22uF 25volts X7R +/-10%;https://www.mouser.tw/ProductDetail/Murata-Electronics/GCM188R71E224KA55D?qs=2YjXvJr3xvhcntwuBbXVzQ%3D%3D;;;;;
+C_10u_50V_X7R_1210;TBD;C;N/A;10 µF ±10% 50V 陶瓷電容 X7R 1210 (公制 3225);https://www.digikey.tw/zh/products/detail/samsung-electro-mechanics/CL32B106KBJNNWE/3889046;;;;;
+IC_EEPROM_93LC56BX_SOIC8;TBD;EERPOM;N/A;I2C EEPROM 128x16 Rot SOIC8;https://www.mouser.tw/ProductDetail/Microchip-Technology/93LC56BX-SN?qs=wPbeaPfwU995yRohfR4fLQ%3D%3D;;;;;
+GYRO_QSS011_P02;防潮箱;FINAL;10;QSS011 gyro system;N/A;;;;;
+PCBA_QSS018_DigitalServo_PWR_P01-1;TBD;PCBA;1;digital servo power board;EmbPCB;;;;;
+PCBA_DTC03A_MAIN_P02;TBD;PCBA;1;PCBA for DTC03A MAIN (Temp_Control);EmbPCB;;;;;
+C_16p_50V_C0G_0402;book;C;N/A;16p 50V C0G 0402;N/A;None;None;None; None; None
+C_33p_50V_C0G_0402;BOOK;C;N/A;33p 50V C0G 0402;N/A;;;;;
+IC_OPAMP_LTC6228_SOIC8;TBD;OPAMP;N/A;General Purpose Amplifier 1 Circuit Rail-to-Rail 8-SO;https://www.digikey.tw/en/products/detail/analog-devices-inc/LTC6228IS8-PBF/9997033;;;;;
+IC_TTL_74LVC1G14_SC74-A;TBD;TTL;N/A;Inverters SINGLE INVERTER SCHMITT TRIGER;https://www.mouser.tw/ProductDetail/Nexperia/74LVC1G14GV125?qs=me8TqzrmIYUL5v%2FYSc8%2FIw%3D%3D;;;;;
+IC_TTL_74LVC1G32_SC74-A;TBD;TTL;N/A;Logic Gates SINGLE 2-IN OR GATE;https://www.mouser.tw/ProductDetail/Nexperia/74LVC1G32GV125?qs=me8TqzrmIYXExQH4V9SARg%3D%3D;;;;;
+IC_TTL_74LV21_TVSOP14;TBD;TTL;N/A;Dual 4-input AND;https://www.mouser.tw/ProductDetail/Texas-Instruments/SN74LV21ADGVR?qs=D5pVkbrsqqIJdSu1grm22Q%3D%3D;;;;;
+IC_OPAMP_OPA376_SOIC8;TBD;OPAMP;N/A;2.7 to 5.5V RRIO Low Quiescent Current, Precision Operational Amplifier;https://www.mouser.tw/ProductDetail/Texas-Instruments/OPA376AIDRG4?qs=sGAEpiMZZMutXGli8Ay4kGgMdmt20B%252BovEXEvOLpunA%3D;;;;;
+IC_OPAMP_INA213_SC70-6;TBD;OPAMP;N/A;50V/V Current Sense Amplifier 1 Circuit  SC-70-6;https://www.mouser.tw/ProductDetail/Texas-Instruments/INA213CQDCKRQ1?qs=sGAEpiMZZMutXGli8Ay4kMlFwYoMhW%2FQtkCKyOFbs%252Bc%3D;;;;;
+IC_TTL_74LVC1G123_VSSOP8;TBD;TTL;N/A;Single Retrigerrable Monostabile Multivibrator, Low-Voltage CMOS, VSSOP-8;https://www.mouser.tw/ProductDetail/Nexperia/74LVC1G123DC125?qs=1sbE9T7hb3YbHVEpSlm8Dw%3D%3D;;;;;
+L_10u_7A_SRP7050AA-100M;TBD;L;N/A;10µH Shielded  Inductor 7A 53mOhm Max Nonstandard;https://www.digikey.tw/en/products/detail/bourns-inc/SRP7050AA-100M/13910522?s=N4IgTCBcDaIMoCUAKB2ADAVjQQWwWgEY00BZEAXQF8g;;;;;
+D_Schottky_PMEG4010_SOD993;TBD;DIODE;N/A;Schottky diode, small symbol, filled shape;https://www.digikey.tw/zh/products/detail/nexperia-usa-inc/PMEG4010ESBYL/5981365;;;;;
+D_Schottky_SM5819_SOD123;TBD;DIODE;N/A;Diode Schottky 40V 1A Surface Mount CFP5;https://www.mouser.tw/ProductDetail/Micro-Commercial-Components-MCC/SM5819PL-TP?qs=SdqRYZZ9IxAC1pyGL%2FvLRg%3D%3D;;;;;
+IC_GATEDRIVER_TPS28225_SOIC8;TBD;GATEDRIVER;N/A;Half-Bridge Gate Driver IC Non-Inverting 8-SOIC;https://www.digikey.tw/zh/products/detail/texas-instruments/TPS28225DR/1671235;;;;;
+IC_DAC_AD5683RARMZ_MSOP10;TBD;DAC;N/A;16 Bit Digital to Analog Converter 1 MSOP-10;https://www.mouser.tw/ProductDetail/Analog-Devices/AD5683RARMZ-RL7?qs=sGAEpiMZZMtXHE36kCvv33LYBbdl0lUIv%252BhH%252BCJ16Ms%3D;;;;;
+VR_50k_RK0971;TBD;R;N/A;VR 50k, 90degree;http://www.100y.com.tw/product/74014.htm;None;L-15KC/N=5;None; None; None
+IC_OPAMP_MCP6007_MSOP8;TBD;OPAMP;N/A;1.8 to 5.5V 1 MHz Rail to Rail Operational Amplifier with EMI Filtering;https://www.mouser.tw/ProductDetail/Microchip-Technology/MCP6007-E-MS?qs=W%2FMpXkg%252BdQ5tcGxVYPSJWQ%3D%3D;None;None;https://www.digikey.tw/zh/products/detail/microchip-technology/MCP6007T-E-MS/12807481; None; None
+IC_DAC_DAC80501M_VSSOP10;TBD;DAC;N/A;16 Bit Digital to Analog Converter 1 10-VSSOP;https://www.digikey.tw/en/products/detail/texas-instruments/DAC80501MDGSR/11308813;None;None;Nonehttps://www.mouser.tw/ProductDetail/Texas-Instruments/DAC80501MDGST?qs=%252B6g0mu59x7I7TnYkBjkntw%3D%3D; None; None
+SP_BUZZER_5V_12x12;TBD;SPEAKER;N/A;Piezo Buzzers & Audio Indicators buzzer, 12 mm Square, 3 mm deep, 5 Vp-p, 81 dB, SMT, Piezo Audio Transducer, TR;https://www.mouser.tw/ProductDetail/CUI-Devices/CPT-12123-81-SMT-TR?qs=pBJMDPsKWf1ZhTiEXH0TdA%3D%3D;;;;;
+CON_FUSE_BLADE_MINI;TBD;CONNECTOR;N/A;Fuse Holder 20 A 500V 1 Circuit Blade Surface Mount;https://www.digikey.tw/en/products/detail/keystone-electronics/3588-1/9921803;;;;;
+R_240R_100mW_0603;book;R;N/A;  ;N/A;;;;;
+R_100R_100mW_0603;book;R;N/A;  ;N/A;;;;;
+R_24k_60mW_0402;book;R;N/A;  ;N/A;;;;;
+R_22R_100mW_0603;book;R;N/A;  ;N/A;;;;;
+R_5.1R_100mW_0603;book;R;N/A;  ;N/A;;;;;
+R_5.1k_60mW_0402;book;R;N/A;  ;N/A;;;;;
+R_200R_60mW_0402;book;R;N/A;  ;N/A;;;;;
+R_680R_100mW_0603;book;R;N/A;  ;N/A;;;;;
+R_180R_60mW_0402;book;R;N/A;  ;N/A;;;;;
+R_910R_100mW_0603;book;R;N/A;  ;N/A;;;;;
+R_590R_100mW_0603;book;R;N/A;  ;N/A;;;;;
+R_120R_60mW_0402;book;R;N/A;  ;N/A;;;;;
+R_97.6k_60mW_0402;tbd;R;N/A;97.6 kOhms ±1% 0.063W、1/16W 晶片電阻 0402 (公制 1005) 抗濕 厚膜;https://www.digikey.tw/zh/products/detail/yageo/RC0402FR-0797K6L/726674;;;;;
+R_499R_60mW_0402;tbd;R;N/A;499 Ohms ±1% 0.063W、1/16W 晶片電阻 0402 (公制 1005) 抗濕 厚膜;https://www.digikey.tw/zh/products/detail/yageo/RC0402FR-07499RL/726623;;;;;
+R_2.15k_60mW_0402;tbd;R;N/A;2.15 kOhms ±1% 0.063W、1/16W 晶片電阻 0402 (公制 1005) 抗濕 厚膜;https://www.digikey.tw/zh/products/detail/yageo/RC0402FR-072K15L/5280957;;;;;
+R_4.42k_60mW_0402;tbd;R;N/A;4.42 kOhms ±1% 0.063W、1/16W 晶片電阻 0402 (公制 1005) 汽車 AEC-Q200、防潮 厚膜;https://www.digikey.tw/zh/products/detail/yageo/AC0402FR-074K42L/5895392;;;;;
+R_6.04k_60mW_0402;tbd;R;N/A;6.04 kOhms ±1% 0.063W、1/16W 晶片電阻 0402 (公制 1005) 汽車 AEC-Q200、防潮 厚膜;https://www.digikey.tw/zh/products/detail/yageo/AC0402FR-076K04L/5895482;;;;;
+R_499R_100mW_0603;tbd;R;N/A;499 Ohms ±1% 0.1W、1/10W 晶片電阻 0603 (公制 1608) 汽車AEC-Q200 厚膜;https://www.digikey.tw/zh/products/detail/panasonic-electronic-components/ERJ-3EKF4990V/196380;;;;;
+C_3.3n_50V_C0G_0402;tbd;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT;https://www.mouser.tw/ProductDetail/Murata-Electronics/GRM1555C1H332JE01D?qs=d0WKAl%252BL4KaBxyP0ovxs6g%3D%3D;None;None;None; None; None
+R_4.7k_0.5W_1210;tbd;R;N/A;Thick Film Resistors - SMD 4.7 kOhms 500 mW 1210 1%;https://www.mouser.tw/ProductDetail/YAGEO/RC1210FR-074K7L?qs=H6bTqIa4pvXh7BkF5m6vCg%3D%3D;;;;;
+R_160k_60mW_0402;tbd;R;N/A;  ;book;;;;;
+C_10n_25V_C0G_0402;TBD;C;N/A;Multilayer Ceramic Capacitors MLCC - SMD/SMT;https://www.mouser.tw/ProductDetail/Murata-Electronics/GRM1555C1E103JE01D?qs=d0WKAl%252BL4KbrO5WWwVeAqA%3D%3D;;;;;
+MOS_N_T2N7002BK_60V_0.4A_SOT23;tbd;MOS;N/A;N Channel MOSFET Small Signal Mosfet;https://www.mouser.tw/ProductDetail/Toshiba/T2N7002BKLM?qs=lX6dEUlT%252BgfTnU11z%2FTylg%3D%3D;;;;;
+MOS_N_T2N7002AK_60V_0.2A_SOT23;tbd;MOS;N/A;MOSFET 60V 0.2A Small-signal MOSFET;https://www.mouser.tw/ProductDetail/Toshiba/T2N7002AKLM?qs=pzVvXTvk9PzfX4hYglwZ9Q%3D%3D;;;;;
+IC_DIGITAL_SP3232EE_SOIC16;TBD;DIGITAL;N/A;RS-232接口IC RS232 120 kbps temp -40C to 85C;https://www.mouser.tw/ProductDetail/MaxLinear/SP3232EEN-L?qs=H%252BP%2FcHWii3cxzh6f4Jel3Q%3D%3D;;;;;
+IC_EEPROM_93AA56BT_SOT23-6;TBD;EERPOM;N/A;EEPROM 128x16 - 1.8V ~ 5.5V;https://www.mouser.tw/ProductDetail/Microchip-Technology/93AA56BT-I-OT?qs=hul3WK2zl4p%252B6%2FsdRU7j4A%3D%3D;;;;;
+IC_PWM_ADP2443_LFCSP24;tbd;PWM;N/A;轉換電壓穩壓器 36V 3A Synchronous Regulator-adj output;https://www.mouser.tw/ProductDetail/Analog-Devices/ADP2443ACPZN-R7?qs=sGAEpiMZZMvShe%252BZiYheih0ikCxq5LWNpxiKfXUXZz0%3D;;;;;
+C_220u_6.3V_TANT_1411;tbd;C;N/A;鉭聚合物電容 220 µF 6.3 V 1411 (公制 3528) 70mOhm @ 100kHz 鑄模式;https://www.digikey.tw/zh/products/detail/kyocera-avx/TCJB227M006R0070/2615437;None;None;None; None; None

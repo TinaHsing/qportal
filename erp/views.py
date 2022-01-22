@@ -1250,11 +1250,29 @@ def tracking(request):
 	return render(request, 'viewTracking.html', context)
 
 def exportPartNumber(request):
-	fp = open("partlist.csv","w")
+	fp = open("partlist.csv","w",encoding='UTF-8')
 	pnlist = partNumber.objects.all()
 	for pn in pnlist:
 		#名稱; 位置; 分類; 生產等級; 描述; 購買連結; 數值; 封裝; 第二購買連結;備註1; 備註2\n
-		fp.write(pn.name +";"+ pn.location +";" + pn.category.category +";" +str(pn.level) +";" + pn.discription +";" + pn.buylink)
+		if pn.location:
+			location = pn.location
+		else:
+			location =" N/A"
+
+		if pn.level:
+			level = str(pn.level)
+		else:
+			level = "N/A"
+		if pn.discription:
+			discription = pn.discription
+		else:
+			discription ="N/A"
+		if pn.buylink:
+			buylink = pn.buylink
+		else:
+			buylink ="N/A"
+		out = (pn.name +";"+ location +";" + pn.category.category +";" +level +";" + discription +";" + buylink)
+		fp.write(out)
 		pnNote = partNote.objects.filter(part = pn)
 		if pnNote.count():
 			pnNote = pnNote[0]
