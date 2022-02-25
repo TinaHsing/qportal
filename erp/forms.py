@@ -23,6 +23,9 @@ class createCustomerForm(ModelForm):
 	class Meta:
 		model = customer 
 		fields = '__all__'
+		widgets ={
+			'add': forms.TextInput(attrs={'size':150})
+		}
 
 	def clean_name(self):
 		name = self.cleaned_data.get('name')
