@@ -15,8 +15,8 @@
 		{% endif %}
 	</div>
 		{% for ep in epuntest %}
-		<input type = "radio" value = {{ ep.serial }} name = "serial">
-		<label> {{ ep.serial }}　</label>
+		<input type = "radio" value ="{{ ep.serial }}" name = "serial">
+		<label> {{ ep.serial }}(BOM type: {{ep.bom.discription}})　</label>
 		{% endfor %}
 	{% else %}
 		<label>無 <font color=blue>未測試</font> 產品序號</label>

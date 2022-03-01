@@ -40,7 +40,7 @@ class BomElementAdmin(admin.ModelAdmin):
 
 @admin.register(endProduct)
 class endProductAdmin(admin.ModelAdmin):
-	list_display =('part', 'serial', 'status')
+	list_display =('part','serial', 'status')
 	list_filter =('status',)
 	search_fields = ('part__name',)
 @admin.register(pnQty)
