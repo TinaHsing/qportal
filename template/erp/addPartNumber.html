@@ -11,7 +11,7 @@
 		{% csrf_token%}
 	<div>
 		<td><label>料號</label></td>
-		<td><input name="partNumber" type = "text"></td>	
+		<td><input name="partNumber" type = "text", size = 100></td>	
 		{% if nameEmpty %}
 		<td><font color= "red"> 請輸入料號名稱 </font></td>
 		{% endif %}
@@ -21,7 +21,7 @@
 	</div>
 	<div>
 		<td><label for="location">位置</label></td>
-		<td><input name="location" type = "text"></td>
+		<td><input name="location" type = "text" size = 100></td>
 		{% if locationEmpty %}
 		<td><font color= "red"> 請輸入位置 </font></td>
 		{% else %}
@@ -48,7 +48,7 @@
 	</div>
 	<div>
 		<td><label for="discription">產品描述</label></td>
-		<td><input type="text" name="discription"></td>
+		<td><input type="text" name="discription" size = 150 ></td>
 		{% if discriptionEmpty %}
 		<td><font color= "red"> 請輸入產品描述 </font></td>
 		{% else %}
@@ -57,7 +57,7 @@
 	</div>
 	<div>
 		<td><label for="discription">購買連結</label></td>
-		<td><input type="text" name="link"></td>
+		<td><input type="text" name="link" size = 150></td>
 	</div>
 	<div><input type="submit" value="submit"/></div>
 	</form>
