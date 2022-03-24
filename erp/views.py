@@ -1002,8 +1002,8 @@ def addSales(request, Pid):
 
 	endp = endProduct.objects.filter(part = part).filter(status="tested")
 
-	customer_list = customer.objects.all()
-	
+	customer_list = customer.objects.all().order_by('-cid')
+
 	context.update({'customer':customer_list})
 	# print(context)
 	context.update({'endp':endp})
