@@ -1236,15 +1236,17 @@ def tracking(request):
 
 		if (part_name != ''):
 			print(part_name)
-			pn = partNumber.objects.get(name = part_name)
-			endp = endProduct.objects.filter(part = pn)
+			pn = partNumber.objects.filter(name = part_name)
+			if pn.count():
+				endp = endProduct.objects.filter(part__in = pn)
+				if endp.count():
+					context.update({'endp_list':endp})
 		elif (cust_name !=''):
 			print(cust_name)
-			cn = customer.objects.get(name__contains = cust_name)
+			cn = customer.objects.get(name = cust_name)
 			endp = endProduct.objects.filter(customer = cn)
-
-		if endp.count():
-			context.update({'endp_list':endp})
+			if endp.count():
+				context.update({'endp_list':endp})
 
 	return render(request, 'viewTracking.html', context)
 
@@ -1253,10 +1255,7 @@ def viewSerial(request, serial):
 
 	if request.POST:
 		serial = request.POST['serial']
-	else:
-		serial = serial
-
-	if (serial != ''):
+	elif (serial != ''):
 		serial = int(serial)
 		endp = endProduct.objects.filter(serial = serial)
 

@@ -44,7 +44,6 @@ urlpatterns =[
 	path('software/<int:Pid>/', views.addSoftware, name='addSoftware'),
 	path('software/<int:Pid>/<int:Sid>/', views.softwareToPd, name='softwareToPd'),
 	path('tracking/', views.tracking, name='tracking'),
-	path('viewSerial/', views.viewSerial, name='viewSerial'),
 	path('viewSerial/<int:serial>/', views.viewSerial, name='viewSerial'),
 	path('downloadPartNumber/', views.exportPartNumber, name = 'downloadPartNumber'),
 	path('BOM/<int:Pid>/download/<int:Serial>/', views.exportBom, name = 'exportBom'),
