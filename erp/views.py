@@ -1229,23 +1229,34 @@ def tracking(request):
 	context = {}
 	if request.POST:
 		serial = request.POST['serial']
+		partNumber = request.POST['partNumber']
+		customer = request.POST['customer']
+
 		if (serial != ''):
 			serial = int(serial)
 			endp = endProduct.objects.filter(serial = serial)
-			if endp.count():
-				endp = endp[0]
-				context.update({'endp':endp})
-				subplist = endp.subProduct.all()
-				software = endp.software.all()
-				if (endp.customer):
-					customer = endp.customer.name
-				fromsub = endProduct.objects.filter(subProduct=endp)
-				# print(fromsub)
-				context.update({'fromsub':fromsub })
-				context.update({'subplist':subplist})
-				context.update({'software':software})
-				if (endp.customer):
-					context.update({'customer':customer})
+		elif(partNumber!=''):
+			pn = partNumber.objects.get(name = partNumber)
+			endp = endProduct.objects.filter(partNumber = pn)
+		elif(customer !=''):
+			cus = customer.objects.get(name = customer)
+			endp = endProduct.objects.filter(customer = cus)
+		
+		if endp.count():
+			endp = endp[0]
+			context.update({'endp':endp})
+			subplist = endp.subProduct.all()
+			software = endp.software.all()
+			if (endp.customer):
+				customer = endp.customer.name
+			fromsub = endProduct.objects.filter(subProduct=endp)
+			# print(fromsub)
+			context.update({'fromsub':fromsub })
+			context.update({'subplist':subplist})
+			context.update({'software':software})
+			if (endp.customer):
+				context.update({'customer':customer})
+
 
 	return render(request, 'viewTracking.html', context)
 
