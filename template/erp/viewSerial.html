@@ -1,0 +1,141 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<div>
+		<h3>序號查詢</h3>
+	<form method ="post" action ="">
+		{% csrf_token %}
+	<div>
+		<label>產品序號</label>
+		<input type="number" min = "0" name="serial">
+	<div><input type="submit" value="查詢"/></div>
+	</form>
+<hr>
+
+	{% if endp %}
+	<li>產品序號：
+	{{ endp.serial }}
+	</li>
+	<table>
+		<tr>
+			<td>產品名稱</td>
+			<td>產品狀態</td>
+			<td>BOM</td>
+			<td>BOM type</td>
+			<td>生產日期</td>
+			<td>生產負責人</td>
+			<td>測試日期</td>
+			<td>測試負責人</td>
+			<td>銷售日期</td>
+			<td>銷售負責人</td>
+		{% if customer %}
+			<td>客戶名稱</td>
+		{% endif %}
+		</tr>
+		<tr>
+			<td>{{ endp.part }}</td>
+			<td>{{ endp.status }}</td>
+			<td>{{ endp.bom }}</td>
+			<td>{{ endp.bom.discription }}</td>
+			<td>{{ endp.mDate }}</td>
+			<td>{{ endp.mUser }}</td>
+			<td>{{ endp.tDate }}</td>
+			<td>{{ endp.tUser }}</td>
+			<td>{{ endp.sDate }}</td>
+			<td>{{ endp.sUser }}</td>
+		{% if customer %}
+			<td>{{ customer }}</td>
+		{% endif %}
+		</tr>
+	</table>
+
+		{% if subplist %}
+<hr>
+		<li>子產品資訊</li>
+		<table>
+			<tr>
+				<td>產品名稱</td>
+				<td>產品序號</td>
+				<td>產品狀況</td>
+				<td>生產日期</td>
+				<td>生產負責人</td>
+				<td>測試日期</td>
+				<td>測試負責人</td>
+				<td>銷售日期</td>
+				<td>銷售負責人</td>
+			</tr>
+			{% for subp in subplist %}
+			<tr>
+				<td>{{ subp.part }}</td>
+				<td>{{ subp.serial}}</td>
+				<td>{{ subp.status }}</td>
+				<td>{{ supp.mDate }}</td>
+				<td>{{ subp.mUser }}</td>
+				<td>{{ subp.tDate }}</td>
+				<td>{{ subp.tUser }}</td>
+				<td>{{ subp.sDate }}</td>
+				<td>{{ subp.sUser }}</td>
+			</tr>
+			{% endfor %}
+		{% endif %}
+		</table>
+
+		{% if fromsub %}
+<hr>
+		<li>母產品資訊</li>
+		<table>
+			<tr>
+				<td>產品名稱</td>
+				<td>產品序號</td>
+				<td>產品狀況</td>
+				<td>生產日期</td>
+				<td>生產負責人</td>
+				<td>測試日期</td>
+				<td>測試負責人</td>
+				<td>銷售日期</td>
+				<td>銷售負責人</td>
+				
+			</tr>
+			{% for tt in fromsub %}
+			<tr>
+				<td>{{ tt.part }}</td>
+				<td>{{ tt.serial}}</td>
+				<td>{{ tt.status }}</td>
+				<td>{{ tt.mDate }}</td>
+				<td>{{ tt.mUser }}</td>
+				<td>{{ tt.tDate }}</td>
+				<td>{{ tt.tUser }}</td>
+				<td>{{ tt.sDate }}</td>
+				<td>{{ tt.sUser }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+
+		{% if software %}
+<hr>
+			<li> 韌體資訊 </li>
+			<table>
+			<tr> <td > 韌體名稱</td>
+				 <td > 描述</td>
+				 <td > 改版歷史</td>
+			</tr>
+			{% for sw in software %}
+			<tr>
+				<td > {{ sw.name }}</td>
+				<td > {{ sw.discription }}</td>
+				<td > {{ sw.history }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+		{% endif %}
+
+	{% else %}
+	<p>查無此序號</p>
+	{% endif %}
+	
+{% endblock %}
+
+{% block sidebar %}
+{% include 'erpside.html' %}
+{% endblock %}
