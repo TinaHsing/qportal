@@ -1003,7 +1003,7 @@ def addSales(request, Pid):
 	endp = endProduct.objects.filter(part = part).filter(status="tested")
 
 	customer_list = customer.objects.all().order_by('-cid')
-
+	
 	context.update({'customer':customer_list})
 	# print(context)
 	context.update({'endp':endp})
@@ -1066,7 +1066,7 @@ def addMpList(request,Pid):
 	product = partNumber.objects.get(Pid=Pid)
 	context = {'product':product}
 	context.update({'customer_list':customer_list})
-		
+
 	if request.POST:
 		cus = request.POST['customer']
 		Qty = int(request.POST['qty'])
@@ -1227,27 +1227,58 @@ def softwareToPd(request, Pid, Sid):
 
 def tracking(request):
 	context = {}
+	customer_list = customer.objects.all().order_by('-cid')
+	context.update({'customer_list':customer_list})
+
 	if request.POST:
-		serial = request.POST['serial']
-		if (serial != ''):
-			serial = int(serial)
-			endp = endProduct.objects.filter(serial = serial)
-			if endp.count():
-				endp = endp[0]
-				context.update({'endp':endp})
-				subplist = endp.subProduct.all()
-				software = endp.software.all()
-				if (endp.customer):
-					customer = endp.customer.name
-				fromsub = endProduct.objects.filter(subProduct=endp)
-				# print(fromsub)
-				context.update({'fromsub':fromsub })
-				context.update({'subplist':subplist})
-				context.update({'software':software})
-				if (endp.customer):
-					context.update({'customer':customer})
+		part_name = request.POST['part_name']
+		cust_name = request.POST['cust_name']
+
+		if (part_name != ''):
+			print(part_name)
+			pn = partNumber.objects.get(name = part_name)
+			endp = endProduct.objects.filter(part = pn)
+		elif (cust_name !=''):
+			print(cust_name)
+			cn = customer.objects.get(name__contains = cust_name)
+			endp = endProduct.objects.filter(customer = cn)
+
+		if endp.count():
+			context.update({'endp_list':endp})
 
 	return render(request, 'viewTracking.html', context)
+
+def viewSerial(request, serial):
+	context = {}
+
+	if request.POST:
+		serial = request.POST['serial']
+	else:
+		serial = serial
+
+	if (serial != ''):
+		serial = int(serial)
+		endp = endProduct.objects.filter(serial = serial)
+
+	if endp.count():
+		endp = endp[0]
+		context.update({'endp':endp})
+
+		subplist = endp.subProduct.all()
+		context.update({'subplist':subplist})
+
+		software = endp.software.all()
+		context.update({'software':software})
+
+		fromsub = endProduct.objects.filter(subProduct=endp)
+		# print(fromsub)
+		context.update({'fromsub':fromsub })
+
+		if (endp.customer):
+			endp_cust = endp.customer.name
+			context.update({'customer':endp_cust})
+
+	return render(request, 'viewSerial.html', context)
 
 def exportPartNumber(request):
 	fp = open("partlist.csv","w",encoding='UTF-8')
