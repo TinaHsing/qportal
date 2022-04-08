@@ -1259,7 +1259,8 @@ def viewSerial(request, serial):
 		serial = request.POST['serial']
 	elif (serial != ''):
 		serial = int(serial)
-		endp = endProduct.objects.filter(serial = serial)
+
+	endp = endProduct.objects.filter(serial = serial)
 
 	if endp.count():
 		endp = endp[0]
