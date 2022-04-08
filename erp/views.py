@@ -621,6 +621,8 @@ def PdCalculate(request):
 					buy_type = "Digikey"
 				elif ele.part.buylink.find("mouser") > 0:
 					buy_type = "Mouser"
+				elif ele.part.buylink.find("100y") > 0:
+					buy_type = "100year"
 				elif ele.part.buylink.find("http") == 0:
 					buy_type = "http"
 				else:
