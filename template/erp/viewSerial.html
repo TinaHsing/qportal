@@ -75,7 +75,7 @@
 			{% for subp in subplist %}
 			<tr>
 				<td>{{ subp.part }}</td>
-				<td>{{ subp.serial}}</td>
+				<td><a href='/erp/viewSerial/{{ subp.serial }}/'>{{ subp.serial}}</a></td>
 				<td>{{ subp.status }}</td>
 				<td>{{ supp.mDate }}</td>
 				<td>{{ subp.mUser }}</td>
