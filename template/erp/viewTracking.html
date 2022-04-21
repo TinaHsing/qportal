@@ -46,7 +46,16 @@
 		</tr>
 		<tr>
 			<td>備註</td>
-			<td colspan=10>{{ endp.note }}</td>
+			<td colspan=10>
+			{% autoescape off %}
+			{{ endp.note }}
+			{% endautoescape %}
+			</td>
+		</tr>
+		<tr>
+			<td colspan=11>
+			<hr>
+			</td>
 		</tr>
 	{% endfor %}
 	</table>
