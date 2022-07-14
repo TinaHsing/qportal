@@ -264,7 +264,6 @@ def addElement(request, Pid, Serial, Bid):
 		context.update({'element':element})
 		if request.POST:
 			qty = request.POST['unitQty']
-			replacePN = request.POST['replacePN']
 			schPN = request.POST['schPN']
 			if (qty == ""):
 				context.update({'empty':'empty'})
@@ -272,26 +271,11 @@ def addElement(request, Pid, Serial, Bid):
 			elif (qty == "0"):
 				element.delete()
 			else:
-				saveOK = False
-				if (replacePN != ""):
-					print(replacePN)
-					replace_part = partNumber.objects.filter(name = replacePN)
-					if (replace_part.count() == 0):
-						print("no part name")
-						context.update({'error':'error'})
-						return render(request, 'addElement.html', context)
-					else:
-						saveOK = True
-				else:
-					saveOK = True
-
-				if (saveOK):
-					element.unitQty = int(qty)
-					element.replacePN = replacePN
-					element.schPN = schPN
-					element.user = request.user
-					element.date = date.today()
-					element.save()
+				element.unitQty = int(qty) 
+				element.schPN = schPN
+				element.user = request.user
+				element.date = date.today()
+				element.save()
 			#path = '/erp/BOM/'+str(Pid)+'/'
 			path = '/erp/BOM/'+str(Pid)+'/'+str(Serial)+'/'
 			#print(path)

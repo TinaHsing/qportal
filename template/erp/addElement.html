@@ -7,26 +7,16 @@
 <form method ="post" action ="">
 	{% csrf_token %}
 	<div>
-		<td><label>使用數量</label> </td>
-		<td><input type="number" name="unitQty" {% if element %} value={{ element.unitQty }}{% endif %}>
+		<td><label>使用數量 (輸入 0 可以刪除)</label> </td>
+		<td><input type="number" name="unitQty"{% if element %}value={{ element.unitQty }}{% endif %}>
 		{% if empty %}
 			<font color=red>請輸入數量</font>
-		{% else %}
-			輸入 0 可以刪除
 		{% endif %}
 		</td>
 	</div>
 	<div>
-		<td><label>替代料</label></td>
-		<td><input name="replacePN" {% if element %} value={{ element.replacePN }}{% endif %}></td>
-		{% if error %}
-			<font color=red>無此料號</font>
-		{% else %}
-			可不輸入
-		{% endif %}
-	</div>
-	<div>
-		<label>在電路圖上面的元件名稱列表（用 , 隔開 ）</label></td>
+		<label>在電路圖上面的元件名稱列表</label></td>
+
 	</div>
 	<div>
 		<textarea name="schPN" rows="10" cols ="60">{% if element %}{{ element.schPN }}{% endif %}</textarea>>

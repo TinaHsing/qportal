@@ -86,7 +86,7 @@ class endProduct(models.Model):
 class addSubProduct(models.Model):
 	mother = models.ForeignKey(endProduct, related_name='mother' , on_delete = models.CASCADE, blank = True, null =True)
 	child = models.ForeignKey(endProduct, related_name = 'child',on_delete = models.CASCADE, blank = True, null =True )
-
+	
 class BomElement(models.Model):
 	bf = models.ForeignKey(bomDefine, on_delete = models.CASCADE, blank = True, null =True) #bom belongs to what product
 	part = models.ForeignKey(partNumber, related_name = "element", on_delete = models.CASCADE, blank = True, null =True)
@@ -94,7 +94,6 @@ class BomElement(models.Model):
 	schPN = models.CharField(max_length = 1000, blank=True, null= True)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, null= True, blank = True)
 	date = models.DateField(null=True, blank = True )
-	replacePN = models.CharField(default="", max_length=300, blank=True, null=True)
 	def __str__(self):
 		return self.part.name
 
@@ -124,7 +123,7 @@ class QtyReason(models.Model):
 	DD = "discard"
 	MT = "matchQty"
 	EP = "experiment"
-	QTY_CHOICE = ((PR,"purchasing"),(PD, "production"),(TE, "testing"),\
+	QTY_CHOICE =((PR,"purchasing"),(PD, "production"),(TE, "testing"),\
 		(SD, "sold"), (DD, "discard"), (MT, "matchQty"), (EP ,"experiment"))
 	reason = models.CharField(max_length = 10, choices= QTY_CHOICE, default = PR)
 	def __str__(self):
