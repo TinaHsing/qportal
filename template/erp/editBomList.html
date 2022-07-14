@@ -62,7 +62,6 @@
 				<td>位置</td>
 				<td>數量</td>
 				<td>PCB part (以","隔開)</td>
-				<td>替代料</td>
 				<td>編輯</td>
 			</tr>
 			{% for ele in element %}
@@ -72,8 +71,8 @@
 			<td> {{ ele.part.location }} </td>
 			<td> {{ ele.unitQty }} </td> 
 			<td> {{ ele.schPN }} </td>
-			<td> {{ ele.replacePN }} </td>
 			<td> <a href="{{ ele.part.Pid }}/" class="btn btn-info"> Edit </a> </td>
+
 			</tr>
 			{% endfor%}
 		{% else %}
