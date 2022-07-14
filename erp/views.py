@@ -1243,12 +1243,14 @@ def tracking(request):
 				endp = endProduct.objects.filter(part__in = pn)
 				if endp.count():
 					context.update({'endp_list':endp})
+					context.update({'part_name':part_name})
 		elif (cust_name !=''):
 			print(cust_name)
 			cn = customer.objects.get(name = cust_name)
 			endp = endProduct.objects.filter(customer = cn)
 			if endp.count():
 				context.update({'endp_list':endp})
+				context.update({'cust_name':cust_name})
 
 	return render(request, 'viewTracking.html', context)
 

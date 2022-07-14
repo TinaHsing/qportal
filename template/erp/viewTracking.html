@@ -19,6 +19,14 @@
 	</form>
 <hr>
 
+{% if part_name %}
+	<h5>料號 : <font color=blue>{{ part_name }}</font></h5>
+{% endif %}
+
+{% if cust_name %}
+	<h5>客戶名稱 : <font color=blue>{{ cust_name }}</font></h5>
+{% endif %}
+
 {% if endp_list %}
 	<table>
 		<tr>
