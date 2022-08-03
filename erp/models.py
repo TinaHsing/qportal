@@ -14,7 +14,7 @@ class pnCategory(models.Model):
 
 class software(models.Model):
 	Sid = models.AutoField(primary_key = True)
-	name = models.CharField(max_length = 30)
+	name = models.CharField(max_length = 50)
 	pc = models.BooleanField(default = False)
 	discription = models.CharField(max_length = 100)
 	history = models.TextField(help_text ='reversion history', null=True, blank = True)
