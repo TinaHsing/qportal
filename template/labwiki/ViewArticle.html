@@ -1,0 +1,42 @@
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+{% block top_wiki %}
+{% include 'top_wiki.html' %}
+{% endblock %}
+
+<div>
+<!div align="center">
+<!div class="shadow-none" align="left" style="width:80%; border-radius:15px; border-width:3px; border-style:solid; border-color: rgb(0, 128, 255); padding:10px; margin:10px;">
+
+    <h3>{{ object.title }}</h3>
+    <div align=right>[<a href='/labwiki/Article/{{ object.id }}/update'>Update Article</a>]</div>
+
+    <div align=right>Post by : 
+    {{ object.user }} , 
+    {{ object.date }}</div>
+
+{% if object.update_user %}
+    <div align=right>Update by : 
+    {{ object.update_user }} , 
+    {{ object.update_date }}</div>
+{% endif %}
+{% for cate in object.category.all %}
+<a href ="/labwiki/Tag/{{ cate.pk }}">{{ cate.name }}</a> &nbsp; . &nbsp;
+{% endfor %}
+<hr>
+<div>
+    {{ object.formated_markdown|safe }}
+</div>
+
+<!/div>
+<!/div>
+</div>
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'side_wiki.html' %}
+{% endblock %}

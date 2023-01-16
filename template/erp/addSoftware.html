@@ -7,9 +7,11 @@
 	<li><font color=red>{{ part.name }}</font> 已包含軟/韌體：</li>
 	<table>
 		{% if sw_in_part %}
-			<tr><td> 軟/韌體名稱 </td><td colspan= 2 >軟/韌體描述</td></tr>
+			<tr><td> 軟/韌體名稱 </td><td colspan=2> 軟/韌體描述 </td><td></td></tr>
 			{% for swi in sw_in_part %}
-			<tr><td>{{ swi.name }}</td><td colspan= 2 >{{ swi.discription }}</td></tr>
+			<tr><td>{{ swi.name }}</td><td colspan=2>{{ swi.discription }}</td>
+			<td><a href="{{ swi.Sid }}/" class="btn btn-info"> 刪除 </a> </td>
+			</tr>
 			{% endfor %}
 		{% else %}
 			<label>目前無登錄！</label>
@@ -25,7 +27,7 @@
 		<tr>
 			<td>{{ swo.name }}</td>
 			<td>{{ swo.discription }}</td>
-			<td><a href="{{ swo.Sid }}/" class="btn btn-info"> 新增</a> </td>
+			<td><a href="{{ swo.Sid }}/" class="btn btn-info"> 新增 </a> </td>
 		</tr>
 		{% endfor %}
 	</table>

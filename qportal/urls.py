@@ -25,4 +25,8 @@ urlpatterns = [
     path('erp/', include('erp.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('',RedirectView.as_view(url='/portal/')),   
-]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('labwiki/', include('labwiki.urls')),
+    path('markdownx/',include('markdownx.urls'))
+]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+{% block top_wiki %}
+{% include 'top_wiki.html' %}
+{% endblock %}
+
+<p>
+{% if articles %}
+<table width=100% border=0>
+<tr>
+    <th>Title</th>
+    <th>Auther</th>
+    <th>Date</th>
+    <th>Update User</th>
+    <th>Update Date</th>
+</tr>
+{% for article in articles %}
+<tr>
+    <td><a href='/labwiki/Article/{{ article.pk }}'>{{ article.title }}</a> </td>
+
+    <td>{{ article.user }}</td>
+    <td>{{ article.date }}</td>
+    <td>{{ article.update_user }}</td>
+    <td>{{ article.update_date }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>無相關文章</p>
+{% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+{% include 'side_wiki.html' %}
+{% endblock %}

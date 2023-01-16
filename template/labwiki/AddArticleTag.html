@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+{% block top_manager %}
+{% include 'top_wiki.html' %}
+{% endblock %}
+
+<p>新增文章 Tag</p>
+<form method="post" enctype="multipart/form-data".>
+	{% csrf_token%}
+	<table>
+	<tr>
+		<td>Category Name</td>
+		<td>{{ form.name}}</td>
+	</tr>
+	<tr>
+		<td>Parent</td>
+		<td>{{ form.parent }}</td>
+	</tr>
+	</table>
+<br>
+<input type="submit" value="submit"/>
+<br>
+<font color="red">{{ form.name.errors }} </font>
+</form>
+{% endblock %}
+
+{% block sidebar %}
+{% include 'side_wiki.html' %}
+{% endblock %}

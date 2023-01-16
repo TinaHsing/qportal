@@ -1,0 +1,26 @@
+
+{% load mptt_tags %}
+{% full_tree_for_model labwiki.Category as drilldown %}
+{% if drilldown %}
+<div>
+{% endif %}
+{% for node, structure in drilldown|tree_info %}
+	{% if node.is_root_node %}
+	{% else %}
+		{% if structure.new_level %}
+		<div class="collapse" id="node_{{node.parent_id}}">
+		{% endif %}
+	{% endif %}
+	{% if not node.is_leaf_node %}
+	<p>
+	<a class="btn btn-primary" onclick="changeIcon(this)" data-toggle="collapse" href="#node_{{node.pk}}" role="button" aria-expanded="false" aria-controls="#node_{{node.pk}}">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+  	{% else %}
+  	<p> &nbsp; &nbsp; &nbsp;
+  	{% endif %}
+  	<a href ="/labwiki/Tag/{{ node.pk }}">{{ node.name }}</a>
+	</p>
+	{% for level in structure.closed_levels %}
+		</div>
+	{% endfor %}
+{% endfor %}

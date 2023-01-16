@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import os.path 
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +28,7 @@ SECRET_KEY = 'n3h$45lp&&qnakx&#$_$x9nr7tt7jf+cosezj3q)0ya6v(#qr('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -40,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'portal.apps.PortalConfig',
-    'erp.apps.ErpConfig'
+    'erp.apps.ErpConfig',
+    'labwiki.apps.LabwikiConfig',
+    'mptt',
+    'markdownx',
 ]
 
 MIDDLEWARE = [
@@ -54,11 +58,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'qportal.urls'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+MARKDOWNX_MEDIA_PATH = datetime.datetime.now().strftime('markdownx/%Y/%m/%d')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./template/erp','./template/'],
+        'DIRS': ['./template/erp/','./template/', './template/labwiki/', ],
         #'DIRS': ['/template/'],
         'APP_DIRS': True,
         'OPTIONS': {
