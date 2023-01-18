@@ -19,7 +19,6 @@ class Labwiki(TemplateView):
     def get_context_data(self):
         articles = Article.objects.order_by('-date')[:20]
         context = {'articles':articles}
-        context.update({'all':True})
         return context
 
 class NewArticle(PermissionRequiredMixin, CreateView):
@@ -39,12 +38,12 @@ class NewArticle(PermissionRequiredMixin, CreateView):
         obj.save()
         return super().form_valid(form)
 
-    def get_context_data(self):
-        context = super().get_context_data()
-        tags = Category.objects.all()
-        if (tags.count() == 0):
-            context.update({'tag_empyt':True})
-        return context
+    # def get_context_data(self):
+    #     context = super().get_context_data()
+    #     tags = Category.objects.all()
+    #     if (tags.count() == 0):
+    #         context.update({'tag_empyt':True})
+    #     return context
 
 class NewTag(PermissionRequiredMixin, CreateView):
     """
