@@ -19,6 +19,7 @@ class Labwiki(TemplateView):
     def get_context_data(self):
         articles = Article.objects.order_by('-date')[:20]
         context = {'articles':articles}
+        context.update({'all':True})
         return context
 
 class NewArticle(PermissionRequiredMixin, CreateView):
@@ -31,12 +32,19 @@ class NewArticle(PermissionRequiredMixin, CreateView):
     success_url = 'AddSucess'
     permission_required ='labManager.add_elecategory'
 
-    def form_valid (self, form):
+    def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.date = date.today()
         obj.save()
         return super().form_valid(form)
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        tags = Category.objects.all()
+        if (tags.count() == 0):
+            context.update({'tag_empyt':True})
+        return context
 
 class NewTag(PermissionRequiredMixin, CreateView):
     """
@@ -48,7 +56,7 @@ class NewTag(PermissionRequiredMixin, CreateView):
     success_url = 'AddSucess'
     permission_required ='labwiki.add_category'
 
-    def form_valid (self, form):
+    def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = self.request.user
         obj.date = date.today()
@@ -62,8 +70,17 @@ class ViewTag(ListView):
 
     def get_queryset(self):
         pk = self.kwargs['pk']
+        # articles = Article.objects.filter(category__id = pk)
+        # return articles
+        return pk
+
+    def get_context_data(self):
+        pk = self.get_queryset()
         articles = Article.objects.filter(category__id = pk)
-        return articles
+        context = {'articles':articles}
+        tags = Category.objects.get(id = pk)
+        context.update({'tag':tags})
+        return context
 
 class ViewArticle(DetailView):
     template_name = 'ViewArticle.html'
@@ -73,7 +90,7 @@ class UpdateArticle(UpdateView):
     template_name = 'AddArticle.html'
     model = Article
     form_class = ArticleForm
-    success_url = 'AddSucess'
+    success_url = '/labwiki/AddSucess'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -81,3 +98,27 @@ class UpdateArticle(UpdateView):
         obj.update_date = date.today()
         obj.save()
         return super().form_valid(form)
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context.update({'update':True})
+        return context
+
+class UpdateTag(UpdateView):
+    template_name = 'AddArticleTag.html'
+    form_class = CategoryForm
+    model = Category
+    success_url = '/labwiki/AddSucess'
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.date = date.today()
+        obj.save()
+        return super().form_valid(form)
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context.update({'update':True})
+        return context
+

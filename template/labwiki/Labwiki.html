@@ -6,15 +6,21 @@
 {% include 'top_wiki.html' %}
 {% endblock %}
 
-<p>
+{% if tag %}
+    <p><font size="+2">{{ tag.name }}</font> 
+    [<a href='/labwiki/Tag/{{ tag.id }}/update'> Update </a>]</p>
+{% else %}
+    <h5>最新文章</h5>
+{% endif %}
+
 {% if articles %}
 <table width=100% border=0>
 <tr>
-    <th>Title</th>
-    <th>Auther</th>
-    <th>Date</th>
-    <th>Update User</th>
-    <th>Update Date</th>
+    <th>標題</th>
+    <th>作者</th>
+    <th>日期</th>
+    <th>修改者</th>
+    <th>修改日期</th>
 </tr>
 {% for article in articles %}
 <tr>

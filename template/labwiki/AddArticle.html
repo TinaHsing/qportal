@@ -6,7 +6,15 @@
 {% include 'top_wiki.html' %}
 {% endblock %}
 
-<p>新增 / 修改 文章</p>
+<h5>
+{% if update %}
+修改
+{% else %}
+新增
+{% endif %}
+文章
+</h5>
+
 <form method="post" enctype="multipart/form-data".>
 	{% csrf_token %}
 	<table>
@@ -18,9 +26,13 @@
 	<tr>
 		<td>Tag</td>
 		<td>
+		{% if tag_empyt %}
+			<font color=red> 請先 </font><a href ={% url 'NewArticleTag' %}> 新增文章Tag </a>
+		{% else %}
 			{% for checkbox in form.category %}
 				{{ checkbox.tag }} {{ checkbox.choice_label }} &nbsp; &nbsp;
 			{% endfor %}
+		{% endif %}
 		</td>
 	</tr>
 	<tr>
@@ -28,11 +40,10 @@
 		<td>{{ form.content }}
 		{{ form.media }}</td>
 	</tr>
-	</table>
+</table>
 <br>
 <input type="submit" value="submit"/>
-<br>
-<font color="red">{{ form.name.errors }} </font>
+<font color="red"> {{ form.name.errors }} </font>
 </form>
 {% endblock %}
 
