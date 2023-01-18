@@ -27,7 +27,7 @@
 		<td>Tag</td>
 		<td>
 		{% if tag_empyt %}
-			<font color=red> 請先 </font><a href ={% url 'NewArticleTag' %}> 新增文章Tag </a>
+			<font color=red> 請先使用 --> </font><a href ={% url 'NewArticleTag' %}> 新增文章Tag </a>
 		{% else %}
 			{% for checkbox in form.category %}
 				{{ checkbox.tag }} {{ checkbox.choice_label }} &nbsp; &nbsp;
