@@ -9,7 +9,7 @@ class ArticleForm(forms.ModelForm):
         fields = ['title', 'content', 'category']
         widgets = {'category':forms.CheckboxSelectMultiple(),
                     'title':forms.TextInput(attrs={'size':'110%'}),
-                    'content':forms.Textarea(attrs={'rows':150 ,'cols':'20%'})
+                    'content':forms.Textarea(attrs={'rows':150})
                 }
 
 class CategoryForm(forms.ModelForm):
